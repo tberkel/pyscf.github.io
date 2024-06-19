@@ -469,8 +469,8 @@ PySCF via pip, you can upgrade it to the new version,</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pyscf
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
 <p>Newly introduced features are available in the
 <a class="reference external" href="https://github.com/pyscf/pyscf-forge">pyscf-forge</a> package, which can be
 installed with <code class="docutils literal notranslate"><span class="pre">pip</span></code>,</p>
@@ -820,7 +820,10 @@ set<span class="o">(</span>BLAS_LIBRARIES<span class="w"> </span><span class="s2
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">LD_PRELOAD</span><span class="o">=</span><span class="nv">$MKLROOT</span>/lib/intel64/libmkl_avx.so:<span class="nv">$MKLROOT</span>/lib/intel64/libmkl_core.so
 </pre></div>
 </div>
-<h3 class="rubric" id="using-the-qcint-optimized-integral-library">Using the Qcint optimized integral library</h3>
+</div>
+</section>
+<section id="using-the-qcint-optimized-integral-library">
+<h3>Using the Qcint optimized integral library<a class="headerlink" href="#using-the-qcint-optimized-integral-library" title="Link to this heading">#</a></h3>
 <p>The default integral library used by PySCF is
 <a class="reference external" href="https://github.com/sunqm/libcint">libcint</a>, which is implemented within a
 model that maximizes its compatibility with various high-performance
@@ -828,7 +831,9 @@ computing systems. However, on x86-64 platforms, libcint has a more
 efficient counterpart, <a class="reference external" href="https://github.com/sunqm/qcint">Qcint</a>, which is
 heavily optimized with x86 SIMD instructions (AVX-512/AVX2/AVX/SSE3).
 To replace the default libcint library with the qcint library, edit the
-URL of the integral library in lib/CMakeLists.txt file,</p>
+URL of the integral library in <code class="docutils literal notranslate"><span class="pre">lib/CMakeLists.txt</span></code> file,</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">lib/CMakeLists.txt</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ExternalProject_Add<span class="o">(</span>libcint
 <span class="w">    </span>GIT_REPOSITORY
 <span class="w">    </span>https://github.com/sunqm/qcint.git
@@ -900,6 +905,7 @@ URL of the integral library in lib/CMakeLists.txt file,</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-variables-and-global-configurations">Environment variables and global configurations</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-without-internet">Install without internet</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-optimized-blas">Using optimized BLAS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-qcint-optimized-integral-library">Using the Qcint optimized integral library</a></li>
 </ul>
 </li>
 </ul>
