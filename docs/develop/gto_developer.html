@@ -1,338 +1,405 @@
+
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../">
+
+<html lang="en" data-content_root="../" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="lang:clipboard.copy" content="Copy to clipboard">
-  <meta name="lang:clipboard.copied" content="Copied to clipboard">
-  <meta name="lang:search.language" content="en">
-  <meta name="lang:search.pipeline.stopwords" content="True">
-  <meta name="lang:search.pipeline.trimmer" content="True">
-  <meta name="lang:search.result.none" content="No matching documents">
-  <meta name="lang:search.result.one" content="1 matching document">
-  <meta name="lang:search.result.other" content="# matching documents">
-  <meta name="lang:search.tokenizer" content="[\s\-]+">
-
-  
-    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
-
-    <style>
-      body,
-      input {
-        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
-      }
-
-      code,
-      kbd,
-      pre {
-        font-family: "Roboto Mono", "Courier New", Courier, monospace
-      }
-    </style>
-  
-
-  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
-  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
-  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
-  
-  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
-  
-  <meta name="theme-color" content="#3f51b5">
-  <script src="../_static/javascripts/modernizr.js"></script>
-  
-  
-  
     <title>Molecules and Crystal Unit Cells &#8212; PySCF</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
-    <link rel="stylesheet" type="text/css" href="../_static/material.css?v=79c92029" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/pyscf.css?v=9b431c29" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/pyscf-pst.css?v=ed6b5f64" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
     <script src="../_static/documentation_options.js?v=0a414f3d"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'develop/gto_developer';</script>
     <link rel="icon" href="../_static/favicon-32x32.png"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-  
-   
-
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body dir=ltr
-        data-md-color-primary=pyscf data-md-color-accent=pyscf>
   
-  <svg class="md-svg">
-    <defs data-children-count="0">
-      
-      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
-      
-    </defs>
-  </svg>
   
-  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
-  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
-  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-  <a href="#develop/gto_developer" tabindex="1" class="md-skip"> Skip to content </a>
-  <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex navheader">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="PySCF"
-           class="md-header-nav__button md-logo">
-          
-            &nbsp;
-          
-        </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          <span class="md-header-nav__topic">PySCF 2.6</span>
-          <span class="md-header-nav__topic"> Molecules and Crystal Unit Cells </span>
-        </div>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-        
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" action="../search.html" method="get" name="search">
-      <input type="text" class="md-search__input" name="q" placeholder=""Search""
-             autocapitalize="off" autocomplete="off" spellcheck="false"
-             data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
-          <div class="md-search-result__meta">
-            Type to start searching
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
-      </div>
-      
-        <div class="md-flex__cell md-flex__cell--shrink">
-          <div class="md-header-nav__source">
-            <a href="https://github.com/pyscf/pyscf/" title="Go to repository" class="md-source" data-md-source="github">
-
-    <div class="md-source__icon">
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
-    </div>
   
-  <div class="md-source__repository">
-    PySCF
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo-64x64.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="../_static/logo-64x64.png" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">PySCF</p>
+  
+</a></div>
+    
   </div>
-</a>
-          </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../install.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../user.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../develop.html">
+    Developer Guide
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../pyscf_api_docs/pyscf.html">
+    API
+  </a>
+</li>
+
+            <li class="nav-item dropdown pst-header-nav-item">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class="nav-item ">
+  <a class="nav-link dropdown-item nav-internal" href="../about.html">
+    About
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
         </div>
       
       
-  
-  <script src="../_static/javascripts/version_dropdown.js"></script>
-  <script>
-    var json_loc = "../"versions.json"",
-        target_loc = "../../",
-        text = "Versions";
-    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
-  </script>
-  
+        <div class="navbar-item">
 
-    </div>
-  </nav>
-</header>
-
-  
-  <div class="md-container">
-    
-    
-    
-  <nav class="md-tabs" data-md-component="tabs">
-    <div class="md-tabs__inner md-grid">
-      <ul class="md-tabs__list">
-            
-            <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">Home</a></li>
-            
-            <li class="md-tabs__item"><a href="../install.html" class="md-tabs__link">Install</a></li>
-            
-            <li class="md-tabs__item"><a href="../quickstart.html" class="md-tabs__link">Quickstart</a></li>
-            
-            <li class="md-tabs__item"><a href="../user.html" class="md-tabs__link">User Guide</a></li>
-            
-            <li class="md-tabs__item"><a href="../develop.html" class="md-tabs__link">Developer Guide</a></li>
-            
-            <li class="md-tabs__item"><a href="../pyscf_api_docs/modules.html" class="md-tabs__link">API</a></li>
-            
-            <li class="md-tabs__item"><a href="../about.html" class="md-tabs__link">About</a></li>
-      </ul>
-    </div>
-  </nav>
-    <main class="md-main">
-      <div class="md-main__inner md-grid" data-md-component="container">
-        
-          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
-            <div class="md-sidebar__scrollwrap">
-              <div class="md-sidebar__inner">
-                <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="PySCF" class="md-nav__button md-logo">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
       
-        <img src="../_static/" alt=" logo" width="48" height="48">
-      
-    </a>
-    <a href="../index.html"
-       title="PySCF">PySCF 2.6</a>
-  </label>
-    <div class="md-nav__source">
-      <a href="https://github.com/pyscf/pyscf/" title="Go to repository" class="md-source" data-md-source="github">
-
-    <div class="md-source__icon">
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
     </div>
-  
-  <div class="md-source__repository">
-    PySCF
+    
   </div>
-</a>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../install.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../user.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../develop.html">
+    Developer Guide
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../pyscf_api_docs/pyscf.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../about.html">
+    About
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Molecules...</li>
+  </ul>
+</nav>
+</div>
+      
     </div>
   
   
-
-  
-  <ul class="md-nav__list">
-    <li class="md-nav__item">
-    
-    
-      <a href="../install.html" class="md-nav__link">Install PySCF</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../install.html#advanced-build-options" class="md-nav__link">Advanced build options</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../install.html#install-pyscf-extensions" class="md-nav__link">Install PySCF extensions</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../install.html#troubleshooting" class="md-nav__link">Troubleshooting</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../quickstart.html" class="md-nav__link">Quickstart</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../user.html" class="md-nav__link">User Guide</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../develop.html" class="md-nav__link">Developer Guide</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../pyscf_api_docs/pyscf.html" class="md-nav__link">API</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../about.html" class="md-nav__link">About</a>
-      
-    
-    </li>
-  </ul>
-  
-
-</nav>
-              </div>
-            </div>
-          </div>
-          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-            <div class="md-sidebar__scrollwrap">
-              <div class="md-sidebar__inner">
+</div>
+</div>
+              
+              
+              
                 
-<nav class="md-nav md-nav--secondary">
-    <label class="md-nav__title" for="__toc">"Contents"</label>
-  <ul class="md-nav__list" data-md-scrollfix="">
-        <li class="md-nav__item"><a href="#develop-gto-developer--page-root" class="md-nav__link">Molecules and Crystal Unit Cells</a><nav class="md-nav">
-              <ul class="md-nav__list">
-        <li class="md-nav__item"><a href="#overview" class="md-nav__link">Overview</a>
-        </li>
-        <li class="md-nav__item"><a href="#internal-data-structure" class="md-nav__link">Internal data structure</a>
-        </li>
-        <li class="md-nav__item"><a href="#access-ao-integrals" class="md-nav__link">Access AO integrals</a>
-        </li>
-        <li class="md-nav__item"><a href="#ao-evaluation-on-grids" class="md-nav__link">AO evaluation on grids</a>
-        </li>
-        <li class="md-nav__item"><a href="#serialization" class="md-nav__link">Serialization</a>
-        </li>
-        <li class="md-nav__item"><a href="#crystal-unit-cell" class="md-nav__link">Crystal unit cell</a>
-        </li></ul>
-            </nav>
-        </li>
-    
-<li class="md-nav__item"><a class="md-nav__extra_link" href="../_sources/develop/gto_developer.rst.txt">Show Source</a> </li>
-
-<li id="searchbox" class="md-nav__item"></li>
-
-  </ul>
-</nav>
-              </div>
-            </div>
-          </div>
-        
-        <div class="md-content">
-          <article class="md-content__inner md-typeset" role="main">
-            
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section id="molecules-and-crystal-unit-cells">
-<span id="developer-gto"></span><h1 id="develop-gto-developer--page-root">Molecules and Crystal Unit Cells<a class="headerlink" href="#develop-gto-developer--page-root" title="Link to this heading">¶</a></h1>
+<span id="developer-gto"></span><h1>Molecules and Crystal Unit Cells<a class="headerlink" href="#molecules-and-crystal-unit-cells" title="Link to this heading">#</a></h1>
 <p><em>Modules</em>: <code class="xref py py-mod docutils literal notranslate"><span class="pre">gto</span></code>, <code class="xref py py-mod docutils literal notranslate"><span class="pre">pbc.gto</span></code></p>
 <section id="overview">
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">pyscf.gto.Mole</span></code> class holds the information of
 molecular structures, basis sets, effective core potentials
 and other global options. It also implements
@@ -344,10 +411,10 @@ extended systems with periodic boundary conditions (PBCs), such as
 crystal lattice vectors, pseudopotentials, periodic dimensions, etc.</p>
 </section>
 <section id="internal-data-structure">
-<h2 id="internal-data-structure">Internal data structure<a class="headerlink" href="#internal-data-structure" title="Link to this heading">¶</a></h2>
+<h2>Internal data structure<a class="headerlink" href="#internal-data-structure" title="Link to this heading">#</a></h2>
 <p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">Mole</span></code> class has a three-layer data structure:
 user input, internal format, libcint argument.</p>
-<table>
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>user input</p></th>
 <th class="head"><p>internal format</p></th>
@@ -373,24 +440,25 @@ user input, internal format, libcint argument.</p>
 </tr>
 </tbody>
 </table>
+</div>
 <p>The attributes <code class="xref py py-attr docutils literal notranslate"><span class="pre">atom</span></code> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">basis</span></code> store the user input for
 molecular geometries and basis sets, respectively. These are then converted
 to the internal formats through the methods <code class="xref py py-meth docutils literal notranslate"><span class="pre">format_atom()</span></code> and
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">format_basis()</span></code>, respectively:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">gto</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">Mole</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mol</span><span class="o">.</span><span class="n">atom</span> <span class="o">=</span> <span class="s1">'H 0 0 0; H 0 0 0.74'</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mol</span><span class="o">.</span><span class="n">basis</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"H"</span><span class="p">:</span> <span class="s2">"6-31g"</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mol</span><span class="o">.</span><span class="n">atom</span> <span class="o">=</span> <span class="s1">&#39;H 0 0 0; H 0 0 0.74&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mol</span><span class="o">.</span><span class="n">basis</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;H&quot;</span><span class="p">:</span> <span class="s2">&quot;6-31g&quot;</span><span class="p">}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">atom</span><span class="p">)</span>
 <span class="go">H 0 0 0; H 0 0 0.74</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">basis</span><span class="p">)</span>
-<span class="go">{'H': '6-31g'}</span>
+<span class="go">{&#39;H&#39;: &#39;6-31g&#39;}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mol</span><span class="o">.</span><span class="n">_atom</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">format_atom</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">atom</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">_atom</span><span class="p">)</span>
-<span class="go">[('H', [0.0, 0.0, 0.0]), ('H', [0.0, 0.0, 1.3983973321781458])]</span>
+<span class="go">[(&#39;H&#39;, [0.0, 0.0, 0.0]), (&#39;H&#39;, [0.0, 0.0, 1.3983973321781458])]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mol</span><span class="o">.</span><span class="n">_basis</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">format_basis</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">basis</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">_basis</span><span class="p">)</span>
-<span class="go">{'H': [[0, [18.731137, 0.0334946], [2.8253937, 0.23472695], [0.6401217, 0.81375733]], [0, [0.1612778, 1.0]]]}</span>
+<span class="go">{&#39;H&#39;: [[0, [18.731137, 0.0334946], [2.8253937, 0.23472695], [0.6401217, 0.81375733]], [0, [0.1612778, 1.0]]]}</span>
 </pre></div>
 </div>
 <p>Finally, the data stored in the internal format layer is converted,
@@ -415,7 +483,7 @@ via the <code class="xref py py-meth docutils literal notranslate"><span class="
 </div>
 <p>Each row of <code class="xref py py-attr docutils literal notranslate"><span class="pre">_atm</span></code> represents an atom, and
 each column has the meaning as follows:</p>
-<table>
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Column index</p></th>
 <th class="head"><p>Content</p></th>
@@ -438,9 +506,10 @@ each column has the meaning as follows:</p>
 </tr>
 </tbody>
 </table>
+</div>
 <p>Each row of <code class="xref py py-attr docutils literal notranslate"><span class="pre">_bas</span></code> represents a basis shell, and
 each column has the following meaning:</p>
-<table>
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Column index</p></th>
 <th class="head"><p>Content</p></th>
@@ -472,9 +541,10 @@ each column has the following meaning:</p>
 </tr>
 </tbody>
 </table>
+</div>
 <p>The <code class="xref py py-attr docutils literal notranslate"><span class="pre">_env</span></code> attribute holds the parameters of basis functions, ECPs and
 other useful information:</p>
-<table>
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Offset</p></th>
 <th class="head"><p>Content</p></th>
@@ -513,12 +583,13 @@ other useful information:</p>
 </tr>
 </tbody>
 </table>
+</div>
 </section>
 <section id="access-ao-integrals">
-<h2 id="access-ao-integrals">Access AO integrals<a class="headerlink" href="#access-ao-integrals" title="Link to this heading">¶</a></h2>
+<h2>Access AO integrals<a class="headerlink" href="#access-ao-integrals" title="Link to this heading">#</a></h2>
 <p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">Mole</span></code> class provides a few functions to access the integrals computed by
 lincint. These include:</p>
-<table>
+<div class="pst-scrollable-table-container"><table class="table">
 <tbody>
 <tr class="row-odd"><td><p>Function</p></td>
 <td><p>Comment</p></td>
@@ -540,21 +611,22 @@ lincint. These include:</p>
 </tr>
 </tbody>
 </table>
+</div>
 <p>These functions internally call <a class="reference internal" href="../pyscf_api_docs/pyscf.gto.html#pyscf.gto.moleintor.getints" title="pyscf.gto.moleintor.getints"><code class="xref py py-func docutils literal notranslate"><span class="pre">pyscf.gto.moleintor.getints()</span></code></a> and
 <a class="reference internal" href="../pyscf_api_docs/pyscf.gto.html#pyscf.gto.moleintor.getints_by_shell" title="pyscf.gto.moleintor.getints_by_shell"><code class="xref py py-func docutils literal notranslate"><span class="pre">pyscf.gto.moleintor.getints_by_shell()</span></code></a> to interface with libcint.</p>
 </section>
 <section id="ao-evaluation-on-grids">
-<h2 id="ao-evaluation-on-grids">AO evaluation on grids<a class="headerlink" href="#ao-evaluation-on-grids" title="Link to this heading">¶</a></h2>
+<h2>AO evaluation on grids<a class="headerlink" href="#ao-evaluation-on-grids" title="Link to this heading">#</a></h2>
 <p>The AO functions can be evaluated on grids by the <code class="xref py py-func docutils literal notranslate"><span class="pre">eval_ao()</span></code> function.</p>
 </section>
 <section id="serialization">
-<h2 id="serialization">Serialization<a class="headerlink" href="#serialization" title="Link to this heading">¶</a></h2>
+<h2>Serialization<a class="headerlink" href="#serialization" title="Link to this heading">#</a></h2>
 <p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">Mole</span></code> object can be serialized by the <code class="xref py py-func docutils literal notranslate"><span class="pre">dumps()</span></code>
 function into a string with JSON format, which is used by the <a class="reference internal" href="../pyscf_api_docs/pyscf.lib.html#module-pyscf.lib.chkfile" title="pyscf.lib.chkfile"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyscf.lib.chkfile</span></code></a>
 module. And it can be deserialized by the <code class="xref py py-func docutils literal notranslate"><span class="pre">loads()</span></code> function.</p>
 </section>
 <section id="crystal-unit-cell">
-<h2 id="crystal-unit-cell">Crystal unit cell<a class="headerlink" href="#crystal-unit-cell" title="Link to this heading">¶</a></h2>
+<h2>Crystal unit cell<a class="headerlink" href="#crystal-unit-cell" title="Link to this heading">#</a></h2>
 <p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code> class is defined as an extension of the
 <code class="xref py py-class docutils literal notranslate"><span class="pre">Mole</span></code> class. They share most of the data structures and methods.
 This gives the freedom to mix finite-size and PBC calculations (see <a class="reference internal" href="../user/pbc/mix_mol.html#mix-mol"><span class="std std-ref">Mixing PBC and molecular modules</span></a>).</p>
@@ -608,37 +680,112 @@ both the periodic and open-boundary integrals within the <code class="xref py py
 </section>
 
 
-          </article>
-        </div>
-      </div>
-    </main>
-  </div>
-  <footer class="md-footer">
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-          
-          
-        </a>
-        
-      </nav>
-    </div>
-    <div class="md-footer-meta md-typeset">
-      <div class="md-footer-meta__inner md-grid">
-        <div class="md-footer-copyright">
-          <div class="md-footer-copyright__highlight">
-              &#169; Copyright 2015-2021, The PySCF Developers.
+                </article>
               
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#internal-data-structure">Internal data structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access-ao-integrals">Access AO integrals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ao-evaluation-on-grids">AO evaluation on grids</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#serialization">Serialization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#crystal-unit-cell">Crystal unit cell</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/pyscf/pyscf.github.io/edit/master/source/develop/gto_developer.rst">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
           </div>
-            Created using
-            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
-             and
-            <a href="https://github.com/bashtage/sphinx-material/">Material for
-              Sphinx</a>
-        </div>
-      </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
     </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, The PySCF Developers.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.3.
+</p></div>
+      
+    </div>
+  
+</div>
+
   </footer>
-  <script src="../_static/javascripts/application.js"></script>
-  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
   </body>
 </html>
