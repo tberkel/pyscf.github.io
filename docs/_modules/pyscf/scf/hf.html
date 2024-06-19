@@ -142,13 +142,6 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../install.html">
-    Install
-  </a>
-</li>
-
-
-<li class="nav-item pst-header-nav-item">
   <a class="nav-link nav-internal" href="../../../quickstart.html">
     Quickstart
   </a>
@@ -156,40 +149,25 @@
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../user.html">
+  <a class="nav-link nav-internal" href="../../../user/index.html">
     User Guide
   </a>
 </li>
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../develop.html">
-    Developer Guide
+  <a class="nav-link nav-internal" href="../../../contributor/index.html">
+    Contributor Guide
   </a>
 </li>
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../pyscf_api_docs/pyscf.html">
-    API
-  </a>
-</li>
-
-            <li class="nav-item dropdown pst-header-nav-item">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
-                    More
-                </button>
-                <ul id="pst-nav-more-links" class="dropdown-menu">
-                    
-<li class="nav-item ">
-  <a class="nav-link dropdown-item nav-internal" href="../../../about.html">
+  <a class="nav-link nav-internal" href="../../../about.html">
     About
   </a>
 </li>
 
-                </ul>
-            </li>
-            
   </ul>
 </nav></div>
       
@@ -273,13 +251,6 @@ document.write(`
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../install.html">
-    Install
-  </a>
-</li>
-
-
-<li class="nav-item pst-header-nav-item">
   <a class="nav-link nav-internal" href="../../../quickstart.html">
     Quickstart
   </a>
@@ -287,22 +258,15 @@ document.write(`
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../user.html">
+  <a class="nav-link nav-internal" href="../../../user/index.html">
     User Guide
   </a>
 </li>
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../develop.html">
-    Developer Guide
-  </a>
-</li>
-
-
-<li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../pyscf_api_docs/pyscf.html">
-    API
+  <a class="nav-link nav-internal" href="../../../contributor/index.html">
+    Contributor Guide
   </a>
 </li>
 
@@ -446,7 +410,7 @@ document.write(`
 <span class="n">MUTE_CHKFILE</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">__config__</span><span class="p">,</span> <span class="s1">&#39;scf_hf_SCF_mute_chkfile&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 
 <div class="viewcode-block" id="kernel">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.kernel">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.kernel">[docs]</a>
 <span class="k">def</span> <span class="nf">kernel</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">conv_tol</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">conv_tol_grad</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
            <span class="n">dump_chk</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dm0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conv_check</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;kernel: the SCF driver.</span>
@@ -641,7 +605,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="energy_elec">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.energy_elec">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.energy_elec">[docs]</a>
 <span class="k">def</span> <span class="nf">energy_elec</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">dm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">h1e</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vhf</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&#39;&#39;&#39;Electronic part of Hartree-Fock energy, for given core hamiltonian and</span>
 <span class="sd">    HF potential</span>
@@ -692,7 +656,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="energy_tot">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.energy_tot">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.energy_tot">[docs]</a>
 <span class="k">def</span> <span class="nf">energy_tot</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">dm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">h1e</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vhf</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&#39;&#39;&#39;Total Hartree-Fock energy, electronic part plus nuclear repulstion</span>
 <span class="sd">    See :func:`scf.hf.energy_elec` for the electron part</span>
@@ -717,7 +681,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="get_hcore">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.get_hcore">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.get_hcore">[docs]</a>
 <span class="k">def</span> <span class="nf">get_hcore</span><span class="p">(</span><span class="n">mol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Core Hamiltonian</span>
 
@@ -746,7 +710,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="get_ovlp">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.get_ovlp">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.get_ovlp">[docs]</a>
 <span class="k">def</span> <span class="nf">get_ovlp</span><span class="p">(</span><span class="n">mol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Overlap matrix</span>
 <span class="sd">    &#39;&#39;&#39;</span>
@@ -755,7 +719,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="init_guess_by_minao">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.init_guess_by_minao">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.init_guess_by_minao">[docs]</a>
 <span class="k">def</span> <span class="nf">init_guess_by_minao</span><span class="p">(</span><span class="n">mol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Generate initial guess density matrix based on ANO basis, then project</span>
 <span class="sd">    the density matrix to the basis set defined by ``mol``</span>
@@ -887,7 +851,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="init_guess_by_1e">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.init_guess_by_1e">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.init_guess_by_1e">[docs]</a>
 <span class="k">def</span> <span class="nf">init_guess_by_1e</span><span class="p">(</span><span class="n">mol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Generate initial guess density matrix from core hamiltonian</span>
 
@@ -900,7 +864,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="init_guess_by_atom">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.init_guess_by_atom">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.init_guess_by_atom">[docs]</a>
 <span class="k">def</span> <span class="nf">init_guess_by_atom</span><span class="p">(</span><span class="n">mol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Generate initial guess density matrix from superposition of atomic HF</span>
 <span class="sd">    density matrix.  The atomic HF is occupancy averaged RHF</span>
@@ -945,7 +909,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="init_guess_by_huckel">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.init_guess_by_huckel">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.init_guess_by_huckel">[docs]</a>
 <span class="k">def</span> <span class="nf">init_guess_by_huckel</span><span class="p">(</span><span class="n">mol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Generate initial guess density matrix from a Huckel calculation based</span>
 <span class="sd">    on occupancy averaged atomic RHF calculations, doi:10.1021/acs.jctc.8b01089</span>
@@ -959,7 +923,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="init_guess_by_mod_huckel">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.init_guess_by_mod_huckel">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.init_guess_by_mod_huckel">[docs]</a>
 <span class="k">def</span> <span class="nf">init_guess_by_mod_huckel</span><span class="p">(</span><span class="n">mol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Generate initial guess density matrix from a Huckel calculation based</span>
 <span class="sd">    on occupancy averaged atomic RHF calculations, doi:10.1021/acs.jctc.8b01089</span>
@@ -977,7 +941,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="Kgwh">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.Kgwh">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.Kgwh">[docs]</a>
 <span class="k">def</span> <span class="nf">Kgwh</span><span class="p">(</span><span class="n">Ei</span><span class="p">,</span> <span class="n">Ej</span><span class="p">,</span> <span class="n">updated_rule</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Computes the generalized Wolfsberg-Helmholtz parameter&#39;&#39;&#39;</span>
 
@@ -1090,7 +1054,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="init_guess_by_chkfile">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.init_guess_by_chkfile">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.init_guess_by_chkfile">[docs]</a>
 <span class="k">def</span> <span class="nf">init_guess_by_chkfile</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">chkfile_name</span><span class="p">,</span> <span class="n">project</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Read the HF results from checkpoint file, then project it to the</span>
 <span class="sd">    basis defined by ``mol``</span>
@@ -1159,7 +1123,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="get_init_guess">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.get_init_guess">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.get_init_guess">[docs]</a>
 <span class="k">def</span> <span class="nf">get_init_guess</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;minao&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Generate density matrix for initial guess</span>
 
@@ -1173,7 +1137,7 @@ document.write(`
 
 <span class="c1"># eigenvalue of d is 1</span>
 <div class="viewcode-block" id="level_shift">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.level_shift">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.level_shift">[docs]</a>
 <span class="k">def</span> <span class="nf">level_shift</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">factor</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&#39;&#39;&#39;Apply level shift :math:`\Delta` to virtual orbitals</span>
 
@@ -1199,7 +1163,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="damping">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.damping">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.damping">[docs]</a>
 <span class="k">def</span> <span class="nf">damping</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_prev</span><span class="p">,</span> <span class="n">factor</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">f</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">factor</span><span class="p">)</span> <span class="o">+</span> <span class="n">f_prev</span><span class="o">*</span><span class="n">factor</span></div>
 
@@ -1207,7 +1171,7 @@ document.write(`
 
 <span class="c1"># full density matrix for RHF</span>
 <div class="viewcode-block" id="make_rdm1">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.make_rdm1">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.make_rdm1">[docs]</a>
 <span class="k">def</span> <span class="nf">make_rdm1</span><span class="p">(</span><span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;One-particle density matrix in AO representation</span>
 
@@ -1225,7 +1189,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="make_rdm2">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.make_rdm2">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.make_rdm2">[docs]</a>
 <span class="k">def</span> <span class="nf">make_rdm2</span><span class="p">(</span><span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Two-particle density matrix in AO representation</span>
 
@@ -1250,7 +1214,7 @@ document.write(`
 <span class="c1"># hermi = 2 : anti-hermitian</span>
 <span class="c1">################################################</span>
 <div class="viewcode-block" id="dot_eri_dm">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.dot_eri_dm">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.dot_eri_dm">[docs]</a>
 <span class="k">def</span> <span class="nf">dot_eri_dm</span><span class="p">(</span><span class="n">eri</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">hermi</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">with_j</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">with_k</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Compute J, K matrices in terms of the given 2-electron integrals and</span>
 <span class="sd">    density matrix:</span>
@@ -1314,7 +1278,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="get_jk">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.get_jk">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.get_jk">[docs]</a>
 <span class="k">def</span> <span class="nf">get_jk</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">hermi</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vhfopt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">with_j</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">with_k</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Compute J, K matrices for all input density matrices</span>
 
@@ -1392,7 +1356,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="get_veff">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.get_veff">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.get_veff">[docs]</a>
 <span class="k">def</span> <span class="nf">get_veff</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dm_last</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vhf_last</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hermi</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vhfopt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Hartree-Fock potential matrix for the given density matrix</span>
 
@@ -1447,7 +1411,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="get_fock">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.get_fock">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.get_fock">[docs]</a>
 <span class="k">def</span> <span class="nf">get_fock</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">h1e</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">s1e</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vhf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cycle</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">diis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
              <span class="n">diis_start_cycle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">level_shift_factor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">damp_factor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
              <span class="n">fock_last</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -1500,7 +1464,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="get_occ">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.get_occ">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.get_occ">[docs]</a>
 <span class="k">def</span> <span class="nf">get_occ</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">mo_energy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Label the occupancies for each orbital</span>
 
@@ -1543,7 +1507,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="get_grad">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.get_grad">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.get_grad">[docs]</a>
 <span class="k">def</span> <span class="nf">get_grad</span><span class="p">(</span><span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">,</span> <span class="n">fock_ao</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;RHF orbital gradients</span>
 
@@ -1567,7 +1531,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="analyze">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.analyze">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.analyze">[docs]</a>
 <span class="k">def</span> <span class="nf">analyze</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">logger</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="n">with_meta_lowdin</span><span class="o">=</span><span class="n">WITH_META_LOWDIN</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Analyze the given SCF object:  print orbital energies, occupancies;</span>
@@ -1608,7 +1572,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="dump_scf_summary">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.dump_scf_summary">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.dump_scf_summary">[docs]</a>
 <span class="k">def</span> <span class="nf">dump_scf_summary</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">logger</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">mf</span><span class="o">.</span><span class="n">scf_summary</span><span class="p">:</span>
         <span class="k">return</span>
@@ -1636,7 +1600,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="mulliken_pop">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.mulliken_pop">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.mulliken_pop">[docs]</a>
 <span class="k">def</span> <span class="nf">mulliken_pop</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">logger</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&#39;&#39;&#39;Mulliken population analysis</span>
 
@@ -1678,7 +1642,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="mulliken_meta">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.mulliken_meta">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.mulliken_meta">[docs]</a>
 <span class="k">def</span> <span class="nf">mulliken_meta</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">logger</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
                   <span class="n">pre_orth_method</span><span class="o">=</span><span class="n">PRE_ORTH_METHOD</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Mulliken population analysis, based on meta-Lowdin AOs.</span>
@@ -1729,7 +1693,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="eig">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.eig">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.eig">[docs]</a>
 <span class="k">def</span> <span class="nf">eig</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Solver for generalized eigenvalue problem</span>
 
@@ -1742,7 +1706,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="canonicalize">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.canonicalize">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.canonicalize">[docs]</a>
 <span class="k">def</span> <span class="nf">canonicalize</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">,</span> <span class="n">fock</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Canonicalization diagonalizes the Fock matrix within occupied, open,</span>
 <span class="sd">    virtual subspaces separatedly (without change occupancy).</span>
@@ -1766,7 +1730,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="dip_moment">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.dip_moment">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.dip_moment">[docs]</a>
 <span class="k">def</span> <span class="nf">dip_moment</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;Debye&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">logger</span><span class="o">.</span><span class="n">NOTE</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&#39;&#39;&#39; Dipole moment calculation</span>
 
@@ -1817,7 +1781,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="uniq_var_indices">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.uniq_var_indices">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.uniq_var_indices">[docs]</a>
 <span class="k">def</span> <span class="nf">uniq_var_indices</span><span class="p">(</span><span class="n">mo_occ</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Indices of the unique variables for the orbital-gradients (or</span>
@@ -1832,7 +1796,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="pack_uniq_var">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.pack_uniq_var">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.pack_uniq_var">[docs]</a>
 <span class="k">def</span> <span class="nf">pack_uniq_var</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Extract the unique variables from the full orbital-gradients (or</span>
@@ -1843,7 +1807,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="unpack_uniq_var">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.unpack_uniq_var">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.unpack_uniq_var">[docs]</a>
 <span class="k">def</span> <span class="nf">unpack_uniq_var</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Fill the full orbital-gradients (or orbital-rotation) matrix with the</span>
@@ -1859,7 +1823,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="as_scanner">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.as_scanner">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.as_scanner">[docs]</a>
 <span class="k">def</span> <span class="nf">as_scanner</span><span class="p">(</span><span class="n">mf</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Generating a scanner/solver for HF PES.</span>
 
@@ -1892,7 +1856,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF_Scanner">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF_Scanner">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF_Scanner">[docs]</a>
 <span class="k">class</span> <span class="nc">SCF_Scanner</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">SinglePointScanner</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mf_obj</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">mf_obj</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
@@ -1932,7 +1896,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF">[docs]</a>
 <span class="k">class</span> <span class="nc">SCF</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">StreamObject</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;SCF base class.   non-relativistic RHF.</span>
 
@@ -2085,7 +2049,7 @@ document.write(`
         <span class="k">return</span> <span class="nb">object</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
 
 <div class="viewcode-block" id="SCF.check_sanity">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.check_sanity">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.check_sanity">[docs]</a>
     <span class="k">def</span> <span class="nf">check_sanity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">s1e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_ovlp</span><span class="p">()</span>
         <span class="n">cond</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">s1e</span><span class="p">)</span>
@@ -2097,7 +2061,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.build">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.build">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.build">[docs]</a>
     <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">mol</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">mol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;=</span> <span class="n">logger</span><span class="o">.</span><span class="n">WARN</span><span class="p">:</span>
@@ -2113,7 +2077,7 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">_opt</span><span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
 
 <div class="viewcode-block" id="SCF.dump_flags">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.dump_flags">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.dump_flags">[docs]</a>
     <span class="k">def</span> <span class="nf">dump_flags</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">log</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">new_logger</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">log</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&lt;</span> <span class="n">logger</span><span class="o">.</span><span class="n">INFO</span><span class="p">:</span>
@@ -2156,7 +2120,7 @@ document.write(`
         <span class="k">return</span> <span class="n">eig</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
 
 <div class="viewcode-block" id="SCF.eig">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.eig">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.eig">[docs]</a>
     <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">eig</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">eig</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
         <span class="c1"># An intermediate call to self._eigh so that the modification to eig function</span>
@@ -2167,14 +2131,14 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.get_hcore">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.get_hcore">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.get_hcore">[docs]</a>
     <span class="k">def</span> <span class="nf">get_hcore</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">mol</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">mol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol</span>
         <span class="k">return</span> <span class="n">get_hcore</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SCF.get_ovlp">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.get_ovlp">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.get_ovlp">[docs]</a>
     <span class="k">def</span> <span class="nf">get_ovlp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">mol</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">mol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol</span>
         <span class="k">return</span> <span class="n">get_ovlp</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span></div>
@@ -2184,7 +2148,7 @@ document.write(`
     <span class="n">get_occ</span> <span class="o">=</span> <span class="n">get_occ</span>
 
 <div class="viewcode-block" id="SCF.get_grad">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.get_grad">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.get_grad">[docs]</a>
     <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">get_grad</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_grad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">,</span> <span class="n">fock</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">fock</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -2194,7 +2158,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.dump_chk">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.dump_chk">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.dump_chk">[docs]</a>
     <span class="k">def</span> <span class="nf">dump_chk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">envs</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">chkfile</span><span class="p">:</span>
             <span class="n">chkfile</span><span class="o">.</span><span class="n">dump_scf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mol</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">chkfile</span><span class="p">,</span>
@@ -2205,7 +2169,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.init_guess_by_minao">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.init_guess_by_minao">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.init_guess_by_minao">[docs]</a>
     <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">init_guess_by_minao</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">init_guess_by_minao</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">mol</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">mol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol</span>
@@ -2214,7 +2178,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.init_guess_by_atom">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.init_guess_by_atom">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.init_guess_by_atom">[docs]</a>
     <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">init_guess_by_atom</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">init_guess_by_atom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">mol</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">mol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol</span>
@@ -2223,7 +2187,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.init_guess_by_huckel">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.init_guess_by_huckel">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.init_guess_by_huckel">[docs]</a>
     <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">init_guess_by_huckel</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">init_guess_by_huckel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">mol</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">mol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol</span>
@@ -2234,7 +2198,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.init_guess_by_mod_huckel">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.init_guess_by_mod_huckel">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.init_guess_by_mod_huckel">[docs]</a>
     <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">init_guess_by_mod_huckel</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">init_guess_by_mod_huckel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">updated_rule</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">mol</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">mol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol</span>
@@ -2246,7 +2210,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.init_guess_by_1e">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.init_guess_by_1e">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.init_guess_by_1e">[docs]</a>
     <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">init_guess_by_1e</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">init_guess_by_1e</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">mol</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">mol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol</span>
@@ -2259,21 +2223,21 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.init_guess_by_chkfile">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.init_guess_by_chkfile">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.init_guess_by_chkfile">[docs]</a>
     <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">init_guess_by_chkfile</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">init_guess_by_chkfile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chkfile</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">project</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">chkfile</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">chkfile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chkfile</span>
         <span class="k">return</span> <span class="n">init_guess_by_chkfile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mol</span><span class="p">,</span> <span class="n">chkfile</span><span class="p">,</span> <span class="n">project</span><span class="o">=</span><span class="n">project</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="SCF.from_chk">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.from_chk">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.from_chk">[docs]</a>
     <span class="k">def</span> <span class="nf">from_chk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chkfile</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">project</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_guess_by_chkfile</span><span class="p">(</span><span class="n">chkfile</span><span class="p">,</span> <span class="n">project</span><span class="p">)</span></div>
 
     <span class="n">from_chk</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">init_guess_by_chkfile</span><span class="o">.</span><span class="vm">__doc__</span>
 
 <div class="viewcode-block" id="SCF.get_init_guess">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.get_init_guess">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.get_init_guess">[docs]</a>
     <span class="k">def</span> <span class="nf">get_init_guess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;minao&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">key</span>
@@ -2313,7 +2277,7 @@ document.write(`
     <span class="n">energy_tot</span> <span class="o">=</span> <span class="n">energy_tot</span>
 
 <div class="viewcode-block" id="SCF.energy_nuc">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.energy_nuc">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.energy_nuc">[docs]</a>
     <span class="k">def</span> <span class="nf">energy_nuc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol</span><span class="o">.</span><span class="n">enuc</span></div>
 
@@ -2325,7 +2289,7 @@ document.write(`
     <span class="n">check_convergence</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="SCF.scf">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.scf">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.scf">[docs]</a>
     <span class="k">def</span> <span class="nf">scf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dm0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;SCF main driver</span>
 
@@ -2379,7 +2343,7 @@ document.write(`
         <span class="k">return</span> <span class="bp">self</span>
 
 <div class="viewcode-block" id="SCF.init_direct_scf">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.init_direct_scf">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.init_direct_scf">[docs]</a>
     <span class="k">def</span> <span class="nf">init_direct_scf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">mol</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">mol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol</span>
         <span class="c1"># Integrals &lt; direct_scf_tol may be set to 0 in int2e.</span>
@@ -2393,7 +2357,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.get_jk">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.get_jk">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.get_jk">[docs]</a>
     <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">get_jk</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_jk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hermi</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">with_j</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">with_k</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                <span class="n">omega</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -2422,7 +2386,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.get_j">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.get_j">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.get_j">[docs]</a>
     <span class="k">def</span> <span class="nf">get_j</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hermi</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Compute J matrices for all input density matrices</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -2430,7 +2394,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.get_k">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.get_k">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.get_k">[docs]</a>
     <span class="k">def</span> <span class="nf">get_k</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hermi</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Compute K matrices for all input density matrices</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -2438,7 +2402,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.get_veff">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.get_veff">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.get_veff">[docs]</a>
     <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">get_veff</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_veff</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dm_last</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vhf_last</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hermi</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="c1"># Be carefule with the effects of :attr:`SCF.direct_scf` on this function</span>
@@ -2454,7 +2418,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.analyze">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.analyze">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.analyze">[docs]</a>
     <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">analyze</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">analyze</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">with_meta_lowdin</span><span class="o">=</span><span class="n">WITH_META_LOWDIN</span><span class="p">,</span>
                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -2465,7 +2429,7 @@ document.write(`
     <span class="n">dump_scf_summary</span> <span class="o">=</span> <span class="n">dump_scf_summary</span>
 
 <div class="viewcode-block" id="SCF.mulliken_pop">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.mulliken_pop">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.mulliken_pop">[docs]</a>
     <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">mulliken_pop</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">mulliken_pop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">logger</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">mol</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">mol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol</span>
@@ -2475,7 +2439,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.mulliken_meta">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.mulliken_meta">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.mulliken_meta">[docs]</a>
     <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">mulliken_meta</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">mulliken_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">logger</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
                       <span class="n">pre_orth_method</span><span class="o">=</span><span class="n">PRE_ORTH_METHOD</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -2486,7 +2450,7 @@ document.write(`
                              <span class="n">pre_orth_method</span><span class="o">=</span><span class="n">pre_orth_method</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="SCF.pop">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.pop">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.pop">[docs]</a>
     <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mulliken_meta</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
@@ -2496,7 +2460,7 @@ document.write(`
     <span class="n">canonicalize</span> <span class="o">=</span> <span class="n">canonicalize</span>
 
 <div class="viewcode-block" id="SCF.dip_moment">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.dip_moment">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.dip_moment">[docs]</a>
     <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">dip_moment</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">dip_moment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;Debye&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">logger</span><span class="o">.</span><span class="n">NOTE</span><span class="p">,</span>
                    <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -2510,14 +2474,14 @@ document.write(`
         <span class="k">return</span> <span class="n">nbf</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="mf">1e6</span><span class="o">+</span><span class="n">lib</span><span class="o">.</span><span class="n">current_memory</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_memory</span><span class="o">*</span><span class="mf">.95</span>
 
 <div class="viewcode-block" id="SCF.density_fit">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.density_fit">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.density_fit">[docs]</a>
     <span class="k">def</span> <span class="nf">density_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">auxbasis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">with_df</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">only_dfj</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="kn">import</span> <span class="nn">pyscf.df.df_jk</span>
         <span class="k">return</span> <span class="n">pyscf</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">df_jk</span><span class="o">.</span><span class="n">density_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">auxbasis</span><span class="p">,</span> <span class="n">with_df</span><span class="p">,</span> <span class="n">only_dfj</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SCF.sfx2c1e">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.sfx2c1e">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.sfx2c1e">[docs]</a>
     <span class="k">def</span> <span class="nf">sfx2c1e</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="kn">import</span> <span class="nn">pyscf.x2c.sfx2c1e</span>
         <span class="k">return</span> <span class="n">pyscf</span><span class="o">.</span><span class="n">x2c</span><span class="o">.</span><span class="n">sfx2c1e</span><span class="o">.</span><span class="n">sfx2c1e</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
@@ -2526,7 +2490,7 @@ document.write(`
     <span class="n">x2c</span> <span class="o">=</span> <span class="n">x2c1e</span>
 
 <div class="viewcode-block" id="SCF.newton">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.newton">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.newton">[docs]</a>
     <span class="k">def</span> <span class="nf">newton</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Create an SOSCF object based on the mean-field object&#39;&#39;&#39;</span>
         <span class="kn">from</span> <span class="nn">pyscf.soscf</span> <span class="kn">import</span> <span class="n">newton_ah</span>
@@ -2534,7 +2498,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.remove_soscf">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.remove_soscf">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.remove_soscf">[docs]</a>
     <span class="k">def</span> <span class="nf">remove_soscf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Remove the SOSCF decorator&#39;&#39;&#39;</span>
         <span class="kn">from</span> <span class="nn">pyscf.soscf</span> <span class="kn">import</span> <span class="n">newton_ah</span>
@@ -2544,20 +2508,20 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.stability">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.stability">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.stability">[docs]</a>
     <span class="k">def</span> <span class="nf">stability</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 
 <div class="viewcode-block" id="SCF.nuc_grad_method">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.nuc_grad_method">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.nuc_grad_method">[docs]</a>
     <span class="k">def</span> <span class="nf">nuc_grad_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Hook to create object for analytical nuclear gradients.&#39;&#39;&#39;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 
 <div class="viewcode-block" id="SCF.update_">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.update_">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.update_">[docs]</a>
     <span class="k">def</span> <span class="nf">update_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chkfile</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Read attributes from the chkfile then replace the attributes of</span>
 <span class="sd">        current object.  It&#39;s an alias of function update_from_chk_.</span>
@@ -2584,7 +2548,7 @@ document.write(`
     <span class="n">as_scanner</span> <span class="o">=</span> <span class="n">as_scanner</span>
 
 <div class="viewcode-block" id="SCF.reset">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.reset">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.reset">[docs]</a>
     <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Reset mol and relevant attributes associated to the old mol object&#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="n">mol</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -2596,7 +2560,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.apply">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.apply">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.apply">[docs]</a>
     <span class="k">def</span> <span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">lib</span><span class="o">.</span><span class="n">StreamObject</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -2618,7 +2582,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.to_rhf">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.to_rhf">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.to_rhf">[docs]</a>
     <span class="k">def</span> <span class="nf">to_rhf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Convert the input mean-field object to a RHF/ROHF object.</span>
 
@@ -2631,7 +2595,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.to_uhf">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.to_uhf">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.to_uhf">[docs]</a>
     <span class="k">def</span> <span class="nf">to_uhf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Convert the input mean-field object to a UHF object.</span>
 
@@ -2644,7 +2608,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.to_ghf">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.to_ghf">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.to_ghf">[docs]</a>
     <span class="k">def</span> <span class="nf">to_ghf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Convert the input mean-field object to a GHF object.</span>
 
@@ -2657,7 +2621,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.to_rks">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.to_rks">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.to_rks">[docs]</a>
     <span class="k">def</span> <span class="nf">to_rks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xc</span><span class="o">=</span><span class="s1">&#39;HF&#39;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Convert the input mean-field object to a RKS/ROKS object.</span>
 
@@ -2669,7 +2633,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.to_uks">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.to_uks">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.to_uks">[docs]</a>
     <span class="k">def</span> <span class="nf">to_uks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xc</span><span class="o">=</span><span class="s1">&#39;HF&#39;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Convert the input mean-field object to a UKS object.</span>
 
@@ -2681,7 +2645,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.to_gks">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.to_gks">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.to_gks">[docs]</a>
     <span class="k">def</span> <span class="nf">to_gks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xc</span><span class="o">=</span><span class="s1">&#39;HF&#39;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Convert the input mean-field object to a GKS object.</span>
 
@@ -2693,7 +2657,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.convert_from_">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.convert_from_">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.convert_from_">[docs]</a>
     <span class="k">def</span> <span class="nf">convert_from_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mf</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Convert the abinput mean-field object to the associated KS object.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -2701,7 +2665,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.to_ks">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.to_ks">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.to_ks">[docs]</a>
     <span class="k">def</span> <span class="nf">to_ks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xc</span><span class="o">=</span><span class="s1">&#39;HF&#39;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Convert the input mean-field object to the associated KS object.</span>
 
@@ -2727,7 +2691,7 @@ document.write(`
         <span class="k">return</span> <span class="n">dst</span>
 
 <div class="viewcode-block" id="SCF.to_gpu">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.to_gpu">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.to_gpu">[docs]</a>
     <span class="k">def</span> <span class="nf">to_gpu</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Converts to the object with GPU support.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -2735,7 +2699,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SCF.istype">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.SCF.istype">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.SCF.istype">[docs]</a>
     <span class="k">def</span> <span class="nf">istype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">type_code</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Checks if the object is an instance of the class specified by the type_code.</span>
@@ -2763,12 +2727,12 @@ document.write(`
 
 
 <div class="viewcode-block" id="RHF">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.RHF">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.RHF">[docs]</a>
 <span class="k">class</span> <span class="nc">RHF</span><span class="p">(</span><span class="n">SCF</span><span class="p">):</span>
     <span class="vm">__doc__</span> <span class="o">=</span> <span class="n">SCF</span><span class="o">.</span><span class="vm">__doc__</span>
 
 <div class="viewcode-block" id="RHF.check_sanity">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.RHF.check_sanity">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.RHF.check_sanity">[docs]</a>
     <span class="k">def</span> <span class="nf">check_sanity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">mol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol</span>
         <span class="k">if</span> <span class="n">mol</span><span class="o">.</span><span class="n">nelectron</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">mol</span><span class="o">.</span><span class="n">spin</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
@@ -2778,7 +2742,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="RHF.get_init_guess">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.RHF.get_init_guess">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.RHF.get_init_guess">[docs]</a>
     <span class="k">def</span> <span class="nf">get_init_guess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;minao&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">dm</span> <span class="o">=</span> <span class="n">SCF</span><span class="o">.</span><span class="n">get_init_guess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;=</span> <span class="n">logger</span><span class="o">.</span><span class="n">DEBUG1</span><span class="p">:</span>
@@ -2789,7 +2753,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="RHF.get_jk">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.RHF.get_jk">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.RHF.get_jk">[docs]</a>
     <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">get_jk</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_jk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hermi</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">with_j</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">with_k</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                <span class="n">omega</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -2807,7 +2771,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="RHF.get_veff">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.RHF.get_veff">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.RHF.get_veff">[docs]</a>
     <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">get_veff</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_veff</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dm_last</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vhf_last</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hermi</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">mol</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">mol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol</span>
@@ -2824,7 +2788,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="RHF.convert_from_">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.RHF.convert_from_">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.RHF.convert_from_">[docs]</a>
     <span class="k">def</span> <span class="nf">convert_from_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mf</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Convert the input mean-field object to RHF/ROHF&#39;&#39;&#39;</span>
         <span class="n">tgt</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">to_rhf</span><span class="p">()</span>
@@ -2833,14 +2797,14 @@ document.write(`
 
 
 <div class="viewcode-block" id="RHF.spin_square">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.RHF.spin_square">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.RHF.spin_square">[docs]</a>
     <span class="k">def</span> <span class="nf">spin_square</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Spin square and multiplicity of RHF determinant&#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span></div>
 
 
 <div class="viewcode-block" id="RHF.stability">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.RHF.stability">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.RHF.stability">[docs]</a>
     <span class="k">def</span> <span class="nf">stability</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                   <span class="n">internal</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">__config__</span><span class="p">,</span> <span class="s1">&#39;scf_stability_internal&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
                   <span class="n">external</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">__config__</span><span class="p">,</span> <span class="s1">&#39;scf_stability_external&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
@@ -2876,14 +2840,14 @@ document.write(`
 
 
 <div class="viewcode-block" id="RHF.nuc_grad_method">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.RHF.nuc_grad_method">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.RHF.nuc_grad_method">[docs]</a>
     <span class="k">def</span> <span class="nf">nuc_grad_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="kn">from</span> <span class="nn">pyscf.grad</span> <span class="kn">import</span> <span class="n">rhf</span>
         <span class="k">return</span> <span class="n">rhf</span><span class="o">.</span><span class="n">Gradients</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="RHF.to_ks">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.pbc.scf.hf.RHF.to_ks">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.x2c.x2c.RHF.to_ks">[docs]</a>
     <span class="k">def</span> <span class="nf">to_ks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xc</span><span class="o">=</span><span class="s1">&#39;HF&#39;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Convert to RKS object.</span>
 <span class="sd">        &#39;&#39;&#39;</span>

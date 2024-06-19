@@ -142,13 +142,6 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../install.html">
-    Install
-  </a>
-</li>
-
-
-<li class="nav-item pst-header-nav-item">
   <a class="nav-link nav-internal" href="../../../quickstart.html">
     Quickstart
   </a>
@@ -156,40 +149,25 @@
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../user.html">
+  <a class="nav-link nav-internal" href="../../../user/index.html">
     User Guide
   </a>
 </li>
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../develop.html">
-    Developer Guide
+  <a class="nav-link nav-internal" href="../../../contributor/index.html">
+    Contributor Guide
   </a>
 </li>
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../pyscf_api_docs/pyscf.html">
-    API
-  </a>
-</li>
-
-            <li class="nav-item dropdown pst-header-nav-item">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
-                    More
-                </button>
-                <ul id="pst-nav-more-links" class="dropdown-menu">
-                    
-<li class="nav-item ">
-  <a class="nav-link dropdown-item nav-internal" href="../../../about.html">
+  <a class="nav-link nav-internal" href="../../../about.html">
     About
   </a>
 </li>
 
-                </ul>
-            </li>
-            
   </ul>
 </nav></div>
       
@@ -273,13 +251,6 @@ document.write(`
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../install.html">
-    Install
-  </a>
-</li>
-
-
-<li class="nav-item pst-header-nav-item">
   <a class="nav-link nav-internal" href="../../../quickstart.html">
     Quickstart
   </a>
@@ -287,22 +258,15 @@ document.write(`
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../user.html">
+  <a class="nav-link nav-internal" href="../../../user/index.html">
     User Guide
   </a>
 </li>
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../develop.html">
-    Developer Guide
-  </a>
-</li>
-
-
-<li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../pyscf_api_docs/pyscf.html">
-    API
+  <a class="nav-link nav-internal" href="../../../contributor/index.html">
+    Contributor Guide
   </a>
 </li>
 
@@ -442,7 +406,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="gen_tda_operation">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.scf.ghf.gen_tda_operation">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.x2c.tdscf.gen_tda_operation">[docs]</a>
 <span class="k">def</span> <span class="nf">gen_tda_operation</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">fock_ao</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wfnsym</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;A x</span>
 
@@ -508,7 +472,7 @@ document.write(`
 <span class="n">gen_tda_hop</span> <span class="o">=</span> <span class="n">gen_tda_operation</span>
 
 <div class="viewcode-block" id="get_ab">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.scf.ghf.get_ab">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.x2c.tdscf.get_ab">[docs]</a>
 <span class="k">def</span> <span class="nf">get_ab</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">mo_energy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_occ</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&#39;&#39;&#39;A and B matrices for TDDFT response function.</span>
 
@@ -751,13 +715,13 @@ document.write(`
 
 
 <div class="viewcode-block" id="get_nto">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.scf.ghf.get_nto">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.x2c.tdscf.get_nto">[docs]</a>
 <span class="k">def</span> <span class="nf">get_nto</span><span class="p">(</span><span class="n">tdobj</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">OUTPUT_THRESHOLD</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;get_nto&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="analyze">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.scf.ghf.analyze">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.x2c.tdscf.analyze">[docs]</a>
 <span class="k">def</span> <span class="nf">analyze</span><span class="p">(</span><span class="n">tdobj</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;analyze&#39;</span><span class="p">)</span></div>
 
@@ -767,11 +731,11 @@ document.write(`
 
 
 <div class="viewcode-block" id="TDBase">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.scf.ghf.TDBase">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.x2c.tdscf.TDBase">[docs]</a>
 <span class="k">class</span> <span class="nc">TDBase</span><span class="p">(</span><span class="n">rhf</span><span class="o">.</span><span class="n">TDBase</span><span class="p">):</span>
 
 <div class="viewcode-block" id="TDBase.get_ab">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.scf.ghf.TDBase.get_ab">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.x2c.tdscf.TDBase.get_ab">[docs]</a>
     <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">get_ab</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_ab</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mf</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">mf</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">mf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scf</span>
@@ -783,7 +747,7 @@ document.write(`
     <span class="n">_contract_multipole</span> <span class="o">=</span> <span class="n">_contract_multipole</span>  <span class="c1"># needed by transition dipoles</span>
 
 <div class="viewcode-block" id="TDBase.nuc_grad_method">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.scf.ghf.TDBase.nuc_grad_method">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.x2c.tdscf.TDBase.nuc_grad_method">[docs]</a>
     <span class="k">def</span> <span class="nf">nuc_grad_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 </div>
@@ -791,14 +755,14 @@ document.write(`
 
 
 <div class="viewcode-block" id="TDA">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.scf.ghf.TDA">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.x2c.tdscf.TDA">[docs]</a>
 <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">rhf</span><span class="o">.</span><span class="n">TDA</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">TDA</span><span class="p">(</span><span class="n">TDBase</span><span class="p">):</span>
 
     <span class="n">singlet</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="TDA.gen_vind">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.scf.ghf.TDA.gen_vind">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.x2c.tdscf.TDA.gen_vind">[docs]</a>
     <span class="k">def</span> <span class="nf">gen_vind</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mf</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Generate function to compute Ax&#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="n">mf</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -807,7 +771,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="TDA.init_guess">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.scf.ghf.TDA.init_guess">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.x2c.tdscf.TDA.init_guess">[docs]</a>
     <span class="k">def</span> <span class="nf">init_guess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mf</span><span class="p">,</span> <span class="n">nstates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wfnsym</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">nstates</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">nstates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nstates</span>
         <span class="k">if</span> <span class="n">wfnsym</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">wfnsym</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wfnsym</span>
@@ -840,7 +804,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="TDA.kernel">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.x2c.html#pyscf.scf.ghf.TDA.kernel">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.x2c.html#pyscf.x2c.tdscf.TDA.kernel">[docs]</a>
     <span class="k">def</span> <span class="nf">kernel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nstates</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;TDA diagonalization solver</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -892,7 +856,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="gen_tdhf_operation">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.scf.ghf.gen_tdhf_operation">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.x2c.tdscf.gen_tdhf_operation">[docs]</a>
 <span class="k">def</span> <span class="nf">gen_tdhf_operation</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">fock_ao</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wfnsym</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Generate function to compute</span>
 
@@ -969,13 +933,13 @@ document.write(`
 
 
 <div class="viewcode-block" id="TDHF">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.scf.ghf.TDHF">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.x2c.tdscf.TDHF">[docs]</a>
 <span class="k">class</span> <span class="nc">TDHF</span><span class="p">(</span><span class="n">TDBase</span><span class="p">):</span>
 
     <span class="n">singlet</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="TDHF.gen_vind">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.scf.ghf.TDHF.gen_vind">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.x2c.tdscf.TDHF.gen_vind">[docs]</a>
     <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">gen_tdhf_operation</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">gen_vind</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mf</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">mf</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -984,7 +948,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="TDHF.init_guess">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.scf.ghf.TDHF.init_guess">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.tdscf.html#pyscf.x2c.tdscf.TDHF.init_guess">[docs]</a>
     <span class="k">def</span> <span class="nf">init_guess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mf</span><span class="p">,</span> <span class="n">nstates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wfnsym</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">x0</span> <span class="o">=</span> <span class="n">TDA</span><span class="o">.</span><span class="n">init_guess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mf</span><span class="p">,</span> <span class="n">nstates</span><span class="p">,</span> <span class="n">wfnsym</span><span class="p">)</span>
         <span class="n">y0</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
@@ -992,7 +956,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="TDHF.kernel">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.x2c.html#pyscf.scf.ghf.TDHF.kernel">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.x2c.html#pyscf.x2c.tdscf.TDHF.kernel">[docs]</a>
     <span class="k">def</span> <span class="nf">kernel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nstates</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;TDHF diagonalization with non-Hermitian eigenvalue solver</span>
 <span class="sd">        &#39;&#39;&#39;</span>

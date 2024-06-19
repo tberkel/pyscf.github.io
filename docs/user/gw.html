@@ -147,13 +147,6 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../install.html">
-    Install
-  </a>
-</li>
-
-
-<li class="nav-item pst-header-nav-item">
   <a class="nav-link nav-internal" href="../quickstart.html">
     Quickstart
   </a>
@@ -161,40 +154,25 @@
 
 
 <li class="nav-item pst-header-nav-item current active">
-  <a class="nav-link nav-internal" href="../user.html">
+  <a class="nav-link nav-internal" href="index.html">
     User Guide
   </a>
 </li>
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../develop.html">
-    Developer Guide
+  <a class="nav-link nav-internal" href="../contributor/index.html">
+    Contributor Guide
   </a>
 </li>
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../pyscf_api_docs/pyscf.html">
-    API
-  </a>
-</li>
-
-            <li class="nav-item dropdown pst-header-nav-item">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
-                    More
-                </button>
-                <ul id="pst-nav-more-links" class="dropdown-menu">
-                    
-<li class="nav-item ">
-  <a class="nav-link dropdown-item nav-internal" href="../about.html">
+  <a class="nav-link nav-internal" href="../about.html">
     About
   </a>
 </li>
 
-                </ul>
-            </li>
-            
   </ul>
 </nav></div>
       
@@ -280,13 +258,6 @@ document.write(`
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../install.html">
-    Install
-  </a>
-</li>
-
-
-<li class="nav-item pst-header-nav-item">
   <a class="nav-link nav-internal" href="../quickstart.html">
     Quickstart
   </a>
@@ -294,22 +265,15 @@ document.write(`
 
 
 <li class="nav-item pst-header-nav-item current active">
-  <a class="nav-link nav-internal" href="../user.html">
+  <a class="nav-link nav-internal" href="index.html">
     User Guide
   </a>
 </li>
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../develop.html">
-    Developer Guide
-  </a>
-</li>
-
-
-<li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../pyscf_api_docs/pyscf.html">
-    API
+  <a class="nav-link nav-internal" href="../contributor/index.html">
+    Contributor Guide
   </a>
 </li>
 
@@ -351,8 +315,13 @@ document.write(`
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Building molecules and crystals</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="gto.html">Molecular structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pbcgto.html">Crystal structure</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Electronic structure methods</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="scf.html">Self-consistent field (SCF) methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dft.html">Density functional theory (DFT)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mp.html">Second-order Møller–Plesset perturbation theory (MP2)</a></li>
@@ -364,6 +333,9 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="mcscf.html">Multi-configuration self-consistent field (MCSCF)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mrpt.html">Multi-reference perturbation theory (MRPT)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tddft.html">Time-dependent Hartree-Fock and density functional theory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Other functionalities</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="solvent.html">Solvation models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="qmmm.html">QM/MM methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="md.html">Molecular Dynamics</a></li>
@@ -380,7 +352,10 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="sgx.html">Seminumerical exchange (SGX)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="geomopt.html">Geometry optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gpu.html">GPU Acceleration (GPU4PySCF)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reference.html">References</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extensions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="extensions.html">Extensions</a></li>
 </ul>
 </div>
 </nav></div>
@@ -419,7 +394,7 @@ document.write(`
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="../user.html" class="nav-link">User Guide</a></li>
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">User Guide</a></li>
     
     <li class="breadcrumb-item active" aria-current="page">GW approximation</li>
   </ul>

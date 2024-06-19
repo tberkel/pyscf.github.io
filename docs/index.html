@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Home &#8212; PySCF</title>
+    <title>Quantum chemistry with Python &#8212; PySCF</title>
   
   
   
@@ -49,7 +49,7 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Install PySCF" href="install.html" />
+    <link rel="next" title="Quickstart" href="quickstart.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -146,13 +146,6 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="install.html">
-    Install
-  </a>
-</li>
-
-
-<li class="nav-item pst-header-nav-item">
   <a class="nav-link nav-internal" href="quickstart.html">
     Quickstart
   </a>
@@ -160,40 +153,25 @@
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="user.html">
+  <a class="nav-link nav-internal" href="user/index.html">
     User Guide
   </a>
 </li>
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="develop.html">
-    Developer Guide
+  <a class="nav-link nav-internal" href="contributor/index.html">
+    Contributor Guide
   </a>
 </li>
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="pyscf_api_docs/pyscf.html">
-    API
-  </a>
-</li>
-
-            <li class="nav-item dropdown pst-header-nav-item">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
-                    More
-                </button>
-                <ul id="pst-nav-more-links" class="dropdown-menu">
-                    
-<li class="nav-item ">
-  <a class="nav-link dropdown-item nav-internal" href="about.html">
+  <a class="nav-link nav-internal" href="about.html">
     About
   </a>
 </li>
 
-                </ul>
-            </li>
-            
   </ul>
 </nav></div>
       
@@ -249,10 +227,6 @@ document.write(`
   
 
   
-    <button class="sidebar-toggle secondary-toggle" aria-label="On this page">
-      <span class="fa-solid fa-outdent"></span>
-    </button>
-  
 </div>
 
     </header>
@@ -281,13 +255,6 @@ document.write(`
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="install.html">
-    Install
-  </a>
-</li>
-
-
-<li class="nav-item pst-header-nav-item">
   <a class="nav-link nav-internal" href="quickstart.html">
     Quickstart
   </a>
@@ -295,22 +262,15 @@ document.write(`
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="user.html">
+  <a class="nav-link nav-internal" href="user/index.html">
     User Guide
   </a>
 </li>
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="develop.html">
-    Developer Guide
-  </a>
-</li>
-
-
-<li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="pyscf_api_docs/pyscf.html">
-    API
+  <a class="nav-link nav-internal" href="contributor/index.html">
+    Contributor Guide
   </a>
 </li>
 
@@ -370,11 +330,74 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="home">
-<h1>Home<a class="headerlink" href="#home" title="Link to this heading">#</a></h1>
-<a class="reference internal image-reference" href="_images/pyscf-logo.png"><img alt="_images/pyscf-logo.png" src="_images/pyscf-logo.png" style="width: 400px;" />
-</a>
-<p>The Python-based Simulations of Chemistry Framework (PySCF) is an open-source
+  <section id="quantum-chemistry-with-python">
+<h1>Quantum chemistry with Python<a class="headerlink" href="#quantum-chemistry-with-python" title="Link to this heading">#</a></h1>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 gallery-directive docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-3 sd-g-2 sd-g-xs-2 sd-g-sm-2 sd-g-md-2 sd-g-lg-2 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text"><span class="fab fa-python pst-color-primary"></span> Primarily Python</p>
+</div>
+<div class="sd-card-body docutils">
+<p class="sd-card-text">Easy to read and write, for quick development with fewer mistakes.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text"><span class="fas fa-bolt pst-color-primary"></span> Fast</p>
+</div>
+<div class="sd-card-body docutils">
+<p class="sd-card-text">Uses NumPy, SciPy, and custom C/C++ code.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text"><span class="fa fa-code-branch pst-color-primary"></span> Free and open-source</p>
+</div>
+<div class="sd-card-body docutils">
+<p class="sd-card-text">Accessible and community-driven. Distributed on <a class="reference external" href="https://github.com/pyscf/pyscf">GitHub</a> under the <a class="reference external" href="https://github.com/pyscf/pyscf/tree/master?tab=Apache-2.0-1-ov-file#readme">Apache-2.0</a> license.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text"><span class="fas fa-gears pst-color-primary"></span> Modular</p>
+</div>
+<div class="sd-card-body docutils">
+<p class="sd-card-text">Easily integrated into complex workflows or other software packages.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text"><span class="fa fa-list-ul pst-color-primary"></span> Comprehensive</p>
+</div>
+<div class="sd-card-body docutils">
+<p class="sd-card-text">Extensive collection of electronic structure methods, for molecules and periodic solids.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text"><span class="fas fa-lightbulb pst-color-primary"></span> Extensible</p>
+</div>
+<div class="sd-card-body docutils">
+<p class="sd-card-text">See the list of <a class="reference internal" href="user/extensions.html"><span class="doc std std-doc">Extensions</span></a> to PySCF.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--- 
+The Python-based Simulations of Chemistry Framework (PySCF) is an open-source
 collection of electronic structure modules powered by Python. The package
 provides a simple, lightweight, and efficient platform for quantum chemistry
 calculations and methodology development.
@@ -386,7 +409,8 @@ implemented and optimized in C. Using this combined Python/C
 implementation, the package is as efficient as the best existing C or Fortran
 based quantum chemistry programs.
 In addition to its core libraries, PySCF supports a rich
-ecosystem of <a class="reference internal" href="install.html#installing-extproj"><span class="std std-ref">Install PySCF extensions</span></a>.</p>
+ecosystem of :ref:`installing_extproj`.
+--->
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -402,11 +426,11 @@ ecosystem of <a class="reference internal" href="install.html#installing-extproj
                   
 <div class="prev-next-area">
     <a class="right-next"
-       href="install.html"
+       href="quickstart.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Install PySCF</p>
+        <p class="prev-next-title">Quickstart</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -416,27 +440,6 @@ ecosystem of <a class="reference internal" href="install.html#installing-extproj
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-
-  
-  <div class="tocsection editthispage">
-    <a href="https://github.com/pyscf/pyscf.github.io/edit/master/source/index.rst">
-      <i class="fa-solid fa-pencil"></i>
-      
-      
-        
-          Edit on GitHub
-        
-      
-    </a>
-  </div>
-</div>
-
-</div></div>
               
             
           </div>

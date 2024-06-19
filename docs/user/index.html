@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Coupled Cluster Methods &#8212; PySCF</title>
+    <title>User Guide &#8212; PySCF</title>
   
   
   
@@ -42,11 +42,15 @@
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'develop/cc_developer';</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user/index';</script>
     <link rel="icon" href="../_static/favicon-32x32.png"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Molecular structure" href="gto.html" />
+    <link rel="prev" title="Quickstart" href="../quickstart.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -143,54 +147,32 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../install.html">
-    Install
-  </a>
-</li>
-
-
-<li class="nav-item pst-header-nav-item">
   <a class="nav-link nav-internal" href="../quickstart.html">
     Quickstart
   </a>
 </li>
 
 
-<li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../user.html">
+<li class="nav-item pst-header-nav-item current active">
+  <a class="nav-link nav-internal" href="#">
     User Guide
   </a>
 </li>
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../develop.html">
-    Developer Guide
+  <a class="nav-link nav-internal" href="../contributor/index.html">
+    Contributor Guide
   </a>
 </li>
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../pyscf_api_docs/pyscf.html">
-    API
-  </a>
-</li>
-
-            <li class="nav-item dropdown pst-header-nav-item">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
-                    More
-                </button>
-                <ul id="pst-nav-more-links" class="dropdown-menu">
-                    
-<li class="nav-item ">
-  <a class="nav-link dropdown-item nav-internal" href="../about.html">
+  <a class="nav-link nav-internal" href="../about.html">
     About
   </a>
 </li>
 
-                </ul>
-            </li>
-            
   </ul>
 </nav></div>
       
@@ -260,9 +242,7 @@ document.write(`
       
       
       
-        
-      
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -278,36 +258,22 @@ document.write(`
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../install.html">
-    Install
-  </a>
-</li>
-
-
-<li class="nav-item pst-header-nav-item">
   <a class="nav-link nav-internal" href="../quickstart.html">
     Quickstart
   </a>
 </li>
 
 
-<li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../user.html">
+<li class="nav-item pst-header-nav-item current active">
+  <a class="nav-link nav-internal" href="#">
     User Guide
   </a>
 </li>
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../develop.html">
-    Developer Guide
-  </a>
-</li>
-
-
-<li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../pyscf_api_docs/pyscf.html">
-    API
+  <a class="nav-link nav-internal" href="../contributor/index.html">
+    Contributor Guide
   </a>
 </li>
 
@@ -344,6 +310,57 @@ document.write(`
     
   </div>
   
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Building molecules and crystals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="gto.html">Molecular structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pbcgto.html">Crystal structure</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Electronic structure methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="scf.html">Self-consistent field (SCF) methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dft.html">Density functional theory (DFT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mp.html">Second-order Møller–Plesset perturbation theory (MP2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gw.html">GW approximation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci.html">Configuration interaction (CISD and FCI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cc.html">Coupled-cluster theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adc.html">Algebraic diagrammatic construction (ADC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agf2.html">Auxiliary second-order Green’s function perturbation theory (AGF2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcscf.html">Multi-configuration self-consistent field (MCSCF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mrpt.html">Multi-reference perturbation theory (MRPT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tddft.html">Time-dependent Hartree-Fock and density functional theory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Other functionalities</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="solvent.html">Solvation models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qmmm.html">QM/MM methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="md.html">Molecular Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="df.html">Density fitting (DF)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="pbc.html">Periodic boundary conditions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="pbc/gto.html">Crystal structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pbc/scf.html">SCF and DFT methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pbc/df.html">Density fitting for crystalline calculations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pbc/mix_mol.html">Mixing PBC and molecular modules</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="eph.html">Electron-phonon coupling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lo.html">Localized orbitals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sgx.html">Seminumerical exchange (SGX)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geomopt.html">Geometry optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">GPU Acceleration (GPU4PySCF)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extensions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="extensions.html">Extensions</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
@@ -376,7 +393,7 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Coupled...</li>
+    <li class="breadcrumb-item active" aria-current="page">User Guide</li>
   </ul>
 </nav>
 </div>
@@ -393,9 +410,58 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="coupled-cluster-methods">
-<span id="developer-cc"></span><h1>Coupled Cluster Methods<a class="headerlink" href="#coupled-cluster-methods" title="Link to this heading">#</a></h1>
-<p><em>Modules</em>: <code class="xref py py-mod docutils literal notranslate"><span class="pre">cc</span></code>, <code class="xref py py-mod docutils literal notranslate"><span class="pre">pbc.cc</span></code></p>
+  <section id="user-guide">
+<h1>User Guide<a class="headerlink" href="#user-guide" title="Link to this heading">#</a></h1>
+<p>A variety of electronic structure methods are implemented in the PySCF package.
+Many of them can also be used for solid-state calculations with periodic
+boundary conditions.  This User Guide introduces the basic theories of these
+methods and demonstrates their main functionalities.</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Building molecules and crystals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gto.html">Molecular structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pbcgto.html">Crystal structure</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Electronic structure methods</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="scf.html">Self-consistent field (SCF) methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dft.html">Density functional theory (DFT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mp.html">Second-order Møller–Plesset perturbation theory (MP2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gw.html">GW approximation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci.html">Configuration interaction (CISD and FCI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cc.html">Coupled-cluster theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adc.html">Algebraic diagrammatic construction (ADC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agf2.html">Auxiliary second-order Green’s function perturbation theory (AGF2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcscf.html">Multi-configuration self-consistent field (MCSCF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mrpt.html">Multi-reference perturbation theory (MRPT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tddft.html">Time-dependent Hartree-Fock and density functional theory</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Other functionalities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="solvent.html">Solvation models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qmmm.html">QM/MM methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="md.html">Molecular Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="df.html">Density fitting (DF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pbc.html">Periodic boundary conditions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eph.html">Electron-phonon coupling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lo.html">Localized orbitals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sgx.html">Seminumerical exchange (SGX)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geomopt.html">Geometry optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">GPU Acceleration (GPU4PySCF)</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extensions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="extensions.html">Extensions</a></li>
+</ul>
+</div>
 </section>
 
 
@@ -408,6 +474,24 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../quickstart.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Quickstart</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="gto.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Molecular structure</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -422,7 +506,7 @@ document.write(`
 
   
   <div class="tocsection editthispage">
-    <a href="https://github.com/pyscf/pyscf.github.io/edit/master/source/develop/cc_developer.rst">
+    <a href="https://github.com/pyscf/pyscf.github.io/edit/master/source/user/index.md">
       <i class="fa-solid fa-pencil"></i>
       
       

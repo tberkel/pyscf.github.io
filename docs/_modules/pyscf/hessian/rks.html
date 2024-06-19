@@ -142,13 +142,6 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../install.html">
-    Install
-  </a>
-</li>
-
-
-<li class="nav-item pst-header-nav-item">
   <a class="nav-link nav-internal" href="../../../quickstart.html">
     Quickstart
   </a>
@@ -156,40 +149,25 @@
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../user.html">
+  <a class="nav-link nav-internal" href="../../../user/index.html">
     User Guide
   </a>
 </li>
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../develop.html">
-    Developer Guide
+  <a class="nav-link nav-internal" href="../../../contributor/index.html">
+    Contributor Guide
   </a>
 </li>
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../pyscf_api_docs/pyscf.html">
-    API
-  </a>
-</li>
-
-            <li class="nav-item dropdown pst-header-nav-item">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
-                    More
-                </button>
-                <ul id="pst-nav-more-links" class="dropdown-menu">
-                    
-<li class="nav-item ">
-  <a class="nav-link dropdown-item nav-internal" href="../../../about.html">
+  <a class="nav-link nav-internal" href="../../../about.html">
     About
   </a>
 </li>
 
-                </ul>
-            </li>
-            
   </ul>
 </nav></div>
       
@@ -273,13 +251,6 @@ document.write(`
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../install.html">
-    Install
-  </a>
-</li>
-
-
-<li class="nav-item pst-header-nav-item">
   <a class="nav-link nav-internal" href="../../../quickstart.html">
     Quickstart
   </a>
@@ -287,22 +258,15 @@ document.write(`
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../user.html">
+  <a class="nav-link nav-internal" href="../../../user/index.html">
     User Guide
   </a>
 </li>
 
 
 <li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../develop.html">
-    Developer Guide
-  </a>
-</li>
-
-
-<li class="nav-item pst-header-nav-item">
-  <a class="nav-link nav-internal" href="../../../pyscf_api_docs/pyscf.html">
-    API
+  <a class="nav-link nav-internal" href="../../../contributor/index.html">
+    Contributor Guide
   </a>
 </li>
 
@@ -432,7 +396,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="partial_hess_elec">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.hessian.html#pyscf.hessian.rks.partial_hess_elec">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.hessian.html#pyscf.dft.rks.partial_hess_elec">[docs]</a>
 <span class="k">def</span> <span class="nf">partial_hess_elec</span><span class="p">(</span><span class="n">hessobj</span><span class="p">,</span> <span class="n">mo_energy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_occ</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                       <span class="n">atmlst</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_memory</span><span class="o">=</span><span class="mi">4000</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">log</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">new_logger</span><span class="p">(</span><span class="n">hessobj</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
@@ -509,7 +473,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="make_h1">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.hessian.html#pyscf.hessian.rks.make_h1">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.hessian.html#pyscf.dft.rks.make_h1">[docs]</a>
 <span class="k">def</span> <span class="nf">make_h1</span><span class="p">(</span><span class="n">hessobj</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">,</span> <span class="n">chkfile</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">atmlst</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">mol</span> <span class="o">=</span> <span class="n">hessobj</span><span class="o">.</span><span class="n">mol</span>
     <span class="k">if</span> <span class="n">atmlst</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -981,7 +945,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="Hessian">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.hessian.html#pyscf.hessian.rks.Hessian">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.hessian.html#pyscf.dft.rks.Hessian">[docs]</a>
 <span class="k">class</span> <span class="nc">Hessian</span><span class="p">(</span><span class="n">rhf_hess</span><span class="o">.</span><span class="n">HessianBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Non-relativistic RKS hessian&#39;&#39;&#39;</span>
 
