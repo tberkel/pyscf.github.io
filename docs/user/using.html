@@ -468,9 +468,9 @@ the <code class="docutils literal notranslate"><span class="pre">cc</span></code
 <p>Performing a calculation in PySCF typically involves
 importing a module, instantiating a class provided by that module with some arguments,
 and executing the functions of that class. For example,</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">scf</span> <span class="c1"># import module</span>
-<span class="n">myhf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">RHF</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="c1"># instantiate class</span>
-<span class="n">e_hf</span> <span class="o">=</span> <span class="n">myhf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span> <span class="c1"># execute kernel() method to do the calculation</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">scf</span>  <span class="c1"># import module</span>
+<span class="n">myhf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">RHF</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>  <span class="c1"># instantiate class</span>
+<span class="n">e_hf</span> <span class="o">=</span> <span class="n">myhf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>  <span class="c1"># execute kernel() method to do the calculation</span>
 </pre></div>
 </div>
 <p>Every class has the <code class="docutils literal notranslate"><span class="pre">kernel()</span></code> method, which serves as the driver of
@@ -484,7 +484,7 @@ class is passed to instantiate a Hartree-Fock class, whose instance is passed
 to instantiate a coupled-cluster class,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">scf</span><span class="p">,</span> <span class="n">cc</span>
 <span class="n">mymol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">Mole</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="n">mymol</span><span class="o">.</span><span class="n">build</span><span class="p">()</span> <span class="c1"># returns mymol</span>
+<span class="n">mymol</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>  <span class="c1"># returns mymol</span>
 <span class="n">myscf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">RHF</span><span class="p">(</span><span class="n">mymol</span><span class="p">)</span>
 <span class="n">e_hf</span> <span class="o">=</span> <span class="n">mymol</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 <span class="n">mycc</span> <span class="o">=</span> <span class="n">cc</span><span class="o">.</span><span class="n">CCSD</span><span class="p">(</span><span class="n">myscf</span><span class="p">)</span>
@@ -624,13 +624,13 @@ saved as attributes of the object.  For example,</p>
 <p>Many useful functions are defined at both the class level (as methods) and
 the module level. For example,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">myhf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">RHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
-<span class="n">vj</span><span class="p">,</span> <span class="n">vk</span> <span class="o">=</span> <span class="n">myhf</span><span class="o">.</span><span class="n">get_jk</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">)</span> <span class="c1"># class method</span>
-<span class="n">vj</span><span class="p">,</span> <span class="n">vk</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">hf</span><span class="o">.</span><span class="n">get_jk</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">)</span> <span class="c1"># module function</span>
+<span class="n">vj</span><span class="p">,</span> <span class="n">vk</span> <span class="o">=</span> <span class="n">myhf</span><span class="o">.</span><span class="n">get_jk</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">)</span>  <span class="c1"># class method</span>
+<span class="n">vj</span><span class="p">,</span> <span class="n">vk</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">hf</span><span class="o">.</span><span class="n">get_jk</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">)</span>  <span class="c1"># module function</span>
 </pre></div>
 </div>
 <p>Note that some module functions may require the class object as the first argument,</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">e_hf</span> <span class="o">=</span> <span class="n">myhf</span><span class="o">.</span><span class="n">kernel</span><span class="p">(</span><span class="n">conv_tol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">)</span> <span class="c1"># class method</span>
-<span class="n">e_hf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">hf</span><span class="o">.</span><span class="n">kernel</span><span class="p">(</span><span class="n">mymf</span><span class="p">,</span> <span class="n">conv_tol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">)</span> <span class="c1"># module function</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">e_hf</span> <span class="o">=</span> <span class="n">myhf</span><span class="o">.</span><span class="n">kernel</span><span class="p">(</span><span class="n">conv_tol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">)</span>  <span class="c1"># class method</span>
+<span class="n">e_hf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">hf</span><span class="o">.</span><span class="n">kernel</span><span class="p">(</span><span class="n">mymf</span><span class="p">,</span> <span class="n">conv_tol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">)</span>  <span class="c1"># module function</span>
 </pre></div>
 </div>
 <p>In PySCF, most functions and classes are <strong>pure</strong>, which means that no
@@ -657,11 +657,13 @@ A global configuration file is a Python script that contains PySCF configuration
 When PySCF is imported in a Python program (or Python interpreter), the
 package will preload the global configuration file to set default values.
 For example, the configuration file below detects the available memory in the
-operate system at the runtime and set the maximum memory for PySCF,</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># this is the global configuration file ~/.pyscf_conf.py</span>
-<span class="kn">import</span> <span class="nn">psutil</span>
+operating system at runtime and sets the maximum memory for PySCF,</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">~/.pyscf_conf.py</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psutil</span>
 <span class="n">MAX_MEMORY</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">psutil</span><span class="o">.</span><span class="n">virtual_memory</span><span class="p">()</span><span class="o">.</span><span class="n">available</span> <span class="o">/</span> <span class="mf">1e6</span><span class="p">)</span>
 </pre></div>
+</div>
 </div>
 <p>By setting <code class="docutils literal notranslate"><span class="pre">MAX_MEMORY</span></code> in the global configuration file, you don’t need to set
 the <code class="docutils literal notranslate"><span class="pre">max_memory</span></code> attribute in every script. The dynamically determined
@@ -687,8 +689,9 @@ is then imported and used by PySCF,</p>
 and its modules. For example, generic configuration parameters include <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code>, <code class="docutils literal notranslate"><span class="pre">MAX_MEMORY</span></code>,
 <code class="docutils literal notranslate"><span class="pre">TMPDIR</span></code>, <code class="docutils literal notranslate"><span class="pre">ARGPARSE</span></code>, <code class="docutils literal notranslate"><span class="pre">VERBOSE</span></code>, and <code class="docutils literal notranslate"><span class="pre">UNIT</span></code>, and specific configuration parameters
 for a Hartree-Fock calculation can be found at the top of the file,</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># this is scf/hf.py</span>
-<span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">__config__</span>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">pyscf/scf/hf.py</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">__config__</span>
 
 <span class="n">WITH_META_LOWDIN</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">__config__</span><span class="p">,</span> <span class="s1">&#39;scf_analyze_with_meta_lowdin&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
 <span class="n">PRE_ORTH_METHOD</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">__config__</span><span class="p">,</span> <span class="s1">&#39;scf_analyze_pre_orth_method&#39;</span><span class="p">,</span> <span class="s1">&#39;ANO&#39;</span><span class="p">)</span>
@@ -697,11 +700,14 @@ for a Hartree-Fock calculation can be found at the top of the file,</p>
 <span class="n">MUTE_CHKFILE</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">__config__</span><span class="p">,</span> <span class="s1">&#39;scf_hf_SCF_mute_chkfile&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
 <p>For example, you can choose to change the default behavior associated with the use of
 meta Lowdin population analysis,</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># this is ~/.pyscf_conf.py</span>
-<span class="n">scf_analyze_with_meta_lowdin</span> <span class="o">=</span> <span class="kc">False</span>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">~/.pyscf_conf.py</span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scf_analyze_with_meta_lowdin</span> <span class="o">=</span> <span class="kc">False</span>
 </pre></div>
+</div>
 </div>
 </section>
 </section>
