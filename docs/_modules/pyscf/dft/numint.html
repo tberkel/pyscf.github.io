@@ -15,28 +15,31 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=92fd9be5" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/pyscf-pst.css?v=ed6b5f64" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=3db9c557"></script>
+    <script src="../../../_static/documentation_options.js?v=69ff2ef9"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
@@ -48,6 +51,7 @@
     <link rel="search" title="Search" href="../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2.8" />
   </head>
   
   
@@ -63,19 +67,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../../search.html"
       method="get">
@@ -83,7 +76,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -91,8 +83,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -126,7 +118,7 @@
     
     
     <img src="../../../_static/logo-64x64.png" class="logo__image only-light" alt=""/>
-    <script>document.write(`<img src="../../../_static/logo-64x64.png" class="logo__image only-dark" alt=""/>`);</script>
+    <img src="../../../_static/logo-64x64.png" class="logo__image only-dark pst-js-only" alt=""/>
   
   
     <p class="title logo__title">PySCF</p>
@@ -170,6 +162,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -181,29 +180,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -228,15 +219,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -253,7 +240,8 @@ document.write(`
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -295,6 +283,13 @@ document.write(`
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -307,15 +302,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -339,9 +330,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -359,10 +355,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -375,12 +367,12 @@ document.write(`
     <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
     
     
-    <li class="breadcrumb-item"><i class="fa-solid fa-ellipsis"></i></li>
+    <li class="breadcrumb-item"><a href="../../pyscf.html" class="nav-link">pyscf</a></li>
     
     
     <li class="breadcrumb-item"><a href="../dft.html" class="nav-link">pyscf.dft</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">pyscf.dft.numint</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pyscf.dft.numint</span></li>
   </ul>
 </nav>
 </div>
@@ -581,9 +573,9 @@ document.write(`
         <span class="k">if</span> <span class="n">hermi</span><span class="p">:</span>
             <span class="n">rho</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">*=</span> <span class="mi">2</span>  <span class="c1"># *2 for + einsum(&#39;pi,ij,pj-&gt;p&#39;, ao[i], dm, ao[0])</span>
         <span class="k">else</span><span class="p">:</span>
+            <span class="n">c1</span> <span class="o">=</span> <span class="n">_dot_ao_dm</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">ao</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dm</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">non0tab</span><span class="p">,</span> <span class="n">shls_slice</span><span class="p">,</span> <span class="n">ao_loc</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
-                <span class="n">c1</span> <span class="o">=</span> <span class="n">_dot_ao_dm</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">ao</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dm</span><span class="p">,</span> <span class="n">non0tab</span><span class="p">,</span> <span class="n">shls_slice</span><span class="p">,</span> <span class="n">ao_loc</span><span class="p">)</span>
-                <span class="n">rho</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">_contract_rho</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">ao</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">rho</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">_contract_rho</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">ao</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
     <span class="k">else</span><span class="p">:</span> <span class="c1"># meta-GGA</span>
         <span class="k">if</span> <span class="n">with_lapl</span><span class="p">:</span>
             <span class="c1"># rho[4] = \nabla^2 rho, rho[5] = 1/2 |nabla f|^2</span>
@@ -720,14 +712,14 @@ document.write(`
 
         <span class="n">rho</span><span class="p">[</span><span class="n">tau_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
-            <span class="n">c1</span> <span class="o">=</span> <span class="n">_dot_ao_dm_sparse</span><span class="p">(</span><span class="n">ao</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dm</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">nbins</span><span class="p">,</span> <span class="n">screen_index</span><span class="p">,</span> <span class="n">pair_mask</span><span class="p">,</span> <span class="n">ao_loc</span><span class="p">)</span>
+            <span class="n">c1</span> <span class="o">=</span> <span class="n">_dot_ao_dm_sparse</span><span class="p">(</span><span class="n">ao</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dm</span><span class="p">,</span> <span class="n">nbins</span><span class="p">,</span> <span class="n">screen_index</span><span class="p">,</span> <span class="n">pair_mask</span><span class="p">,</span> <span class="n">ao_loc</span><span class="p">)</span>
             <span class="n">rho</span><span class="p">[</span><span class="n">tau_idx</span><span class="p">]</span> <span class="o">+=</span> <span class="n">_contract_rho_sparse</span><span class="p">(</span><span class="n">ao</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">c1</span><span class="p">,</span> <span class="n">screen_index</span><span class="p">,</span> <span class="n">ao_loc</span><span class="p">)</span>
 
             <span class="n">rho</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">_contract_rho_sparse</span><span class="p">(</span><span class="n">ao</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">c0</span><span class="p">,</span> <span class="n">screen_index</span><span class="p">,</span> <span class="n">ao_loc</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">hermi</span><span class="p">:</span>
                 <span class="n">rho</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*=</span> <span class="mi">2</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">rho</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">_contract_rho_sparse</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">ao</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">screen_index</span><span class="p">,</span> <span class="n">ao_loc</span><span class="p">)</span>
+                <span class="n">rho</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">_contract_rho_sparse</span><span class="p">(</span><span class="n">ao</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">c1</span><span class="p">,</span> <span class="n">screen_index</span><span class="p">,</span> <span class="n">ao_loc</span><span class="p">)</span>
 
         <span class="c1"># tau = 1/2 (\nabla f)^2</span>
         <span class="n">rho</span><span class="p">[</span><span class="n">tau_idx</span><span class="p">]</span> <span class="o">*=</span> <span class="mf">.5</span>
@@ -1227,9 +1219,8 @@ document.write(`
     <span class="n">mat</span> <span class="o">+=</span> <span class="n">_dot_ao_ao</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">bra</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">aow</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">shls_slice</span><span class="p">,</span> <span class="n">ao_loc</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">mat</span>
 
-<span class="k">def</span> <span class="nf">_sparse_enough</span><span class="p">(</span><span class="n">screen_index</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_sparse_enough</span><span class="p">(</span><span class="n">screen_index</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
     <span class="c1"># TODO: improve the turnover threshold</span>
-    <span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.5</span>
     <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">screen_index</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">screen_index</span><span class="o">.</span><span class="n">size</span> <span class="o">*</span> <span class="n">threshold</span>
 
 <span class="k">def</span> <span class="nf">_dot_ao_ao_dense</span><span class="p">(</span><span class="n">ao1</span><span class="p">,</span> <span class="n">ao2</span><span class="p">,</span> <span class="n">wv</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -1246,13 +1237,8 @@ document.write(`
         <span class="k">return</span> <span class="n">lib</span><span class="o">.</span><span class="n">ddot</span><span class="p">(</span><span class="n">ao1</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">ao2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">assert</span> <span class="n">wv</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">numpy</span><span class="o">.</span><span class="n">double</span>
-        <span class="n">libdft</span><span class="o">.</span><span class="n">VXCdot_aow_ao_dense</span><span class="p">(</span>
-            <span class="n">out</span><span class="o">.</span><span class="n">ctypes</span><span class="o">.</span><span class="n">data_as</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">),</span>
-            <span class="n">ao1</span><span class="o">.</span><span class="n">ctypes</span><span class="o">.</span><span class="n">data_as</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">),</span>
-            <span class="n">ao2</span><span class="o">.</span><span class="n">ctypes</span><span class="o">.</span><span class="n">data_as</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">),</span>
-            <span class="n">wv</span><span class="o">.</span><span class="n">ctypes</span><span class="o">.</span><span class="n">data_as</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">),</span>
-            <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">nao</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">ngrids</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">out</span>
+        <span class="n">ao1</span> <span class="o">=</span> <span class="n">_scale_ao</span><span class="p">(</span><span class="n">ao1</span><span class="p">,</span> <span class="n">wv</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">lib</span><span class="o">.</span><span class="n">ddot</span><span class="p">(</span><span class="n">ao1</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">ao2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">_dot_ao_ao_sparse</span><span class="p">(</span><span class="n">ao1</span><span class="p">,</span> <span class="n">ao2</span><span class="p">,</span> <span class="n">wv</span><span class="p">,</span> <span class="n">nbins</span><span class="p">,</span> <span class="n">screen_index</span><span class="p">,</span> <span class="n">pair_mask</span><span class="p">,</span> <span class="n">ao_loc</span><span class="p">,</span>
                       <span class="n">hermi</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -3086,7 +3072,7 @@ document.write(`
 <span class="k">class</span> <span class="nc">LibXCMixin</span><span class="p">:</span>
     <span class="n">libxc</span> <span class="o">=</span> <span class="n">libxc</span>
 
-    <span class="n">omega</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># RSH paramter</span>
+    <span class="n">omega</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># RSH parameter</span>
 
 <span class="c1">####################</span>
 <span class="c1"># Overwrite following functions to use custom XC functional</span>
@@ -3117,6 +3103,13 @@ document.write(`
         <span class="k">if</span> <span class="n">omega</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">omega</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">omega</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">libxc</span><span class="o">.</span><span class="n">eval_xc</span><span class="p">(</span><span class="n">xc_code</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">spin</span><span class="p">,</span> <span class="n">relativity</span><span class="p">,</span> <span class="n">deriv</span><span class="p">,</span>
                                   <span class="n">omega</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="LibXCMixin.eval_xc1">
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.dft.html#pyscf.dft.numint.LibXCMixin.eval_xc1">[docs]</a>
+    <span class="k">def</span> <span class="nf">eval_xc1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xc_code</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">spin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">deriv</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">omega</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">omega</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">omega</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">libxc</span><span class="o">.</span><span class="n">eval_xc1</span><span class="p">(</span><span class="n">xc_code</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">spin</span><span class="p">,</span> <span class="n">deriv</span><span class="p">,</span> <span class="n">omega</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="LibXCMixin.eval_xc_eff">
@@ -3160,12 +3153,12 @@ document.write(`
         <span class="k">else</span><span class="p">:</span>
             <span class="n">spin</span> <span class="o">=</span> <span class="mi">0</span>
 
-        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">libxc</span><span class="o">.</span><span class="n">eval_xc1</span><span class="p">(</span><span class="n">xc_code</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">spin</span><span class="p">,</span> <span class="n">deriv</span><span class="p">,</span> <span class="n">omega</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eval_xc1</span><span class="p">(</span><span class="n">xc_code</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">spin</span><span class="p">,</span> <span class="n">deriv</span><span class="p">,</span> <span class="n">omega</span><span class="p">)</span>
         <span class="n">evfk</span> <span class="o">=</span> <span class="p">[</span><span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
         <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">deriv</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
             <span class="n">evfk</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xc_deriv</span><span class="o">.</span><span class="n">transform_xc</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">xctype</span><span class="p">,</span> <span class="n">spin</span><span class="p">,</span> <span class="n">order</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">deriv</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="c1"># The return has at least [e, v, f, k] terms</span>
+            <span class="c1"># Returns at least [e, v, f, k] terms</span>
             <span class="n">evfk</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="n">deriv</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">evfk</span></div>
 
@@ -3189,9 +3182,12 @@ document.write(`
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">omega</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rsh_coeff</span><span class="p">(</span><span class="n">xc_code</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">omega</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">omega</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">omega</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Not support assigning omega=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">omega</span><span class="si">}</span><span class="s1">. &#39;</span>
+                                   <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">xc_code</span><span class="si">}</span><span class="s1"> is not a RSH functional&#39;</span><span class="p">)</span>
             <span class="n">omega</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">omega</span>
 
-        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">omega</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-10</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">omega</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">hyb</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">+</span> <span class="n">beta</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">hyb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hybrid_coeff</span><span class="p">(</span><span class="n">xc_code</span><span class="p">,</span> <span class="n">spin</span><span class="p">)</span>
@@ -3335,12 +3331,32 @@ document.write(`
                 <span class="n">pair_mask</span> <span class="o">=</span> <span class="n">ovlp_cond</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cutoff</span><span class="p">)</span>
             <span class="n">pair_mask</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">pair_mask</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
 
+        <span class="k">if</span> <span class="p">(</span><span class="n">mo_occ</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">grids</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="c1"># eval_rho2 is more efficient unless we have a very large system</span>
+            <span class="c1"># for which the pair_mask is significantly sparser than the</span>
+            <span class="c1"># ratio of occupied to total molecular orbitals. So we use this ratio</span>
+            <span class="c1"># to switch between eval_rho1 and eval_rho2.</span>
+            <span class="n">mo_ao_sparsity</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mo_occ</span><span class="p">)</span> <span class="o">/</span> <span class="n">nao</span><span class="p">,</span> <span class="mf">1e-8</span><span class="p">)</span>
+            <span class="n">wts</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">ao_loc_nr</span><span class="p">()</span>
+            <span class="n">wts</span> <span class="o">=</span> <span class="p">(</span><span class="n">wts</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">wts</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">wts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">rho1_rho2_ratio</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">wts</span><span class="p">,</span> <span class="n">pair_mask</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">wts</span><span class="p">)</span> <span class="o">/</span> <span class="n">mo_ao_sparsity</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rho1_rho2_ratio</span> <span class="o">=</span> <span class="mf">0.0</span>
+
         <span class="k">def</span> <span class="nf">make_rho</span><span class="p">(</span><span class="n">idm</span><span class="p">,</span> <span class="n">ao</span><span class="p">,</span> <span class="n">sindex</span><span class="p">,</span> <span class="n">xctype</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">sindex</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">grids</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">has_screening</span> <span class="o">=</span> <span class="n">sindex</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">grids</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="n">has_mo</span> <span class="o">=</span> <span class="n">mo_coeff</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">xctype</span> <span class="o">==</span> <span class="s2">&quot;GGA&quot;</span><span class="p">:</span>
+                <span class="c1"># GGA has to do more contractions using rho2 compared to rho1,</span>
+                <span class="c1"># so the threshold for switching to rho1 is less strict.</span>
+                <span class="n">is_sparse</span> <span class="o">=</span> <span class="n">rho1_rho2_ratio</span> <span class="o">&lt;</span> <span class="mi">4</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">is_sparse</span> <span class="o">=</span> <span class="n">rho1_rho2_ratio</span> <span class="o">&lt;</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">has_screening</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">has_mo</span> <span class="ow">or</span> <span class="n">is_sparse</span><span class="p">):</span>
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">eval_rho1</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">ao</span><span class="p">,</span> <span class="n">dms</span><span class="p">[</span><span class="n">idm</span><span class="p">],</span> <span class="n">sindex</span><span class="p">,</span> <span class="n">xctype</span><span class="p">,</span> <span class="n">hermi</span><span class="p">,</span>
                                       <span class="n">with_lapl</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cutoff</span><span class="p">,</span>
                                       <span class="n">ao_cutoff</span><span class="o">=</span><span class="n">grids</span><span class="o">.</span><span class="n">cutoff</span><span class="p">,</span> <span class="n">pair_mask</span><span class="o">=</span><span class="n">pair_mask</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="n">mo_coeff</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="n">has_mo</span><span class="p">:</span>
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">eval_rho2</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">ao</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="p">[</span><span class="n">idm</span><span class="p">],</span> <span class="n">mo_occ</span><span class="p">[</span><span class="n">idm</span><span class="p">],</span>
                                       <span class="n">sindex</span><span class="p">,</span> <span class="n">xctype</span><span class="p">,</span> <span class="n">with_lapl</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
@@ -3416,8 +3432,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -3428,7 +3444,7 @@ document.write(`
 
   <p class="copyright">
     
-      © Copyright 2024, The PySCF Developers.
+      © Copyright 2025, The PySCF Developers.
       <br/>
     
   </p>
@@ -3450,7 +3466,8 @@ document.write(`
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

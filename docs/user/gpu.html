@@ -16,28 +16,31 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/css/pyscf-pst.css?v=ed6b5f64" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=3db9c557"></script>
+    <script src="../_static/documentation_options.js?v=69ff2ef9"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
@@ -51,6 +54,7 @@
     <link rel="prev" title="Geometry optimization" href="geomopt.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2.8" />
   </head>
   
   
@@ -66,19 +70,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -86,7 +79,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -94,8 +86,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -129,7 +121,7 @@
     
     
     <img src="../_static/logo-64x64.png" class="logo__image only-light" alt=""/>
-    <script>document.write(`<img src="../_static/logo-64x64.png" class="logo__image only-dark" alt=""/>`);</script>
+    <img src="../_static/logo-64x64.png" class="logo__image only-dark pst-js-only" alt=""/>
   
   
     <p class="title logo__title">PySCF</p>
@@ -173,6 +165,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -184,29 +183,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -231,15 +222,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -258,7 +245,8 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -300,6 +288,13 @@ document.write(`
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -312,15 +307,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -400,9 +391,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -420,8 +416,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -433,7 +427,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="index.html" class="nav-link">User Guide</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">GPU...</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">GPU Acceleration (GPU4PySCF)</span></li>
   </ul>
 </nav>
 </div>
@@ -455,7 +449,7 @@ document.write(`
 <p><em>Modules</em>: <code class="xref py py-mod docutils literal notranslate"><span class="pre">gpu4pyscf</span></code></p>
 <section id="introduction">
 <span id="module-GPU4PySCF"></span><h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
-<p>Modern GPUs accelerate quantum chemistry calculation significantly, but also have an advantage in cost saving <a class="reference external" href="https://arxiv.org/abs/2404.09452">[1]</a>.
+<p>Modern GPUs accelerate quantum chemistry calculation significantly, but also have an advantage in cost saving <a class="reference external" href="https://arxiv.org/abs/2407.09700">[1]</a> <a class="reference external" href="https://arxiv.org/abs/2404.09452">[2]</a>.
 Some of basic PySCF modules, such as SCF and DFT, are accelerated with GPU via a plugin package
 GPU4PySCF (See the end of this page for the supported functionalities). For the density fitting scheme,
 GPU4PySCF on A100-80G can be 1000x faster than PySCF on single-core CPU. The speedup of direct SCF scheme is relatively low.</p>
@@ -463,9 +457,7 @@ GPU4PySCF on A100-80G can be 1000x faster than PySCF on single-core CPU. The spe
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
 <p>The binary package of GPU4PySCF is released based on the CUDA version.</p>
-<div class="pst-scrollable-table-container"><table class="table" id="id2">
-<caption><span class="caption-text">:widths: 25 25 25 25
- :header-rows: 1</span><a class="headerlink" href="#id2" title="Link to this table">#</a></caption>
+<div class="pst-scrollable-table-container"><table class="table">
 <tbody>
 <tr class="row-odd"><td><p>CUDA version</p></td>
 <td><p>GPU4PySCF</p></td>
@@ -485,9 +477,18 @@ GPU4PySCF on A100-80G can be 1000x faster than PySCF on single-core CPU. The spe
 </section>
 <section id="usage-of-gpu4pyscf">
 <h2>Usage of GPU4PySCF<a class="headerlink" href="#usage-of-gpu4pyscf" title="Link to this heading">#</a></h2>
-<p>GPU4PySCF APIs are designed to be compatible with PySCF. When supported, high-level functions and objects are named the same as PySCF. But, GPU4PySCF classes do not directly inherit from PySCF class.
-PySCF objects and GPU4PySCF objects can be converted into each other by <code class="xref py py-func docutils literal notranslate"><span class="pre">to_gpu()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">to_cpu()</span></code>. In the conversion, the numpy arrays will be converted into cupy array. And the functions will be omitted if they are not supported with GPU acceleration.</p>
-<p>One can use the two modes to accelerate the calculations: directly use GPU4PySCF object:</p>
+<p>The GPU4PySCF APIs are designed to maintain compatibility with PySCF. The
+classes and methods in GPU4PySCF are named identically to those in PySCF,
+ensuring a familiar interface for users. However, GPU4PySCF classes do not
+directly inherit from PySCF classes.</p>
+<p>PySCF objects and GPU4PySCF objects can be converted to each other using the <code class="xref py py-func docutils literal notranslate"><span class="pre">to_gpu()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">to_cpu()</span></code> methods.
+The conversion process can automatically, recursively translate all attributes between GPU and CPU instances.
+For example, numpy arrays on the CPU are converted into CuPy arrays on the GPU, and vice versa.
+If certain attributes are exclusive to either the CPU or GPU, these attributes will be appropriately handled.
+They are omitted or specifically converted, depending on the target platform.</p>
+<p>There are two approaches to execute the computation on GPU.</p>
+<ol class="arabic">
+<li><p>Directly import GPU4PySCF classes and methods:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyscf</span>
 <span class="kn">from</span> <span class="nn">gpu4pyscf.dft</span> <span class="kn">import</span> <span class="n">rks</span>
 
@@ -510,7 +511,8 @@ PySCF objects and GPU4PySCF objects can be converted into each other by <code cl
 <span class="n">h_dft</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>   <span class="c1"># compute analytical Hessian</span>
 </pre></div>
 </div>
-<p>Alternatively, one can convert PySCF object to the corresponding GPU4PySCF object with <code class="xref py py-func docutils literal notranslate"><span class="pre">to_gpu()</span></code> since PySCF 2.5.0</p>
+</li>
+<li><p>Convert PySCF object to the corresponding GPU4PySCF object with <code class="xref py py-func docutils literal notranslate"><span class="pre">to_gpu()</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyscf</span>
 <span class="kn">from</span> <span class="nn">pyscf.dft</span> <span class="kn">import</span> <span class="n">rks</span>
 
@@ -525,14 +527,46 @@ PySCF objects and GPU4PySCF objects can be converted into each other by <code cl
 <span class="n">e_dft</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>  <span class="c1"># compute total energy</span>
 </pre></div>
 </div>
-<p>When the GPU task is done, the GPU4PySCF object can be converted into the corresponding PySCF object via <code class="xref py py-func docutils literal notranslate"><span class="pre">mf.to_cpu()</span></code>.
-Then, more sophisticated methods in PySCF can apply. One can also convert the individual CuPy array to numpy array with <a href="#id4"><span class="problematic" id="id5">`Cupy APIs`_</span></a>.</p>
+</li>
+</ol>
+<p>When the GPU task is done, the GPU4PySCF object can be converted into the corresponding PySCF object via <code class="xref py py-func docutils literal notranslate"><span class="pre">mf.to_cpu()</span></code>.</p>
+<p>In GPU4PySCF, wavefunctions, density matrices, and other array data are stored in CuPy arrays.
+To transfer these data to NumPy arrays on the CPU, the <code class="xref py py-func docutils literal notranslate"><span class="pre">get()</span></code> method of the CuPy array can be invoked.
+For more detailed information on handling CuPy array conversions, please refer to the <cite>CuPy APIs</cite> documentation.</p>
+</section>
+<section id="gpu4pyscf-and-pyscf-hybrid-programming">
+<h2>GPU4PySCF and PySCF Hybrid Programming<a class="headerlink" href="#gpu4pyscf-and-pyscf-hybrid-programming" title="Link to this heading">#</a></h2>
+<p>GPU4PySCF allows for seamless integration with existing PySCF programs, enabling
+a hybrid approach that leverages both CPU and GPU resources in the program. This
+integration is facilitated through the use of <cite>to_gpu()</cite> and <cite>to_cpu()</cite>
+functions, which convert PySCF instances between CPU and GPU.</p>
+<p>For instance, we can perform DFT calculations on GPU to obtain a set of DFT
+orbitals followed by orbital localization using the Boys method on the CPU:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyscf</span>
+<span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">lo</span>
+<span class="n">mol</span> <span class="o">=</span> <span class="n">pyscf</span><span class="o">.</span><span class="n">M</span><span class="p">(</span><span class="n">atom</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">O       0.0000000000    -0.0000000000     0.1174000000</span>
+<span class="s1">H      -0.7570000000    -0.0000000000    -0.4696000000</span>
+<span class="s1">H       0.7570000000     0.0000000000    -0.4696000000</span>
+<span class="s1">&#39;&#39;&#39;</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s1">&#39;def2-tzvpp&#39;</span><span class="p">)</span>
+
+<span class="c1"># Perform DFT computation on GPU</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">RKS</span><span class="p">(</span><span class="n">xc</span><span class="o">=</span><span class="s1">&#39;b3lyp&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_gpu</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+<span class="c1"># Transfer the computation back to CPU and continue the tasks on the CPU</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">to_cpu</span><span class="p">()</span>
+<span class="n">loc_orb</span> <span class="o">=</span> <span class="n">lo</span><span class="o">.</span><span class="n">Boys</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">mf</span><span class="o">.</span><span class="n">mo_coeff</span><span class="p">[:,[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>GPU Implementation Availability</strong>: The <code class="xref py py-func docutils literal notranslate"><span class="pre">to_gpu()</span></code> method is implemented for
+almost all methods in PySCF. However, the actual availability of GPU4PySCF
+implementations for specific modules may vary. If a GPU4PySCF module is
+available, <code class="xref py py-func docutils literal notranslate"><span class="pre">to_gpu()</span></code> will return a GPU4PySCF instance. Otherwise, it will raise a
+<code class="xref py py-func docutils literal notranslate"><span class="pre">NotImplementedError()</span></code>.</p>
 </section>
 <section id="functionalities-supported-by-gpu4pyscf">
 <h2>Functionalities supported by GPU4PySCF<a class="headerlink" href="#functionalities-supported-by-gpu4pyscf" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="table" id="id3">
-<caption><span class="caption-text">:widths: 25 25 25 25
- :header-rows: 1</span><a class="headerlink" href="#id3" title="Link to this table">#</a></caption>
+<div class="pst-scrollable-table-container"><table class="table">
 <tbody>
 <tr class="row-odd"><td><p>Method</p></td>
 <td><p>SCF</p></td>
@@ -612,6 +646,14 @@ Then, more sophisticated methods in PySCF can apply. One can also convert the in
 </tbody>
 </table>
 </div>
+<ul class="simple">
+<li><p>‘O’: carefully optimized for GPU.</p></li>
+<li><p>‘CPU’: only cpu implementation.</p></li>
+<li><p>‘GPU’: drop-in replacement or naive implementation.</p></li>
+<li><p>‘FD’: use finite-difference gradient to approximate the exact Hessian matrix.</p></li>
+<li><p>’NA’: not available.</p></li>
+<li><p>‘CPU*’: DFTD3 [100]/DFTD4 [101] on CPU.</p></li>
+</ul>
 </section>
 </section>
 
@@ -650,7 +692,8 @@ Then, more sophisticated methods in PySCF can apply. One can also convert the in
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -664,6 +707,7 @@ Then, more sophisticated methods in PySCF can apply. One can also convert the in
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage-of-gpu4pyscf">Usage of GPU4PySCF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu4pyscf-and-pyscf-hybrid-programming">GPU4PySCF and PySCF Hybrid Programming</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functionalities-supported-by-gpu4pyscf">Functionalities supported by GPU4PySCF</a></li>
 </ul>
   </nav></div>
@@ -697,8 +741,8 @@ Then, more sophisticated methods in PySCF can apply. One can also convert the in
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -709,7 +753,7 @@ Then, more sophisticated methods in PySCF can apply. One can also convert the in
 
   <p class="copyright">
     
-      © Copyright 2024, The PySCF Developers.
+      © Copyright 2025, The PySCF Developers.
       <br/>
     
   </p>
@@ -731,7 +775,8 @@ Then, more sophisticated methods in PySCF can apply. One can also convert the in
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

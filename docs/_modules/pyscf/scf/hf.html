@@ -15,28 +15,31 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=92fd9be5" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/pyscf-pst.css?v=ed6b5f64" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=3db9c557"></script>
+    <script src="../../../_static/documentation_options.js?v=69ff2ef9"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
@@ -48,6 +51,7 @@
     <link rel="search" title="Search" href="../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2.8" />
   </head>
   
   
@@ -63,19 +67,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../../search.html"
       method="get">
@@ -83,7 +76,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -91,8 +83,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -126,7 +118,7 @@
     
     
     <img src="../../../_static/logo-64x64.png" class="logo__image only-light" alt=""/>
-    <script>document.write(`<img src="../../../_static/logo-64x64.png" class="logo__image only-dark" alt=""/>`);</script>
+    <img src="../../../_static/logo-64x64.png" class="logo__image only-dark pst-js-only" alt=""/>
   
   
     <p class="title logo__title">PySCF</p>
@@ -170,6 +162,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -181,29 +180,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -228,15 +219,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -253,7 +240,8 @@ document.write(`
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -295,6 +283,13 @@ document.write(`
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -307,15 +302,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -339,9 +330,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -359,10 +355,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -375,12 +367,12 @@ document.write(`
     <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
     
     
-    <li class="breadcrumb-item"><i class="fa-solid fa-ellipsis"></i></li>
+    <li class="breadcrumb-item"><a href="../../pyscf.html" class="nav-link">pyscf</a></li>
     
     
     <li class="breadcrumb-item"><a href="../scf.html" class="nav-link">pyscf.scf</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">pyscf.scf.hf</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pyscf.scf.hf</span></li>
   </ul>
 </nav>
 </div>
@@ -433,6 +425,7 @@ document.write(`
 <span class="kn">from</span> <span class="nn">pyscf.scf</span> <span class="kn">import</span> <span class="n">diis</span>
 <span class="kn">from</span> <span class="nn">pyscf.scf</span> <span class="kn">import</span> <span class="n">_vhf</span>
 <span class="kn">from</span> <span class="nn">pyscf.scf</span> <span class="kn">import</span> <span class="n">chkfile</span>
+<span class="kn">from</span> <span class="nn">pyscf.scf</span> <span class="kn">import</span> <span class="n">dispersion</span>
 <span class="kn">from</span> <span class="nn">pyscf.data</span> <span class="kn">import</span> <span class="n">nist</span>
 <span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">__config__</span>
 
@@ -482,6 +475,8 @@ document.write(`
 <span class="sd">            generated by the builtin function :func:`locals`, so that the</span>
 <span class="sd">            callback function can access all local variables in the current</span>
 <span class="sd">            environment.</span>
+<span class="sd">        sap_basis : str</span>
+<span class="sd">            SAP basis name</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        A list :   scf_conv, e_tot, mo_energy, mo_coeff, mo_occ</span>
@@ -520,7 +515,7 @@ document.write(`
     <span class="n">s1e</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">get_ovlp</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">dm0</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">dm</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">get_init_guess</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">mf</span><span class="o">.</span><span class="n">init_guess</span><span class="p">,</span> <span class="n">s1e</span><span class="o">=</span><span class="n">s1e</span><span class="p">)</span>
+        <span class="n">dm</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">get_init_guess</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">mf</span><span class="o">.</span><span class="n">init_guess</span><span class="p">,</span> <span class="n">s1e</span><span class="o">=</span><span class="n">s1e</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">dm</span> <span class="o">=</span> <span class="n">dm0</span>
 
@@ -566,6 +561,7 @@ document.write(`
 
     <span class="n">fock_last</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">cput1</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">timer</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="s1">&#39;initialize scf&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">cput0</span><span class="p">)</span>
+    <span class="n">mf</span><span class="o">.</span><span class="n">cycles</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">cycle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">max_cycle</span><span class="p">):</span>
         <span class="n">dm_last</span> <span class="o">=</span> <span class="n">dm</span>
         <span class="n">last_hf_e</span> <span class="o">=</span> <span class="n">e_tot</span>
@@ -594,7 +590,7 @@ document.write(`
         <span class="k">elif</span> <span class="nb">abs</span><span class="p">(</span><span class="n">e_tot</span><span class="o">-</span><span class="n">last_hf_e</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">conv_tol</span> <span class="ow">and</span> <span class="n">norm_gorb</span> <span class="o">&lt;</span> <span class="n">conv_tol_grad</span><span class="p">:</span>
             <span class="n">scf_conv</span> <span class="o">=</span> <span class="kc">True</span>
 
-        <span class="k">if</span> <span class="n">dump_chk</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">dump_chk</span> <span class="ow">and</span> <span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span><span class="p">:</span>
             <span class="n">mf</span><span class="o">.</span><span class="n">dump_chk</span><span class="p">(</span><span class="nb">locals</span><span class="p">())</span>
 
         <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">callback</span><span class="p">):</span>
@@ -605,6 +601,7 @@ document.write(`
         <span class="k">if</span> <span class="n">scf_conv</span><span class="p">:</span>
             <span class="k">break</span>
 
+    <span class="n">mf</span><span class="o">.</span><span class="n">cycles</span> <span class="o">=</span> <span class="n">cycle</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">if</span> <span class="n">scf_conv</span> <span class="ow">and</span> <span class="n">conv_check</span><span class="p">:</span>
         <span class="c1"># An extra diagonalization, to remove level shift</span>
         <span class="c1">#fock = mf.get_fock(h1e, s1e, vhf, dm)  # = h1e + vhf</span>
@@ -628,7 +625,7 @@ document.write(`
             <span class="n">scf_conv</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="s1">&#39;Extra cycle  E= </span><span class="si">%.15g</span><span class="s1">  delta_E= </span><span class="si">%4.3g</span><span class="s1">  |g|= </span><span class="si">%4.3g</span><span class="s1">  |ddm|= </span><span class="si">%4.3g</span><span class="s1">&#39;</span><span class="p">,</span>
                     <span class="n">e_tot</span><span class="p">,</span> <span class="n">e_tot</span><span class="o">-</span><span class="n">last_hf_e</span><span class="p">,</span> <span class="n">norm_gorb</span><span class="p">,</span> <span class="n">norm_ddm</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">dump_chk</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">dump_chk</span> <span class="ow">and</span> <span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span><span class="p">:</span>
             <span class="n">mf</span><span class="o">.</span><span class="n">dump_chk</span><span class="p">(</span><span class="nb">locals</span><span class="p">())</span>
 
     <span class="n">logger</span><span class="o">.</span><span class="n">timer</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="s1">&#39;scf_cycle&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">cput0</span><span class="p">)</span>
@@ -656,7 +653,7 @@ document.write(`
 
 <span class="sd">    Kwargs:</span>
 <span class="sd">        dm : 2D ndarray</span>
-<span class="sd">            one-partical density matrix</span>
+<span class="sd">            one-particle density matrix</span>
 <span class="sd">        h1e : 2D ndarray</span>
 <span class="sd">            Core hamiltonian</span>
 <span class="sd">        vhf : 2D ndarray</span>
@@ -692,7 +689,7 @@ document.write(`
 <div class="viewcode-block" id="energy_tot">
 <a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.scf.dhf.energy_tot">[docs]</a>
 <span class="k">def</span> <span class="nf">energy_tot</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">dm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">h1e</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vhf</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&#39;&#39;&#39;Total Hartree-Fock energy, electronic part plus nuclear repulstion</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&#39;&#39;&#39;Total Hartree-Fock energy, electronic part plus nuclear repulsion</span>
 <span class="sd">    See :func:`scf.hf.energy_elec` for the electron part</span>
 
 <span class="sd">    Note this function has side effects which cause mf.scf_summary updated.</span>
@@ -877,7 +874,7 @@ document.write(`
     <span class="c1">#: dm = addons.project_dm_nr2nr(pmol, numpy.diag(occ), mol)</span>
     <span class="n">mo</span> <span class="o">=</span> <span class="n">addons</span><span class="o">.</span><span class="n">project_mo_nr2nr</span><span class="p">(</span><span class="n">pmol</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">pmol</span><span class="o">.</span><span class="n">nao</span><span class="p">),</span> <span class="n">mol</span><span class="p">)</span>
     <span class="n">dm</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">mo</span><span class="o">*</span><span class="n">occ</span><span class="p">,</span> <span class="n">mo</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-<span class="c1"># normalize eletron number</span>
+<span class="c1"># normalize electron number</span>
 <span class="c1">#    s = mol.intor_symmetric(&#39;int1e_ovlp&#39;)</span>
 <span class="c1">#    dm *= mol.nelectron / (dm*s).sum()</span>
     <span class="k">return</span> <span class="n">lib</span><span class="o">.</span><span class="n">tag_array</span><span class="p">(</span><span class="n">dm</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="o">=</span><span class="n">mo</span><span class="p">,</span> <span class="n">mo_occ</span><span class="o">=</span><span class="n">occ</span><span class="p">)</span></div>
@@ -1155,6 +1152,34 @@ document.write(`
     <span class="k">return</span> <span class="n">dm</span></div>
 
 
+<div class="viewcode-block" id="init_guess_by_sap">
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.scf.dhf.init_guess_by_sap">[docs]</a>
+<span class="k">def</span> <span class="nf">init_guess_by_sap</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">sap_basis</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Generate initial guess density matrix from a superposition of</span>
+<span class="sd">    atomic potentials (SAP), doi:10.1021/acs.jctc.8b01089.</span>
+<span class="sd">    This is the Gaussian fit implementation, see doi:10.1063/5.0004046.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        mol : MoleBase object</span>
+<span class="sd">            the molecule object for which the initial guess is evaluated</span>
+<span class="sd">        sap_basis : dict</span>
+<span class="sd">            SAP basis in internal format (python dictionary)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dm0 : ndarray</span>
+<span class="sd">            SAP initial guess density matrix</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">Vsap</span> <span class="o">=</span> <span class="n">make_sap</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">sap_basis</span><span class="o">=</span><span class="n">sap_basis</span><span class="p">)</span>
+    <span class="n">hcore</span> <span class="o">=</span> <span class="n">get_hcore</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">get_ovlp</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+    <span class="n">e</span><span class="p">,</span> <span class="n">coeff</span> <span class="o">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">hcore</span> <span class="o">+</span> <span class="n">Vsap</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+
+    <span class="n">mf</span> <span class="o">=</span> <span class="n">RHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+    <span class="n">occ</span> <span class="o">=</span> <span class="n">get_occ</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">coeff</span><span class="p">)</span>
+
+    <span class="n">dm</span> <span class="o">=</span> <span class="n">make_rdm1</span><span class="p">(</span><span class="n">coeff</span><span class="p">,</span> <span class="n">occ</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dm</span></div>
+
 
 <div class="viewcode-block" id="get_init_guess">
 <a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.scf.dhf.get_init_guess">[docs]</a>
@@ -1163,7 +1188,7 @@ document.write(`
 
 <span class="sd">    Kwargs:</span>
 <span class="sd">        key : str</span>
-<span class="sd">            One of &#39;minao&#39;, &#39;atom&#39;, &#39;huckel&#39;, &#39;hcore&#39;, &#39;1e&#39;, &#39;chkfile&#39;.</span>
+<span class="sd">            One of &#39;minao&#39;, &#39;atom&#39;, &#39;huckel&#39;, &#39;hcore&#39;, &#39;1e&#39;, &#39;sap&#39;, &#39;chkfile&#39;.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">return</span> <span class="n">RHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">.</span><span class="n">get_init_guess</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
@@ -1202,6 +1227,55 @@ document.write(`
     <span class="k">return</span> <span class="n">f</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">factor</span><span class="p">)</span> <span class="o">+</span> <span class="n">f_prev</span><span class="o">*</span><span class="n">factor</span></div>
 
 
+<div class="viewcode-block" id="make_sap">
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.scf.dhf.make_sap">[docs]</a>
+<span class="k">def</span> <span class="nf">make_sap</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">sap_basis</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Superposition of atomic potentials (SAP) potential matrix</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        mol : MoleBase object</span>
+<span class="sd">            molecule for which SAP is computed</span>
+<span class="sd">        sap_basis : dict</span>
+<span class="sd">            SAP basis</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Vsap : ndarray</span>
+<span class="sd">            SAP potential matrix</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="kn">from</span> <span class="nn">pyscf.gto.mole</span> <span class="kn">import</span> <span class="n">fakemol_for_cgtf_charge</span>
+
+    <span class="n">atom_coords</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">_atom</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">atoms</span> <span class="o">=</span> <span class="p">[</span><span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">_atom</span><span class="p">]</span>
+
+    <span class="c1"># charge sumcheck</span>
+    <span class="n">Z_eff</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sap_basis</span><span class="p">[</span><span class="n">a</span><span class="p">][:,</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">atoms</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Z_eff</span> <span class="o">+</span> <span class="n">mol</span><span class="o">.</span><span class="n">nelectron</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-6</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="n">mol</span><span class="p">,</span>
+            <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;SAP basis coefficients must be equal or close&#39;</span>
+            <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;to total electronic charge: </span><span class="si">{</span><span class="n">Z_eff</span><span class="si">}</span><span class="s1"> !≃ </span><span class="si">{</span><span class="n">mol</span><span class="o">.</span><span class="n">nelectron</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s1">&#39;Check fails with value </span><span class="si">{</span><span class="n">numpy</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Z_eff</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mol</span><span class="o">.</span><span class="n">nelectron</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]))</span>
+
+    <span class="n">V</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">mol</span><span class="o">.</span><span class="n">nao_nr</span><span class="p">(),</span> <span class="n">mol</span><span class="o">.</span><span class="n">nao_nr</span><span class="p">()))</span>
+    <span class="n">cmol</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">nbas</span> <span class="o">=</span> <span class="n">cmol</span><span class="o">.</span><span class="n">nbas</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">atom</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">atoms</span><span class="p">):</span>
+        <span class="n">expnt</span> <span class="o">=</span> <span class="n">sap_basis</span><span class="p">[</span><span class="n">atom</span><span class="p">][:,</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">coeff</span> <span class="o">=</span> <span class="n">sap_basis</span><span class="p">[</span><span class="n">atom</span><span class="p">][:,</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">nucleon_fakemol</span> <span class="o">=</span> <span class="n">fakemol_for_cgtf_charge</span><span class="p">(</span>
+            <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">atom_coords</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+            <span class="n">expnt</span><span class="p">,</span>
+            <span class="n">coeff</span><span class="p">)</span>
+
+        <span class="n">cmol</span> <span class="o">+=</span> <span class="n">nucleon_fakemol</span>
+
+    <span class="n">shls_slice</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nbas</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nbas</span><span class="p">,</span> <span class="n">nbas</span><span class="p">,</span> <span class="n">cmol</span><span class="o">.</span><span class="n">nbas</span><span class="p">)</span>
+    <span class="n">int3c2e</span> <span class="o">=</span> <span class="n">cmol</span><span class="o">.</span><span class="n">intor</span><span class="p">(</span><span class="s1">&#39;int3c2e&#39;</span><span class="p">,</span> <span class="n">comp</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">shls_slice</span><span class="o">=</span><span class="n">shls_slice</span><span class="p">)</span>
+    <span class="n">V</span> <span class="o">=</span> <span class="o">-</span><span class="n">numpy</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;pqk-&gt;pq&#39;</span><span class="p">,</span> <span class="n">int3c2e</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">V</span></div>
+
 
 <span class="c1"># full density matrix for RHF</span>
 <div class="viewcode-block" id="make_rdm1">
@@ -1226,6 +1300,16 @@ document.write(`
 <a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.scf.dhf.make_rdm2">[docs]</a>
 <span class="k">def</span> <span class="nf">make_rdm2</span><span class="p">(</span><span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Two-particle density matrix in AO representation</span>
+
+<span class="sd">    NOTE the indices of the two-particle density matrix is ordered to</span>
+
+<span class="sd">    dm2[p,q,r,s] = &lt;q^+ s^+ r p&gt;.</span>
+
+<span class="sd">    HF energy can be computed</span>
+<span class="sd">    E = einsum(&#39;pq,qp&#39;, hcore, 1pdm) + einsum(&#39;pqrs,pqrs&#39;, eri, 2pdm) / 2</span>
+<span class="sd">    where h1[p,q] = &lt;p|h|q&gt; and eri[p,q,r,s] = (pq|rs)</span>
+<span class="sd">to make the density matrix consistent with the density matrix obtained</span>
+<span class="sd">    from post-HF methods,</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        mo_coeff : 2D ndarray</span>
@@ -1341,9 +1425,11 @@ document.write(`
 <span class="sd">            Whether to compute K matrices</span>
 
 <span class="sd">        omega : float</span>
-<span class="sd">            Parameter of range-seperated Coulomb operator: erf( omega * r12 ) / r12.</span>
-<span class="sd">            If specified, integration are evaluated based on the long-range</span>
-<span class="sd">            part of the range-seperated Coulomb operator.</span>
+<span class="sd">            Parameter of range-separated Coulomb operator.</span>
+<span class="sd">            When omega is 0 (or None), integrals are computed with the full-range Coulomb potential.</span>
+<span class="sd">            When it is larger than zero, integrals are evaluated with the long-range</span>
+<span class="sd">            Coulomb potential erf( omega * r12 ) / r12. When omega is smaller</span>
+<span class="sd">            than 0, short-range Coulomb potential erfc( omega * r12 ) / r12 is applied.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Depending on the given dm, the function returns one J and one K matrix,</span>
@@ -1567,7 +1653,7 @@ document.write(`
 <div class="viewcode-block" id="analyze">
 <a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.scf.dhf.analyze">[docs]</a>
 <span class="k">def</span> <span class="nf">analyze</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">logger</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="n">with_meta_lowdin</span><span class="o">=</span><span class="n">WITH_META_LOWDIN</span><span class="p">,</span>
-            <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="n">origin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Analyze the given SCF object:  print orbital energies, occupancies;</span>
 <span class="sd">    print orbital coefficients; Mulliken population analysis; Diople moment.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
@@ -1599,10 +1685,10 @@ document.write(`
     <span class="n">dm</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">make_rdm1</span><span class="p">(</span><span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">with_meta_lowdin</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">mulliken_meta</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="n">ovlp_ao</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">log</span><span class="p">),</span>
-                <span class="n">mf</span><span class="o">.</span><span class="n">dip_moment</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">log</span><span class="p">))</span>
+                <span class="n">mf</span><span class="o">.</span><span class="n">dip_moment</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">origin</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">log</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">mulliken_pop</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="n">ovlp_ao</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">log</span><span class="p">),</span>
-                <span class="n">mf</span><span class="o">.</span><span class="n">dip_moment</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">log</span><span class="p">))</span></div>
+                <span class="n">mf</span><span class="o">.</span><span class="n">dip_moment</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">origin</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">log</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="dump_scf_summary">
@@ -1765,7 +1851,7 @@ document.write(`
 
 <div class="viewcode-block" id="dip_moment">
 <a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.scf.dhf.dip_moment">[docs]</a>
-<span class="k">def</span> <span class="nf">dip_moment</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;Debye&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">logger</span><span class="o">.</span><span class="n">NOTE</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">dip_moment</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;Debye&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">logger</span><span class="o">.</span><span class="n">NOTE</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&#39;&#39;&#39; Dipole moment calculation</span>
 
 <span class="sd">    .. math::</span>
@@ -1780,6 +1866,8 @@ document.write(`
 <span class="sd">    Args:</span>
 <span class="sd">         mol: an instance of :class:`Mole`</span>
 <span class="sd">         dm : a 2D ndarrays density matrices</span>
+<span class="sd">         origin : optional; length 3 list, tuple, or 1D array</span>
+<span class="sd">            Location of the origin. By default, the point (0, 0, 0) is used.</span>
 
 <span class="sd">    Return:</span>
 <span class="sd">        A list: the dipole moment on x, y and z component</span>
@@ -1796,13 +1884,23 @@ document.write(`
         <span class="c1"># UHF density matrices</span>
         <span class="n">dm</span> <span class="o">=</span> <span class="n">dm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">dm</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
-    <span class="k">with</span> <span class="n">mol</span><span class="o">.</span><span class="n">with_common_orig</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)):</span>
-        <span class="n">ao_dip</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">intor_symmetric</span><span class="p">(</span><span class="s1">&#39;int1e_r&#39;</span><span class="p">,</span> <span class="n">comp</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-    <span class="n">el_dip</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;xij,ji-&gt;x&#39;</span><span class="p">,</span> <span class="n">ao_dip</span><span class="p">,</span> <span class="n">dm</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
-
     <span class="n">charges</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">atom_charges</span><span class="p">()</span>
     <span class="n">coords</span>  <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">atom_coords</span><span class="p">()</span>
-    <span class="n">nucl_dip</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;i,ix-&gt;x&#39;</span><span class="p">,</span> <span class="n">charges</span><span class="p">,</span> <span class="n">coords</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">origin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">origin</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span>
+
+    <span class="k">if</span> <span class="n">mol</span><span class="o">.</span><span class="n">charge</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;System has nonzero charge </span><span class="si">{</span><span class="n">mol</span><span class="o">.</span><span class="n">charge</span><span class="si">}</span><span class="s2">; the dipole moment is origin-dependent.</span><span class="se">\n</span><span class="s2">&quot;</span>
+                 <span class="sa">f</span><span class="s2">&quot;Location of origin: </span><span class="si">{</span><span class="n">origin</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">mol</span><span class="o">.</span><span class="n">with_common_orig</span><span class="p">(</span><span class="n">origin</span><span class="p">):</span>
+        <span class="n">ao_dip</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">intor_symmetric</span><span class="p">(</span><span class="s1">&#39;int1e_r&#39;</span><span class="p">,</span> <span class="n">comp</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">el_dip</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;xij,ji-&gt;x&#39;</span><span class="p">,</span> <span class="n">ao_dip</span><span class="p">,</span> <span class="n">dm</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+    <span class="n">nucl_dip</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;i,ix-&gt;x&#39;</span><span class="p">,</span> <span class="n">charges</span><span class="p">,</span> <span class="n">coords</span> <span class="o">-</span> <span class="n">origin</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:])</span>
     <span class="n">mol_dip</span> <span class="o">=</span> <span class="n">nucl_dip</span> <span class="o">-</span> <span class="n">el_dip</span>
 
     <span class="k">if</span> <span class="n">unit</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;DEBYE&#39;</span><span class="p">:</span>
@@ -1812,6 +1910,74 @@ document.write(`
         <span class="n">log</span><span class="o">.</span><span class="n">note</span><span class="p">(</span><span class="s1">&#39;Dipole moment(X, Y, Z, A.U.): </span><span class="si">%8.5f</span><span class="s1">, </span><span class="si">%8.5f</span><span class="s1">, </span><span class="si">%8.5f</span><span class="s1">&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">mol_dip</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">mol_dip</span></div>
 
+
+<div class="viewcode-block" id="quad_moment">
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.scf.dhf.quad_moment">[docs]</a>
+<span class="k">def</span> <span class="nf">quad_moment</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;DebyeAngstrom&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">verbose</span><span class="o">=</span><span class="n">logger</span><span class="o">.</span><span class="n">NOTE</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&#39;&#39;&#39; Calculates traceless quadrupole moment tensor.</span>
+
+<span class="sd">    The traceless quadrupole tensor is given by</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        Q_{ij} &amp;= - \frac{1}{2} \sum_{\mu \nu} P_{\mu \nu}</span>
+<span class="sd">                \left[ 3 (\nu | r_i r_j | \mu) - \delta_{ij} (\nu | r^2 | \mu) \right] \\</span>
+<span class="sd">               &amp;+ \frac{1}{2} \sum_A Q_A</span>
+<span class="sd">               \left( R_{iA} R_{jA} - \delta_{ij} \|\mathbf{R}_A\|^2  \right).</span>
+
+<span class="sd">    If the molecule has a dipole, the quadrupole moment depends on the location</span>
+<span class="sd">    of the origin. By default, the origin is taken to be (0, 0, 0), but it can</span>
+<span class="sd">    be set manually via the keyword argument `origin`.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">         mol: an instance of :class:`Mole`</span>
+<span class="sd">         dm : a 2D ndarrays density matrices</span>
+<span class="sd">         origin : optional; length 3 list, tuple, or 1D array</span>
+<span class="sd">            Location of the origin. By default, it is (0, 0, 0).</span>
+
+<span class="sd">    Return:</span>
+<span class="sd">        Traceless quadrupole tensor, 2D ndarray.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">log</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">new_logger</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s1">&#39;unit_symbol&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Kwarg &quot;unit_symbol&quot; was deprecated. It was replaced by kwarg &#39;</span>
+                 <span class="s1">&#39;unit since PySCF-1.5.&#39;</span><span class="p">)</span>
+        <span class="n">unit</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;unit_symbol&#39;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">dm</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">and</span> <span class="n">dm</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="c1"># UHF density matrices</span>
+        <span class="n">dm</span> <span class="o">=</span> <span class="n">dm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">dm</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">charges</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">atom_charges</span><span class="p">()</span>
+    <span class="n">coords</span>  <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">atom_coords</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">origin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">origin</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span>
+
+    <span class="k">with</span> <span class="n">mol</span><span class="o">.</span><span class="n">with_common_orig</span><span class="p">(</span><span class="n">origin</span><span class="p">):</span>
+        <span class="n">quad_ints</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">intor_symmetric</span><span class="p">(</span><span class="s2">&quot;int1e_rr&quot;</span><span class="p">,</span> <span class="n">comp</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">r_nuc</span> <span class="o">=</span> <span class="n">coords</span> <span class="o">-</span> <span class="n">origin</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="n">elec_q</span> <span class="o">=</span> <span class="p">(</span><span class="n">quad_ints</span> <span class="o">@</span> <span class="n">dm</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span><span class="o">.</span><span class="n">real</span>
+    <span class="n">nuc_q</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;g,gx,gy-&gt;xy&quot;</span><span class="p">,</span> <span class="n">charges</span><span class="p">,</span> <span class="n">r_nuc</span><span class="p">,</span> <span class="n">r_nuc</span><span class="p">)</span>
+    <span class="n">tot_q</span> <span class="o">=</span> <span class="p">(</span><span class="n">nuc_q</span> <span class="o">-</span> <span class="n">elec_q</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">tot_q_traceless</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">tot_q</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">tot_q</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">unit</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;DEBYEANGSTROM&#39;</span><span class="p">,</span> <span class="s1">&#39;DEBYEANG&#39;</span><span class="p">,</span> <span class="s1">&#39;DEBYEA&#39;</span><span class="p">):</span>
+        <span class="n">tot_q_traceless</span> <span class="o">*=</span> <span class="n">nist</span><span class="o">.</span><span class="n">AU2DEBYE</span> <span class="o">*</span> <span class="n">nist</span><span class="o">.</span><span class="n">BOHR</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">note</span><span class="p">(</span><span class="s1">&#39;Traceless quadrupole moment (Debye*A):&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">note</span><span class="p">(</span><span class="s1">&#39;Traceless quadrupole moment (AU):&#39;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">numpy</span><span class="o">.</span><span class="n">printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">floatmode</span><span class="o">=</span><span class="s1">&#39;fixed&#39;</span><span class="p">):</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">note</span><span class="p">(</span><span class="nb">str</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">tot_q_traceless</span></div>
 
 
 <div class="viewcode-block" id="uniq_var_indices">
@@ -1951,8 +2117,11 @@ document.write(`
 <span class="sd">            be skipped and the kernel function will compute only the total</span>
 <span class="sd">            energy based on the initial guess. Default value is 50.</span>
 <span class="sd">        init_guess : str</span>
-<span class="sd">            initial guess method.  It can be one of &#39;minao&#39;, &#39;atom&#39;, &#39;huckel&#39;, &#39;hcore&#39;, &#39;1e&#39;, &#39;chkfile&#39;.</span>
+<span class="sd">            initial guess method.  It can be one of &#39;minao&#39;, &#39;atom&#39;, &#39;huckel&#39;, &#39;hcore&#39;, &#39;1e&#39;, &#39;sap&#39;, &#39;chkfile&#39;.</span>
 <span class="sd">            Default is &#39;minao&#39;</span>
+<span class="sd">        sap_basis : str or dict</span>
+<span class="sd">            basis for SAP initial guess, either filename or path as str or</span>
+<span class="sd">            internal format dictionary.</span>
 <span class="sd">        DIIS : DIIS class</span>
 <span class="sd">            The class to generate diis object.  It can be one of</span>
 <span class="sd">            diis.SCF_DIIS, diis.ADIIS, diis.EDIIS.</span>
@@ -1991,7 +2160,7 @@ document.write(`
 <span class="sd">    Saved results:</span>
 
 <span class="sd">        converged : bool</span>
-<span class="sd">            SCF converged or not</span>
+<span class="sd">            Whether the SCF iteration converged</span>
 <span class="sd">        e_tot : float</span>
 <span class="sd">            Total HF energy (electronic energy plus nuclear repulsion)</span>
 <span class="sd">        mo_energy :</span>
@@ -2000,6 +2169,8 @@ document.write(`
 <span class="sd">            Orbital occupancy</span>
 <span class="sd">        mo_coeff</span>
 <span class="sd">            Orbital coefficients</span>
+<span class="sd">        cycles : int</span>
+<span class="sd">            The number of iteration cycles performed</span>
 
 <span class="sd">    Examples:</span>
 
@@ -2015,6 +2186,7 @@ document.write(`
     <span class="n">conv_tol_cpscf</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">__config__</span><span class="p">,</span> <span class="s1">&#39;scf_hf_SCF_conv_tol_cpscf&#39;</span><span class="p">,</span> <span class="mf">1e-8</span><span class="p">)</span>
     <span class="n">max_cycle</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">__config__</span><span class="p">,</span> <span class="s1">&#39;scf_hf_SCF_max_cycle&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
     <span class="n">init_guess</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">__config__</span><span class="p">,</span> <span class="s1">&#39;scf_hf_SCF_init_guess&#39;</span><span class="p">,</span> <span class="s1">&#39;minao&#39;</span><span class="p">)</span>
+    <span class="n">sap_basis</span> <span class="o">=</span> <span class="s1">&#39;sapgrasplarge&#39;</span> <span class="c1"># Basis for SAP initial guess</span>
     <span class="n">disp</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># for DFT-D3 and DFT-D4</span>
 
     <span class="c1"># To avoid diis pollution from previous run, self.diis should not be</span>
@@ -2038,11 +2210,12 @@ document.write(`
 
     <span class="n">_keys</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;conv_tol&#39;</span><span class="p">,</span> <span class="s1">&#39;conv_tol_grad&#39;</span><span class="p">,</span> <span class="s1">&#39;conv_tol_cpscf&#39;</span><span class="p">,</span> <span class="s1">&#39;max_cycle&#39;</span><span class="p">,</span> <span class="s1">&#39;init_guess&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;DIIS&#39;</span><span class="p">,</span> <span class="s1">&#39;diis&#39;</span><span class="p">,</span> <span class="s1">&#39;diis_space&#39;</span><span class="p">,</span> <span class="s1">&#39;diis_damp&#39;</span><span class="p">,</span> <span class="s1">&#39;diis_start_cycle&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;sap_basis&#39;</span><span class="p">,</span> <span class="s1">&#39;DIIS&#39;</span><span class="p">,</span> <span class="s1">&#39;diis&#39;</span><span class="p">,</span> <span class="s1">&#39;diis_space&#39;</span><span class="p">,</span> <span class="s1">&#39;diis_damp&#39;</span><span class="p">,</span> <span class="s1">&#39;diis_start_cycle&#39;</span><span class="p">,</span>
         <span class="s1">&#39;diis_file&#39;</span><span class="p">,</span> <span class="s1">&#39;diis_space_rollback&#39;</span><span class="p">,</span> <span class="s1">&#39;damp&#39;</span><span class="p">,</span> <span class="s1">&#39;level_shift&#39;</span><span class="p">,</span>
         <span class="s1">&#39;direct_scf&#39;</span><span class="p">,</span> <span class="s1">&#39;direct_scf_tol&#39;</span><span class="p">,</span> <span class="s1">&#39;conv_check&#39;</span><span class="p">,</span> <span class="s1">&#39;callback&#39;</span><span class="p">,</span>
         <span class="s1">&#39;mol&#39;</span><span class="p">,</span> <span class="s1">&#39;chkfile&#39;</span><span class="p">,</span> <span class="s1">&#39;mo_energy&#39;</span><span class="p">,</span> <span class="s1">&#39;mo_coeff&#39;</span><span class="p">,</span> <span class="s1">&#39;mo_occ&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;e_tot&#39;</span><span class="p">,</span> <span class="s1">&#39;converged&#39;</span><span class="p">,</span> <span class="s1">&#39;scf_summary&#39;</span><span class="p">,</span> <span class="s1">&#39;opt&#39;</span><span class="p">,</span> <span class="s1">&#39;disp&#39;</span><span class="p">,</span> <span class="s1">&#39;disp_with_3body&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;e_tot&#39;</span><span class="p">,</span> <span class="s1">&#39;converged&#39;</span><span class="p">,</span> <span class="s1">&#39;cycles&#39;</span><span class="p">,</span> <span class="s1">&#39;scf_summary&#39;</span><span class="p">,</span> <span class="s1">&#39;opt&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;disp&#39;</span><span class="p">,</span> <span class="s1">&#39;disp_with_3body&#39;</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="p">):</span>
@@ -2071,10 +2244,14 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">mo_occ</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">e_tot</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">converged</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cycles</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scf_summary</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_opt</span> <span class="o">=</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_eri</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># Note: self._eri requires large amount of memory</span>
+
+    <span class="n">__getstate__</span><span class="p">,</span> <span class="n">__setstate__</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">generate_pickle_methods</span><span class="p">(</span>
+            <span class="n">excludes</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;chkfile&#39;</span><span class="p">,</span> <span class="s1">&#39;_chkfile&#39;</span><span class="p">,</span> <span class="s1">&#39;_opt&#39;</span><span class="p">,</span> <span class="s1">&#39;_eri&#39;</span><span class="p">,</span> <span class="s1">&#39;callback&#39;</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Accessing methods post-HF methods or mean-field properties&#39;&#39;&#39;</span>
@@ -2193,8 +2370,21 @@ document.write(`
 
 <div class="viewcode-block" id="SCF.dump_chk">
 <a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.scf.dhf.SCF.dump_chk">[docs]</a>
-    <span class="k">def</span> <span class="nf">dump_chk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">envs</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">chkfile</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">dump_chk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">envs_or_file</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Serialize the SCF object and save it to the specified chkfile.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            envs_or_file:</span>
+<span class="sd">                If this argument is a file path, the serialized SCF object is</span>
+<span class="sd">                saved to the file specified by this argument.</span>
+<span class="sd">                If this attribute is a dict (created by locals()), the necessary</span>
+<span class="sd">                variables are saved to the file specified by the attribute mf.chkfile.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">envs_or_file</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">chkfile</span><span class="o">.</span><span class="n">dump_scf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mol</span><span class="p">,</span> <span class="n">envs_or_file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">e_tot</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mo_energy</span><span class="p">,</span>
+                             <span class="bp">self</span><span class="o">.</span><span class="n">mo_coeff</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mo_occ</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">chkfile</span><span class="p">:</span>
+            <span class="n">envs</span> <span class="o">=</span> <span class="n">envs_or_file</span>
             <span class="n">chkfile</span><span class="o">.</span><span class="n">dump_scf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mol</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">chkfile</span><span class="p">,</span>
                              <span class="n">envs</span><span class="p">[</span><span class="s1">&#39;e_tot&#39;</span><span class="p">],</span> <span class="n">envs</span><span class="p">[</span><span class="s1">&#39;mo_energy&#39;</span><span class="p">],</span>
                              <span class="n">envs</span><span class="p">[</span><span class="s1">&#39;mo_coeff&#39;</span><span class="p">],</span> <span class="n">envs</span><span class="p">[</span><span class="s1">&#39;mo_occ&#39;</span><span class="p">],</span>
@@ -2256,6 +2446,34 @@ document.write(`
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_rdm1</span><span class="p">(</span><span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="SCF.init_guess_by_sap">
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.scf.dhf.SCF.init_guess_by_sap">[docs]</a>
+    <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">init_guess_by_sap</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">init_guess_by_sap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">pyscf.gto.basis</span> <span class="kn">import</span> <span class="n">load</span>
+        <span class="k">if</span> <span class="n">mol</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">mol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol</span>
+        <span class="n">sap_basis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sap_basis</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;&#39;&#39;Initial guess from superposition of atomic potentials (doi:10.1021/acs.jctc.8b01089)</span>
+<span class="s1">This is the Gaussian fit version as described in doi:10.1063/5.0004046.&#39;&#39;&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sap_basis</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">atoms</span> <span class="o">=</span> <span class="p">[</span><span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">_atom</span><span class="p">]</span>
+            <span class="n">sapbas</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">atoms</span><span class="p">):</span>
+                <span class="n">single_element_bs</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="n">sap_basis</span><span class="p">,</span> <span class="n">atom</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">single_element_bs</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                    <span class="n">sapbas</span><span class="p">[</span><span class="n">atom</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">single_element_bs</span><span class="p">[</span><span class="n">atom</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">sapbas</span><span class="p">[</span><span class="n">atom</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">single_element_bs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;Found SAP basis </span><span class="si">{</span><span class="n">sap_basis</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sap_basis</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">sapbas</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">sap_basis</span><span class="p">:</span>
+                <span class="n">sapbas</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">sap_basis</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;sap_basis is of an unexpected datatype.&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">init_guess_by_sap</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">sap_basis</span><span class="o">=</span><span class="n">sapbas</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="SCF.init_guess_by_chkfile">
 <a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.scf.dhf.SCF.init_guess_by_chkfile">[docs]</a>
     <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">init_guess_by_chkfile</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
@@ -2293,6 +2511,8 @@ document.write(`
         <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;vsap&#39;</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;init_guess_by_vsap&#39;</span><span class="p">):</span>
             <span class="c1"># Only available for DFT objects</span>
             <span class="n">dm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_guess_by_vsap</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;sap&#39;</span><span class="p">:</span>
+            <span class="n">dm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_guess_by_sap</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">key</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;chk&#39;</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">dm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_guess_by_chkfile</span><span class="p">()</span>
@@ -2309,6 +2529,9 @@ document.write(`
     <span class="n">make_rdm2</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">module_method</span><span class="p">(</span><span class="n">make_rdm2</span><span class="p">,</span> <span class="n">absences</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mo_coeff&#39;</span><span class="p">,</span> <span class="s1">&#39;mo_occ&#39;</span><span class="p">])</span>
     <span class="n">energy_elec</span> <span class="o">=</span> <span class="n">energy_elec</span>
     <span class="n">energy_tot</span> <span class="o">=</span> <span class="n">energy_tot</span>
+
+    <span class="n">do_disp</span> <span class="o">=</span> <span class="n">dispersion</span><span class="o">.</span><span class="n">check_disp</span>
+    <span class="n">get_dispersion</span> <span class="o">=</span> <span class="n">dispersion</span><span class="o">.</span><span class="n">get_dispersion</span>
 
 <div class="viewcode-block" id="SCF.energy_nuc">
 <a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.scf.dhf.SCF.energy_nuc">[docs]</a>
@@ -2346,6 +2569,10 @@ document.write(`
 
         <span class="bp">self</span><span class="o">.</span><span class="n">dump_flags</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mol</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">dm0</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">mo_coeff</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">mo_occ</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Initial guess from existing wavefunction</span>
+            <span class="n">dm0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_rdm1</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_cycle</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">mo_coeff</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">converged</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">e_tot</span><span class="p">,</span> \
@@ -2439,7 +2666,7 @@ document.write(`
 <a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.scf.dhf.SCF.get_veff">[docs]</a>
     <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">get_veff</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_veff</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dm_last</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vhf_last</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hermi</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-        <span class="c1"># Be carefule with the effects of :attr:`SCF.direct_scf` on this function</span>
+        <span class="c1"># Be careful with the effects of :attr:`SCF.direct_scf` on this function</span>
         <span class="k">if</span> <span class="n">mol</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">mol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol</span>
         <span class="k">if</span> <span class="n">dm</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">dm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_rdm1</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">direct_scf</span><span class="p">:</span>
@@ -2496,11 +2723,22 @@ document.write(`
 <div class="viewcode-block" id="SCF.dip_moment">
 <a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.scf.dhf.SCF.dip_moment">[docs]</a>
     <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">dip_moment</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">dip_moment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;Debye&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">logger</span><span class="o">.</span><span class="n">NOTE</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">dip_moment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;Debye&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">logger</span><span class="o">.</span><span class="n">NOTE</span><span class="p">,</span>
                    <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">mol</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">mol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol</span>
         <span class="k">if</span> <span class="n">dm</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">dm</span> <span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">make_rdm1</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">dip_moment</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">unit</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">dip_moment</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">unit</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">origin</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SCF.quad_moment">
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.scf.html#pyscf.scf.dhf.SCF.quad_moment">[docs]</a>
+    <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">quad_moment</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">quad_moment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;DebyeAngstrom&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">verbose</span><span class="o">=</span><span class="n">logger</span><span class="o">.</span><span class="n">NOTE</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">mol</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">mol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol</span>
+        <span class="k">if</span> <span class="n">dm</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">dm</span> <span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">make_rdm1</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">quad_moment</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">unit</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">origin</span><span class="p">,</span>
+                <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
     <span class="k">def</span> <span class="nf">_is_mem_enough</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -2843,7 +3081,8 @@ document.write(`
                   <span class="n">internal</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">__config__</span><span class="p">,</span> <span class="s1">&#39;scf_stability_internal&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
                   <span class="n">external</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">__config__</span><span class="p">,</span> <span class="s1">&#39;scf_stability_external&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
                   <span class="n">verbose</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                  <span class="n">return_status</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+                  <span class="n">return_status</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        RHF/RKS stability analysis.</span>
 
@@ -2870,7 +3109,7 @@ document.write(`
 <span class="sd">            and the second corresponds to the external stability.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="kn">from</span> <span class="nn">pyscf.scf.stability</span> <span class="kn">import</span> <span class="n">rhf_stability</span>
-        <span class="k">return</span> <span class="n">rhf_stability</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">internal</span><span class="p">,</span> <span class="n">external</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="n">return_status</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">rhf_stability</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">internal</span><span class="p">,</span> <span class="n">external</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="n">return_status</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="RHF.nuc_grad_method">
@@ -2954,8 +3193,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -2966,7 +3205,7 @@ document.write(`
 
   <p class="copyright">
     
-      © Copyright 2024, The PySCF Developers.
+      © Copyright 2025, The PySCF Developers.
       <br/>
     
   </p>
@@ -2988,7 +3227,8 @@ document.write(`
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

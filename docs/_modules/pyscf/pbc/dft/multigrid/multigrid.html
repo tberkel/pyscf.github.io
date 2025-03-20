@@ -15,28 +15,31 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=92fd9be5" />
-    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../../../_static/css/pyscf-pst.css?v=ed6b5f64" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../../../_static/documentation_options.js?v=3db9c557"></script>
+    <script src="../../../../../_static/documentation_options.js?v=69ff2ef9"></script>
     <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
@@ -48,6 +51,7 @@
     <link rel="search" title="Search" href="../../../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2.8" />
   </head>
   
   
@@ -63,19 +67,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../../../../search.html"
       method="get">
@@ -83,7 +76,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -91,8 +83,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -126,7 +118,7 @@
     
     
     <img src="../../../../../_static/logo-64x64.png" class="logo__image only-light" alt=""/>
-    <script>document.write(`<img src="../../../../../_static/logo-64x64.png" class="logo__image only-dark" alt=""/>`);</script>
+    <img src="../../../../../_static/logo-64x64.png" class="logo__image only-dark pst-js-only" alt=""/>
   
   
     <p class="title logo__title">PySCF</p>
@@ -170,6 +162,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -181,29 +180,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -228,15 +219,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -253,7 +240,8 @@ document.write(`
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -295,6 +283,13 @@ document.write(`
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -307,15 +302,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -339,9 +330,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -359,10 +355,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -375,12 +367,15 @@ document.write(`
     <li class="breadcrumb-item"><a href="../../../../index.html" class="nav-link">Module code</a></li>
     
     
-    <li class="breadcrumb-item"><i class="fa-solid fa-ellipsis"></i></li>
+    <li class="breadcrumb-item"><a href="../../../../pyscf.html" class="nav-link">pyscf</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../../dft.html" class="nav-link">pyscf.pbc.dft</a></li>
     
     
     <li class="breadcrumb-item"><a href="../multigrid.html" class="nav-link">pyscf.pbc.dft.multigrid</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">pyscf.pbc.df...</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pyscf.pbc.dft.multigrid.multigrid</span></li>
   </ul>
 </nav>
 </div>
@@ -432,13 +427,14 @@ document.write(`
 <span class="kn">from</span> <span class="nn">pyscf.pbc.gto</span> <span class="kn">import</span> <span class="n">pseudo</span>
 <span class="kn">from</span> <span class="nn">pyscf.pbc.gto.pseudo</span> <span class="kn">import</span> <span class="n">pp_int</span>
 <span class="kn">from</span> <span class="nn">pyscf.pbc.dft</span> <span class="kn">import</span> <span class="n">numint</span><span class="p">,</span> <span class="n">gen_grid</span>
+<span class="kn">from</span> <span class="nn">pyscf.pbc.scf.khf</span> <span class="kn">import</span> <span class="n">KSCF</span>
 <span class="kn">from</span> <span class="nn">pyscf.pbc.df.df_jk</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">_format_dms</span><span class="p">,</span>
     <span class="n">_format_kpts_band</span><span class="p">,</span>
     <span class="n">_format_jks</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">pyscf.pbc.lib.kpts_helper</span> <span class="kn">import</span> <span class="n">gamma_point</span>
-<span class="kn">from</span> <span class="nn">pyscf.pbc.df</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">ft_ao</span>
+<span class="kn">from</span> <span class="nn">pyscf.pbc.df</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">ft_ao</span><span class="p">,</span> <span class="n">aft</span>
 <span class="kn">from</span> <span class="nn">pyscf.pbc.dft.multigrid.utils</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">_take_4d</span><span class="p">,</span>
     <span class="n">_take_5d</span><span class="p">,</span>
@@ -789,7 +785,7 @@ document.write(`
 <div class="viewcode-block" id="get_pp">
 <a class="viewcode-back" href="../../../../../pyscf_api_docs/pyscf.pbc.dft.multigrid.html#pyscf.pbc.dft.multigrid.multigrid.get_pp">[docs]</a>
 <span class="k">def</span> <span class="nf">get_pp</span><span class="p">(</span><span class="n">mydf</span><span class="p">,</span> <span class="n">kpts</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_memory</span><span class="o">=</span><span class="mi">4000</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;Get the periodic pseudotential nuc-el AO matrix, with G=0 removed.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Get the periodic pseudopotential nuc-el AO matrix, with G=0 removed.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">gto</span>
     <span class="n">kpts</span><span class="p">,</span> <span class="n">is_single_kpt</span> <span class="o">=</span> <span class="n">fft</span><span class="o">.</span><span class="n">_check_kpts</span><span class="p">(</span><span class="n">mydf</span><span class="p">,</span> <span class="n">kpts</span><span class="p">)</span>
@@ -922,7 +918,7 @@ document.write(`
 <span class="sd">        kpts : (nkpts, 3) ndarray</span>
 
 <span class="sd">    Kwargs:</span>
-<span class="sd">        kpts_band : (3,) ndarray or (*,3) ndarray</span>
+<span class="sd">        kpts_band : ``(3,)`` ndarray or ``(*,3)`` ndarray</span>
 <span class="sd">            A list of arbitrary &quot;band&quot; k-points at which to evalute the matrix.</span>
 
 <span class="sd">    Returns:</span>
@@ -1016,16 +1012,16 @@ document.write(`
             <span class="n">dms_ht</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">dms</span><span class="p">[:,:,</span><span class="n">idx_h</span><span class="p">[:,</span><span class="kc">None</span><span class="p">],</span><span class="n">idx_t</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
             <span class="n">dms_lh</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">dms</span><span class="p">[:,:,</span><span class="n">idx_l</span><span class="p">[:,</span><span class="kc">None</span><span class="p">],</span><span class="n">idx_h</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
 
-            <span class="n">t_cell</span> <span class="o">=</span> <span class="n">h_cell</span> <span class="o">+</span> <span class="n">grids_sparse</span><span class="o">.</span><span class="n">cell</span>
+            <span class="n">l_cell</span> <span class="o">=</span> <span class="n">grids_sparse</span><span class="o">.</span><span class="n">cell</span>
+            <span class="n">h_pcell</span><span class="p">,</span> <span class="n">h_coeff</span> <span class="o">=</span> <span class="n">h_cell</span><span class="o">.</span><span class="n">decontract_basis</span><span class="p">(</span><span class="n">to_cart</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">aggregate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">l_pcell</span><span class="p">,</span> <span class="n">l_coeff</span> <span class="o">=</span> <span class="n">l_cell</span><span class="o">.</span><span class="n">decontract_basis</span><span class="p">(</span><span class="n">to_cart</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">aggregate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">t_cell</span> <span class="o">=</span> <span class="n">h_pcell</span> <span class="o">+</span> <span class="n">l_pcell</span>
+            <span class="n">t_coeff</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">block_diag</span><span class="p">(</span><span class="n">h_coeff</span><span class="p">,</span> <span class="n">l_coeff</span><span class="p">)</span>
+
             <span class="n">nshells_h</span> <span class="o">=</span> <span class="n">_pgto_shells</span><span class="p">(</span><span class="n">h_cell</span><span class="p">)</span>
             <span class="n">nshells_t</span> <span class="o">=</span> <span class="n">_pgto_shells</span><span class="p">(</span><span class="n">t_cell</span><span class="p">)</span>
-            <span class="n">t_cell</span><span class="p">,</span> <span class="n">t_coeff</span> <span class="o">=</span> <span class="n">t_cell</span><span class="o">.</span><span class="n">to_uncontracted_cartesian_basis</span><span class="p">()</span>
 
             <span class="k">if</span> <span class="n">deriv</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">h_coeff</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">block_diag</span><span class="p">(</span><span class="o">*</span><span class="n">t_coeff</span><span class="p">[:</span><span class="n">h_cell</span><span class="o">.</span><span class="n">nbas</span><span class="p">])</span>
-                <span class="n">l_coeff</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">block_diag</span><span class="p">(</span><span class="o">*</span><span class="n">t_coeff</span><span class="p">[</span><span class="n">h_cell</span><span class="o">.</span><span class="n">nbas</span><span class="p">:])</span>
-                <span class="n">t_coeff</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">block_diag</span><span class="p">(</span><span class="o">*</span><span class="n">t_coeff</span><span class="p">)</span>
-
                 <span class="k">if</span> <span class="n">hermi</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                     <span class="n">naol</span><span class="p">,</span> <span class="n">naoh</span> <span class="o">=</span> <span class="n">dms_lh</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
                     <span class="n">dms_ht</span><span class="p">[:,:,:,</span><span class="n">naoh</span><span class="p">:]</span> <span class="o">+=</span> <span class="n">dms_lh</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
@@ -1050,10 +1046,6 @@ document.write(`
                                          <span class="s1">&#39;LDA&#39;</span><span class="p">,</span> <span class="n">kpts</span><span class="p">,</span> <span class="n">grids_dense</span><span class="p">,</span> <span class="n">ignore_imag</span><span class="p">,</span> <span class="n">log</span><span class="p">)</span>
 
             <span class="k">elif</span> <span class="n">deriv</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">h_coeff</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">block_diag</span><span class="p">(</span><span class="o">*</span><span class="n">t_coeff</span><span class="p">[:</span><span class="n">h_cell</span><span class="o">.</span><span class="n">nbas</span><span class="p">])</span>
-                <span class="n">l_coeff</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">block_diag</span><span class="p">(</span><span class="o">*</span><span class="n">t_coeff</span><span class="p">[</span><span class="n">h_cell</span><span class="o">.</span><span class="n">nbas</span><span class="p">:])</span>
-                <span class="n">t_coeff</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">block_diag</span><span class="p">(</span><span class="o">*</span><span class="n">t_coeff</span><span class="p">)</span>
-
                 <span class="n">pgto_dms</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;nkij,pi,qj-&gt;nkpq&#39;</span><span class="p">,</span> <span class="n">dms_ht</span><span class="p">,</span> <span class="n">h_coeff</span><span class="p">,</span> <span class="n">t_coeff</span><span class="p">)</span>
                 <span class="n">shls_slice</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nshells_h</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nshells_t</span><span class="p">)</span>
                 <span class="c1">#:rho = eval_rho(t_cell, pgto_dms, shls_slice, 0, &#39;GGA&#39;, kpts,</span>
@@ -1310,13 +1302,13 @@ document.write(`
 
             <span class="n">h_cell</span> <span class="o">=</span> <span class="n">grids_dense</span><span class="o">.</span><span class="n">cell</span>
             <span class="n">l_cell</span> <span class="o">=</span> <span class="n">grids_sparse</span><span class="o">.</span><span class="n">cell</span>
-            <span class="n">t_cell</span> <span class="o">=</span> <span class="n">h_cell</span> <span class="o">+</span> <span class="n">l_cell</span>
-            <span class="n">t_cell</span><span class="p">,</span> <span class="n">coeff</span> <span class="o">=</span> <span class="n">t_cell</span><span class="o">.</span><span class="n">to_uncontracted_cartesian_basis</span><span class="p">()</span>
+            <span class="n">h_pcell</span><span class="p">,</span> <span class="n">h_coeff</span> <span class="o">=</span> <span class="n">h_cell</span><span class="o">.</span><span class="n">decontract_basis</span><span class="p">(</span><span class="n">to_cart</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">aggregate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">l_pcell</span><span class="p">,</span> <span class="n">l_coeff</span> <span class="o">=</span> <span class="n">l_cell</span><span class="o">.</span><span class="n">decontract_basis</span><span class="p">(</span><span class="n">to_cart</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">aggregate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">t_cell</span> <span class="o">=</span> <span class="n">h_pcell</span> <span class="o">+</span> <span class="n">l_pcell</span>
+            <span class="n">t_coeff</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">block_diag</span><span class="p">(</span><span class="n">h_coeff</span><span class="p">,</span> <span class="n">l_coeff</span><span class="p">)</span>
+
             <span class="n">nshells_h</span> <span class="o">=</span> <span class="n">_pgto_shells</span><span class="p">(</span><span class="n">h_cell</span><span class="p">)</span>
             <span class="n">nshells_t</span> <span class="o">=</span> <span class="n">_pgto_shells</span><span class="p">(</span><span class="n">t_cell</span><span class="p">)</span>
-
-            <span class="n">h_coeff</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">block_diag</span><span class="p">(</span><span class="o">*</span><span class="n">coeff</span><span class="p">[:</span><span class="n">h_cell</span><span class="o">.</span><span class="n">nbas</span><span class="p">])</span>
-            <span class="n">t_coeff</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">block_diag</span><span class="p">(</span><span class="o">*</span><span class="n">coeff</span><span class="p">)</span>
             <span class="n">shls_slice</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nshells_h</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nshells_t</span><span class="p">)</span>
             <span class="n">vp</span> <span class="o">=</span> <span class="n">eval_mat</span><span class="p">(</span><span class="n">t_cell</span><span class="p">,</span> <span class="n">vR</span><span class="p">,</span> <span class="n">shls_slice</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;LDA&#39;</span><span class="p">,</span> <span class="n">kpts</span><span class="p">)</span>
             <span class="c1"># Imaginary part may contribute</span>
@@ -1334,7 +1326,6 @@ document.write(`
                 <span class="n">vj_kpts</span><span class="p">[:,:,</span><span class="n">idx_l</span><span class="p">[:,</span><span class="kc">None</span><span class="p">],</span><span class="n">idx_h</span><span class="p">]</span> <span class="o">+=</span> \
                         <span class="n">vp</span><span class="p">[:,:,:,</span><span class="n">naoh</span><span class="p">:]</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">l_coeff</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">block_diag</span><span class="p">(</span><span class="o">*</span><span class="n">coeff</span><span class="p">[</span><span class="n">h_cell</span><span class="o">.</span><span class="n">nbas</span><span class="p">:])</span>
                 <span class="n">shls_slice</span> <span class="o">=</span> <span class="p">(</span><span class="n">nshells_h</span><span class="p">,</span> <span class="n">nshells_t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nshells_h</span><span class="p">)</span>
                 <span class="n">vp</span> <span class="o">=</span> <span class="n">eval_mat</span><span class="p">(</span><span class="n">t_cell</span><span class="p">,</span> <span class="n">vR</span><span class="p">,</span> <span class="n">shls_slice</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;LDA&#39;</span><span class="p">,</span> <span class="n">kpts</span><span class="p">)</span>
                 <span class="c1"># Imaginary part may contribute</span>
@@ -1411,15 +1402,13 @@ document.write(`
 
             <span class="n">h_cell</span> <span class="o">=</span> <span class="n">grids_dense</span><span class="o">.</span><span class="n">cell</span>
             <span class="n">l_cell</span> <span class="o">=</span> <span class="n">grids_sparse</span><span class="o">.</span><span class="n">cell</span>
-            <span class="n">t_cell</span> <span class="o">=</span> <span class="n">h_cell</span> <span class="o">+</span> <span class="n">l_cell</span>
-            <span class="n">t_cell</span><span class="p">,</span> <span class="n">coeff</span> <span class="o">=</span> <span class="n">t_cell</span><span class="o">.</span><span class="n">to_uncontracted_cartesian_basis</span><span class="p">()</span>
+            <span class="n">h_pcell</span><span class="p">,</span> <span class="n">h_coeff</span> <span class="o">=</span> <span class="n">h_cell</span><span class="o">.</span><span class="n">decontract_basis</span><span class="p">(</span><span class="n">to_cart</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">aggregate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">l_pcell</span><span class="p">,</span> <span class="n">l_coeff</span> <span class="o">=</span> <span class="n">l_cell</span><span class="o">.</span><span class="n">decontract_basis</span><span class="p">(</span><span class="n">to_cart</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">aggregate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">t_cell</span> <span class="o">=</span> <span class="n">h_pcell</span> <span class="o">+</span> <span class="n">l_pcell</span>
+            <span class="n">t_coeff</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">block_diag</span><span class="p">(</span><span class="n">h_coeff</span><span class="p">,</span> <span class="n">l_coeff</span><span class="p">)</span>
+
             <span class="n">nshells_h</span> <span class="o">=</span> <span class="n">_pgto_shells</span><span class="p">(</span><span class="n">h_cell</span><span class="p">)</span>
             <span class="n">nshells_t</span> <span class="o">=</span> <span class="n">_pgto_shells</span><span class="p">(</span><span class="n">t_cell</span><span class="p">)</span>
-
-            <span class="n">h_coeff</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">block_diag</span><span class="p">(</span><span class="o">*</span><span class="n">coeff</span><span class="p">[:</span><span class="n">h_cell</span><span class="o">.</span><span class="n">nbas</span><span class="p">])</span>
-            <span class="n">l_coeff</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">block_diag</span><span class="p">(</span><span class="o">*</span><span class="n">coeff</span><span class="p">[</span><span class="n">h_cell</span><span class="o">.</span><span class="n">nbas</span><span class="p">:])</span>
-            <span class="n">t_coeff</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">block_diag</span><span class="p">(</span><span class="o">*</span><span class="n">coeff</span><span class="p">)</span>
-
             <span class="n">shls_slice</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nshells_h</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nshells_t</span><span class="p">)</span>
             <span class="n">vpR</span> <span class="o">=</span> <span class="n">eval_mat</span><span class="p">(</span><span class="n">t_cell</span><span class="p">,</span> <span class="n">vR</span><span class="p">,</span> <span class="n">shls_slice</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;GGA&#39;</span><span class="p">,</span> <span class="n">kpts</span><span class="p">)</span>
             <span class="n">vp</span> <span class="o">=</span> <span class="n">vpR</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;nkpq,pi,qj-&gt;nkij&#39;</span><span class="p">,</span> <span class="n">vpR</span><span class="p">,</span> <span class="n">h_coeff</span><span class="p">,</span> <span class="n">t_coeff</span><span class="p">)</span>
@@ -1471,7 +1460,7 @@ document.write(`
 <span class="sd">        kpts : (nkpts, 3) ndarray</span>
 
 <span class="sd">    Kwargs:</span>
-<span class="sd">        kpts_band : (3,) ndarray or (*,3) ndarray</span>
+<span class="sd">        kpts_band : ``(3,)`` ndarray or ``(*,3)`` ndarray</span>
 <span class="sd">            A list of arbitrary &quot;band&quot; k-points at which to evalute the matrix.</span>
 
 <span class="sd">    Returns:</span>
@@ -1580,7 +1569,7 @@ document.write(`
 <span class="sd">        kpts : (nkpts, 3) ndarray</span>
 
 <span class="sd">    Kwargs:</span>
-<span class="sd">        kpts_band : (3,) ndarray or (*,3) ndarray</span>
+<span class="sd">        kpts_band : ``(3,)`` ndarray or ``(*,3)`` ndarray</span>
 <span class="sd">            A list of arbitrary &quot;band&quot; k-points at which to evalute the matrix.</span>
 
 <span class="sd">    Returns:</span>
@@ -1940,7 +1929,7 @@ document.write(`
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;multigrid version of function pbc.scf.newton_ah._gen_rhf_response</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="c1">#assert (isinstance(mf, dft.krks.KRKS))</span>
-    <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="s1">&#39;kpts&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">KSCF</span><span class="p">):</span>
         <span class="n">kpts</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">kpts</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">kpts</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">kpt</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
@@ -1971,7 +1960,7 @@ document.write(`
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;multigrid version of function pbc.scf.newton_ah._gen_uhf_response</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="c1">#assert (isinstance(mf, dft.kuks.KUKS))</span>
-    <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="s1">&#39;kpts&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">KSCF</span><span class="p">):</span>
         <span class="n">kpts</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">kpts</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">kpts</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">kpt</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
@@ -2271,8 +2260,8 @@ document.write(`
 
 
 <span class="k">def</span> <span class="nf">_primitive_gto_cutoff</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;Cutoff raidus, above which each shell decays to a value less than the</span>
-<span class="sd">    required precsion&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Cutoff radius, above which each shell decays to a value less than the</span>
+<span class="sd">    required precision&#39;&#39;&#39;</span>
     <span class="k">if</span> <span class="n">precision</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">precision</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">precision</span>
     <span class="n">vol</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">vol</span>
@@ -2327,7 +2316,12 @@ document.write(`
 <div class="viewcode-block" id="MultiGridFFTDF.get_jk">
 <a class="viewcode-back" href="../../../../../pyscf_api_docs/pyscf.pbc.dft.multigrid.html#pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.get_jk">[docs]</a>
     <span class="k">def</span> <span class="nf">get_jk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">hermi</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">kpts</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kpts_band</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-               <span class="n">with_j</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">with_k</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exxdiv</span><span class="o">=</span><span class="s1">&#39;ewald&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+               <span class="n">with_j</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">with_k</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exxdiv</span><span class="o">=</span><span class="s1">&#39;ewald&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">omega</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># J/K for RSH functionals</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">range_coulomb</span><span class="p">(</span><span class="n">omega</span><span class="p">)</span> <span class="k">as</span> <span class="n">rsh_df</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">rsh_df</span><span class="o">.</span><span class="n">get_jk</span><span class="p">(</span><span class="n">dm</span><span class="p">,</span> <span class="n">hermi</span><span class="p">,</span> <span class="n">kpts</span><span class="p">,</span> <span class="n">kpts_band</span><span class="p">,</span> <span class="n">with_j</span><span class="p">,</span> <span class="n">with_k</span><span class="p">,</span>
+                                     <span class="n">omega</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exxdiv</span><span class="o">=</span><span class="n">exxdiv</span><span class="p">)</span>
+
         <span class="kn">from</span> <span class="nn">pyscf.pbc.df</span> <span class="kn">import</span> <span class="n">fft_jk</span>
         <span class="k">if</span> <span class="n">with_k</span><span class="p">:</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;MultiGridFFTDF does not support HFX. &#39;</span>
@@ -2357,7 +2351,11 @@ document.write(`
         <span class="k">return</span> <span class="n">vj</span><span class="p">,</span> <span class="n">vk</span></div>
 
 
-    <span class="n">get_rho</span> <span class="o">=</span> <span class="n">get_rho</span></div>
+    <span class="n">get_rho</span> <span class="o">=</span> <span class="n">get_rho</span>
+
+    <span class="n">range_coulomb</span> <span class="o">=</span> <span class="n">aft</span><span class="o">.</span><span class="n">AFTDF</span><span class="o">.</span><span class="n">range_coulomb</span>
+
+    <span class="n">to_gpu</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">to_gpu</span></div>
 
 
 
@@ -2405,8 +2403,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -2417,7 +2415,7 @@ document.write(`
 
   <p class="copyright">
     
-      © Copyright 2024, The PySCF Developers.
+      © Copyright 2025, The PySCF Developers.
       <br/>
     
   </p>
@@ -2439,7 +2437,8 @@ document.write(`
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

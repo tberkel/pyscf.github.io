@@ -16,28 +16,31 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/css/pyscf-pst.css?v=ed6b5f64" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=3db9c557"></script>
+    <script src="../_static/documentation_options.js?v=69ff2ef9"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
@@ -53,6 +56,7 @@
     <link rel="prev" title="Self-consistent field (SCF) methods" href="scf.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2.8" />
   </head>
   
   
@@ -68,19 +72,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -88,7 +81,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -96,8 +88,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -131,7 +123,7 @@
     
     
     <img src="../_static/logo-64x64.png" class="logo__image only-light" alt=""/>
-    <script>document.write(`<img src="../_static/logo-64x64.png" class="logo__image only-dark" alt=""/>`);</script>
+    <img src="../_static/logo-64x64.png" class="logo__image only-dark pst-js-only" alt=""/>
   
   
     <p class="title logo__title">PySCF</p>
@@ -175,6 +167,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -186,29 +185,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -233,15 +224,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -260,7 +247,8 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -302,6 +290,13 @@ document.write(`
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -314,15 +309,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -402,9 +393,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -422,8 +418,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -435,7 +429,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="index.html" class="nav-link">User Guide</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">Density...</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Density functional theory (DFT)</span></li>
   </ul>
 </nav>
 </div>
@@ -490,10 +484,10 @@ document.write(`
 <span id="user-dft-predef-func"></span><h2>Predefined <em>xc</em> Functionals and Functional Aliases<a class="headerlink" href="#predefined-xc-functionals-and-functional-aliases" title="Link to this heading">#</a></h2>
 <p>The choice of <em>xc</em> functional is assigned via the attribute <code class="xref py py-attr docutils literal notranslate"><span class="pre">DFT.xc</span></code>. This is a comma separated string (precise grammar discussed <a class="reference internal" href="#user-dft-custom-func"><span class="std std-ref">below</span></a>, e.g., <code class="docutils literal notranslate"><span class="pre">xc</span> <span class="pre">=</span> <span class="pre">'pbe,pbe'</span></code> denotes PBE exchange plus PBE correlation. In common usage, a single name (alias) is often used to refer to the combination of a particular exchange and correlation approximation instead. To support this, PySCF will first examine a lookup table to see if <code class="xref py py-attr docutils literal notranslate"><span class="pre">DFT.xc</span></code> corresponds to a common compound name, and if so, the implementation dispatches to the appropriate exchange and correlation forms, e.g., <code class="docutils literal notranslate"><span class="pre">xc</span> <span class="pre">=</span> <span class="pre">'pbe'</span></code> directly translates to <code class="docutils literal notranslate"><span class="pre">xc</span> <span class="pre">=</span> <span class="pre">'pbe,pbe'</span></code>. However, if the name is not found in the compound functional table, and only a single string is given, it will be treated as an exchange functional only, e.g., <code class="docutils literal notranslate"><span class="pre">xc</span> <span class="pre">=</span> <span class="pre">'b86'</span></code> leads to B86 exchange only (without correlation). Please note that earlier PySCF versions (1.5.0 or earlier)
 did not support compound functional aliases, and both exchange and correlation always had to be explicitly assigned.</p>
-<p>PySCF supports two independent libraries of <em>xc</em> functional implementations, namely <a class="reference external" href="https://www.tddft.org/programs/libxc/">Libxc</a> and <a class="reference external" href="https://xcfun.readthedocs.io/en/latest/">XCFun</a>.
+<p>PySCF supports two independent libraries of <em>xc</em> functional implementations, namely <a class="reference external" href="https://libxc.gitlab.io">Libxc</a> and <a class="reference external" href="https://xcfun.readthedocs.io/en/latest/">XCFun</a>.
 The former of these is the default, but the latter may be selected by setting <code class="docutils literal notranslate"><span class="pre">DFT._numint.libxc</span> <span class="pre">=</span> <span class="pre">dft.xcfun</span></code>, cf. <a class="reference external" href="https://github.com/pyscf/pyscf/blob/master/examples/dft/32-xcfun_as_default.py">dft/32-xcfun_as_default.py</a>.
 For complete lists of the available density functional approximations, the user is referred to the <code class="docutils literal notranslate"><span class="pre">XC_CODES</span></code> dictionaries in <a class="reference external" href="https://github.com/pyscf/pyscf/blob/master/pyscf/dft/libxc.py">pyscf/dft/libxc.py</a> and <a class="reference external" href="https://github.com/pyscf/pyscf/blob/master/pyscf/dft/xcfun.py">pyscf/dft/xcfun.py</a>, respectively. The user can choose the library at runtime in order to leverage any of its exclusive features.</p>
-<p>The constant maintenance and development of density functional libraries is hard work at little personal benefit, while everyone benefits from having a huge variety of density functionals in numerically stable form for use in applications. If you use Libxc in your calculations, please cite the most up-to-date work on Libxc in your paper. You can see the most up-to-date citation on the <a class="reference external" href="https://www.tddft.org/programs/libxc/">Libxc web page</a>; at the moment, this is <span id="id4">[<a class="reference internal" href="reference.html#id29" title="S. Lehtola, C. Steigemann, M. J. T. Oliveira, and M. A. L. Marques. Recent Developments in LIBXC — a Comprehensive Library of Functionals for Density Functional Theory. SoftwareX, 7:1, 2018.">21</a>]</span>. Likewise, if you use XCFun in your calculations, please cite the most up-to-date work on XCFun in your paper. You can find recent citations on the <a class="reference external" href="https://github.com/dftlibs/xcfun/">XCFun web page</a>; at present, this is <span id="id5">[<a class="reference internal" href="reference.html#id30" title="U. Ekström, L. Visscher, R. Bast, A. J. Thorvaldsen, and K. Ruud. Arbitrary-Order Density Functional Response Theory from Automatic Differentiation. J. Chem. Theory Comput., 6:1971, 2010.">22</a>]</span>. Please check your log files for the library used in your calculation (you may need to increase the <code class="docutils literal notranslate"><span class="pre">DFT.verbose</span></code> setting of your calculation to see this).</p>
+<p>The constant maintenance and development of density functional libraries is hard work at little personal benefit, while everyone benefits from having a huge variety of density functionals in numerically stable form for use in applications. If you use Libxc in your calculations, please cite the most up-to-date work on Libxc in your paper. You can see the most up-to-date citation on the <a class="reference external" href="https://libxc.gitlab.io">Libxc web page</a>; at the moment, this is <span id="id4">[<a class="reference internal" href="reference.html#id29" title="S. Lehtola, C. Steigemann, M. J. T. Oliveira, and M. A. L. Marques. Recent Developments in LIBXC — a Comprehensive Library of Functionals for Density Functional Theory. SoftwareX, 7:1, 2018.">21</a>]</span>. Likewise, if you use XCFun in your calculations, please cite the most up-to-date work on XCFun in your paper. You can find recent citations on the <a class="reference external" href="https://github.com/dftlibs/xcfun/">XCFun web page</a>; at present, this is <span id="id5">[<a class="reference internal" href="reference.html#id30" title="U. Ekström, L. Visscher, R. Bast, A. J. Thorvaldsen, and K. Ruud. Arbitrary-Order Density Functional Response Theory from Automatic Differentiation. J. Chem. Theory Comput., 6:1971, 2010.">22</a>]</span>. Please check your log files for the library used in your calculation (you may need to increase the <code class="docutils literal notranslate"><span class="pre">DFT.verbose</span></code> setting of your calculation to see this).</p>
 </section>
 <section id="customizing-xc-functionals">
 <span id="user-dft-custom-func"></span><h2>Customizing <em>xc</em> functionals<a class="headerlink" href="#customizing-xc-functionals" title="Link to this heading">#</a></h2>
@@ -591,27 +585,33 @@ only reads the operators <code class="docutils literal notranslate"><span class=
 </section>
 <section id="dispersion-corrections">
 <span id="user-dft-disp-corr"></span><h2>Dispersion corrections<a class="headerlink" href="#dispersion-corrections" title="Link to this heading">#</a></h2>
-<p>Two main ways exist for adding dispersion (van der Waals) corrections to KS-DFT calculations. One is to augment mean-field results by Grimme’s D3 corrections <span id="id6">[<a class="reference internal" href="reference.html#id31" title="S. Grimme, J. Antony, S. Ehrlich, and H. Krieg. A Consistent and Accurate \textit ab initio Parametrization of Density Functional Dispersion Correction (DFT-D) for the 94 Elements H-Pu. J. Chem. Phys., 132:154104, 2010.">23</a>]</span>, which can be added through an interface to the external library <a class="reference external" href="https://github.com/cuanto/libdftd3">libdftd3</a>, cf. <a class="reference external" href="https://github.com/pyscf/pyscf/blob/master/examples/dftd3/00-hf_with_dftd3.py">dftd3/00-hf_with_dftd3.py</a>:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">dftd3</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mf_hf_d3</span> <span class="o">=</span> <span class="n">dftd3</span><span class="o">.</span><span class="n">dftd3</span><span class="p">(</span><span class="n">dft</span><span class="o">.</span><span class="n">RKS</span><span class="p">(</span><span class="n">mol_hf</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mf_hf_d3</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+<p>Adding dispersion (van der Waals) corrections to KS-DFT calculations requires the <a class="reference external" href="https://github.com/pyscf/dispersion">pyscf-dispersion</a> extension,
+which implements a simplified interface to <a class="reference external" href="https://github.com/dftd3/simple-dftd3">simple-dftd3</a>
+and <a class="reference external" href="https://github.com/dftd4/dftd4">dftd4</a> libraries.</p>
+<p>It is recommended to enable D3 <span id="id6">[<a class="reference internal" href="reference.html#id31" title="S. Grimme, J. Antony, S. Ehrlich, and H. Krieg. A Consistent and Accurate \textit ab initio Parametrization of Density Functional Dispersion Correction (DFT-D) for the 94 Elements H-Pu. J. Chem. Phys., 132:154104, 2010.">23</a>]</span>, D4 dispersion corrections through the KS class instantiation.
+The values of attributes nlc, disp, and xc of KS object are automatically configured in this way.
+Both the <code class="docutils literal notranslate"><span class="pre">mol.KS</span></code> method or <code class="docutils literal notranslate"><span class="pre">dft.RKS</span></code> function can be used,
+cf. <a class="reference external" href="https://github.com/pyscf/pyscf/blob/master/examples/dft/16-dft_d3.py">dft/16-dft_d3.py</a>:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mf_d3</span> <span class="o">=</span> <span class="n">mol_hf</span><span class="o">.</span><span class="n">KS</span><span class="p">(</span><span class="n">xc</span><span class="o">=</span><span class="s1">&#39;wb97x-d4&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#mf_d3 = mol_hf.KS(xc=&#39;b3lyp-d3bj&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#mf_d3 = mol_hf.KS(xc=&#39;b3lyp-d3zero&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mf_d3</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Alternatively, non-local correlation may be added through the VV10 functional <span id="id7">[<a class="reference internal" href="reference.html#id32" title="O. A. Vydrov and T. Van Voorhis. Nonlocal van der Waals Density Functional: The Simpler the Better. J. Chem. Phys., 133:244103, 2010.">24</a>]</span>, cf. <a class="reference external" href="https://github.com/pyscf/pyscf/blob/master/examples/dft/33-nlc_functionals.py">dft/33-nlc_functionals.py</a>:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mf_hf</span><span class="o">.</span><span class="n">xc</span> <span class="o">=</span> <span class="s1">&#39;wb97m_v&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mf_hf</span><span class="o">.</span><span class="n">nlc</span> <span class="o">=</span> <span class="s1">&#39;vv10&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mf_hf</span><span class="o">.</span><span class="n">grids</span><span class="o">.</span><span class="n">atom_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">99</span><span class="p">,</span> <span class="mi">590</span><span class="p">),</span> <span class="s1">&#39;F&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">99</span><span class="p">,</span> <span class="mi">590</span><span class="p">)}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mf_hf</span><span class="o">.</span><span class="n">grids</span><span class="o">.</span><span class="n">prune</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mf_hf</span><span class="o">.</span><span class="n">nlcgrids</span><span class="o">.</span><span class="n">atom_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">194</span><span class="p">),</span> <span class="s1">&#39;F&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">194</span><span class="p">)}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mf_hf</span><span class="o">.</span><span class="n">nlcgrids</span><span class="o">.</span><span class="n">prune</span> <span class="o">=</span> <span class="n">dft</span><span class="o">.</span><span class="n">gen_grid</span><span class="o">.</span><span class="n">sg1_prune</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mf_hf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+<p>Alternatively, non-local correlation may be added through the VV10 functional <span id="id7">[<a class="reference internal" href="reference.html#id32" title="O. A. Vydrov and T. Van Voorhis. Nonlocal van der Waals Density Functional: The Simpler the Better. J. Chem. Phys., 133:244103, 2010.">24</a>]</span>,
+cf. <a class="reference external" href="https://github.com/pyscf/pyscf/blob/master/examples/dft/33-nlc_functionals.py">dft/33-nlc_functionals.py</a>:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mf_nlc</span> <span class="o">=</span> <span class="n">dft</span><span class="o">.</span><span class="n">RKS</span><span class="p">(</span><span class="n">mol_hf</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mf_nlc</span><span class="o">.</span><span class="n">xc</span> <span class="o">=</span> <span class="s1">&#39;wb97m_v&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mf_nlc</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>It’s important to keep in mind that the evaluation of the VV10 functional involves a double grid integration, so differences in grid size can make an enormous difference in time.</p>
+<p>See <a class="reference external" href="https://github.com/pyscf/pyscf/blob/master/examples/dft/33-nlc_functionals.py">dft/33-nlc_functionals.py</a>
+for more examples of setting the <code class="docutils literal notranslate"><span class="pre">nlc</span></code> and <code class="docutils literal notranslate"><span class="pre">nlcgrids</span></code> attribute.
+It’s important to keep in mind that the evaluation of the VV10 functional involves a double grid integration, so differences in grid size can make an enormous difference in time.</p>
 </section>
 <section id="generalized-ks-and-collinearity">
 <span id="user-dft-collinear"></span><h2>Generalized KS and collinearity<a class="headerlink" href="#generalized-ks-and-collinearity" title="Link to this heading">#</a></h2>
-<p>When the Hamiltonian does not commute with <span class="math notranslate nohighlight">\(\hat{S}_z\)</span>, e.g. in the presence of spin-orbit coupling, generalized Kohn-Sham theory (GKS) can be invoked by <code class="docutils literal notranslate"><span class="pre">mf</span> <span class="pre">=</span> <span class="pre">dft.GKS(mol)</span></code>, cf. <a class="reference internal" href="scf.html#user-scf-restrict"><span class="std std-ref">generalized calculations</span></a> and <a class="reference external" href="https://github.com/pyscf/pyscf/tree/master/examples/dft/02-gks.py">examples/dft/02-gks.py</a>. A molecular orbital from GKS may contain both spin-up and spin-down components. As a result, the spin magnetization vector may no longer be in the collinear form <span class="math notranslate nohighlight">\(\mathbf{m} = (0,0,m_z)\)</span> that an unrestricted calculation yields and which widely used collinear <cite>xc</cite> functionals assume. To handle any spin configuration, PySCF supports the non-collinear <cite>xc</cite> functionals from <a class="reference external" href="https://github.com/Multi-collinear/MCfun">mcfun</a> <span id="id8">[<a class="reference internal" href="reference.html#id85" title="Zhichen Pu, Hao Li, Ning Zhang, Hong Jiang, Yiqin Gao, Yunlong Xiao, Qiming Sun, Yong Zhang, and Sihong Shao. Noncollinear density functional theory. Physical Review Research, 5(1):013036, 2023.">25</a>]</span> via setting the DFT attribute <code class="docutils literal notranslate"><span class="pre">collinear</span> <span class="pre">=</span> <span class="pre">'mcol'</span></code> , cf. <a class="reference external" href="https://github.com/pyscf/pyscf/tree/master/examples/dft/14-collinear_gks.py">examples/dft/14-collinear_gks.py</a>. Such a non-collinear functional generalizes the widely used collinear functionals that depend on <span class="math notranslate nohighlight">\(m_z\)</span> to depend on <span class="math notranslate nohighlight">\(\mathbf{m}\)</span>. It preserves the invariance with respect to global rotations while maintaining the sensitivity to local spin rotations. It additionally has the advantage of well-defined functional derivatives, satisfying no net torque globally from the self-consistent xc magnetic field and retaining the local torque crucial to spin dynamics. For LDA functional, PySCF also implemented a non-collinear version that is accessible via <code class="docutils literal notranslate"><span class="pre">collinear</span> <span class="pre">=</span> <span class="pre">'ncol'</span></code>.</p>
+<p>When the Hamiltonian does not commute with <span class="math notranslate nohighlight">\(\hat{S}_z\)</span>, e.g. in the presence of spin-orbit coupling, generalized Kohn-Sham theory (GKS) can be invoked by <code class="docutils literal notranslate"><span class="pre">mf</span> <span class="pre">=</span> <span class="pre">dft.GKS(mol)</span></code>, cf. <a class="reference internal" href="scf.html#user-scf-restrict"><span class="std std-ref">generalized calculations</span></a> and <a class="reference external" href="https://github.com/pyscf/pyscf/tree/master/examples/dft/02-gks.py">examples/dft/02-gks.py</a>. A molecular orbital from GKS may contain both spin-up and spin-down components. As a result, the spin magnetization vector may no longer be in the collinear form <span class="math notranslate nohighlight">\(\mathbf{m} = (0,0,m_z)\)</span> that an unrestricted calculation yields and which widely used collinear <cite>xc</cite> functionals assume. To handle any spin configuration, PySCF supports the non-collinear <cite>xc</cite> functionals from <a class="reference external" href="https://github.com/Multi-collinear/MCfun">mcfun</a> <span id="id9">[<a class="reference internal" href="reference.html#id85" title="Zhichen Pu, Hao Li, Ning Zhang, Hong Jiang, Yiqin Gao, Yunlong Xiao, Qiming Sun, Yong Zhang, and Sihong Shao. Noncollinear density functional theory. Physical Review Research, 5(1):013036, 2023.">25</a>]</span> via setting the DFT attribute <code class="docutils literal notranslate"><span class="pre">collinear</span> <span class="pre">=</span> <span class="pre">'mcol'</span></code> , cf. <a class="reference external" href="https://github.com/pyscf/pyscf/tree/master/examples/dft/14-collinear_gks.py">examples/dft/14-collinear_gks.py</a>. Such a non-collinear functional generalizes the widely used collinear functionals that depend on <span class="math notranslate nohighlight">\(m_z\)</span> to depend on <span class="math notranslate nohighlight">\(\mathbf{m}\)</span>. It preserves the invariance with respect to global rotations while maintaining the sensitivity to local spin rotations. It additionally has the advantage of well-defined functional derivatives, satisfying no net torque globally from the self-consistent xc magnetic field and retaining the local torque crucial to spin dynamics. For LDA functional, PySCF also implemented a non-collinear version that is accessible via <code class="docutils literal notranslate"><span class="pre">collinear</span> <span class="pre">=</span> <span class="pre">'ncol'</span></code>.</p>
 </section>
 <section id="periodic-boundary-conditions">
 <span id="user-dft-pbc"></span><h2>Periodic Boundary Conditions<a class="headerlink" href="#periodic-boundary-conditions" title="Link to this heading">#</a></h2>
@@ -654,7 +654,8 @@ only reads the operators <code class="docutils literal notranslate"><span class=
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -705,8 +706,8 @@ only reads the operators <code class="docutils literal notranslate"><span class=
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -717,7 +718,7 @@ only reads the operators <code class="docutils literal notranslate"><span class=
 
   <p class="copyright">
     
-      © Copyright 2024, The PySCF Developers.
+      © Copyright 2025, The PySCF Developers.
       <br/>
     
   </p>
@@ -739,7 +740,8 @@ only reads the operators <code class="docutils literal notranslate"><span class=
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

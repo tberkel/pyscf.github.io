@@ -15,28 +15,31 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=92fd9be5" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/pyscf-pst.css?v=ed6b5f64" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../../_static/documentation_options.js?v=3db9c557"></script>
+    <script src="../../../../_static/documentation_options.js?v=69ff2ef9"></script>
     <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
@@ -48,6 +51,7 @@
     <link rel="search" title="Search" href="../../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2.8" />
   </head>
   
   
@@ -63,19 +67,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../../../search.html"
       method="get">
@@ -83,7 +76,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -91,8 +83,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -126,7 +118,7 @@
     
     
     <img src="../../../../_static/logo-64x64.png" class="logo__image only-light" alt=""/>
-    <script>document.write(`<img src="../../../../_static/logo-64x64.png" class="logo__image only-dark" alt=""/>`);</script>
+    <img src="../../../../_static/logo-64x64.png" class="logo__image only-dark pst-js-only" alt=""/>
   
   
     <p class="title logo__title">PySCF</p>
@@ -170,6 +162,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -181,29 +180,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -228,15 +219,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -253,7 +240,8 @@ document.write(`
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -295,6 +283,13 @@ document.write(`
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -307,15 +302,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -339,9 +330,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -359,8 +355,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -375,7 +369,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../../../pyscf.html" class="nav-link">pyscf</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">pyscf.pbc.gto.cell</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pyscf.pbc.gto.cell</span></li>
   </ul>
 </nav>
 </div>
@@ -412,6 +406,7 @@ document.write(`
 <span class="c1">#         Timothy Berkelbach &lt;tim.berkelbach@gmail.com&gt;</span>
 <span class="c1">#</span>
 
+<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">ctypes</span>
@@ -466,6 +461,7 @@ document.write(`
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">cldic</span> <span class="o">=</span> <span class="n">mole</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
     <span class="n">cldic</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">a</span>
+    <span class="n">cldic</span><span class="p">[</span><span class="s1">&#39;fractional&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">fractional</span>
     <span class="n">cldic</span><span class="p">[</span><span class="s1">&#39;precision&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">precision</span>
     <span class="n">cldic</span><span class="p">[</span><span class="s1">&#39;ke_cutoff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">ke_cutoff</span>
     <span class="n">cldic</span><span class="p">[</span><span class="s1">&#39;exp_to_discard&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">exp_to_discard</span>
@@ -493,23 +489,20 @@ document.write(`
 <span class="k">def</span> <span class="nf">dumps</span><span class="p">(</span><span class="n">cell</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Serialize Cell object to a JSON formatted str.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">exclude_keys</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;output&#39;</span><span class="p">,</span> <span class="s1">&#39;stdout&#39;</span><span class="p">,</span> <span class="s1">&#39;_keys&#39;</span><span class="p">,</span> <span class="s1">&#39;symm_orb&#39;</span><span class="p">,</span> <span class="s1">&#39;irrep_id&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;irrep_name&#39;</span><span class="p">,</span> <span class="s1">&#39;lattice_symmetry&#39;</span><span class="p">}</span>
+    <span class="n">exclude_keys</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;output&#39;</span><span class="p">,</span> <span class="s1">&#39;stdout&#39;</span><span class="p">,</span> <span class="s1">&#39;_keys&#39;</span><span class="p">,</span> <span class="s1">&#39;_ctx_lock&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;symm_orb&#39;</span><span class="p">,</span> <span class="s1">&#39;irrep_id&#39;</span><span class="p">,</span> <span class="s1">&#39;irrep_name&#39;</span><span class="p">,</span> <span class="s1">&#39;lattice_symmetry&#39;</span><span class="p">}</span>
 
     <span class="n">celldic</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">exclude_keys</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">celldic</span><span class="p">:</span>
             <span class="k">del</span> <span class="p">(</span><span class="n">celldic</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">celldic</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">celldic</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">celldic</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">generic</span><span class="p">)):</span>
             <span class="n">celldic</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">celldic</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
     <span class="n">celldic</span><span class="p">[</span><span class="s1">&#39;atom&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">atom</span><span class="p">)</span>
     <span class="n">celldic</span><span class="p">[</span><span class="s1">&#39;basis&#39;</span><span class="p">]</span><span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">basis</span><span class="p">)</span>
     <span class="n">celldic</span><span class="p">[</span><span class="s1">&#39;pseudo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">pseudo</span><span class="p">)</span>
     <span class="n">celldic</span><span class="p">[</span><span class="s1">&#39;ecp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">ecp</span><span class="p">)</span>
-    <span class="c1"># Explicitly convert mesh because it is often created as numpy array</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-        <span class="n">celldic</span><span class="p">[</span><span class="s1">&#39;mesh&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">celldic</span><span class="p">)</span>
@@ -526,6 +519,8 @@ document.write(`
                     <span class="n">dic1</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
                 <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
                     <span class="n">dic1</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">skip_value</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">generic</span><span class="p">):</span>
+                    <span class="n">dic1</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">msg</span> <span class="o">=</span><span class="p">(</span><span class="s1">&#39;Function cell.dumps drops attribute </span><span class="si">%s</span><span class="s1"> because &#39;</span>
                           <span class="s1">&#39;it is not JSON-serializable&#39;</span> <span class="o">%</span> <span class="n">k</span><span class="p">)</span>
@@ -930,7 +925,7 @@ document.write(`
 <span class="k">def</span> <span class="nf">get_bounding_sphere</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">rcut</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Finds all the lattice points within a sphere of radius rcut.</span>
 
-<span class="sd">    Defines a parallelipiped given by -N_x &lt;= n_x &lt;= N_x, with x in [1,3]</span>
+<span class="sd">    Defines a parallelepiped given by -N_x &lt;= n_x &lt;= N_x, with x in [1,3]</span>
 <span class="sd">    See Martin p. 85</span>
 
 <span class="sd">    Args:</span>
@@ -1476,6 +1471,154 @@ document.write(`
     <span class="k">return</span> <span class="n">shell_radius</span></div>
 
 
+<div class="viewcode-block" id="tostring">
+<a class="viewcode-back" href="../../../../pyscf_api_docs/pyscf.pbc.gto.html#pyscf.pbc.gto.cell.tostring">[docs]</a>
+<span class="k">def</span> <span class="nf">tostring</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;poscar&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Convert cell geometry to a string of the required format.</span>
+
+<span class="sd">    Supported output formats:</span>
+<span class="sd">        | poscar: VASP POSCAR</span>
+<span class="sd">        | xyz: Extended XYZ with Lattice information</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="nb">format</span> <span class="o">=</span> <span class="nb">format</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="nb">format</span> <span class="o">==</span> <span class="s1">&#39;poscar&#39;</span> <span class="ow">or</span> <span class="nb">format</span> <span class="o">==</span> <span class="s1">&#39;vasp&#39;</span> <span class="ow">or</span> <span class="nb">format</span> <span class="o">==</span> <span class="s1">&#39;xyz&#39;</span><span class="p">:</span>
+        <span class="n">lattice_vectors</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">lattice_vectors</span><span class="p">()</span> <span class="o">*</span> <span class="n">param</span><span class="o">.</span><span class="n">BOHR</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">atom_coords</span><span class="p">()</span> <span class="o">*</span> <span class="n">param</span><span class="o">.</span><span class="n">BOHR</span>
+        <span class="k">if</span> <span class="nb">format</span> <span class="o">==</span> <span class="s1">&#39;poscar&#39;</span> <span class="ow">or</span> <span class="nb">format</span> <span class="o">==</span> <span class="s1">&#39;vasp&#39;</span><span class="p">:</span>
+            <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Written by PySCF, units are A&#39;</span><span class="p">)</span>
+            <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;1.0&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">lattice_vector</span> <span class="ow">in</span> <span class="n">lattice_vectors</span><span class="p">:</span>
+                <span class="n">ax</span><span class="p">,</span> <span class="n">ay</span><span class="p">,</span> <span class="n">az</span> <span class="o">=</span> <span class="n">lattice_vector</span>
+                <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%14.5f</span><span class="s1"> </span><span class="si">%14.5f</span><span class="s1"> </span><span class="si">%14.5f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">ay</span><span class="p">,</span> <span class="n">az</span><span class="p">))</span>
+            <span class="n">unique_atoms</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">cell</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">atom</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">unique_atoms</span><span class="p">:</span>
+                    <span class="n">unique_atoms</span><span class="p">[</span><span class="n">atom</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">unique_atoms</span><span class="p">[</span><span class="n">atom</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">unique_atoms</span><span class="p">))</span>
+            <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span> <span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">unique_atoms</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+            <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Cartesian&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">atom_type</span> <span class="ow">in</span> <span class="n">unique_atoms</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">atom</span><span class="p">,</span> <span class="n">coord</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">elements</span><span class="p">,</span> <span class="n">coords</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">atom</span> <span class="o">==</span> <span class="n">atom_type</span><span class="p">:</span>
+                        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">coord</span>
+                        <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%14.5f</span><span class="s1"> </span><span class="si">%14.5f</span><span class="s1"> </span><span class="si">%14.5f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">))</span>
+            <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">format</span> <span class="o">==</span> <span class="s1">&#39;xyz&#39;</span><span class="p">:</span>
+            <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">cell</span><span class="o">.</span><span class="n">natm</span><span class="p">)</span>
+            <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Lattice=&quot;&#39;</span><span class="o">+</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ax</span><span class="si">:</span><span class="s1">14.5f</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">lattice_vectors</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+                <span class="o">+</span><span class="s1">&#39;&quot; Properties=species:S:1:pos:R:3&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">natm</span><span class="p">):</span>
+                <span class="n">symb</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">atom_pure_symbol</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%-4s</span><span class="s1"> </span><span class="si">%14.5f</span><span class="s1"> </span><span class="si">%14.5f</span><span class="s1"> </span><span class="si">%14.5f</span><span class="s1">&#39;</span> <span class="o">%</span>
+                              <span class="p">(</span><span class="n">symb</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">))</span>
+            <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;format=</span><span class="si">{</span><span class="nb">format</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="tofile">
+<a class="viewcode-back" href="../../../../pyscf_api_docs/pyscf.pbc.gto.html#pyscf.pbc.gto.cell.tofile">[docs]</a>
+<span class="k">def</span> <span class="nf">tofile</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">format</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># Guess format based on filename</span>
+        <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;poscar&#39;</span><span class="p">:</span>
+            <span class="nb">format</span> <span class="o">=</span> <span class="s1">&#39;poscar&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">format</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="n">tostring</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="nb">format</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span>  <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">string</span></div>
+
+
+<div class="viewcode-block" id="fromfile">
+<a class="viewcode-back" href="../../../../pyscf_api_docs/pyscf.pbc.gto.html#pyscf.pbc.gto.cell.fromfile">[docs]</a>
+<span class="k">def</span> <span class="nf">fromfile</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Read cell geometry from a file</span>
+<span class="sd">    (in testing)</span>
+
+<span class="sd">    Supported formats:</span>
+<span class="sd">        | poscar: VASP POSCAR file format</span>
+<span class="sd">        | xyz: Extended XYZ with Lattice information</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="nb">format</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># Guess format based on filename</span>
+        <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;poscar&#39;</span><span class="p">:</span>
+            <span class="nb">format</span> <span class="o">=</span> <span class="s1">&#39;poscar&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">format</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">format</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;poscar&#39;</span><span class="p">,</span> <span class="s1">&#39;vasp&#39;</span><span class="p">,</span> <span class="s1">&#39;xyz&#39;</span><span class="p">):</span>
+            <span class="nb">format</span> <span class="o">=</span> <span class="s1">&#39;raw&#39;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">fromstring</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="nb">format</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="fromstring">
+<a class="viewcode-back" href="../../../../pyscf_api_docs/pyscf.pbc.gto.html#pyscf.pbc.gto.cell.fromstring">[docs]</a>
+<span class="k">def</span> <span class="nf">fromstring</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;poscar&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Convert the string of the specified format to internal format</span>
+<span class="sd">    (in testing)</span>
+
+<span class="sd">    Supported formats:</span>
+<span class="sd">        | poscar: VASP POSCAR file format</span>
+<span class="sd">        | xyz: Extended XYZ with Lattice information</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        a: Lattice vectors</span>
+<span class="sd">        atom: Atomic elements and xyz coordinates</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="nb">format</span> <span class="o">=</span> <span class="nb">format</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">format</span> <span class="o">==</span> <span class="s1">&#39;poscar&#39;</span> <span class="ow">or</span> <span class="nb">format</span> <span class="o">==</span> <span class="s1">&#39;vasp&#39;</span><span class="p">:</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+        <span class="n">lattice_vectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">a</span><span class="p">])</span>
+        <span class="n">lattice_vectors</span> <span class="o">*=</span> <span class="n">scale</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span> <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">lattice_vectors</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+        <span class="n">atom_position_type</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">unique_atoms</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="n">natm</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">atom</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="n">lines</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()):</span>
+            <span class="n">unique_atoms</span><span class="p">[</span><span class="n">atom</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+            <span class="n">natm</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+        <span class="n">atoms</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="mi">8</span>
+        <span class="k">for</span> <span class="n">atom_type</span> <span class="ow">in</span> <span class="n">unique_atoms</span><span class="p">:</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">unique_atoms</span><span class="p">[</span><span class="n">atom_type</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]:</span>
+                <span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">atom_position_type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;cartesian&#39;</span><span class="p">:</span>
+                    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">coords</span> <span class="o">*</span> <span class="n">scale</span>
+                <span class="k">elif</span> <span class="n">atom_position_type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;direct&#39;</span><span class="p">:</span>
+                    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">lattice_vectors</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Error reading VASP geometry due to &#39;</span>
+                        <span class="sa">f</span><span class="s1">&#39;atom position type &quot;</span><span class="si">{</span><span class="n">atom_position_type</span><span class="si">}</span><span class="s1">&quot;. Atom &#39;</span>
+                        <span class="s1">&#39;positions must be Direct or Cartesian.&#39;</span><span class="p">)</span>
+                <span class="n">atoms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="si">%14.5f</span><span class="s1"> </span><span class="si">%14.5f</span><span class="s1"> </span><span class="si">%14.5f</span><span class="s1">&#39;</span>
+                    <span class="o">%</span> <span class="p">(</span><span class="n">atom_type</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">))</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="n">end</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">format</span> <span class="o">==</span> <span class="s1">&#39;xyz&#39;</span><span class="p">:</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+        <span class="n">natm</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">lattice_vectors</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;Lattice=&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lattice_vectors</span><span class="p">[</span><span class="mi">3</span><span class="o">*</span><span class="n">i</span><span class="p">:</span><span class="mi">3</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="n">natm</span><span class="o">+</span><span class="mi">2</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="nb">format</span> <span class="o">==</span> <span class="s1">&#39;raw&#39;</span><span class="p">:</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">[:</span><span class="mi">3</span><span class="p">]),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">4</span><span class="p">:])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
 
 <div class="viewcode-block" id="Cell">
 <a class="viewcode-back" href="../../../../pyscf_api_docs/pyscf.pbc.gto.html#pyscf.pbc.gto.cell.Cell">[docs]</a>
@@ -1541,10 +1684,13 @@ document.write(`
 
     <span class="n">_keys</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;precision&#39;</span><span class="p">,</span> <span class="s1">&#39;exp_to_discard&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;ke_cutoff&#39;</span><span class="p">,</span> <span class="s1">&#39;pseudo&#39;</span><span class="p">,</span> <span class="s1">&#39;dimension&#39;</span><span class="p">,</span> <span class="s1">&#39;low_dim_ft_type&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;ke_cutoff&#39;</span><span class="p">,</span> <span class="s1">&#39;pseudo&#39;</span><span class="p">,</span> <span class="s1">&#39;fractional&#39;</span><span class="p">,</span> <span class="s1">&#39;dimension&#39;</span><span class="p">,</span> <span class="s1">&#39;low_dim_ft_type&#39;</span><span class="p">,</span>
         <span class="s1">&#39;space_group_symmetry&#39;</span><span class="p">,</span> <span class="s1">&#39;symmorphic&#39;</span><span class="p">,</span> <span class="s1">&#39;lattice_symmetry&#39;</span><span class="p">,</span> <span class="s1">&#39;mesh&#39;</span><span class="p">,</span> <span class="s1">&#39;rcut&#39;</span><span class="p">,</span>
         <span class="s1">&#39;use_loose_rcut&#39;</span><span class="p">,</span> <span class="s1">&#39;use_particle_mesh_ewald&#39;</span><span class="p">,</span>
     <span class="p">}</span>
+
+    <span class="n">tostring</span> <span class="o">=</span> <span class="n">tostring</span>
+    <span class="n">tofile</span> <span class="o">=</span> <span class="n">tofile</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">mole</span><span class="o">.</span><span class="n">MoleBase</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -1553,6 +1699,7 @@ document.write(`
         <span class="c1"># of fourier components, with .5 * G**2 &lt; ke_cutoff</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ke_cutoff</span> <span class="o">=</span> <span class="kc">None</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">fractional</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dimension</span> <span class="o">=</span> <span class="mi">3</span>
         <span class="c1"># TODO: Simple hack for now; the implementation of ewald depends on the</span>
         <span class="c1">#       density-fitting class.  This determines how the ewald produces</span>
@@ -1570,6 +1717,26 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">rcut</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Cell.fromstring">
+<a class="viewcode-back" href="../../../../pyscf_api_docs/pyscf.pbc.gto.html#pyscf.pbc.gto.cell.Cell.fromstring">[docs]</a>
+    <span class="k">def</span> <span class="nf">fromstring</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;poscar&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Update the Cell object based on the input geometry string&#39;&#39;&#39;</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">atom</span> <span class="o">=</span> <span class="n">fromstring</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="nb">format</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_geom_</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;Angstrom&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Cell.fromfile">
+<a class="viewcode-back" href="../../../../pyscf_api_docs/pyscf.pbc.gto.html#pyscf.pbc.gto.cell.Cell.fromfile">[docs]</a>
+    <span class="k">def</span> <span class="nf">fromfile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Update the Cell object based on the input geometry file&#39;&#39;&#39;</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">atom</span> <span class="o">=</span> <span class="n">fromfile</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="nb">format</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_geom_</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;Angstrom&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1737,6 +1904,19 @@ document.write(`
         <span class="k">return</span> <span class="bp">self</span></div>
 
 
+<div class="viewcode-block" id="Cell.format_atom">
+<a class="viewcode-back" href="../../../../pyscf_api_docs/pyscf.pbc.gto.html#pyscf.pbc.gto.cell.Cell.format_atom">[docs]</a>
+    <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">mole</span><span class="o">.</span><span class="n">format_atom</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">format_atom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">unit</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">__config__</span><span class="p">,</span> <span class="s1">&#39;UNIT&#39;</span><span class="p">,</span> <span class="s1">&#39;Ang&#39;</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">fractional</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">mole</span><span class="o">.</span><span class="n">format_atom</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">origin</span><span class="p">,</span> <span class="n">axes</span><span class="p">,</span> <span class="n">unit</span><span class="p">)</span>
+        <span class="n">_atoms</span> <span class="o">=</span> <span class="n">mole</span><span class="o">.</span><span class="n">format_atom</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">origin</span><span class="p">,</span> <span class="n">axes</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
+        <span class="n">_a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lattice_vectors</span><span class="p">()</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">_atoms</span><span class="p">])</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">_a</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">_atoms</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">tolist</span><span class="p">())]</span></div>
+
+
 <span class="c1">#Note: Exculde dump_input, parse_arg, basis from kwargs to avoid parsing twice</span>
 <div class="viewcode-block" id="Cell.build">
 <a class="viewcode-back" href="../../../../pyscf_api_docs/pyscf.pbc.gto.html#pyscf.pbc.gto.cell.Cell.build">[docs]</a>
@@ -1745,7 +1925,7 @@ document.write(`
               <span class="n">h</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rcut</span><span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">low_dim_ft_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
               <span class="n">space_group_symmetry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">symmorphic</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
               <span class="n">use_loose_rcut</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">use_particle_mesh_ewald</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-              <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+              <span class="n">fractional</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Setup Mole molecule and Cell and initialize some control parameters.</span>
 <span class="sd">        Whenever you change the value of the attributes of :class:`Cell`,</span>
 <span class="sd">        you need call this function to refresh the internal data of Cell.</span>
@@ -1754,6 +1934,10 @@ document.write(`
 <span class="sd">            a : (3,3) ndarray</span>
 <span class="sd">                The real-space cell lattice vectors. Each row represents</span>
 <span class="sd">                a lattice vector.</span>
+<span class="sd">            fractional : bool</span>
+<span class="sd">                Whether the atom postions are specified in fractional coordinates.</span>
+<span class="sd">                The default value is False, which means the coordinates are</span>
+<span class="sd">                interpreted as Cartesian coordinate.</span>
 <span class="sd">            mesh : (3,) ndarray of ints</span>
 <span class="sd">                The number of *positive* G-vectors along each direction.</span>
 <span class="sd">            ke_cutoff : float</span>
@@ -1792,6 +1976,7 @@ document.write(`
         <span class="k">if</span> <span class="n">mesh</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh</span>
         <span class="k">if</span> <span class="n">nimgs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">nimgs</span> <span class="o">=</span> <span class="n">nimgs</span>
         <span class="k">if</span> <span class="n">dimension</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dimension</span> <span class="o">=</span> <span class="n">dimension</span>
+        <span class="k">if</span> <span class="n">fractional</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">fractional</span> <span class="o">=</span> <span class="n">fractional</span>
         <span class="k">if</span> <span class="n">precision</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">precision</span> <span class="o">=</span> <span class="n">precision</span>
         <span class="k">if</span> <span class="n">rcut</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">rcut</span> <span class="o">=</span> <span class="n">rcut</span>
         <span class="k">if</span> <span class="n">ke_cutoff</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ke_cutoff</span> <span class="o">=</span> <span class="n">ke_cutoff</span>
@@ -1805,8 +1990,11 @@ document.write(`
         <span class="k">if</span> <span class="n">symmorphic</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">symmorphic</span> <span class="o">=</span> <span class="n">symmorphic</span>
 
-        <span class="n">dump_input</span> <span class="o">=</span> <span class="n">dump_input</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_built</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="n">logger</span><span class="o">.</span><span class="n">NOTE</span>
-        <span class="n">mole</span><span class="o">.</span><span class="n">MoleBase</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dump_input</span><span class="p">,</span> <span class="n">parse_arg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Lattice parameters not specified&#39;</span><span class="p">)</span>
+
+        <span class="n">_built</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_built</span>
+        <span class="n">mole</span><span class="o">.</span><span class="n">MoleBase</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">parse_arg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="n">exp_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">bas_exp</span><span class="p">(</span><span class="n">ib</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="k">for</span> <span class="n">ib</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nbas</span><span class="p">)])</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp_to_discard</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1883,11 +2071,6 @@ document.write(`
                         <span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> contracted functions&#39;</span><span class="p">,</span> <span class="n">nprim_drop</span><span class="p">,</span> <span class="n">nctr_drop</span><span class="p">)</span>
             <span class="c1">#logger.debug1(self, &#39;Old shells %s&#39;, steep_shls)</span>
 
-        <span class="c1"># The rest initialization requires lattice parameters.  If .a is not</span>
-        <span class="c1"># set, pass the rest initialization.</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span>
-
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rcut</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rcut_from_build</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_rcut</span> <span class="o">=</span> <span class="n">estimate_rcut</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">precision</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_rcut_from_build</span> <span class="o">=</span> <span class="kc">True</span>
@@ -1923,7 +2106,8 @@ document.write(`
             <span class="n">_check_mesh_symm</span> <span class="o">=</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mesh_from_build</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">build_lattice_symmetry</span><span class="p">(</span><span class="n">check_mesh_symmetry</span><span class="o">=</span><span class="n">_check_mesh_symm</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">dump_input</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">dump_input</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">_built</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="n">logger</span><span class="o">.</span><span class="n">NOTE</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dump_input</span><span class="p">()</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;lattice vectors  a1 [</span><span class="si">%.9f</span><span class="s1">, </span><span class="si">%.9f</span><span class="s1">, </span><span class="si">%.9f</span><span class="s1">]&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">_a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;                 a2 [</span><span class="si">%.9f</span><span class="s1">, </span><span class="si">%.9f</span><span class="s1">, </span><span class="si">%.9f</span><span class="s1">]&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">_a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;                 a3 [</span><span class="si">%.9f</span><span class="s1">, </span><span class="si">%.9f</span><span class="s1">, </span><span class="si">%.9f</span><span class="s1">]&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">_a</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
@@ -2011,7 +2195,7 @@ document.write(`
         <span class="n">rcut_guess</span> <span class="o">=</span> <span class="n">estimate_rcut</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">precision</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rcut</span> <span class="o">&gt;</span> <span class="n">rcut_guess</span><span class="o">*</span><span class="mf">1.5</span><span class="p">:</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;.nimgs is a deprecated attribute.  It is replaced by .rcut &#39;</span>
-                   <span class="s1">&#39;attribute for lattic sum cutoff radius.  The given nimgs &#39;</span>
+                   <span class="s1">&#39;attribute for lattice sum cutoff radius.  The given nimgs &#39;</span>
                    <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> is far over the estimated cutoff radius </span><span class="si">%s</span><span class="s1">. &#39;</span> <span class="o">%</span>
                    <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">rcut_guess</span><span class="p">))</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
@@ -2258,12 +2442,14 @@ document.write(`
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Return a Mole object using the same atoms and basis functions as</span>
 <span class="sd">        the Cell object.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="c1">#FIXME: should cell be converted to mole object?  If cell is converted</span>
-        <span class="c1"># and a mole object is returned, many attributes (e.g. the GTH basis,</span>
-        <span class="c1"># gth-PP) will not be recognized by mole.build function.</span>
         <span class="n">mol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">mole</span><span class="o">.</span><span class="n">Mole</span><span class="p">)</span>
-        <span class="nb">delattr</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span>
-        <span class="nb">delattr</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="s1">&#39;_mesh&#39;</span><span class="p">)</span>
+        <span class="k">del</span> <span class="n">mol</span><span class="o">.</span><span class="n">a</span>
+        <span class="n">mol</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;fractional&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">mol</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;ke_cutoff&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">mol</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;_mesh&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">mol</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;_rcut&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">mol</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;dimension&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">mol</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;low_dim_ft_type&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="n">mol</span><span class="o">.</span><span class="n">enuc</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1">#reset nuclear energy</span>
         <span class="k">if</span> <span class="n">mol</span><span class="o">.</span><span class="n">symmetry</span><span class="p">:</span>
             <span class="n">mol</span><span class="o">.</span><span class="n">_build_symmetry</span><span class="p">()</span>
@@ -2301,8 +2487,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -2313,7 +2499,7 @@ document.write(`
 
   <p class="copyright">
     
-      © Copyright 2024, The PySCF Developers.
+      © Copyright 2025, The PySCF Developers.
       <br/>
     
   </p>
@@ -2335,7 +2521,8 @@ document.write(`
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

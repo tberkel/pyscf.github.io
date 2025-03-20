@@ -15,28 +15,31 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=92fd9be5" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/pyscf-pst.css?v=ed6b5f64" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../../_static/documentation_options.js?v=3db9c557"></script>
+    <script src="../../../../_static/documentation_options.js?v=69ff2ef9"></script>
     <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
@@ -48,6 +51,7 @@
     <link rel="search" title="Search" href="../../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2.8" />
   </head>
   
   
@@ -63,19 +67,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../../../search.html"
       method="get">
@@ -83,7 +76,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -91,8 +83,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -126,7 +118,7 @@
     
     
     <img src="../../../../_static/logo-64x64.png" class="logo__image only-light" alt=""/>
-    <script>document.write(`<img src="../../../../_static/logo-64x64.png" class="logo__image only-dark" alt=""/>`);</script>
+    <img src="../../../../_static/logo-64x64.png" class="logo__image only-dark pst-js-only" alt=""/>
   
   
     <p class="title logo__title">PySCF</p>
@@ -170,6 +162,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -181,29 +180,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -228,15 +219,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -253,7 +240,8 @@ document.write(`
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -295,6 +283,13 @@ document.write(`
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -307,15 +302,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -339,9 +330,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -359,8 +355,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -375,7 +369,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../../../pyscf.html" class="nav-link">pyscf</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">pyscf.pbc.tools.pbc</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pyscf.pbc.tools.pbc</span></li>
   </ul>
 </nav>
 </div>
@@ -411,6 +405,7 @@ document.write(`
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">import</span> <span class="nn">ctypes</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
 <span class="kn">import</span> <span class="nn">scipy.linalg</span>
 <span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">lib</span>
 <span class="kn">from</span> <span class="nn">pyscf.lib</span> <span class="kn">import</span> <span class="n">logger</span>
@@ -418,39 +413,55 @@ document.write(`
 <span class="kn">from</span> <span class="nn">pyscf.pbc.lib.kpts_helper</span> <span class="kn">import</span> <span class="n">get_kconserv</span><span class="p">,</span> <span class="n">get_kconserv3</span>  <span class="c1"># noqa</span>
 <span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">__config__</span>
 
-<span class="n">FFT_ENGINE</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">__config__</span><span class="p">,</span> <span class="s1">&#39;pbc_tools_pbc_fft_engine&#39;</span><span class="p">,</span> <span class="s1">&#39;BLAS&#39;</span><span class="p">)</span>
+<span class="n">FFT_ENGINE</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">__config__</span><span class="p">,</span> <span class="s1">&#39;pbc_tools_pbc_fft_engine&#39;</span><span class="p">,</span> <span class="s1">&#39;NUMPY+BLAS&#39;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">_fftn_blas</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">mesh</span><span class="p">):</span>
-    <span class="n">Gx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">mesh</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">Gy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">mesh</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">Gz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">mesh</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="n">expRGx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;x,k-&gt;xk&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mesh</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">Gx</span><span class="p">))</span>
-    <span class="n">expRGy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;x,k-&gt;xk&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mesh</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">Gy</span><span class="p">))</span>
-    <span class="n">expRGz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;x,k-&gt;xk&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mesh</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="n">Gz</span><span class="p">))</span>
-    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
-    <span class="n">buf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">fi</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
-        <span class="n">buf</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">fi</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
-        <span class="n">g</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">buf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">mesh</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">expRGx</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">mesh</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-        <span class="n">g</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">mesh</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">expRGy</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">buf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">mesh</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-        <span class="n">g</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">mesh</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">expRGz</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">mesh</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
-    <span class="k">return</span> <span class="n">out</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">mesh</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">f</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">4</span>
+    <span class="n">mx</span><span class="p">,</span> <span class="n">my</span><span class="p">,</span> <span class="n">mz</span> <span class="o">=</span> <span class="n">mesh</span>
+    <span class="n">expRGx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mx</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">mx</span><span class="p">))</span>
+    <span class="n">expRGy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">my</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">my</span><span class="p">))</span>
+    <span class="n">expRGz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mz</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">mz</span><span class="p">))</span>
+    <span class="n">blksize</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e5</span> <span class="o">/</span> <span class="p">(</span><span class="n">mx</span> <span class="o">*</span> <span class="n">my</span> <span class="o">*</span> <span class="n">mz</span><span class="p">)),</span> <span class="mi">8</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">mx</span><span class="o">*</span><span class="n">my</span><span class="o">*</span><span class="n">mz</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
+    <span class="n">buf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">blksize</span><span class="p">,</span> <span class="n">mx</span><span class="o">*</span><span class="n">my</span><span class="o">*</span><span class="n">mz</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i0</span><span class="p">,</span> <span class="n">i1</span> <span class="ow">in</span> <span class="n">lib</span><span class="o">.</span><span class="n">prange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">blksize</span><span class="p">):</span>
+        <span class="n">ni</span> <span class="o">=</span> <span class="n">i1</span> <span class="o">-</span> <span class="n">i0</span>
+        <span class="n">buf1</span> <span class="o">=</span> <span class="n">buf</span><span class="p">[:</span><span class="n">ni</span><span class="p">]</span>
+        <span class="n">out1</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="n">i0</span><span class="p">:</span><span class="n">i1</span><span class="p">]</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i0</span><span class="p">:</span><span class="n">i1</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">ni</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">out</span><span class="o">=</span><span class="n">buf1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">ni</span><span class="p">))</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">mx</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">expRGx</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">out1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">mx</span><span class="p">))</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">my</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">expRGy</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">buf1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">my</span><span class="p">))</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">mz</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">expRGz</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">out1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">mz</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">out</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="o">*</span><span class="n">mesh</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">_ifftn_blas</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">mesh</span><span class="p">):</span>
-    <span class="n">Gx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">mesh</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">Gy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">mesh</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">Gz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">mesh</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="n">expRGx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;x,k-&gt;xk&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mesh</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">Gx</span><span class="p">))</span>
-    <span class="n">expRGy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;x,k-&gt;xk&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mesh</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">Gy</span><span class="p">))</span>
-    <span class="n">expRGz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;x,k-&gt;xk&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mesh</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="n">Gz</span><span class="p">))</span>
-    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
-    <span class="n">buf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">gi</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">g</span><span class="p">):</span>
-        <span class="n">buf</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">gi</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
-        <span class="n">f</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">buf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">mesh</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">expRGx</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="n">mesh</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">mesh</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-        <span class="n">f</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">mesh</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">expRGy</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="n">mesh</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">buf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">mesh</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-        <span class="n">f</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">mesh</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">expRGz</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="n">mesh</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">mesh</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
-    <span class="k">return</span> <span class="n">out</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">mesh</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">g</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">4</span>
+    <span class="n">mx</span><span class="p">,</span> <span class="n">my</span><span class="p">,</span> <span class="n">mz</span> <span class="o">=</span> <span class="n">mesh</span>
+    <span class="n">expRGx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">mx</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mx</span><span class="p">))</span>
+    <span class="n">expRGy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">my</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">my</span><span class="p">))</span>
+    <span class="n">expRGz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">mz</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mz</span><span class="p">))</span>
+    <span class="n">blksize</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e5</span> <span class="o">/</span> <span class="p">(</span><span class="n">mx</span> <span class="o">*</span> <span class="n">my</span> <span class="o">*</span> <span class="n">mz</span><span class="p">)),</span> <span class="mi">8</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">mx</span><span class="o">*</span><span class="n">my</span><span class="o">*</span><span class="n">mz</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
+    <span class="n">buf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">blksize</span><span class="p">,</span> <span class="n">mx</span><span class="o">*</span><span class="n">my</span><span class="o">*</span><span class="n">mz</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i0</span><span class="p">,</span> <span class="n">i1</span> <span class="ow">in</span> <span class="n">lib</span><span class="o">.</span><span class="n">prange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">blksize</span><span class="p">):</span>
+        <span class="n">ni</span> <span class="o">=</span> <span class="n">i1</span> <span class="o">-</span> <span class="n">i0</span>
+        <span class="n">buf1</span> <span class="o">=</span> <span class="n">buf</span><span class="p">[:</span><span class="n">ni</span><span class="p">]</span>
+        <span class="n">out1</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="n">i0</span><span class="p">:</span><span class="n">i1</span><span class="p">]</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="n">i0</span><span class="p">:</span><span class="n">i1</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">ni</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">out</span><span class="o">=</span><span class="n">buf1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">ni</span><span class="p">))</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">mx</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">expRGx</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="n">mx</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">out1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">mx</span><span class="p">))</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">my</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">expRGy</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="n">my</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">buf1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">my</span><span class="p">))</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">mz</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">expRGz</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="n">mz</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">out1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">mz</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">out</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="o">*</span><span class="n">mesh</span><span class="p">)</span>
+
+<span class="n">nproc</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">num_threads</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">_fftn_wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>  <span class="c1"># noqa</span>
+    <span class="k">return</span> <span class="n">scipy</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftn</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">workers</span><span class="o">=</span><span class="n">nproc</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_ifftn_wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>  <span class="c1"># noqa</span>
+    <span class="k">return</span> <span class="n">scipy</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifftn</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">workers</span><span class="o">=</span><span class="n">nproc</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">FFT_ENGINE</span> <span class="o">==</span> <span class="s1">&#39;FFTW&#39;</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
@@ -483,60 +494,50 @@ document.write(`
                <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">rank</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">out</span>
 
-    <span class="k">def</span> <span class="nf">_fftn_wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_fftn_wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>  <span class="c1"># noqa</span>
         <span class="n">mesh</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
         <span class="k">return</span> <span class="n">_complex_fftn_fftw</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="s1">&#39;fft&#39;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">_ifftn_wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_ifftn_wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>  <span class="c1"># noqa</span>
         <span class="n">mesh</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
         <span class="k">return</span> <span class="n">_complex_fftn_fftw</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="s1">&#39;ifft&#39;</span><span class="p">)</span>
 
 <span class="k">elif</span> <span class="n">FFT_ENGINE</span> <span class="o">==</span> <span class="s1">&#39;PYFFTW&#39;</span><span class="p">:</span>
-    <span class="c1"># pyfftw is slower than np.fft in most cases</span>
+    <span class="c1"># Note: pyfftw is likely slower than scipy.fft in multi-threading environments</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="kn">import</span> <span class="nn">pyfftw</span>
+        <span class="n">pyfftw</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">PLANNER_EFFORT</span> <span class="o">=</span> <span class="s1">&#39;FFTW_MEASURE&#39;</span>
         <span class="n">pyfftw</span><span class="o">.</span><span class="n">interfaces</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
-        <span class="n">nproc</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">num_threads</span><span class="p">()</span>
-        <span class="k">def</span> <span class="nf">_fftn_wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">_fftn_wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>  <span class="c1"># noqa</span>
             <span class="k">return</span> <span class="n">pyfftw</span><span class="o">.</span><span class="n">interfaces</span><span class="o">.</span><span class="n">numpy_fft</span><span class="o">.</span><span class="n">fftn</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">threads</span><span class="o">=</span><span class="n">nproc</span><span class="p">)</span>
-        <span class="k">def</span> <span class="nf">_ifftn_wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">_ifftn_wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>  <span class="c1"># noqa</span>
             <span class="k">return</span> <span class="n">pyfftw</span><span class="o">.</span><span class="n">interfaces</span><span class="o">.</span><span class="n">numpy_fft</span><span class="o">.</span><span class="n">ifftn</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">threads</span><span class="o">=</span><span class="n">nproc</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-        <span class="k">def</span> <span class="nf">_fftn_wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftn</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
-        <span class="k">def</span> <span class="nf">_ifftn_wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifftn</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
-
-<span class="k">elif</span> <span class="n">FFT_ENGINE</span> <span class="o">==</span> <span class="s1">&#39;NUMPY&#39;</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">_fftn_wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftn</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
-    <span class="k">def</span> <span class="nf">_ifftn_wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifftn</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;PyFFTW not installed. SciPy fft module will be used.&#39;</span><span class="p">)</span>
 
 <span class="k">elif</span> <span class="n">FFT_ENGINE</span> <span class="o">==</span> <span class="s1">&#39;NUMPY+BLAS&#39;</span><span class="p">:</span>
     <span class="n">_EXCLUDE</span> <span class="o">=</span> <span class="p">[</span><span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">73</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span>
                 <span class="mi">83</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">97</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">103</span><span class="p">,</span><span class="mi">107</span><span class="p">,</span><span class="mi">109</span><span class="p">,</span><span class="mi">113</span><span class="p">,</span><span class="mi">127</span><span class="p">,</span><span class="mi">131</span><span class="p">,</span><span class="mi">137</span><span class="p">,</span><span class="mi">139</span><span class="p">,</span><span class="mi">149</span><span class="p">,</span><span class="mi">151</span><span class="p">,</span><span class="mi">157</span><span class="p">,</span><span class="mi">163</span><span class="p">,</span>
                 <span class="mi">167</span><span class="p">,</span><span class="mi">173</span><span class="p">,</span><span class="mi">179</span><span class="p">,</span><span class="mi">181</span><span class="p">,</span><span class="mi">191</span><span class="p">,</span><span class="mi">193</span><span class="p">,</span><span class="mi">197</span><span class="p">,</span><span class="mi">199</span><span class="p">,</span><span class="mi">211</span><span class="p">,</span><span class="mi">223</span><span class="p">,</span><span class="mi">227</span><span class="p">,</span><span class="mi">229</span><span class="p">,</span><span class="mi">233</span><span class="p">,</span><span class="mi">239</span><span class="p">,</span><span class="mi">241</span><span class="p">,</span><span class="mi">251</span><span class="p">,</span>
                 <span class="mi">257</span><span class="p">,</span><span class="mi">263</span><span class="p">,</span><span class="mi">269</span><span class="p">,</span><span class="mi">271</span><span class="p">,</span><span class="mi">277</span><span class="p">,</span><span class="mi">281</span><span class="p">,</span><span class="mi">283</span><span class="p">,</span><span class="mi">293</span><span class="p">]</span>
-    <span class="n">_EXCLUDE</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">_EXCLUDE</span> <span class="o">+</span> <span class="p">[</span><span class="n">n</span><span class="o">*</span><span class="mi">2</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">_EXCLUDE</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">n</span><span class="o">*</span><span class="mi">3</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">_EXCLUDE</span><span class="p">])</span>
-    <span class="k">def</span> <span class="nf">_fftn_wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="n">_EXCLUDE</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">_EXCLUDE</span> <span class="o">+</span> <span class="p">[</span><span class="n">n</span><span class="o">*</span><span class="mi">2</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">_EXCLUDE</span><span class="p">[:</span><span class="mi">30</span><span class="p">]]</span> <span class="o">+</span> <span class="p">[</span><span class="n">n</span><span class="o">*</span><span class="mi">3</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">_EXCLUDE</span><span class="p">[:</span><span class="mi">20</span><span class="p">]])</span>
+    <span class="k">def</span> <span class="nf">_fftn_wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>  <span class="c1"># noqa</span>
         <span class="n">mesh</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
         <span class="k">if</span> <span class="n">mesh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">_EXCLUDE</span> <span class="ow">and</span> <span class="n">mesh</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="n">_EXCLUDE</span> <span class="ow">and</span> <span class="n">mesh</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">in</span> <span class="n">_EXCLUDE</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">_fftn_blas</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">mesh</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftn</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
-    <span class="k">def</span> <span class="nf">_ifftn_wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">scipy</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftn</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">workers</span><span class="o">=</span><span class="n">nproc</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_ifftn_wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>  <span class="c1"># noqa</span>
         <span class="n">mesh</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
         <span class="k">if</span> <span class="n">mesh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">_EXCLUDE</span> <span class="ow">and</span> <span class="n">mesh</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="n">_EXCLUDE</span> <span class="ow">and</span> <span class="n">mesh</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">in</span> <span class="n">_EXCLUDE</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">_ifftn_blas</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">mesh</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifftn</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">scipy</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifftn</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">workers</span><span class="o">=</span><span class="n">nproc</span><span class="p">)</span>
 
-<span class="c1">#?elif:  # &#39;FFTW+BLAS&#39;</span>
-<span class="k">else</span><span class="p">:</span>  <span class="c1"># &#39;BLAS&#39;</span>
-    <span class="k">def</span> <span class="nf">_fftn_wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+<span class="k">elif</span> <span class="n">FFT_ENGINE</span> <span class="o">==</span> <span class="s1">&#39;BLAS&#39;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_fftn_wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>  <span class="c1"># noqa</span>
         <span class="n">mesh</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
         <span class="k">return</span> <span class="n">_fftn_blas</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">mesh</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">_ifftn_wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_ifftn_wrapper</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>  <span class="c1"># noqa</span>
         <span class="n">mesh</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
         <span class="k">return</span> <span class="n">_ifftn_blas</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">mesh</span><span class="p">)</span>
 
@@ -655,13 +656,14 @@ document.write(`
 <span class="sd">        omega : float</span>
 <span class="sd">            Enable Coulomb kernel ``erf(|omega|*r12)/r12`` if omega &gt; 0</span>
 <span class="sd">            and ``erfc(|omega|*r12)/r12`` if omega &lt; 0.</span>
-<span class="sd">            Note this parameter is slightly different to setting cell.omega</span>
-<span class="sd">            for the treatment of exxdiv (at G0).  cell.omega affects Ewald</span>
-<span class="sd">            probe charge at G0. It is used mostly by RSH functionals for</span>
-<span class="sd">            the long-range part of HF exchange. This parameter is used by</span>
+<span class="sd">            Note this parameter is slightly different to setting cell.omega for</span>
+<span class="sd">            exxdiv=&#39;ewald&#39; at G0. When cell.omega is configured, the Ewald probe</span>
+<span class="sd">            charge correction will be computed using the LR or SR Coulomb</span>
+<span class="sd">            interactions. However, when this kwarg is explicitly specified, the</span>
+<span class="sd">            exxdiv correction is computed with the full-range Coulomb</span>
+<span class="sd">            interaction (1/r12). This parameter should only be specified in the</span>
 <span class="sd">            range-separated JK builder and range-separated DF (and other</span>
-<span class="sd">            range-separated integral methods) which require Ewald probe charge</span>
-<span class="sd">            to be computed with regular Coulomb interaction (1/r12).</span>
+<span class="sd">            range-separated integral methods if any).</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">exxdiv</span> <span class="o">=</span> <span class="n">exx</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">exx</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
@@ -711,11 +713,11 @@ document.write(`
             <span class="n">kG</span><span class="p">[</span><span class="n">on_edge</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span><span class="o">==-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">box_edge</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 
     <span class="n">absG2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;gi,gi-&gt;g&#39;</span><span class="p">,</span> <span class="n">kG</span><span class="p">,</span> <span class="n">kG</span><span class="p">)</span>
+    <span class="n">G0_idx</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="s1">&#39;kpts&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">kpts</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="s1">&#39;kpts&#39;</span><span class="p">):</span>
         <span class="n">kpts</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">kpts</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">kpts</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
     <span class="n">Nk</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">kpts</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">exxdiv</span> <span class="o">==</span> <span class="s1">&#39;vcut_sph&#39;</span><span class="p">:</span>  <span class="c1"># PRB 77 193110</span>
@@ -793,39 +795,43 @@ document.write(`
                 <span class="n">weights</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">Gp</span><span class="o">*</span><span class="n">Rc</span> <span class="o">*</span> <span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">j1</span><span class="p">(</span><span class="n">Gp</span><span class="o">*</span><span class="n">Rc</span><span class="p">)</span> <span class="o">*</span> <span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">k0</span><span class="p">(</span><span class="n">Gx</span><span class="o">*</span><span class="n">Rc</span><span class="p">)</span>
                 <span class="n">weights</span> <span class="o">-=</span> <span class="n">Gx</span><span class="o">*</span><span class="n">Rc</span> <span class="o">*</span> <span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">j0</span><span class="p">(</span><span class="n">Gp</span><span class="o">*</span><span class="n">Rc</span><span class="p">)</span> <span class="o">*</span> <span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">k1</span><span class="p">(</span><span class="n">Gx</span><span class="o">*</span><span class="n">Rc</span><span class="p">)</span>
                 <span class="n">coulG</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">absG2</span> <span class="o">*</span> <span class="n">weights</span>
-                <span class="c1"># TODO: numerical integation</span>
+                <span class="c1"># TODO: numerical integration</span>
                 <span class="c1"># coulG[Gx==0] = -4*np.pi * (dr * r * scipy.special.j0(Gp*r) * np.log(r)).sum()</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">G0_idx</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">coulG</span><span class="p">[</span><span class="n">G0_idx</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">Rc</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Rc</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-
-        <span class="c1"># The divergent part of periodic summation of (ii|ii) integrals in</span>
-        <span class="c1"># Coulomb integrals were cancelled out by electron-nucleus</span>
-        <span class="c1"># interaction. The periodic part of (ii|ii) in exchange cannot be</span>
-        <span class="c1"># cancelled out by Coulomb integrals. Its leading term is calculated</span>
-        <span class="c1"># using Ewald probe charge (the function madelung below)</span>
-        <span class="k">if</span> <span class="n">cell</span><span class="o">.</span><span class="n">dimension</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">exxdiv</span> <span class="o">==</span> <span class="s1">&#39;ewald&#39;</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">G0_idx</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">coulG</span><span class="p">[</span><span class="n">G0_idx</span><span class="p">]</span> <span class="o">+=</span> <span class="n">Nk</span><span class="o">*</span><span class="n">cell</span><span class="o">.</span><span class="n">vol</span><span class="o">*</span><span class="n">madelung</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">kpts</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">equal2boundary</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">coulG</span><span class="p">[</span><span class="n">equal2boundary</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="c1"># Scale the coulG kernel for attenuated Coulomb integrals.</span>
-    <span class="c1"># * omega is used by RangeSeparatedJKBuilder which requires ewald probe charge</span>
+    <span class="c1"># * kwarg omega is used by RangeSeparatedJKBuilder which requires ewald probe charge</span>
     <span class="c1"># being evaluated with regular Coulomb interaction (1/r12).</span>
     <span class="c1"># * cell.omega, which affects the ewald probe charge, is often set by</span>
     <span class="c1"># DFT-RSH functionals to build long-range HF-exchange for erf(omega*r12)/r12</span>
-    <span class="k">if</span> <span class="n">omega</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">omega</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="c1"># long range part</span>
-            <span class="n">coulG</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">.25</span><span class="o">/</span><span class="n">omega</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">absG2</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">omega</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="c1"># short range part</span>
-            <span class="n">coulG</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">.25</span><span class="o">/</span><span class="n">omega</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">absG2</span><span class="p">))</span>
-    <span class="k">elif</span> <span class="n">cell</span><span class="o">.</span><span class="n">omega</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">coulG</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">.25</span><span class="o">/</span><span class="n">cell</span><span class="o">.</span><span class="n">omega</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">absG2</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">cell</span><span class="o">.</span><span class="n">omega</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">if</span> <span class="n">omega</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_omega</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">omega</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">_omega</span> <span class="o">=</span> <span class="n">omega</span>
+    <span class="k">if</span> <span class="n">_omega</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># long range part</span>
+        <span class="n">coulG</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">.25</span><span class="o">/</span><span class="n">_omega</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">absG2</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">_omega</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">exxdiv</span> <span class="o">==</span> <span class="s1">&#39;vcut_sph&#39;</span> <span class="ow">or</span> <span class="n">exxdiv</span> <span class="o">==</span> <span class="s1">&#39;vcut_ws&#39;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SR Coulomb for exxdiv=</span><span class="si">{</span><span class="n">exxdiv</span><span class="si">}</span><span class="s1"> is not available&#39;</span><span class="p">)</span>
+        <span class="c1"># short range part</span>
+        <span class="n">coulG</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">.25</span><span class="o">/</span><span class="n">_omega</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">absG2</span><span class="p">))</span>
 
+    <span class="c1"># For full-range Coulomb and long-range Coulomb,</span>
+    <span class="c1"># the divergent part of periodic summation of (ii|ii) integrals in</span>
+    <span class="c1"># Coulomb integrals were cancelled out by electron-nucleus</span>
+    <span class="c1"># interaction. The periodic part of (ii|ii) in exchange cannot be</span>
+    <span class="c1"># cancelled out by Coulomb integrals. Its leading term is calculated</span>
+    <span class="c1"># using Ewald probe charge (the function madelung below)</span>
+    <span class="k">if</span> <span class="n">cell</span><span class="o">.</span><span class="n">dimension</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">exxdiv</span> <span class="o">==</span> <span class="s1">&#39;ewald&#39;</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">G0_idx</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">omega</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="c1"># Affects DFT-RSH</span>
+            <span class="n">coulG</span><span class="p">[</span><span class="n">G0_idx</span><span class="p">]</span> <span class="o">+=</span> <span class="n">Nk</span><span class="o">*</span><span class="n">cell</span><span class="o">.</span><span class="n">vol</span><span class="o">*</span><span class="n">madelung</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">kpts</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># for RangeSeparatedJKBuilder</span>
+            <span class="n">coulG</span><span class="p">[</span><span class="n">G0_idx</span><span class="p">]</span> <span class="o">+=</span> <span class="n">Nk</span><span class="o">*</span><span class="n">cell</span><span class="o">.</span><span class="n">vol</span><span class="o">*</span><span class="n">madelung</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">kpts</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">coulG</span></div>
 
 
@@ -895,7 +901,7 @@ document.write(`
 
 <div class="viewcode-block" id="madelung">
 <a class="viewcode-back" href="../../../../pyscf_api_docs/pyscf.pbc.tools.html#pyscf.pbc.tools.pbc.madelung">[docs]</a>
-<span class="k">def</span> <span class="nf">madelung</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">kpts</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">madelung</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">kpts</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">Nk</span> <span class="o">=</span> <span class="n">get_monkhorst_pack_size</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">kpts</span><span class="p">)</span>
     <span class="n">ecell</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">ecell</span><span class="o">.</span><span class="n">_atm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="n">cell</span><span class="o">.</span><span class="n">_env</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
@@ -904,7 +910,10 @@ document.write(`
     <span class="c1">#ecell.verbose = 0</span>
     <span class="n">ecell</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;xi,x-&gt;xi&#39;</span><span class="p">,</span> <span class="n">cell</span><span class="o">.</span><span class="n">lattice_vectors</span><span class="p">(),</span> <span class="n">Nk</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">cell</span><span class="o">.</span><span class="n">omega</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">omega</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">omega</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">omega</span>
+
+    <span class="k">if</span> <span class="n">omega</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">ecell</span><span class="o">.</span><span class="n">ewald</span><span class="p">()</span>
 
     <span class="k">else</span><span class="p">:</span>
@@ -914,16 +923,21 @@ document.write(`
         <span class="c1"># because the Coulomb kernel 4pi/G^2*exp(-G^2/4/omega**2) decays</span>
         <span class="c1"># quickly.</span>
         <span class="n">precision</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">precision</span>
-        <span class="n">omega</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">omega</span>
         <span class="n">Ecut</span> <span class="o">=</span> <span class="mf">10.</span>
         <span class="n">Ecut</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">16</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">omega</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">Ecut</span><span class="p">)</span><span class="o">**</span><span class="mf">.5</span><span class="p">)</span> <span class="o">/</span> <span class="n">precision</span> <span class="o">+</span> <span class="mf">1.</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="o">*</span><span class="n">omega</span><span class="o">**</span><span class="mi">2</span>
         <span class="n">Ecut</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">16</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">omega</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">Ecut</span><span class="p">)</span><span class="o">**</span><span class="mf">.5</span><span class="p">)</span> <span class="o">/</span> <span class="n">precision</span> <span class="o">+</span> <span class="mf">1.</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="o">*</span><span class="n">omega</span><span class="o">**</span><span class="mi">2</span>
         <span class="n">mesh</span> <span class="o">=</span> <span class="n">cutoff_to_mesh</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">Ecut</span><span class="p">)</span>
         <span class="n">Gv</span><span class="p">,</span> <span class="n">Gvbase</span><span class="p">,</span> <span class="n">weights</span> <span class="o">=</span> <span class="n">ecell</span><span class="o">.</span><span class="n">get_Gv_weights</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
-        <span class="n">wcoulG</span> <span class="o">=</span> <span class="n">get_coulG</span><span class="p">(</span><span class="n">ecell</span><span class="p">,</span> <span class="n">Gv</span><span class="o">=</span><span class="n">Gv</span><span class="p">)</span> <span class="o">*</span> <span class="n">weights</span>
+        <span class="n">wcoulG</span> <span class="o">=</span> <span class="n">get_coulG</span><span class="p">(</span><span class="n">ecell</span><span class="p">,</span> <span class="n">Gv</span><span class="o">=</span><span class="n">Gv</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">omega</span><span class="p">),</span> <span class="n">exxdiv</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">*</span> <span class="n">weights</span>
         <span class="n">SI</span> <span class="o">=</span> <span class="n">ecell</span><span class="o">.</span><span class="n">get_SI</span><span class="p">(</span><span class="n">mesh</span><span class="o">=</span><span class="n">mesh</span><span class="p">)</span>
         <span class="n">ZSI</span> <span class="o">=</span> <span class="n">SI</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">omega</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mf">0.5</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;i,i,i-&gt;&#39;</span><span class="p">,</span> <span class="n">ZSI</span><span class="o">.</span><span class="n">conj</span><span class="p">(),</span> <span class="n">ZSI</span><span class="p">,</span> <span class="n">wcoulG</span><span class="p">)</span><span class="o">.</span><span class="n">real</span></div>
+        <span class="n">e_lr</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">omega</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mf">0.5</span> <span class="o">-</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;i,i,i-&gt;&#39;</span><span class="p">,</span> <span class="n">ZSI</span><span class="o">.</span><span class="n">conj</span><span class="p">(),</span> <span class="n">ZSI</span><span class="p">,</span> <span class="n">wcoulG</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">omega</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">e_lr</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">e_fr</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">ecell</span><span class="o">.</span><span class="n">ewald</span><span class="p">()</span> <span class="c1"># The full-range Coulomb</span>
+            <span class="k">return</span> <span class="n">e_fr</span> <span class="o">-</span> <span class="n">e_lr</span></div>
 
 
 
@@ -1113,7 +1127,7 @@ document.write(`
     <span class="n">_env</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">_env</span><span class="p">,</span> <span class="n">coords</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
     <span class="n">_atm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">_atm</span><span class="p">[</span><span class="kc">None</span><span class="p">,:,:],</span> <span class="n">nimgs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">_atm</span> <span class="o">=</span> <span class="n">_atm</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">ATM_SLOTS</span><span class="p">)</span>
-    <span class="c1"># Point to the corrdinates appended to _env</span>
+    <span class="c1"># Point to the coordinates appended to _env</span>
     <span class="n">_atm</span><span class="p">[:,</span><span class="n">PTR_COORD</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">_env</span><span class="o">.</span><span class="n">size</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nimgs</span> <span class="o">*</span> <span class="n">cell</span><span class="o">.</span><span class="n">natm</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3</span>
 
     <span class="n">_bas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">_bas</span><span class="p">[</span><span class="kc">None</span><span class="p">,:,:],</span> <span class="n">nimgs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -1227,8 +1241,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1239,7 +1253,7 @@ document.write(`
 
   <p class="copyright">
     
-      © Copyright 2024, The PySCF Developers.
+      © Copyright 2025, The PySCF Developers.
       <br/>
     
   </p>
@@ -1261,7 +1275,8 @@ document.write(`
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

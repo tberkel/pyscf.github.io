@@ -16,28 +16,31 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/css/pyscf-pst.css?v=ed6b5f64" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=3db9c557"></script>
+    <script src="../_static/documentation_options.js?v=69ff2ef9"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
@@ -51,6 +54,7 @@
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2.8" />
   </head>
   
   
@@ -66,19 +70,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -86,7 +79,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -94,8 +86,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -129,7 +121,7 @@
     
     
     <img src="../_static/logo-64x64.png" class="logo__image only-light" alt=""/>
-    <script>document.write(`<img src="../_static/logo-64x64.png" class="logo__image only-dark" alt=""/>`);</script>
+    <img src="../_static/logo-64x64.png" class="logo__image only-dark pst-js-only" alt=""/>
   
   
     <p class="title logo__title">PySCF</p>
@@ -173,6 +165,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -184,29 +183,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -231,15 +222,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -258,7 +245,8 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -300,6 +288,13 @@ document.write(`
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -312,15 +307,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -368,7 +359,10 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="pyscf.geomopt.html">pyscf.geomopt package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.grad.html">pyscf.grad package</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="pyscf.gto.html">pyscf.gto package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="pyscf.gto.basis.html">pyscf.gto.basis package</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="pyscf.gto.basis.html">pyscf.gto.basis package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.gto.basis.dyall-basis.html">pyscf.gto.basis.dyall-basis package</a></li>
+</ul>
+</details></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.gw.html">pyscf.gw package</a></li>
@@ -431,9 +425,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -451,8 +450,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -461,7 +458,7 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">pyscf.mcscf package</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pyscf.mcscf package</span></li>
   </ul>
 </nav>
 </div>
@@ -919,7 +916,7 @@ See Eqn. (1) in Keller et al. [DOI:10.1063/1.4922352] for details.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="pyscf.mcscf.addons.make_rdm1">
 <span class="sig-prename descclassname"><span class="pre">pyscf.mcscf.addons.</span></span><span class="sig-name descname"><span class="pre">make_rdm1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">casscf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ci</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/mcscf/addons.html#make_rdm1"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.mcscf.addons.make_rdm1" title="Link to this definition">#</a></dt>
-<dd><p>One-particle densit matrix in AO representation</p>
+<dd><p>One-particle density matrix in AO representation</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>casscf : an <code class="xref py py-class docutils literal notranslate"><span class="pre">CASSCF</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">CASCI</span></code> object</p>
 </dd>
@@ -955,7 +952,7 @@ See Eqn. (1) in Keller et al. [DOI:10.1063/1.4922352] for details.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="pyscf.mcscf.addons.make_rdm1s">
 <span class="sig-prename descclassname"><span class="pre">pyscf.mcscf.addons.</span></span><span class="sig-name descname"><span class="pre">make_rdm1s</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">casscf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ci</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/mcscf/addons.html#make_rdm1s"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.mcscf.addons.make_rdm1s" title="Link to this definition">#</a></dt>
-<dd><p>Alpha and beta one-particle densit matrices in AO representation</p>
+<dd><p>Alpha and beta one-particle density matrices in AO representation</p>
 </dd></dl>
 
 <dl class="py function">
@@ -1310,7 +1307,7 @@ until the size constraint max_size is met.</p>
 </dd>
 <dt>occ: 1D Numpy Array</dt><dd><p>Orbital occupations for orbs (2,1,0); nactel will be set to the number of electrons in the selected orbitals</p>
 </dd>
-<dt>entropies: 1D Numpy Array</dt><dd><p>Importance measurment used to rank the orbitals</p>
+<dt>entropies: 1D Numpy Array</dt><dd><p>Importance measurement used to rank the orbitals</p>
 </dd>
 <dt>max_size: Int or Tuple</dt><dd><p>Active space size constraint.
 If tuple, interpreted as (nelecas,ncas)
@@ -1318,7 +1315,7 @@ If int, interpreted as max # of orbitals</p>
 </dd>
 </dl>
 </dd>
-<dt>Returns:</dt><dd><p>active-space-size, #-active-electrons, orbital-initial-guess, chosen-active-orbital-indeces</p>
+<dt>Returns:</dt><dd><p>active-space-size, #-active-electrons, orbital-initial-guess, chosen-active-orbital-indices</p>
 </dd>
 </dl>
 <p>Example:</p>
@@ -1534,7 +1531,7 @@ parameter can be automatically determined.</p>
 </dd>
 <dt>nelecas<span class="classifier">tuple of int</span></dt><dd><p>Active (nelec_alpha, nelec_beta)</p>
 </dd>
-<dt>ncore<span class="classifier">int or tuple of int</span></dt><dd><p>Core electron number.  In UHF-CASSCF, it’s a tuple to indicate the different core eletron numbers.</p>
+<dt>ncore<span class="classifier">int or tuple of int</span></dt><dd><p>Core electron number.  In UHF-CASSCF, it’s a tuple to indicate the different core electron numbers.</p>
 </dd>
 <dt>natorb<span class="classifier">bool</span></dt><dd><p>Whether to transform natural orbitals in active space.
 Note: when CASCI/CASSCF are combined with DMRG solver or selected
@@ -1586,7 +1583,7 @@ orbitals which make the general Fock matrix (Fock operator on top
 of MCSCF 1-particle density matrix) diagonalized within each
 subspace (core, active, external).  If natorb (natural orbitals in
 active space) is specified, the active segment of the mo_coeff is
-natural orbitls.</p>
+natural orbitals.</p>
 </dd>
 <dt>mo_energy<span class="classifier">ndarray</span></dt><dd><p>Diagonal elements of general Fock matrix (in mo_coeff
 representation).</p>
@@ -1624,7 +1621,7 @@ representation).</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.mcscf.casci.CASBase.canonicalize">
 <span class="sig-name descname"><span class="pre">canonicalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ci</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eris</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cas_natorb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">casdm1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_meta_lowdin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stav_dm1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.mcscf.casci.CASBase.canonicalize" title="Link to this definition">#</a></dt>
-<dd><p>Canonicalized CASCI/CASSCF orbitals of effecitive Fock matrix and
+<dd><p>Canonicalized CASCI/CASSCF orbitals of effective Fock matrix and
 update CI coefficients accordingly.</p>
 <p>Effective Fock matrix is built with one-particle density matrix (see
 also <code class="xref py py-func docutils literal notranslate"><span class="pre">mcscf.casci.get_fock()</span></code>). For state-average CASCI/CASSCF object,
@@ -1651,7 +1648,7 @@ orbitals in each symmetry sector. sort=True will reorder all
 orbitals over all symmetry sectors in each subspace and the
 symmetry labels may be changed.</p>
 </dd>
-<dt>cas_natorb (bool): Whether to transform active orbitals to natual</dt><dd><p>orbitals. If enabled, the output orbitals in active space are
+<dt>cas_natorb (bool): Whether to transform active orbitals to natural</dt><dd><p>orbitals. If enabled, the output orbitals in active space are
 transformed to natural orbitals and CI coefficients are updated
 accordingly.</p>
 </dd>
@@ -1677,7 +1674,7 @@ The orbital energies are the diagonal terms of effective Fock matrix.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.mcscf.casci.CASBase.canonicalize_">
 <span class="sig-name descname"><span class="pre">canonicalize_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ci</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eris</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cas_natorb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">casdm1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_meta_lowdin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/mcscf/casci.html#CASBase.canonicalize_"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.mcscf.casci.CASBase.canonicalize_" title="Link to this definition">#</a></dt>
-<dd><p>Canonicalized CASCI/CASSCF orbitals of effecitive Fock matrix and
+<dd><p>Canonicalized CASCI/CASSCF orbitals of effective Fock matrix and
 update CI coefficients accordingly.</p>
 <p>Effective Fock matrix is built with one-particle density matrix (see
 also <code class="xref py py-func docutils literal notranslate"><span class="pre">mcscf.casci.get_fock()</span></code>). For state-average CASCI/CASSCF object,
@@ -1704,7 +1701,7 @@ orbitals in each symmetry sector. sort=True will reorder all
 orbitals over all symmetry sectors in each subspace and the
 symmetry labels may be changed.</p>
 </dd>
-<dt>cas_natorb (bool): Whether to transform active orbitals to natual</dt><dd><p>orbitals. If enabled, the output orbitals in active space are
+<dt>cas_natorb (bool): Whether to transform active orbitals to natural</dt><dd><p>orbitals. If enabled, the output orbitals in active space are
 transformed to natural orbitals and CI coefficients are updated
 accordingly.</p>
 </dd>
@@ -1845,7 +1842,7 @@ of functions/methods to be executed in pipe.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.mcscf.casci.CASBase.get_h1eff">
 <span class="sig-name descname"><span class="pre">get_h1eff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncore</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.mcscf.casci.CASBase.get_h1eff" title="Link to this definition">#</a></dt>
-<dd><p>CAS sapce one-electron hamiltonian</p>
+<dd><p>CAS space one-electron hamiltonian</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>casci : a CASSCF/CASCI object or RHF object</p>
 </dd>
@@ -1898,9 +1895,11 @@ computation of J, K matrices</p>
 </dd>
 <dt>with_k<span class="classifier">boolean</span></dt><dd><p>Whether to compute K matrices</p>
 </dd>
-<dt>omega<span class="classifier">float</span></dt><dd><p>Parameter of range-seperated Coulomb operator: erf( omega * r12 ) / r12.
-If specified, integration are evaluated based on the long-range
-part of the range-seperated Coulomb operator.</p>
+<dt>omega<span class="classifier">float</span></dt><dd><p>Parameter of range-separated Coulomb operator.
+When omega is 0 (or None), integrals are computed with the full-range Coulomb potential.
+When it is larger than zero, integrals are evaluated with the long-range
+Coulomb potential erf( omega * r12 ) / r12. When omega is smaller
+than 0, short-range Coulomb potential erfc( omega * r12 ) / r12 is applied.</p>
 </dd>
 </dl>
 </dd>
@@ -1973,7 +1972,7 @@ input density matrices.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.mcscf.casci.CASBase.h1e_for_cas">
 <span class="sig-name descname"><span class="pre">h1e_for_cas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncore</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.mcscf.casci.CASBase.h1e_for_cas" title="Link to this definition">#</a></dt>
-<dd><p>CAS sapce one-electron hamiltonian</p>
+<dd><p>CAS space one-electron hamiltonian</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>casci : a CASSCF/CASCI object or RHF object</p>
 </dd>
@@ -2250,7 +2249,7 @@ are automatically applied in the solver.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="pyscf.mcscf.casci.canonicalize">
 <span class="sig-prename descclassname"><span class="pre">pyscf.mcscf.casci.</span></span><span class="sig-name descname"><span class="pre">canonicalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ci</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eris</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cas_natorb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">casdm1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_meta_lowdin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stav_dm1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/mcscf/casci.html#canonicalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.mcscf.casci.canonicalize" title="Link to this definition">#</a></dt>
-<dd><p>Canonicalized CASCI/CASSCF orbitals of effecitive Fock matrix and
+<dd><p>Canonicalized CASCI/CASSCF orbitals of effective Fock matrix and
 update CI coefficients accordingly.</p>
 <p>Effective Fock matrix is built with one-particle density matrix (see
 also <code class="xref py py-func docutils literal notranslate"><span class="pre">mcscf.casci.get_fock()</span></code>). For state-average CASCI/CASSCF object,
@@ -2277,7 +2276,7 @@ orbitals in each symmetry sector. sort=True will reorder all
 orbitals over all symmetry sectors in each subspace and the
 symmetry labels may be changed.</p>
 </dd>
-<dt>cas_natorb (bool): Whether to transform active orbitals to natual</dt><dd><p>orbitals. If enabled, the output orbitals in active space are
+<dt>cas_natorb (bool): Whether to transform active orbitals to natural</dt><dd><p>orbitals. If enabled, the output orbitals in active space are
 transformed to natural orbitals and CI coefficients are updated
 accordingly.</p>
 </dd>
@@ -2362,7 +2361,7 @@ can assign the density matrix of that state to the kwarg casdm1.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="pyscf.mcscf.casci.h1e_for_cas">
 <span class="sig-prename descclassname"><span class="pre">pyscf.mcscf.casci.</span></span><span class="sig-name descname"><span class="pre">h1e_for_cas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">casci</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncore</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/mcscf/casci.html#h1e_for_cas"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.mcscf.casci.h1e_for_cas" title="Link to this definition">#</a></dt>
-<dd><p>CAS sapce one-electron hamiltonian</p>
+<dd><p>CAS space one-electron hamiltonian</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>casci : a CASSCF/CASCI object or RHF object</p>
 </dd>
@@ -2566,7 +2565,7 @@ Ref. arXiv:1701.07862 [physics.chem-ph]</p>
 <dt>Kwargs:</dt><dd><dl class="simple">
 <dt>threshold<span class="classifier">float</span></dt><dd><p>Entanglement threshold of DMET bath.  If the occupancy of an
 orbital is less than threshold, the orbital is considered as bath
-orbtial.  If occ is greater than (1-threshold), the orbitals are
+orbital.  If occ is greater than (1-threshold), the orbitals are
 taken for core determinant.</p>
 </dd>
 <dt>base<span class="classifier">int</span></dt><dd><p>0-based (C-style) or 1-based (Fortran-style) for baslst if baslst
@@ -2574,7 +2573,7 @@ is index list</p>
 </dd>
 <dt>orth_method<span class="classifier">str</span></dt><dd><p>It can be one of ‘lowdin’ and ‘meta_lowdin’</p>
 </dd>
-<dt>s<span class="classifier">2D array</span></dt><dd><p>AO overlap matrix.  This option is mainly used for custom Hamilatonian.</p>
+<dt>s<span class="classifier">2D array</span></dt><dd><p>AO overlap matrix.  This option is mainly used for custom Hamiltonian.</p>
 </dd>
 <dt>canonicalize<span class="classifier">bool</span></dt><dd><p>Orbitals defined in AVAS method are local orbitals.  Symmetrizing
 the core, active and virtual space.</p>
@@ -2612,7 +2611,7 @@ Ref. arXiv:1701.07862 [physics.chem-ph]</p>
 <dt>Kwargs:</dt><dd><dl class="simple">
 <dt>threshold<span class="classifier">float</span></dt><dd><p>Entanglement threshold of DMET bath.  If the occupancy of an
 orbital is less than threshold, the orbital is considered as bath
-orbtial.  If occ is greater than (1-threshold), the orbitals are
+orbital.  If occ is greater than (1-threshold), the orbitals are
 taken for core determinant.</p>
 </dd>
 <dt>base<span class="classifier">int</span></dt><dd><p>0-based (C-style) or 1-based (Fortran-style) for baslst if baslst
@@ -2620,7 +2619,7 @@ is index list</p>
 </dd>
 <dt>orth_method<span class="classifier">str</span></dt><dd><p>It can be one of ‘lowdin’ and ‘meta_lowdin’</p>
 </dd>
-<dt>s<span class="classifier">2D array</span></dt><dd><p>AO overlap matrix.  This option is mainly used for custom Hamilatonian.</p>
+<dt>s<span class="classifier">2D array</span></dt><dd><p>AO overlap matrix.  This option is mainly used for custom Hamiltonian.</p>
 </dd>
 <dt>canonicalize<span class="classifier">bool</span></dt><dd><p>Orbitals defined in AVAS method are local orbitals.  Symmetrizing
 the core, active and virtual space.</p>
@@ -2658,7 +2657,7 @@ Ref. arXiv:1701.07862 [physics.chem-ph]</p>
 <dt>Kwargs:</dt><dd><dl class="simple">
 <dt>threshold<span class="classifier">float</span></dt><dd><p>Entanglement threshold of DMET bath.  If the occupancy of an
 orbital is less than threshold, the orbital is considered as bath
-orbtial.  If occ is greater than (1-threshold), the orbitals are
+orbital.  If occ is greater than (1-threshold), the orbitals are
 taken for core determinant.</p>
 </dd>
 <dt>base<span class="classifier">int</span></dt><dd><p>0-based (C-style) or 1-based (Fortran-style) for baslst if baslst
@@ -2666,7 +2665,7 @@ is index list</p>
 </dd>
 <dt>orth_method<span class="classifier">str</span></dt><dd><p>It can be one of ‘lowdin’ and ‘meta_lowdin’</p>
 </dd>
-<dt>s<span class="classifier">2D array</span></dt><dd><p>AO overlap matrix.  This option is mainly used for custom Hamilatonian.</p>
+<dt>s<span class="classifier">2D array</span></dt><dd><p>AO overlap matrix.  This option is mainly used for custom Hamiltonian.</p>
 </dd>
 <dt>canonicalize<span class="classifier">bool</span></dt><dd><p>Orbitals defined in AVAS method are local orbitals.  Symmetrizing
 the core, active and virtual space.</p>
@@ -2730,7 +2729,7 @@ parameter can be automatically determined.</p>
 </dd>
 <dt>nelecas<span class="classifier">tuple of int</span></dt><dd><p>Active (nelec_alpha, nelec_beta)</p>
 </dd>
-<dt>ncore<span class="classifier">int or tuple of int</span></dt><dd><p>Core electron number.  In UHF-CASSCF, it’s a tuple to indicate the different core eletron numbers.</p>
+<dt>ncore<span class="classifier">int or tuple of int</span></dt><dd><p>Core electron number.  In UHF-CASSCF, it’s a tuple to indicate the different core electron numbers.</p>
 </dd>
 <dt>natorb<span class="classifier">bool</span></dt><dd><p>Whether to transform natural orbitals in active space.
 Note: when CASCI/CASSCF are combined with DMRG solver or selected
@@ -2782,7 +2781,7 @@ orbitals which make the general Fock matrix (Fock operator on top
 of MCSCF 1-particle density matrix) diagonalized within each
 subspace (core, active, external).  If natorb (natural orbitals in
 active space) is specified, the active segment of the mo_coeff is
-natural orbitls.</p>
+natural orbitals.</p>
 </dd>
 <dt>mo_energy<span class="classifier">ndarray</span></dt><dd><p>Diagonal elements of general Fock matrix (in mo_coeff
 representation).</p>
@@ -2863,7 +2862,7 @@ Default is the checkpoint file of mean field object.</p>
 <dt>callback<span class="classifier">function(envs_dict) =&gt; None</span></dt><dd><p>callback function takes one dict as the argument which is
 generated by the builtin function <code class="xref py py-func docutils literal notranslate"><span class="pre">locals()</span></code>, so that the
 callback function can access all local variables in the current
-envrionment.</p>
+environment.</p>
 </dd>
 <dt>scale_restoration<span class="classifier">float</span></dt><dd><p>When a step of orbital rotation moves out of trust region, the
 orbital optimization will be restored to previous state and the
@@ -3033,8 +3032,19 @@ initial guess of the new calculation.  All parameters of MCSCF object
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.mcscf.mc1step.CASSCF.dump_chk">
-<span class="sig-name descname"><span class="pre">dump_chk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">envs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/mcscf/mc1step.html#CASSCF.dump_chk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.mcscf.mc1step.CASSCF.dump_chk" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">dump_chk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">envs_or_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/mcscf/mc1step.html#CASSCF.dump_chk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.mcscf.mc1step.CASSCF.dump_chk" title="Link to this definition">#</a></dt>
+<dd><p>Serialize the MCSCF object and save it to the specified chkfile.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>envs_or_file:</dt><dd><p>If this argument is a file path, the serialized MCSCF object is
+saved to the file specified by this argument.
+If this attribute is a dict (created by locals()), the necessary
+variables are saved to the file specified by the attribute .chkfile.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.mcscf.mc1step.CASSCF.dump_flags">
@@ -3347,7 +3357,7 @@ parameter can be automatically determined.</p>
 </dd>
 <dt>nelecas<span class="classifier">tuple of int</span></dt><dd><p>Active (nelec_alpha, nelec_beta)</p>
 </dd>
-<dt>ncore<span class="classifier">int or tuple of int</span></dt><dd><p>Core electron number.  In UHF-CASSCF, it’s a tuple to indicate the different core eletron numbers.</p>
+<dt>ncore<span class="classifier">int or tuple of int</span></dt><dd><p>Core electron number.  In UHF-CASSCF, it’s a tuple to indicate the different core electron numbers.</p>
 </dd>
 <dt>natorb<span class="classifier">bool</span></dt><dd><p>Whether to transform natural orbitals in active space.
 Note: when CASCI/CASSCF are combined with DMRG solver or selected
@@ -3399,7 +3409,7 @@ orbitals which make the general Fock matrix (Fock operator on top
 of MCSCF 1-particle density matrix) diagonalized within each
 subspace (core, active, external).  If natorb (natural orbitals in
 active space) is specified, the active segment of the mo_coeff is
-natural orbitls.</p>
+natural orbitals.</p>
 </dd>
 <dt>mo_energy<span class="classifier">ndarray</span></dt><dd><p>Diagonal elements of general Fock matrix (in mo_coeff
 representation).</p>
@@ -3480,7 +3490,7 @@ Default is the checkpoint file of mean field object.</p>
 <dt>callback<span class="classifier">function(envs_dict) =&gt; None</span></dt><dd><p>callback function takes one dict as the argument which is
 generated by the builtin function <code class="xref py py-func docutils literal notranslate"><span class="pre">locals()</span></code>, so that the
 callback function can access all local variables in the current
-envrionment.</p>
+environment.</p>
 </dd>
 <dt>scale_restoration<span class="classifier">float</span></dt><dd><p>When a step of orbital rotation moves out of trust region, the
 orbital optimization will be restored to previous state and the
@@ -3636,7 +3646,7 @@ parameter can be automatically determined.</p>
 </dd>
 <dt>nelecas<span class="classifier">tuple of int</span></dt><dd><p>Active (nelec_alpha, nelec_beta)</p>
 </dd>
-<dt>ncore<span class="classifier">int or tuple of int</span></dt><dd><p>Core electron number.  In UHF-CASSCF, it’s a tuple to indicate the different core eletron numbers.</p>
+<dt>ncore<span class="classifier">int or tuple of int</span></dt><dd><p>Core electron number.  In UHF-CASSCF, it’s a tuple to indicate the different core electron numbers.</p>
 </dd>
 <dt>natorb<span class="classifier">bool</span></dt><dd><p>Whether to transform natural orbitals in active space.
 Note: when CASCI/CASSCF are combined with DMRG solver or selected
@@ -3688,7 +3698,7 @@ orbitals which make the general Fock matrix (Fock operator on top
 of MCSCF 1-particle density matrix) diagonalized within each
 subspace (core, active, external).  If natorb (natural orbitals in
 active space) is specified, the active segment of the mo_coeff is
-natural orbitls.</p>
+natural orbitals.</p>
 </dd>
 <dt>mo_energy<span class="classifier">ndarray</span></dt><dd><p>Diagonal elements of general Fock matrix (in mo_coeff
 representation).</p>
@@ -3762,7 +3772,7 @@ Default is the checkpoint file of mean field object.</p>
 <dt>callback<span class="classifier">function(envs_dict) =&gt; None</span></dt><dd><p>callback function takes one dict as the argument which is
 generated by the builtin function <code class="xref py py-func docutils literal notranslate"><span class="pre">locals()</span></code>, so that the
 callback function can access all local variables in the current
-envrionment.</p>
+environment.</p>
 </dd>
 </dl>
 </div></blockquote>
@@ -3876,7 +3886,7 @@ parameter can be automatically determined.</p>
 </dd>
 <dt>nelecas<span class="classifier">tuple of int</span></dt><dd><p>Active (nelec_alpha, nelec_beta)</p>
 </dd>
-<dt>ncore<span class="classifier">int or tuple of int</span></dt><dd><p>Core electron number.  In UHF-CASSCF, it’s a tuple to indicate the different core eletron numbers.</p>
+<dt>ncore<span class="classifier">int or tuple of int</span></dt><dd><p>Core electron number.  In UHF-CASSCF, it’s a tuple to indicate the different core electron numbers.</p>
 </dd>
 <dt>natorb<span class="classifier">bool</span></dt><dd><p>Whether to transform natural orbitals in active space.
 Note: when CASCI/CASSCF are combined with DMRG solver or selected
@@ -3928,7 +3938,7 @@ orbitals which make the general Fock matrix (Fock operator on top
 of MCSCF 1-particle density matrix) diagonalized within each
 subspace (core, active, external).  If natorb (natural orbitals in
 active space) is specified, the active segment of the mo_coeff is
-natural orbitls.</p>
+natural orbitals.</p>
 </dd>
 <dt>mo_energy<span class="classifier">ndarray</span></dt><dd><p>Diagonal elements of general Fock matrix (in mo_coeff
 representation).</p>
@@ -4002,7 +4012,7 @@ Default is the checkpoint file of mean field object.</p>
 <dt>callback<span class="classifier">function(envs_dict) =&gt; None</span></dt><dd><p>callback function takes one dict as the argument which is
 generated by the builtin function <code class="xref py py-func docutils literal notranslate"><span class="pre">locals()</span></code>, so that the
 callback function can access all local variables in the current
-envrionment.</p>
+environment.</p>
 </dd>
 </dl>
 </div></blockquote>
@@ -4170,7 +4180,7 @@ of functions/methods to be executed in pipe.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.mcscf.ucasci.UCASBase.get_h1eff">
 <span class="sig-name descname"><span class="pre">get_h1eff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncore</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.mcscf.ucasci.UCASBase.get_h1eff" title="Link to this definition">#</a></dt>
-<dd><p>CAS sapce one-electron hamiltonian for UHF-CASCI or UHF-CASSCF</p>
+<dd><p>CAS space one-electron hamiltonian for UHF-CASCI or UHF-CASSCF</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>casci : a U-CASSCF/U-CASCI object or UHF object</p>
 </dd>
@@ -4354,7 +4364,7 @@ the MCSCF canonical orbital coefficients.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="pyscf.mcscf.ucasci.h1e_for_cas">
 <span class="sig-prename descclassname"><span class="pre">pyscf.mcscf.ucasci.</span></span><span class="sig-name descname"><span class="pre">h1e_for_cas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">casci</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncore</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/mcscf/ucasci.html#h1e_for_cas"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.mcscf.ucasci.h1e_for_cas" title="Link to this definition">#</a></dt>
-<dd><p>CAS sapce one-electron hamiltonian for UHF-CASCI or UHF-CASSCF</p>
+<dd><p>CAS space one-electron hamiltonian for UHF-CASCI or UHF-CASSCF</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>casci : a U-CASSCF/U-CASCI object or UHF object</p>
 </dd>
@@ -4481,8 +4491,19 @@ initial guess of the new calculation.  All parameters of MCSCF object
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.mcscf.umc1step.UCASSCF.dump_chk">
-<span class="sig-name descname"><span class="pre">dump_chk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">envs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/mcscf/umc1step.html#UCASSCF.dump_chk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.mcscf.umc1step.UCASSCF.dump_chk" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">dump_chk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">envs_or_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/mcscf/umc1step.html#UCASSCF.dump_chk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.mcscf.umc1step.UCASSCF.dump_chk" title="Link to this definition">#</a></dt>
+<dd><p>Serialize the MCSCF object and save it to the specified chkfile.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>envs_or_file:</dt><dd><p>If this argument is a file path, the serialized MCSCF object is
+saved to the file specified by this argument.
+If this attribute is a dict (created by locals()), the necessary
+variables are saved to the file specified by the attribute .chkfile.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.mcscf.umc1step.UCASSCF.dump_flags">
@@ -4704,7 +4725,7 @@ There are some parameters to control the CASSCF/CASCI method.</p>
 </dd>
 <dt>nelecas<span class="classifier">tuple of int</span></dt><dd><p>Active (nelec_alpha, nelec_beta)</p>
 </dd>
-<dt>ncore<span class="classifier">int or tuple of int</span></dt><dd><p>Core electron number.  In UHF-CASSCF, it’s a tuple to indicate the different core eletron numbers.</p>
+<dt>ncore<span class="classifier">int or tuple of int</span></dt><dd><p>Core electron number.  In UHF-CASSCF, it’s a tuple to indicate the different core electron numbers.</p>
 </dd>
 <dt>natorb<span class="classifier">bool</span></dt><dd><p>Whether to restore the natural orbital during CASSCF optimization. Default is not.</p>
 </dd>
@@ -4744,7 +4765,7 @@ If not specified, it is set to sqrt(conv_tol).</p>
 <dt>max_stepsize<span class="classifier">float</span></dt><dd><p>The step size for orbital rotation.  Small step size is prefered.
 Default is 0.02.  
 (NOTE although the default step size is small enough for many systems,
-it happens that the orbital optimizor crosses the barriar of local
+it happens that the orbital optimizor crosses the barrier of local
 minimum and converge to the neighbour solution, e.g. the CAS(4,4) for
 C2H4 in the test files.  In these systems, adjusting max_stepsize,
 max_ci_stepsize and max_cycle_micro and ah_start_tol may be helpful)</p>
@@ -4892,7 +4913,8 @@ inbuilt methods to convert the mo_coeff to natural orbitals.
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -5385,8 +5407,8 @@ inbuilt methods to convert the mo_coeff to natural orbitals.
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -5397,7 +5419,7 @@ inbuilt methods to convert the mo_coeff to natural orbitals.
 
   <p class="copyright">
     
-      © Copyright 2024, The PySCF Developers.
+      © Copyright 2025, The PySCF Developers.
       <br/>
     
   </p>
@@ -5419,7 +5441,8 @@ inbuilt methods to convert the mo_coeff to natural orbitals.
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

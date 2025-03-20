@@ -15,28 +15,31 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/css/pyscf-pst.css?v=ed6b5f64" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="_static/documentation_options.js?v=3db9c557"></script>
+    <script src="_static/documentation_options.js?v=69ff2ef9"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
@@ -48,6 +51,7 @@
     <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2.8" />
   </head>
   
   
@@ -63,19 +67,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -83,7 +76,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -91,8 +83,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -126,7 +118,7 @@
     
     
     <img src="_static/logo-64x64.png" class="logo__image only-light" alt=""/>
-    <script>document.write(`<img src="_static/logo-64x64.png" class="logo__image only-dark" alt=""/>`);</script>
+    <img src="_static/logo-64x64.png" class="logo__image only-dark pst-js-only" alt=""/>
   
   
     <p class="title logo__title">PySCF</p>
@@ -170,6 +162,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -181,29 +180,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -228,15 +219,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -253,7 +240,8 @@ document.write(`
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -295,6 +283,13 @@ document.write(`
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -307,15 +302,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -339,9 +330,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -398,10 +394,6 @@ document.write(`
       <li><a href="pyscf_api_docs/pyscf.pbc.symm.html#pyscf.pbc.symm.space_group.SPGElement.a2b">a2b() (pyscf.pbc.symm.space_group.SPGElement method)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.symm.html#pyscf.pbc.symm.space_group.SPGElement.a2r">a2r() (pyscf.pbc.symm.space_group.SPGElement method)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.ab2full">ab2full() (in module pyscf.tdscf.common_slow)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.ab2mkk">ab2mkk() (in module pyscf.tdscf.common_slow)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.fci.html#pyscf.fci.direct_nosym.absorb_h1e">absorb_h1e() (in module pyscf.fci.direct_nosym)</a>
 
@@ -887,8 +879,6 @@ document.write(`
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.rhf.analyze_wfnsym">analyze_wfnsym() (in module pyscf.tdscf.rhf)</a>
-</li>
       <li><a href="pyscf_api_docs/pyscf.agf2.html#pyscf.agf2.dfragf2.DFRAGF2.ao2mo">ao2mo() (pyscf.agf2.dfragf2.DFRAGF2 method)</a>
 
       <ul>
@@ -930,11 +920,7 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.gw_exact.GWExact.ao2mo">(pyscf.gw.gw_exact.GWExact method)</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.rpa.DirectRPA.ao2mo">(pyscf.gw.rpa.DirectRPA method)</a>
-</li>
         <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.ugw_ac.UGWAC.ao2mo">(pyscf.gw.ugw_ac.UGWAC method)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.urpa.URPA.ao2mo">(pyscf.gw.urpa.URPA method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mcscf.html#pyscf.mcscf.casci.CASBase.ao2mo">(pyscf.mcscf.casci.CASBase method)</a>
 </li>
@@ -945,6 +931,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfgmp2.DFGMP2.ao2mo">(pyscf.mp.dfgmp2.DFGMP2 method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2.DFMP2.ao2mo">(pyscf.mp.dfmp2.DFMP2 method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.ao2mo">(pyscf.mp.dfump2.DFUMP2 method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.gmp2.GMP2.ao2mo">(pyscf.mp.gmp2.GMP2 method)</a>
 </li>
@@ -988,16 +976,6 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.mp.html#pyscf.pbc.mp.mp2.UMP2.ao2mo">(pyscf.pbc.mp.mp2.UMP2 method)</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kproxy_supercell.TDProxy.ao2mo">(pyscf.pbc.tdscf.kproxy_supercell.TDProxy method)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.TDBase.ao2mo">(pyscf.tdscf.common_slow.TDBase method)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.proxy.TDProxy.ao2mo">(pyscf.tdscf.proxy.TDProxy method)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.rhf_slow.PhysERI.ao2mo">(pyscf.tdscf.rhf_slow.PhysERI method)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.rhf_slow.TDRHF.ao2mo">(pyscf.tdscf.rhf_slow.TDRHF method)</a>
-</li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.pbc.df.html#pyscf.pbc.df.aft_ao2mo.ao2mo_7d">ao2mo_7d() (in module pyscf.pbc.df.aft_ao2mo)</a>
 
@@ -1017,8 +995,6 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.pbc.df.html#pyscf.pbc.df.mdf.MDF.ao2mo_7d">(pyscf.pbc.df.mdf.MDF method)</a>
 </li>
       </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_supercell.PhysERI.ao2mo_k">ao2mo_k() (pyscf.pbc.tdscf.krhf_slow_supercell.PhysERI method)</a>
-</li>
       <li><a href="pyscf_api_docs/pyscf.mcscf.html#pyscf.mcscf.mc1step.CASSCF.ao2mo_level">ao2mo_level (pyscf.mcscf.mc1step.CASSCF attribute)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.ao_labels">ao_labels() (in module pyscf.gto.mole)</a>
@@ -1203,8 +1179,6 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.ao2mo.html#pyscf.pbc.ao2mo.eris.assemble_eri">assemble_eri() (in module pyscf.pbc.ao2mo.eris)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kproxy_supercell.assert_scf_converged">assert_scf_converged() (in module pyscf.pbc.tdscf.kproxy_supercell)</a>
-</li>
       <li><a href="pyscf_api_docs/pyscf.adc.html#pyscf.adc.radc.RADC.async_io">async_io (pyscf.adc.radc.RADC attribute)</a>
 
       <ul>
@@ -1283,6 +1257,18 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.df.html#pyscf.df.addons.aug_etb_for_dfbasis">aug_etb_for_dfbasis() (in module pyscf.df.addons)</a>
 </li>
+      <li><a href="pyscf_api_docs/pyscf.df.html#pyscf.df.autoaux.autoabs">autoabs() (in module pyscf.df.autoaux)</a>
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.gto.basis.html#pyscf.gto.basis.bse.autoabs">(in module pyscf.gto.basis.bse)</a>
+</li>
+      </ul></li>
+      <li><a href="pyscf_api_docs/pyscf.df.html#pyscf.df.autoaux.autoaux">autoaux() (in module pyscf.df.autoaux)</a>
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.gto.basis.html#pyscf.gto.basis.bse.autoaux">(in module pyscf.gto.basis.bse)</a>
+</li>
+      </ul></li>
       <li><a href="pyscf_api_docs/pyscf.df.html#pyscf.df.incore.aux_e1">aux_e1() (in module pyscf.df.incore)</a>
 
       <ul>
@@ -1330,6 +1316,8 @@ document.write(`
 </li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.agf2.html#pyscf.agf2.aux_space.AuxiliarySpace">AuxiliarySpace (class in pyscf.agf2.aux_space)</a>
+</li>
+      <li><a href="pyscf_api_docs/pyscf.dft.html#pyscf.dft.libxc.available_libxc_functionals">available_libxc_functionals() (in module pyscf.dft.libxc)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.mcscf.html#pyscf.mcscf.avas.AVAS">AVAS (class in pyscf.mcscf.avas)</a>
 </li>
@@ -1396,8 +1384,6 @@ document.write(`
       <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.gw_slow.GW.base_imds">base_imds (pyscf.gw.gw_slow.GW attribute)</a>
 
       <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.gw.html#pyscf.pbc.gw.kgw_slow.GW.base_imds">(pyscf.pbc.gw.kgw_slow.GW attribute)</a>
-</li>
         <li><a href="pyscf_api_docs/pyscf.pbc.gw.html#pyscf.pbc.gw.kgw_slow_supercell.GW.base_imds">(pyscf.pbc.gw.kgw_slow_supercell.GW attribute)</a>
 </li>
       </ul></li>
@@ -1416,6 +1402,8 @@ document.write(`
       <li><a href="pyscf_api_docs/pyscf.agf2.html#pyscf.agf2.mpi_helper.bcast">bcast() (in module pyscf.agf2.mpi_helper)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.agf2.html#pyscf.agf2.mpi_helper.bcast_dict">bcast_dict() (in module pyscf.agf2.mpi_helper)</a>
+</li>
+      <li><a href="pyscf_api_docs/pyscf.cc.html#pyscf.cc.BCCD">BCCD() (in module pyscf.cc)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.cc.html#pyscf.cc.bccd.bccd_kernel_">bccd_kernel_() (in module pyscf.cc.bccd)</a>
 </li>
@@ -1462,7 +1450,11 @@ document.write(`
       <li><a href="pyscf_api_docs/pyscf.df.html#pyscf.df.df.DF.blockdim">blockdim (pyscf.df.df.DF attribute)</a>
 
       <ul>
+        <li><a href="pyscf_api_docs/pyscf.pbc.df.html#pyscf.pbc.df.aft.AFTDF.blockdim">(pyscf.pbc.df.aft.AFTDF attribute)</a>
+</li>
         <li><a href="pyscf_api_docs/pyscf.pbc.df.html#pyscf.pbc.df.df.GDF.blockdim">(pyscf.pbc.df.df.GDF attribute)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.df.html#pyscf.pbc.df.fft.FFTDF.blockdim">(pyscf.pbc.df.fft.FFTDF attribute)</a>
 </li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.lo.html#pyscf.lo.boys.Boys">Boys (class in pyscf.lo.boys)</a>
@@ -1515,6 +1507,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.pbc.lib.html#pyscf.pbc.lib.kpts.MORotationMatrix.build">(pyscf.pbc.lib.kpts.MORotationMatrix method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.hf.SCF.build">(pyscf.pbc.scf.hf.SCF method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.khf.KSCF.build">(pyscf.pbc.scf.khf.KSCF method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.rsjk.RangeSeparatedJKBuilder.build">(pyscf.pbc.scf.rsjk.RangeSeparatedJKBuilder method)</a>
 </li>
@@ -2414,6 +2408,10 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.ci.html#pyscf.ci.ucisd.UCISD.cisdvec_to_amplitudes">(pyscf.ci.ucisd.UCISD method)</a>
 </li>
       </ul></li>
+      <li><a href="pyscf_api_docs/pyscf.fci.html#pyscf.fci.addons.civec_spinless_repr">civec_spinless_repr() (in module pyscf.fci.addons)</a>
+</li>
+      <li><a href="pyscf_api_docs/pyscf.fci.html#pyscf.fci.addons.civec_spinless_repr_generator">civec_spinless_repr_generator() (in module pyscf.fci.addons)</a>
+</li>
       <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.misc.class_as_method">class_as_method() (in module pyscf.lib.misc)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.classical_coulomb_energy">classical_coulomb_energy() (in module pyscf.gto.mole)</a>
@@ -2585,11 +2583,7 @@ document.write(`
       <li><a href="pyscf_api_docs/pyscf.pbc.symm.html#pyscf.pbc.symm.group.FiniteGroup.conjugacy_table">conjugacy_table (pyscf.pbc.symm.group.FiniteGroup property)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.gw_slow.IMDS.construct_tdm">construct_tdm() (pyscf.gw.gw_slow.IMDS method)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.gw.html#pyscf.pbc.gw.kgw_slow.IMDS.construct_tdm">(pyscf.pbc.gw.kgw_slow.IMDS method)</a>
 </li>
-      </ul></li>
       <li><a href="pyscf_api_docs/pyscf.pbc.lib.html#pyscf.pbc.lib.arnoldi.Arnoldi.constructAllSolV">constructAllSolV() (pyscf.pbc.lib.arnoldi.Arnoldi method)</a>
 
       <ul>
@@ -2813,9 +2807,7 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.mp2.MP2.conv_tol">(pyscf.mp.mp2.MP2 attribute)</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf.TDA.conv_tol">(pyscf.pbc.tdscf.krhf.TDA attribute)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kuhf.TDA.conv_tol">(pyscf.pbc.tdscf.kuhf.TDA attribute)</a>
+        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf.KTDBase.conv_tol">(pyscf.pbc.tdscf.krhf.KTDBase attribute)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.dhf.DHF.conv_tol">(pyscf.scf.dhf.DHF attribute)</a>
 </li>
@@ -3306,6 +3298,8 @@ document.write(`
       <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2.DFMP2">DFMP2 (class in pyscf.mp.dfmp2)</a>
 
       <ul>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2_slow.DFMP2">(class in pyscf.mp.dfmp2_slow)</a>
+</li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2_native.DFMP2">(in module pyscf.mp.dfmp2_native)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2_native.DFMP2">(in module pyscf.mp.dfump2_native)</a>
@@ -3332,8 +3326,14 @@ document.write(`
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.agf2.html#pyscf.agf2.dfuagf2.DFUAGF2">DFUAGF2 (class in pyscf.agf2.dfuagf2)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2_native.DFUMP2">DFUMP2 (class in pyscf.mp.dfump2_native)</a>
+      <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2.DFUMP2">DFUMP2 (class in pyscf.mp.dfump2)</a>
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2_native.DFUMP2">(class in pyscf.mp.dfump2_native)</a>
 </li>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2_slow.DFUMP2">(class in pyscf.mp.dfump2_slow)</a>
+</li>
+      </ul></li>
       <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.linalg_helper.dgeev">dgeev() (in module pyscf.lib.linalg_helper)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.linalg_helper.dgeev1">dgeev1() (in module pyscf.lib.linalg_helper)</a>
@@ -3436,7 +3436,7 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.numpy_helper.direct_sum">direct_sum() (in module pyscf.lib.numpy_helper)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.rpa.DirectRPA">DirectRPA (class in pyscf.gw.rpa)</a>
+      <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.rpa.DirectRPA">DirectRPA (in module pyscf.gw.rpa)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.hf.SCF.disp">disp (pyscf.scf.hf.SCF attribute)</a>
 </li>
@@ -3649,11 +3649,9 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.gw_exact.GWExact.dump_flags">(pyscf.gw.gw_exact.GWExact method)</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.rpa.DirectRPA.dump_flags">(pyscf.gw.rpa.DirectRPA method)</a>
+        <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.rpa.RPA.dump_flags">(pyscf.gw.rpa.RPA method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.ugw_ac.UGWAC.dump_flags">(pyscf.gw.ugw_ac.UGWAC method)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.urpa.URPA.dump_flags">(pyscf.gw.urpa.URPA method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.lo.html#pyscf.lo.boys.OrbitalLocalizer.dump_flags">(pyscf.lo.boys.OrbitalLocalizer method)</a>
 </li>
@@ -3844,6 +3842,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.hf.SCF.dump_scf_summary">(pyscf.scf.hf.SCF method)</a>
 </li>
       </ul></li>
+      <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.stability.dump_status">dump_status() (in module pyscf.scf.stability)</a>
+</li>
       <li><a href="pyscf_api_docs/pyscf.symm.html#pyscf.symm.basis.dump_symm_adapted_basis">dump_symm_adapted_basis() (in module pyscf.symm.basis)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.hessian.html#pyscf.hessian.thermo.dump_thermo">dump_thermo() (in module pyscf.hessian.thermo)</a>
@@ -4121,8 +4121,6 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.hf_symm.eig">(in module pyscf.scf.hf_symm)</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.eig">(in module pyscf.tdscf.common_slow)</a>
-</li>
         <li><a href="pyscf_api_docs/pyscf.agf2.html#pyscf.agf2.aux_space.AuxiliarySpace.eig">(pyscf.agf2.aux_space.AuxiliarySpace method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.fci.html#pyscf.fci.direct_nosym.FCISolver.eig">(pyscf.fci.direct_nosym.FCISolver method)</a>
@@ -4194,16 +4192,12 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.elements">elements (pyscf.gto.mole.MoleBase property)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.VindTracker.elements_calc">elements_calc (pyscf.tdscf.common_slow.VindTracker property)</a>
-</li>
       <li><a href="pyscf_api_docs/pyscf.pbc.symm.html#pyscf.pbc.symm.group.FiniteGroup.elements_from_hash">elements_from_hash() (pyscf.pbc.symm.group.FiniteGroup static method)</a>
 
       <ul>
         <li><a href="pyscf_api_docs/pyscf.pbc.symm.html#pyscf.pbc.symm.group.PointGroup.elements_from_hash">(pyscf.pbc.symm.group.PointGroup static method)</a>
 </li>
       </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.VindTracker.elements_total">elements_total (pyscf.tdscf.common_slow.VindTracker property)</a>
-</li>
       <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.mp2.MP2.emp2">emp2 (pyscf.mp.mp2.MP2 property)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2_native.emp2_rhf">emp2_rhf() (in module pyscf.mp.dfmp2_native)</a>
@@ -4434,6 +4428,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.agf2.html#pyscf.agf2.uagf2.UAGF2.energy_mp2">(pyscf.agf2.uagf2.UAGF2 method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.energy_nuc">energy_nuc() (in module pyscf.gto.mole)</a>
 
       <ul>
@@ -4456,8 +4452,6 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.hf.SCF.energy_nuc">(pyscf.scf.hf.SCF method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.hf.energy_tot">energy_tot() (in module pyscf.scf.hf)</a>
 
       <ul>
@@ -4491,6 +4485,8 @@ document.write(`
 </li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.gw_slow.AbstractIMDS.entire_space">entire_space() (pyscf.gw.gw_slow.AbstractIMDS method)</a>
+</li>
+      <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.numpy_helper.entrywise_mul">entrywise_mul() (in module pyscf.lib.numpy_helper)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.enuc">enuc (pyscf.gto.mole.MoleBase property)</a>
 </li>
@@ -4728,48 +4724,8 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.lo.html#pyscf.lo.edmiston.ER">ER (in module pyscf.lo.edmiston)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.rhf_slow.TDRHF.eri1">eri1 (pyscf.tdscf.rhf_slow.TDRHF attribute)</a>
+      <li><a href="pyscf_api_docs/pyscf.pbc.gw.html#pyscf.pbc.gw.kgw_slow_supercell.IMDS.eri_ov">eri_ov() (pyscf.pbc.gw.kgw_slow_supercell.IMDS method)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow.TDRHF.eri4">eri4 (pyscf.pbc.tdscf.krhf_slow.TDRHF attribute)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_gamma.TDRHF.eri4">(pyscf.pbc.tdscf.krhf_slow_gamma.TDRHF attribute)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_supercell.TDRHF.eri4">(pyscf.pbc.tdscf.krhf_slow_supercell.TDRHF attribute)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.rhf_slow.TDRHF.eri4">(pyscf.tdscf.rhf_slow.TDRHF attribute)</a>
-</li>
-      </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow.TDRHF.eri8">eri8 (pyscf.pbc.tdscf.krhf_slow.TDRHF attribute)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_gamma.TDRHF.eri8">(pyscf.pbc.tdscf.krhf_slow_gamma.TDRHF attribute)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_supercell.TDRHF.eri8">(pyscf.pbc.tdscf.krhf_slow_supercell.TDRHF attribute)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.rhf_slow.TDRHF.eri8">(pyscf.tdscf.rhf_slow.TDRHF attribute)</a>
-</li>
-      </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow.PhysERI.eri_mknj">eri_mknj() (pyscf.pbc.tdscf.krhf_slow.PhysERI method)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_gamma.PhysERI.eri_mknj">(pyscf.pbc.tdscf.krhf_slow_gamma.PhysERI method)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_supercell.PhysERI.eri_mknj">(pyscf.pbc.tdscf.krhf_slow_supercell.PhysERI method)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.TDERIMatrixBlocks.eri_mknj">(pyscf.tdscf.common_slow.TDERIMatrixBlocks method)</a>
-</li>
-      </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_supercell.PhysERI.eri_mknj_k">eri_mknj_k() (pyscf.pbc.tdscf.krhf_slow_supercell.PhysERI method)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.gw.html#pyscf.pbc.gw.kgw_slow.IMDS.eri_ov">eri_ov() (pyscf.pbc.gw.kgw_slow.IMDS method)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.gw.html#pyscf.pbc.gw.kgw_slow_supercell.IMDS.eri_ov">(pyscf.pbc.gw.kgw_slow_supercell.IMDS method)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.TDERIMatrixBlocks.eri_ov">(pyscf.tdscf.common_slow.TDERIMatrixBlocks method)</a>
-</li>
-      </ul></li>
       <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.logger.error">error() (in module pyscf.lib.logger)</a>
 
       <ul>
@@ -4987,6 +4943,8 @@ document.write(`
       <ul>
         <li><a href="pyscf_api_docs/pyscf.dft.html#pyscf.dft.xcfun.eval_xc1">(in module pyscf.dft.xcfun)</a>
 </li>
+        <li><a href="pyscf_api_docs/pyscf.dft.html#pyscf.dft.numint.LibXCMixin.eval_xc1">(pyscf.dft.numint.LibXCMixin method)</a>
+</li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.dft.html#pyscf.dft.libxc.eval_xc_eff">eval_xc_eff() (in module pyscf.dft.libxc)</a>
 
@@ -5093,6 +5051,8 @@ document.write(`
       <li><a href="pyscf_api_docs/pyscf.pbc.dft.multigrid.html#pyscf.pbc.dft.multigrid.pp.fake_cell_vloc_part1">fake_cell_vloc_part1() (in module pyscf.pbc.dft.multigrid.pp)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.gto.pseudo.html#pyscf.pbc.gto.pseudo.pp_int.fake_cell_vnl">fake_cell_vnl() (in module pyscf.pbc.gto.pseudo.pp_int)</a>
+</li>
+      <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.fakemol_for_cgtf_charge">fakemol_for_cgtf_charge() (in module pyscf.gto.mole)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.fakemol_for_charges">fakemol_for_charges() (in module pyscf.gto.mole)</a>
 </li>
@@ -5255,6 +5215,8 @@ document.write(`
       <ul>
         <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.format_atom">(pyscf.gto.mole.MoleBase static method)</a>
 </li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.gto.html#pyscf.pbc.gto.cell.Cell.format_atom">(pyscf.pbc.gto.cell.Cell method)</a>
+</li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.pbc.df.html#pyscf.pbc.df.incore.format_aux_basis">format_aux_basis() (in module pyscf.pbc.df.incore)</a>
 </li>
@@ -5264,21 +5226,15 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.format_basis">(pyscf.gto.mole.MoleBase static method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.format_ecp">format_ecp() (in module pyscf.gto.mole)</a>
 
       <ul>
         <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.format_ecp">(pyscf.gto.mole.MoleBase static method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.format_frozen_k">format_frozen_k() (in module pyscf.tdscf.common_slow)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.format_frozen_mol">format_frozen_mol() (in module pyscf.tdscf.common_slow)</a>
-</li>
       <li><a href="pyscf_api_docs/pyscf.pbc.dft.html#pyscf.pbc.dft.krkspu.format_idx">format_idx() (in module pyscf.pbc.dft.krkspu)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.format_mask">format_mask() (in module pyscf.tdscf.common_slow)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.format_pseudo">format_pseudo() (in module pyscf.gto.mole)</a>
 
@@ -5401,7 +5357,11 @@ document.write(`
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.fromfile">fromfile() (in module pyscf.gto.mole)</a>
 
       <ul>
+        <li><a href="pyscf_api_docs/pyscf.pbc.gto.html#pyscf.pbc.gto.cell.fromfile">(in module pyscf.pbc.gto.cell)</a>
+</li>
         <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.Mole.fromfile">(pyscf.gto.mole.Mole method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.gto.html#pyscf.pbc.gto.cell.Cell.fromfile">(pyscf.pbc.gto.cell.Cell method)</a>
 </li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.numpy_helper.frompointer">frompointer() (in module pyscf.lib.numpy_helper)</a>
@@ -5415,7 +5375,11 @@ document.write(`
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.fromstring">fromstring() (in module pyscf.gto.mole)</a>
 
       <ul>
+        <li><a href="pyscf_api_docs/pyscf.pbc.gto.html#pyscf.pbc.gto.cell.fromstring">(in module pyscf.pbc.gto.cell)</a>
+</li>
         <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.Mole.fromstring">(pyscf.gto.mole.Mole method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.gto.html#pyscf.pbc.gto.cell.Cell.fromstring">(pyscf.pbc.gto.cell.Cell method)</a>
 </li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.ft_ao.ft_ao">ft_ao() (in module pyscf.gto.ft_ao)</a>
@@ -5446,10 +5410,6 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.ao2mo.html#pyscf.ao2mo.r_outcore.full">(in module pyscf.ao2mo.r_outcore)</a>
 </li>
       </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.full2ab">full2ab() (in module pyscf.tdscf.common_slow)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.full2mkk">full2mkk() (in module pyscf.tdscf.common_slow)</a>
-</li>
       <li><a href="pyscf_api_docs/pyscf.ao2mo.html#pyscf.ao2mo.nrr_outcore.full_iofree">full_iofree() (in module pyscf.ao2mo.nrr_outcore)</a>
 
       <ul>
@@ -5868,6 +5828,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.ao2mo.html#pyscf.ao2mo.r_outcore.general_iofree">(in module pyscf.ao2mo.r_outcore)</a>
 </li>
       </ul></li>
+      <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.misc.generate_pickle_methods">generate_pickle_methods() (in module pyscf.lib.misc)</a>
+</li>
       <li><a href="pyscf_api_docs/pyscf.pbc.lib.html#pyscf.pbc.lib.linalg_helper.DavidsonZL.genMatrix">genMatrix() (pyscf.pbc.lib.linalg_helper.DavidsonZL method)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.lib.html#pyscf.pbc.lib.linalg_helper.DavidsonZL.genV0">genV0() (pyscf.pbc.lib.linalg_helper.DavidsonZL method)</a>
@@ -5889,9 +5851,17 @@ document.write(`
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.pbc.x2c.html#pyscf.pbc.x2c.x2c1e.get_1c_pvxp">get_1c_pvxp() (in module pyscf.pbc.x2c.x2c1e)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.dhf.get_ab">get_ab() (in module pyscf.tdscf.dhf)</a>
+      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf.get_ab">get_ab() (in module pyscf.pbc.tdscf.krhf)</a>
 
       <ul>
+        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kuhf.get_ab">(in module pyscf.pbc.tdscf.kuhf)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.rhf.get_ab">(in module pyscf.pbc.tdscf.rhf)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.uhf.get_ab">(in module pyscf.pbc.tdscf.uhf)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.dhf.get_ab">(in module pyscf.tdscf.dhf)</a>
+</li>
         <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.ghf.get_ab">(in module pyscf.tdscf.ghf)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.rhf.get_ab">(in module pyscf.tdscf.rhf)</a>
@@ -5900,7 +5870,19 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.x2c.html#pyscf.x2c.tdscf.get_ab">(in module pyscf.x2c.tdscf)</a>
 </li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf.TDA.get_ab">(pyscf.pbc.tdscf.krhf.TDA method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf.TDHF.get_ab">(pyscf.pbc.tdscf.krhf.TDHF method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kuhf.TDA.get_ab">(pyscf.pbc.tdscf.kuhf.TDA method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kuhf.TDHF.get_ab">(pyscf.pbc.tdscf.kuhf.TDHF method)</a>
+</li>
         <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.rhf.TDBase.get_ab">(pyscf.pbc.tdscf.rhf.TDBase method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.uhf.TDA.get_ab">(pyscf.pbc.tdscf.uhf.TDA method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.uhf.TDHF.get_ab">(pyscf.pbc.tdscf.uhf.TDHF method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.dhf.TDBase.get_ab">(pyscf.tdscf.dhf.TDBase method)</a>
 </li>
@@ -6015,9 +5997,9 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.uhf.UHF.get_bands">(pyscf.pbc.scf.uhf.UHF method)</a>
 </li>
       </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.dft.html#pyscf.pbc.dft.gen_grid.get_becke_grids">get_becke_grids() (in module pyscf.pbc.dft.gen_grid)</a>
+      <li><a href="pyscf_api_docs/pyscf.gto.basis.html#pyscf.gto.basis.bse.get_basis">get_basis() (in module pyscf.gto.basis.bse)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow.get_block_k_ix">get_block_k_ix() (in module pyscf.pbc.tdscf.krhf_slow)</a>
+      <li><a href="pyscf_api_docs/pyscf.pbc.dft.html#pyscf.pbc.dft.gen_grid.get_becke_grids">get_becke_grids() (in module pyscf.pbc.dft.gen_grid)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.gto.html#pyscf.pbc.gto.cell.get_bounding_sphere">get_bounding_sphere() (in module pyscf.pbc.gto.cell)</a>
 
@@ -6045,6 +6027,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.tools.html#pyscf.tools.cubegen.Cube.get_coords">(pyscf.tools.cubegen.Cube method)</a>
 </li>
       </ul></li>
+      <li><a href="pyscf_api_docs/pyscf.solvent.html#pyscf.solvent.cosmors.get_cosmors_parameters">get_cosmors_parameters() (in module pyscf.solvent.cosmors)</a>
+</li>
       <li><a href="pyscf_api_docs/pyscf.pbc.tools.html#pyscf.pbc.tools.pbc.get_coulG">get_coulG() (in module pyscf.pbc.tools.pbc)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.grad.html#pyscf.grad.dhf.get_coulomb_hf">get_coulomb_hf() (in module pyscf.grad.dhf)</a>
@@ -6173,6 +6157,10 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.cc.html#pyscf.cc.ccsd.CCSDBase.get_e_hf">(pyscf.cc.ccsd.CCSDBase method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.ci.html#pyscf.ci.cisd.CISD.get_e_hf">(pyscf.ci.cisd.CISD method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.rpa.RPA.get_e_hf">(pyscf.gw.rpa.RPA method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.urpa.URPA.get_e_hf">(pyscf.gw.urpa.URPA method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.mp2.MP2.get_e_hf">(pyscf.mp.mp2.MP2 method)</a>
 </li>
@@ -6334,11 +6322,9 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.gw_exact.GWExact.get_frozen_mask">(pyscf.gw.gw_exact.GWExact method)</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.rpa.DirectRPA.get_frozen_mask">(pyscf.gw.rpa.DirectRPA method)</a>
-</li>
         <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.ugw_ac.UGWAC.get_frozen_mask">(pyscf.gw.ugw_ac.UGWAC method)</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.urpa.URPA.get_frozen_mask">(pyscf.gw.urpa.URPA method)</a>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.get_frozen_mask">(pyscf.mp.dfump2.DFUMP2 method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.mp2.MP2.get_frozen_mask">(pyscf.mp.mp2.MP2 method)</a>
 </li>
@@ -6371,6 +6357,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.dft.html#pyscf.dft.numint2c.NumInt2C.get_fxc">(pyscf.dft.numint2c.NumInt2C method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.dft.html#pyscf.dft.r_numint.RNumInt.get_fxc">(pyscf.dft.r_numint.RNumInt method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.dft.html#pyscf.pbc.dft.numint.KNumInt.get_fxc">(pyscf.pbc.dft.numint.KNumInt method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.dft.html#pyscf.pbc.dft.numint.NumInt.get_fxc">(pyscf.pbc.dft.numint.NumInt method)</a>
 </li>
@@ -7003,8 +6991,6 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.df.html#pyscf.pbc.df.aft_jk.get_k_for_bands">get_k_for_bands() (in module pyscf.pbc.df.aft_jk)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow.PhysERI.get_k_ix">get_k_ix() (pyscf.pbc.tdscf.krhf_slow.PhysERI method)</a>
-</li>
       <li><a href="pyscf_api_docs/pyscf.pbc.df.html#pyscf.pbc.df.aft_jk.get_k_kpts">get_k_kpts() (in module pyscf.pbc.df.aft_jk)</a>
 
       <ul>
@@ -7063,6 +7049,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.grad.html#pyscf.grad.sacasscf.Gradients.get_LdotJnuc">(pyscf.grad.sacasscf.Gradients method)</a>
 </li>
       </ul></li>
+      <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2.get_mo_energy">get_mo_energy() (in module pyscf.mp.dfmp2)</a>
+</li>
       <li><a href="pyscf_api_docs/pyscf.ao2mo.html#pyscf.ao2mo.get_mo_eri">get_mo_eri() (in module pyscf.ao2mo)</a>
 
       <ul>
@@ -7101,6 +7089,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.pbc.df.html#pyscf.pbc.df.fft.FFTDF.get_mo_pairs_G">(pyscf.pbc.df.fft.FFTDF method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pyscf_api_docs/pyscf.pbc.ao2mo.html#pyscf.pbc.ao2mo.eris.get_mo_pairs_invG">get_mo_pairs_invG() (in module pyscf.pbc.ao2mo.eris)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.eph.html#pyscf.eph.eph_fd.get_mode">get_mode() (in module pyscf.eph.eph_fd)</a>
@@ -7117,8 +7107,6 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.eph.html#pyscf.eph.uks.EPH.get_mode">(pyscf.eph.uks.EPH method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pyscf_api_docs/pyscf.pbc.tools.html#pyscf.pbc.tools.pbc.get_monkhorst_pack_size">get_monkhorst_pack_size() (in module pyscf.pbc.tools.pbc)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.df.html#pyscf.df.df.DF.get_naoaux">get_naoaux() (pyscf.df.df.DF method)</a>
@@ -7170,11 +7158,9 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.gw_exact.GWExact.get_nmo">(pyscf.gw.gw_exact.GWExact method)</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.rpa.DirectRPA.get_nmo">(pyscf.gw.rpa.DirectRPA method)</a>
-</li>
         <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.ugw_ac.UGWAC.get_nmo">(pyscf.gw.ugw_ac.UGWAC method)</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.urpa.URPA.get_nmo">(pyscf.gw.urpa.URPA method)</a>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.get_nmo">(pyscf.mp.dfump2.DFUMP2 method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.mp2.MP2.get_nmo">(pyscf.mp.mp2.MP2 method)</a>
 </li>
@@ -7226,11 +7212,9 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.gw_exact.GWExact.get_nocc">(pyscf.gw.gw_exact.GWExact method)</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.rpa.DirectRPA.get_nocc">(pyscf.gw.rpa.DirectRPA method)</a>
-</li>
         <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.ugw_ac.UGWAC.get_nocc">(pyscf.gw.ugw_ac.UGWAC method)</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.urpa.URPA.get_nocc">(pyscf.gw.urpa.URPA method)</a>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.get_nocc">(pyscf.mp.dfump2.DFUMP2 method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.mp2.MP2.get_nocc">(pyscf.mp.mp2.MP2 method)</a>
 </li>
@@ -7565,8 +7549,20 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.atom_hf_pp.get_pp_nl">(in module pyscf.scf.atom_hf_pp)</a>
 </li>
       </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.rhf.TDBase.get_precond">get_precond() (pyscf.tdscf.rhf.TDBase method)</a>
+      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf.TDHF.get_precond">get_precond() (pyscf.pbc.tdscf.krhf.TDHF method)</a>
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kuhf.TDHF.get_precond">(pyscf.pbc.tdscf.kuhf.TDHF method)</a>
 </li>
+        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.dhf.TDHF.get_precond">(pyscf.tdscf.dhf.TDHF method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.rhf.TDBase.get_precond">(pyscf.tdscf.rhf.TDBase method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.rks.CasidaTDDFT.get_precond">(pyscf.tdscf.rks.CasidaTDDFT method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.uks.CasidaTDDFT.get_precond">(pyscf.tdscf.uks.CasidaTDDFT method)</a>
+</li>
+      </ul></li>
       <li><a href="pyscf_api_docs/pyscf.pbc.gto.pseudo.html#pyscf.pbc.gto.pseudo.pp.get_projG">get_projG() (in module pyscf.pbc.gto.pseudo.pp)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.adc.html#pyscf.adc.radc_ea.get_properties">get_properties() (in module pyscf.adc.radc_ea)</a>
@@ -7745,6 +7741,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.pbc.lib.html#pyscf.pbc.lib.kpts.KPoints.get_rotation_mat_for_mos">(pyscf.pbc.lib.kpts.KPoints method)</a>
 </li>
       </ul></li>
+      <li><a href="pyscf_api_docs/pyscf.solvent.html#pyscf.solvent.cosmors.get_sas_volume">get_sas_volume() (in module pyscf.solvent.cosmors)</a>
+</li>
       <li><a href="pyscf_api_docs/pyscf.pbc.gto.html#pyscf.pbc.gto.cell.Cell.get_scaled_atom_coords">get_scaled_atom_coords() (pyscf.pbc.gto.cell.Cell method)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.gto.html#pyscf.pbc.gto.cell.Cell.get_scaled_kpts">get_scaled_kpts() (pyscf.pbc.gto.cell.Cell method)</a>
@@ -7778,11 +7776,11 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.gw_slow.IMDS.get_sigma_element">(pyscf.gw.gw_slow.IMDS method)</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.gw.html#pyscf.pbc.gw.kgw_slow.IMDS.get_sigma_element">(pyscf.pbc.gw.kgw_slow.IMDS method)</a>
-</li>
         <li><a href="pyscf_api_docs/pyscf.pbc.gw.html#pyscf.pbc.gw.kgw_slow_supercell.IMDS.get_sigma_element">(pyscf.pbc.gw.kgw_slow_supercell.IMDS method)</a>
 </li>
       </ul></li>
+      <li><a href="pyscf_api_docs/pyscf.solvent.html#pyscf.solvent.cosmors.get_sigma_profile">get_sigma_profile() (in module pyscf.solvent.cosmors)</a>
+</li>
       <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.gw_cd.get_sigmaI_diag">get_sigmaI_diag() (in module pyscf.gw.gw_cd)</a>
 
       <ul>
@@ -7795,8 +7793,6 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.pbc.gw.html#pyscf.pbc.gw.krgw_cd.get_sigmaR_diag">(in module pyscf.pbc.gw.krgw_cd)</a>
 </li>
       </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kproxy_supercell.get_sparse_ov_transform">get_sparse_ov_transform() (in module pyscf.pbc.tdscf.kproxy_supercell)</a>
-</li>
       <li><a href="pyscf_api_docs/pyscf.mcscf.html#pyscf.mcscf.addons.get_spin_square">get_spin_square() (in module pyscf.mcscf.addons)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.symm.html#pyscf.symm.geom.get_subgroup">get_subgroup() (in module pyscf.symm.geom)</a>
@@ -8727,8 +8723,6 @@ document.write(`
       <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.gw_slow.GW">GW (class in pyscf.gw.gw_slow)</a>
 
       <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.gw.html#pyscf.pbc.gw.kgw_slow.GW">(class in pyscf.pbc.gw.kgw_slow)</a>
-</li>
         <li><a href="pyscf_api_docs/pyscf.pbc.gw.html#pyscf.pbc.gw.kgw_slow_supercell.GW">(class in pyscf.pbc.gw.kgw_slow_supercell)</a>
 </li>
       </ul></li>
@@ -8779,6 +8773,8 @@ document.write(`
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.has_ecp">has_ecp() (pyscf.gto.mole.MoleBase method)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.has_ecp_soc">has_ecp_soc() (pyscf.gto.mole.MoleBase method)</a>
+</li>
+      <li><a href="pyscf_api_docs/pyscf.grad.html#pyscf.grad.mp2.has_frozen_orbitals">has_frozen_orbitals() (in module pyscf.grad.mp2)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.symm.html#pyscf.symm.geom.SymmSys.has_icenter">has_icenter() (pyscf.symm.geom.SymmSys method)</a>
 </li>
@@ -8967,8 +8963,6 @@ document.write(`
       <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.gw_slow.IMDS">IMDS (class in pyscf.gw.gw_slow)</a>
 
       <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.gw.html#pyscf.pbc.gw.kgw_slow.IMDS">(class in pyscf.pbc.gw.kgw_slow)</a>
-</li>
         <li><a href="pyscf_api_docs/pyscf.pbc.gw.html#pyscf.pbc.gw.kgw_slow_supercell.IMDS">(class in pyscf.pbc.gw.kgw_slow_supercell)</a>
 </li>
       </ul></li>
@@ -9020,6 +9014,12 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfgmp2.DFGMP2.init_amps">(pyscf.mp.dfgmp2.DFGMP2 method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2.DFMP2.init_amps">(pyscf.mp.dfmp2.DFMP2 method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2_slow.DFMP2.init_amps">(pyscf.mp.dfmp2_slow.DFMP2 method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.init_amps">(pyscf.mp.dfump2.DFUMP2 method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2_slow.DFUMP2.init_amps">(pyscf.mp.dfump2_slow.DFUMP2 method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.gmp2.GMP2.init_amps">(pyscf.mp.gmp2.GMP2 method)</a>
 </li>
@@ -9075,9 +9075,13 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.rhf.TDHF.init_guess">(pyscf.pbc.tdscf.rhf.TDHF method)</a>
 </li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.rks.CasidaTDDFT.init_guess">(pyscf.pbc.tdscf.rks.CasidaTDDFT method)</a>
+</li>
         <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.uhf.TDA.init_guess">(pyscf.pbc.tdscf.uhf.TDA method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.uhf.TDHF.init_guess">(pyscf.pbc.tdscf.uhf.TDHF method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.uks.CasidaTDDFT.init_guess">(pyscf.pbc.tdscf.uks.CasidaTDDFT method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.dhf.TDA.init_guess">(pyscf.tdscf.dhf.TDA method)</a>
 </li>
@@ -9106,8 +9110,14 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.x2c.html#pyscf.x2c.tdscf.TDHF.init_guess">(pyscf.x2c.tdscf.TDHF method)</a>
 </li>
       </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.uhf.UHF.init_guess_breaksym">init_guess_breaksym (pyscf.scf.uhf.UHF attribute)</a>
+      <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.kuhf.KUHF.init_guess_breaksym">init_guess_breaksym (pyscf.pbc.scf.kuhf.KUHF attribute)</a>
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.uhf.UHF.init_guess_breaksym">(pyscf.pbc.scf.uhf.UHF attribute)</a>
 </li>
+        <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.uhf.UHF.init_guess_breaksym">(pyscf.scf.uhf.UHF attribute)</a>
+</li>
+      </ul></li>
       <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.dhf.init_guess_by_1e">init_guess_by_1e() (in module pyscf.scf.dhf)</a>
 
       <ul>
@@ -9332,6 +9342,26 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.uhf.UHF.init_guess_by_mod_huckel">(pyscf.scf.uhf.UHF method)</a>
 </li>
       </ul></li>
+      <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.dhf.init_guess_by_sap">init_guess_by_sap() (in module pyscf.scf.dhf)</a>
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.hf.init_guess_by_sap">(in module pyscf.scf.hf)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.rohf.init_guess_by_sap">(in module pyscf.scf.rohf)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.uhf.init_guess_by_sap">(in module pyscf.scf.uhf)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.dhf.DHF.init_guess_by_sap">(pyscf.scf.dhf.DHF method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.ghf.GHF.init_guess_by_sap">(pyscf.scf.ghf.GHF method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.hf.SCF.init_guess_by_sap">(pyscf.scf.hf.SCF method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.rohf.ROHF.init_guess_by_sap">(pyscf.scf.rohf.ROHF method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.uhf.UHF.init_guess_by_sap">(pyscf.scf.uhf.UHF method)</a>
+</li>
+      </ul></li>
       <li><a href="pyscf_api_docs/pyscf.dft.html#pyscf.dft.rks.init_guess_by_vsap">init_guess_by_vsap() (in module pyscf.dft.rks)</a>
 
       <ul>
@@ -9374,6 +9404,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.pbc.dft.html#pyscf.pbc.dft.rks.KohnShamDFT.initialize_grids">(pyscf.pbc.dft.rks.KohnShamDFT method)</a>
 </li>
       </ul></li>
+      <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.numpy_helper.inplace_transpose_scale">inplace_transpose_scale() (in module pyscf.lib.numpy_helper)</a>
+</li>
       <li><a href="pyscf_api_docs/pyscf.pbc.df.html#pyscf.pbc.df.incore.int3c1e_nuc_grad">int3c1e_nuc_grad() (in module pyscf.pbc.df.incore)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.df.html#pyscf.pbc.df.incore.Int3cBuilder">Int3cBuilder (class in pyscf.pbc.df.incore)</a>
@@ -9556,6 +9588,8 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.symm.html#pyscf.pbc.symm.symmetry.is_eye">is_eye() (in module pyscf.pbc.symm.symmetry)</a>
 </li>
+      <li><a href="pyscf_api_docs/pyscf.pbc.lib.html#pyscf.pbc.lib.kpts_helper.is_gamma_point">is_gamma_point() (in module pyscf.pbc.lib.kpts_helper)</a>
+</li>
       <li><a href="pyscf_api_docs/pyscf.dft.html#pyscf.dft.libxc.is_gga">is_gga() (in module pyscf.dft.libxc)</a>
 
       <ul>
@@ -9655,12 +9689,6 @@ document.write(`
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pyscf_api_docs/pyscf.pbc.tools.html#pyscf.pbc.tools.k2gamma.k2gamma">k2gamma() (in module pyscf.pbc.tools.k2gamma)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kproxy_supercell.k2s">k2s() (in module pyscf.pbc.tdscf.kproxy_supercell)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.k_nmo">k_nmo() (in module pyscf.tdscf.common_slow)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.k_nocc">k_nocc() (in module pyscf.tdscf.common_slow)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.cc.html#pyscf.pbc.cc.kccsd.KCCSD">KCCSD (in module pyscf.pbc.cc.kccsd)</a>
 </li>
@@ -9806,6 +9834,12 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2.kernel">(in module pyscf.mp.dfmp2)</a>
 </li>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2_slow.kernel">(in module pyscf.mp.dfmp2_slow)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2.kernel">(in module pyscf.mp.dfump2)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2_slow.kernel">(in module pyscf.mp.dfump2_slow)</a>
+</li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.gmp2.kernel">(in module pyscf.mp.gmp2)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.mp2.kernel">(in module pyscf.mp.mp2)</a>
@@ -9855,8 +9889,6 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.solvent.grad.html#pyscf.solvent.grad.ddcosmo_grad.kernel">(in module pyscf.solvent.grad.ddcosmo_grad)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.soscf.html#pyscf.soscf.newton_ah.kernel">(in module pyscf.soscf.newton_ah)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.kernel">(in module pyscf.tdscf.common_slow)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.adc.html#pyscf.adc.radc.RADC.kernel">(pyscf.adc.radc.RADC method)</a>
 </li>
@@ -9982,9 +10014,11 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.gw_slow.GW.kernel">(pyscf.gw.gw_slow.GW method)</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.rpa.DirectRPA.kernel">(pyscf.gw.rpa.DirectRPA method)</a>
+        <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.rpa.RPA.kernel">(pyscf.gw.rpa.RPA method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.ugw_ac.UGWAC.kernel">(pyscf.gw.ugw_ac.UGWAC method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.urpa.URPA.kernel">(pyscf.gw.urpa.URPA method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.hessian.html#pyscf.hessian.rhf.HessianBase.kernel">(pyscf.hessian.rhf.HessianBase method)</a>
 </li>
@@ -10021,6 +10055,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.mcscf.html#pyscf.mcscf.ucasci.UCASCI.kernel">(pyscf.mcscf.ucasci.UCASCI method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mcscf.html#pyscf.mcscf.umc1step.UCASSCF.kernel">(pyscf.mcscf.umc1step.UCASSCF method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2.DFMP2.kernel">(pyscf.mp.dfmp2.DFMP2 method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2_native.DFRMP2.kernel">(pyscf.mp.dfmp2_native.DFRMP2 method)</a>
 </li>
@@ -10074,8 +10110,6 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf.TDHF.kernel">(pyscf.pbc.tdscf.krhf.TDHF method)</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow.TDRHF.kernel">(pyscf.pbc.tdscf.krhf_slow.TDRHF method)</a>
-</li>
         <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krks.TDA.kernel">(pyscf.pbc.tdscf.krks.TDA method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krks.TDDFT.kernel">(pyscf.pbc.tdscf.krks.TDDFT method)</a>
@@ -10117,8 +10151,6 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.solvent.hessian.html#pyscf.solvent.hessian.smd.WithSolventHess.kernel">(pyscf.solvent.hessian.smd.WithSolventHess method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.solvent.html#pyscf.solvent.pcm.PCM.kernel">(pyscf.solvent.pcm.PCM method)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.TDBase.kernel">(pyscf.tdscf.common_slow.TDBase method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.dhf.TDA.kernel">(pyscf.tdscf.dhf.TDA method)</a>
 </li>
@@ -10219,6 +10251,12 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.KKS">(in module pyscf.pbc.scf)</a>
 </li>
       </ul></li>
+      <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.khf.KSCF.kmesh">kmesh (pyscf.pbc.scf.khf.KSCF property)</a>
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.khf_ksymm.KsymAdaptedKSCF.kmesh">(pyscf.pbc.scf.khf_ksymm.KsymAdaptedKSCF property)</a>
+</li>
+      </ul></li>
       <li><a href="pyscf_api_docs/pyscf.pbc.mp.html#pyscf.pbc.mp.kmp2.KMP2">KMP2 (class in pyscf.pbc.mp.kmp2)</a>
 
       <ul>
@@ -10232,8 +10270,6 @@ document.write(`
       <li><a href="pyscf_api_docs/pyscf.pbc.dft.html#pyscf.pbc.dft.numint.KNumInt">KNumInt (class in pyscf.pbc.dft.numint)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.dft.html#pyscf.pbc.dft.numint2c.KNumInt2C">KNumInt2C (class in pyscf.pbc.dft.numint2c)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kproxy_supercell.ko_mask">ko_mask() (in module pyscf.pbc.tdscf.kproxy_supercell)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.dft.html#pyscf.dft.dks.KohnShamDFT">KohnShamDFT (class in pyscf.dft.dks)</a>
 
@@ -10255,6 +10291,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.pbc.dft.html#pyscf.pbc.dft.kuks_ksymm.KsymAdaptedKUKS.kpts">(pyscf.pbc.dft.kuks_ksymm.KsymAdaptedKUKS property)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.hf.SCF.kpts">(pyscf.pbc.scf.hf.SCF property)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.khf.KSCF.kpts">(pyscf.pbc.scf.khf.KSCF property)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.khf_ksymm.KsymAdaptedKSCF.kpts">(pyscf.pbc.scf.khf_ksymm.KsymAdaptedKSCF property)</a>
 </li>
@@ -10499,6 +10537,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.cc.html#pyscf.cc.rccsd_slow.RCCSD.leaccsd_matvec">(pyscf.cc.rccsd_slow.RCCSD method)</a>
 </li>
       </ul></li>
+      <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.numpy_helper.leading_dimension_order">leading_dimension_order() (in module pyscf.lib.numpy_helper)</a>
+</li>
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.len_cart">len_cart() (in module pyscf.gto.mole)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.len_spinor">len_spinor() (in module pyscf.gto.mole)</a>
@@ -10541,7 +10581,7 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.rhf.TDBase.lindep">(pyscf.tdscf.rhf.TDBase attribute)</a>
 </li>
       </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.linalg_helper.LinearDependenceError">LinearDependenceError</a>
+      <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.exceptions.LinearDependencyError">LinearDependencyError</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.gw_ac.GWAC.linearized">linearized (pyscf.gw.gw_ac.GWAC attribute)</a>
 
@@ -10581,10 +10621,10 @@ document.write(`
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.pbc.lib.html#pyscf.pbc.lib.kpts.KPoints.little_cogroup_rep">little_cogroup_rep() (pyscf.pbc.lib.kpts.KPoints method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pyscf_api_docs/pyscf.pbc.lib.html#pyscf.pbc.lib.kpts.KPoints.little_cogroups">little_cogroups() (pyscf.pbc.lib.kpts.KPoints method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pyscf_api_docs/pyscf.lo.html#pyscf.lo.vvo.livvo">livvo() (in module pyscf.lo.vvo)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.ao2mo.html#pyscf.ao2mo.addons.load">load (class in pyscf.ao2mo.addons)</a>
@@ -10644,6 +10684,16 @@ document.write(`
 </li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.gto.basis.html#pyscf.gto.basis.load_pseudo">load_pseudo() (in module pyscf.gto.basis)</a>
+</li>
+      <li><a href="pyscf_api_docs/pyscf.tools.html#pyscf.tools.qcschema.load_qcschema_go_final_json">load_qcschema_go_final_json() (in module pyscf.tools.qcschema)</a>
+</li>
+      <li><a href="pyscf_api_docs/pyscf.tools.html#pyscf.tools.qcschema.load_qcschema_hessian">load_qcschema_hessian() (in module pyscf.tools.qcschema)</a>
+</li>
+      <li><a href="pyscf_api_docs/pyscf.tools.html#pyscf.tools.qcschema.load_qcschema_json">load_qcschema_json() (in module pyscf.tools.qcschema)</a>
+</li>
+      <li><a href="pyscf_api_docs/pyscf.tools.html#pyscf.tools.qcschema.load_qcschema_molecule">load_qcschema_molecule() (in module pyscf.tools.qcschema)</a>
+</li>
+      <li><a href="pyscf_api_docs/pyscf.tools.html#pyscf.tools.qcschema.load_qcschema_scf_info">load_qcschema_scf_info() (in module pyscf.tools.qcschema)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.chkfile.load_scf">load_scf() (in module pyscf.pbc.scf.chkfile)</a>
 
@@ -10706,11 +10756,7 @@ document.write(`
 </li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfgmp2.DFGMP2.loop_ao2mo">loop_ao2mo() (pyscf.mp.dfgmp2.DFGMP2 method)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2.DFMP2.loop_ao2mo">(pyscf.mp.dfmp2.DFMP2 method)</a>
 </li>
-      </ul></li>
       <li><a href="pyscf_api_docs/pyscf.pbc.lib.html#pyscf.pbc.lib.kpts_helper.loop_kkk">loop_kkk() (in module pyscf.pbc.lib.kpts_helper)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.lib.html#pyscf.pbc.lib.kpts.KPoints.loop_ktuples">loop_ktuples() (pyscf.pbc.lib.kpts.KPoints method)</a>
@@ -10852,7 +10898,9 @@ document.write(`
       <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.rpa.make_dielectric_matrix">make_dielectric_matrix() (in module pyscf.gw.rpa)</a>
 
       <ul>
-        <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.rpa.DirectRPA.make_dielectric_matrix">(pyscf.gw.rpa.DirectRPA method)</a>
+        <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.urpa.make_dielectric_matrix">(in module pyscf.gw.urpa)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.rpa.RPA.make_dielectric_matrix">(pyscf.gw.rpa.RPA method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.urpa.URPA.make_dielectric_matrix">(pyscf.gw.urpa.URPA method)</a>
 </li>
@@ -10863,7 +10911,7 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.symm.html#pyscf.pbc.symm.symmetry.make_Dmats">make_Dmats() (in module pyscf.pbc.symm.symmetry)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.rpa.DirectRPA.make_e_ov">make_e_ov() (pyscf.gw.rpa.DirectRPA method)</a>
+      <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.rpa.RPA.make_e_ov">make_e_ov() (pyscf.gw.rpa.RPA method)</a>
 
       <ul>
         <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.urpa.URPA.make_e_ov">(pyscf.gw.urpa.URPA method)</a>
@@ -10881,6 +10929,12 @@ document.write(`
 
       <ul>
         <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.make_env">(pyscf.gto.mole.MoleBase method)</a>
+</li>
+      </ul></li>
+      <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.rpa.RPA.make_f_ov">make_f_ov() (pyscf.gw.rpa.RPA method)</a>
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.urpa.URPA.make_f_ov">(pyscf.gw.urpa.URPA method)</a>
 </li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.grad.html#pyscf.grad.sacasscf.Gradients.make_fcasscf">make_fcasscf() (pyscf.grad.sacasscf.Gradients method)</a>
@@ -11163,9 +11217,11 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.fci.html#pyscf.fci.direct_spin1.make_pspace_precond">make_pspace_precond() (in module pyscf.fci.direct_spin1)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.adc.html#pyscf.adc.radc_ip.make_rdm1">make_rdm1() (in module pyscf.adc.radc_ip)</a>
+      <li><a href="pyscf_api_docs/pyscf.adc.html#pyscf.adc.radc_ea.make_rdm1">make_rdm1() (in module pyscf.adc.radc_ea)</a>
 
       <ul>
+        <li><a href="pyscf_api_docs/pyscf.adc.html#pyscf.adc.radc_ip.make_rdm1">(in module pyscf.adc.radc_ip)</a>
+</li>
         <li><a href="pyscf_api_docs/pyscf.adc.html#pyscf.adc.uadc_ip.make_rdm1">(in module pyscf.adc.uadc_ip)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.cc.html#pyscf.cc.ccsd_rdm.make_rdm1">(in module pyscf.cc.ccsd_rdm)</a>
@@ -11236,6 +11292,8 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.adc.html#pyscf.adc.radc.RADC.make_rdm1">(pyscf.adc.radc.RADC method)</a>
 </li>
+        <li><a href="pyscf_api_docs/pyscf.adc.html#pyscf.adc.radc_ea.RADCEA.make_rdm1">(pyscf.adc.radc_ea.RADCEA method)</a>
+</li>
         <li><a href="pyscf_api_docs/pyscf.adc.html#pyscf.adc.radc_ip.RADCIP.make_rdm1">(pyscf.adc.radc_ip.RADCIP method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.adc.html#pyscf.adc.uadc.UADC.make_rdm1">(pyscf.adc.uadc.UADC method)</a>
@@ -11293,6 +11351,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2.DFMP2.make_rdm1">(pyscf.mp.dfmp2.DFMP2 method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2_native.DFRMP2.make_rdm1">(pyscf.mp.dfmp2_native.DFRMP2 method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.make_rdm1">(pyscf.mp.dfump2.DFUMP2 method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2_native.DFUMP2.make_rdm1">(pyscf.mp.dfump2_native.DFUMP2 method)</a>
 </li>
@@ -11357,6 +11417,18 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.mcscf.html#pyscf.mcscf.addons.StateAverageMixFCISolver.make_rdm12">(pyscf.mcscf.addons.StateAverageMixFCISolver method)</a>
 </li>
       </ul></li>
+      <li><a href="pyscf_api_docs/pyscf.fci.html#pyscf.fci.direct_spin1.make_rdm123">make_rdm123() (in module pyscf.fci.direct_spin1)</a>
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.fci.html#pyscf.fci.direct_spin1.FCIBase.make_rdm123">(pyscf.fci.direct_spin1.FCIBase method)</a>
+</li>
+      </ul></li>
+      <li><a href="pyscf_api_docs/pyscf.fci.html#pyscf.fci.direct_spin1.make_rdm123s">make_rdm123s() (in module pyscf.fci.direct_spin1)</a>
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.fci.html#pyscf.fci.direct_spin1.FCIBase.make_rdm123s">(pyscf.fci.direct_spin1.FCIBase method)</a>
+</li>
+      </ul></li>
       <li><a href="pyscf_api_docs/pyscf.fci.html#pyscf.fci.rdm.make_rdm12_ms0">make_rdm12_ms0() (in module pyscf.fci.rdm)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.fci.html#pyscf.fci.rdm.make_rdm12_spin1">make_rdm12_spin1() (in module pyscf.fci.rdm)</a>
@@ -11377,9 +11449,11 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.mcscf.html#pyscf.mcscf.addons.StateAverageMixFCISolver.make_rdm12s">(pyscf.mcscf.addons.StateAverageMixFCISolver method)</a>
 </li>
       </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.adc.html#pyscf.adc.radc_ip.make_rdm1_eigenvectors">make_rdm1_eigenvectors() (in module pyscf.adc.radc_ip)</a>
+      <li><a href="pyscf_api_docs/pyscf.adc.html#pyscf.adc.radc_ea.make_rdm1_eigenvectors">make_rdm1_eigenvectors() (in module pyscf.adc.radc_ea)</a>
 
       <ul>
+        <li><a href="pyscf_api_docs/pyscf.adc.html#pyscf.adc.radc_ip.make_rdm1_eigenvectors">(in module pyscf.adc.radc_ip)</a>
+</li>
         <li><a href="pyscf_api_docs/pyscf.adc.html#pyscf.adc.uadc_ip.make_rdm1_eigenvectors">(in module pyscf.adc.uadc_ip)</a>
 </li>
       </ul></li>
@@ -11520,6 +11594,8 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2.DFMP2.make_rdm2">(pyscf.mp.dfmp2.DFMP2 method)</a>
 </li>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.make_rdm2">(pyscf.mp.dfump2.DFUMP2 method)</a>
+</li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.gmp2.GMP2.make_rdm2">(pyscf.mp.gmp2.GMP2 method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.mp2.MP2.make_rdm2">(pyscf.mp.mp2.MP2 method)</a>
@@ -11549,9 +11625,17 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.fci.html#pyscf.fci.selected_ci.SelectedCI.make_rdm2s">(pyscf.fci.selected_ci.SelectedCI method)</a>
 </li>
       </ul></li>
+      <li><a href="pyscf_api_docs/pyscf.adc.html#pyscf.adc.radc.make_ref_rdm1">make_ref_rdm1() (in module pyscf.adc.radc)</a>
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.adc.html#pyscf.adc.radc.RADC.make_ref_rdm1">(pyscf.adc.radc.RADC method)</a>
+</li>
+      </ul></li>
       <li><a href="pyscf_api_docs/pyscf.pbc.dft.multigrid.html#pyscf.pbc.dft.multigrid.pp.make_rho_core">make_rho_core() (in module pyscf.pbc.dft.multigrid.pp)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.symm.html#pyscf.pbc.symm.symmetry.make_rot_loc">make_rot_loc() (in module pyscf.pbc.symm.symmetry)</a>
+</li>
+      <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.hf.make_sap">make_sap() (in module pyscf.scf.hf)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.eval_gto.make_screen_index">make_screen_index() (in module pyscf.gto.eval_gto)</a>
 </li>
@@ -11862,8 +11946,6 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.cc.html#pyscf.pbc.cc.kccsd_uhf.KUCCSD.max_space">(pyscf.pbc.cc.kccsd_uhf.KUCCSD attribute)</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.rhf.TDBase.max_space">(pyscf.tdscf.rhf.TDBase attribute)</a>
-</li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.lo.html#pyscf.lo.boys.OrbitalLocalizer.max_stepsize">max_stepsize (pyscf.lo.boys.OrbitalLocalizer attribute)</a>
 
@@ -11953,8 +12035,6 @@ document.write(`
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.agf2.html#pyscf.agf2.chempot.minimize_chempot">minimize_chempot() (in module pyscf.agf2.chempot)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kproxy_supercell.minus_k">minus_k() (in module pyscf.pbc.tdscf.kproxy_supercell)</a>
-</li>
       <li><a href="pyscf_api_docs/pyscf.pbc.dft.html#pyscf.pbc.dft.rks.KohnShamDFT.mix_density_fit">mix_density_fit() (pyscf.pbc.dft.rks.KohnShamDFT method)</a>
 
       <ul>
@@ -11963,14 +12043,6 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.khf.KSCF.mix_density_fit">(pyscf.pbc.scf.khf.KSCF method)</a>
 </li>
       </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.proxy.mk_make_canonic">mk_make_canonic() (in module pyscf.tdscf.proxy)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.mkk2ab">mkk2ab() (in module pyscf.tdscf.common_slow)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.mkk2full">mkk2full() (in module pyscf.tdscf.common_slow)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.mknj2i">mknj2i() (in module pyscf.tdscf.common_slow)</a>
-</li>
       <li><a href="pyscf_api_docs/pyscf.qmmm.html#pyscf.qmmm.itrf.mm_charge">mm_charge() (in module pyscf.qmmm.itrf)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.qmmm.html#pyscf.qmmm.itrf.mm_charge_grad">mm_charge_grad() (in module pyscf.qmmm.itrf)</a>
@@ -11979,28 +12051,10 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.cc.html#pyscf.pbc.cc.kccsd_uhf.mo_c_list_to_array">mo_c_list_to_array() (in module pyscf.pbc.cc.kccsd_uhf)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.MolecularMFMixin.mo_coeff">mo_coeff (pyscf.tdscf.common_slow.MolecularMFMixin property)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.PeriodicMFMixin.mo_coeff">(pyscf.tdscf.common_slow.PeriodicMFMixin property)</a>
-</li>
-      </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.MolecularMFMixin.mo_coeff_full">mo_coeff_full (pyscf.tdscf.common_slow.MolecularMFMixin property)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.PeriodicMFMixin.mo_coeff_full">(pyscf.tdscf.common_slow.PeriodicMFMixin property)</a>
-</li>
-      </ul></li>
       <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.khf.KSCF.mo_coeff_kpts">mo_coeff_kpts (pyscf.pbc.scf.khf.KSCF property)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.tools.html#pyscf.tools.mo_mapping.mo_comps">mo_comps() (in module pyscf.tools.mo_mapping)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.MolecularMFMixin.mo_energy">mo_energy (pyscf.tdscf.common_slow.MolecularMFMixin property)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.PeriodicMFMixin.mo_energy">(pyscf.tdscf.common_slow.PeriodicMFMixin property)</a>
-</li>
-      </ul></li>
       <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.khf.KSCF.mo_energy_kpts">mo_energy_kpts (pyscf.pbc.scf.khf.KSCF property)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.addons.mo_energy_with_exxdiv_none">mo_energy_with_exxdiv_none() (in module pyscf.pbc.scf.addons)</a>
@@ -12009,12 +12063,6 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.tools.html#pyscf.tools.mo_mapping.mo_map">mo_map() (in module pyscf.tools.mo_mapping)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.MolecularMFMixin.mo_occ">mo_occ (pyscf.tdscf.common_slow.MolecularMFMixin property)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.PeriodicMFMixin.mo_occ">(pyscf.tdscf.common_slow.PeriodicMFMixin property)</a>
-</li>
-      </ul></li>
       <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.khf.KSCF.mo_occ_kpts">mo_occ_kpts (pyscf.pbc.scf.khf.KSCF property)</a>
 </li>
       <li>
@@ -12206,6 +12254,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.df.html#module-pyscf.df">pyscf.df</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.df.html#module-pyscf.df.addons">pyscf.df.addons</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.df.html#module-pyscf.df.autoaux">pyscf.df.autoaux</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.df.html#module-pyscf.df.df">pyscf.df.df</a>
 </li>
@@ -12575,7 +12625,13 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#module-pyscf.mp.dfmp2_native">pyscf.mp.dfmp2_native</a>
 </li>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#module-pyscf.mp.dfmp2_slow">pyscf.mp.dfmp2_slow</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#module-pyscf.mp.dfump2">pyscf.mp.dfump2</a>
+</li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#module-pyscf.mp.dfump2_native">pyscf.mp.dfump2_native</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#module-pyscf.mp.dfump2_slow">pyscf.mp.dfump2_slow</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#module-pyscf.mp.gmp2">pyscf.mp.gmp2</a>
 </li>
@@ -12803,8 +12859,6 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.gw.html#module-pyscf.pbc.gw.gw_slow">pyscf.pbc.gw.gw_slow</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.gw.html#module-pyscf.pbc.gw.kgw_slow">pyscf.pbc.gw.kgw_slow</a>
-</li>
         <li><a href="pyscf_api_docs/pyscf.pbc.gw.html#module-pyscf.pbc.gw.kgw_slow_supercell">pyscf.pbc.gw.kgw_slow_supercell</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.gw.html#module-pyscf.pbc.gw.krgw_ac">pyscf.pbc.gw.krgw_ac</a>
@@ -12901,15 +12955,7 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf">pyscf.pbc.tdscf</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.kproxy_supercell">pyscf.pbc.tdscf.kproxy_supercell</a>
-</li>
         <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.krhf">pyscf.pbc.tdscf.krhf</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.krhf_slow">pyscf.pbc.tdscf.krhf_slow</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.krhf_slow_gamma">pyscf.pbc.tdscf.krhf_slow_gamma</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.krhf_slow_supercell">pyscf.pbc.tdscf.krhf_slow_supercell</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.krks">pyscf.pbc.tdscf.krks</a>
 </li>
@@ -12917,11 +12963,7 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.kuks">pyscf.pbc.tdscf.kuks</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.proxy">pyscf.pbc.tdscf.proxy</a>
-</li>
         <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.rhf">pyscf.pbc.tdscf.rhf</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.rhf_slow">pyscf.pbc.tdscf.rhf_slow</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.rks">pyscf.pbc.tdscf.rks</a>
 </li>
@@ -13007,6 +13049,8 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.solvent.html#module-pyscf.solvent">pyscf.solvent</a>
 </li>
+        <li><a href="pyscf_api_docs/pyscf.solvent.html#module-pyscf.solvent.cosmors">pyscf.solvent.cosmors</a>
+</li>
         <li><a href="pyscf_api_docs/pyscf.solvent.html#module-pyscf.solvent.ddcosmo">pyscf.solvent.ddcosmo</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.solvent.html#module-pyscf.solvent.ddpcm">pyscf.solvent.ddpcm</a>
@@ -13059,8 +13103,6 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.tdscf.html#module-pyscf.tdscf">pyscf.tdscf</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#module-pyscf.tdscf.common_slow">pyscf.tdscf.common_slow</a>
-</li>
         <li><a href="pyscf_api_docs/pyscf.tdscf.html#module-pyscf.tdscf.dhf">pyscf.tdscf.dhf</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.tdscf.html#module-pyscf.tdscf.dks">pyscf.tdscf.dks</a>
@@ -13069,11 +13111,7 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.tdscf.html#module-pyscf.tdscf.gks">pyscf.tdscf.gks</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#module-pyscf.tdscf.proxy">pyscf.tdscf.proxy</a>
-</li>
         <li><a href="pyscf_api_docs/pyscf.tdscf.html#module-pyscf.tdscf.rhf">pyscf.tdscf.rhf</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#module-pyscf.tdscf.rhf_slow">pyscf.tdscf.rhf_slow</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.tdscf.html#module-pyscf.tdscf.rks">pyscf.tdscf.rks</a>
 </li>
@@ -13098,6 +13136,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.tools.html#module-pyscf.tools.mo_mapping">pyscf.tools.mo_mapping</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.tools.html#module-pyscf.tools.molden">pyscf.tools.molden</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.tools.html#module-pyscf.tools.qcschema">pyscf.tools.qcschema</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.tools.html#module-pyscf.tools.ring">pyscf.tools.ring</a>
 </li>
@@ -13144,13 +13184,7 @@ document.write(`
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase">MoleBase (class in pyscf.gto.mole)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.proxy.molecular_response">molecular_response() (in module pyscf.tdscf.proxy)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.proxy.molecular_response_ov">molecular_response_ov() (in module pyscf.tdscf.proxy)</a>
-</li>
       <li><a href="pyscf_api_docs/pyscf.solvent.html#pyscf.solvent.smd_experiment.molecular_surface_tension">molecular_surface_tension() (in module pyscf.solvent.smd_experiment)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.MolecularMFMixin">MolecularMFMixin (class in pyscf.tdscf.common_slow)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.df.html#pyscf.pbc.df.rsdf_helper.MoleNoBasSort">MoleNoBasSort (class in pyscf.pbc.df.rsdf_helper)</a>
 </li>
@@ -13170,6 +13204,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2.MP2">(in module pyscf.mp.dfmp2)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2_native.MP2">(in module pyscf.mp.dfmp2_native)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2_slow.MP2">(in module pyscf.mp.dfmp2_slow)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2_native.MP2">(in module pyscf.mp.dfump2_native)</a>
 </li>
@@ -13216,10 +13252,6 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.ms">ms (pyscf.gto.mole.MoleBase property)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.VindTracker.msize">msize (pyscf.tdscf.common_slow.VindTracker property)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.msize">msize() (in module pyscf.tdscf.common_slow)</a>
-</li>
       <li><a href="pyscf_api_docs/pyscf.tools.html#pyscf.tools.chkfile_util.mulliken">mulliken() (in module pyscf.tools.chkfile_util)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.kghf.mulliken_meta">mulliken_meta() (in module pyscf.pbc.scf.kghf)</a>
@@ -13258,9 +13290,15 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.uhf.UHF.mulliken_meta">(pyscf.scf.uhf.UHF method)</a>
 </li>
       </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.uhf.mulliken_meta_spin">mulliken_meta_spin() (in module pyscf.scf.uhf)</a>
+      <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.kuhf.mulliken_meta_spin">mulliken_meta_spin() (in module pyscf.pbc.scf.kuhf)</a>
 
       <ul>
+        <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.uhf.mulliken_meta_spin">(in module pyscf.scf.uhf)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.kuhf.KUHF.mulliken_meta_spin">(pyscf.pbc.scf.kuhf.KUHF method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.uhf.UHF.mulliken_meta_spin">(pyscf.pbc.scf.uhf.UHF method)</a>
+</li>
         <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.uhf.UHF.mulliken_meta_spin">(pyscf.scf.uhf.UHF method)</a>
 </li>
       </ul></li>
@@ -13405,8 +13443,6 @@ document.write(`
       <li><a href="pyscf_api_docs/pyscf.agf2.html#pyscf.agf2.aux_space.AuxiliarySpace.naux">naux (pyscf.agf2.aux_space.AuxiliarySpace property)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.nbas">nbas (pyscf.gto.mole.MoleBase property)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.VindTracker.ncalls">ncalls (pyscf.tdscf.common_slow.VindTracker property)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.mcscf.html#pyscf.mcscf.casci.CASBase.ncore">ncore (pyscf.mcscf.casci.CASBase property)</a>
 
@@ -13569,8 +13605,6 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.gw_exact.GWExact.nmo">(pyscf.gw.gw_exact.GWExact property)</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.rpa.DirectRPA.nmo">(pyscf.gw.rpa.DirectRPA property)</a>
-</li>
         <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.ugw_ac.UGWAC.nmo">(pyscf.gw.ugw_ac.UGWAC property)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.mp2.MP2.nmo">(pyscf.mp.mp2.MP2 property)</a>
@@ -13584,16 +13618,6 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.pbc.gw.html#pyscf.pbc.gw.krgw_cd.KRGWCD.nmo">(pyscf.pbc.gw.krgw_cd.KRGWCD property)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.gw.html#pyscf.pbc.gw.kugw_ac.KUGWAC.nmo">(pyscf.pbc.gw.kugw_ac.KUGWAC property)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.MolecularMFMixin.nmo">(pyscf.tdscf.common_slow.MolecularMFMixin property)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.PeriodicMFMixin.nmo">(pyscf.tdscf.common_slow.PeriodicMFMixin property)</a>
-</li>
-      </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.MolecularMFMixin.nmo_full">nmo_full (pyscf.tdscf.common_slow.MolecularMFMixin property)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.PeriodicMFMixin.nmo_full">(pyscf.tdscf.common_slow.PeriodicMFMixin property)</a>
 </li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.agf2.html#pyscf.agf2.ragf2.RAGF2.nocc">nocc (pyscf.agf2.ragf2.RAGF2 property)</a>
@@ -13615,8 +13639,6 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.gw_exact.GWExact.nocc">(pyscf.gw.gw_exact.GWExact property)</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.rpa.DirectRPA.nocc">(pyscf.gw.rpa.DirectRPA property)</a>
-</li>
         <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.ugw_ac.UGWAC.nocc">(pyscf.gw.ugw_ac.UGWAC property)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.mp2.MP2.nocc">(pyscf.mp.mp2.MP2 property)</a>
@@ -13630,16 +13652,6 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.pbc.gw.html#pyscf.pbc.gw.krgw_cd.KRGWCD.nocc">(pyscf.pbc.gw.krgw_cd.KRGWCD property)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.gw.html#pyscf.pbc.gw.kugw_ac.KUGWAC.nocc">(pyscf.pbc.gw.kugw_ac.KUGWAC property)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.MolecularMFMixin.nocc">(pyscf.tdscf.common_slow.MolecularMFMixin property)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.PeriodicMFMixin.nocc">(pyscf.tdscf.common_slow.PeriodicMFMixin property)</a>
-</li>
-      </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.MolecularMFMixin.nocc_full">nocc_full (pyscf.tdscf.common_slow.MolecularMFMixin property)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.PeriodicMFMixin.nocc_full">(pyscf.tdscf.common_slow.PeriodicMFMixin property)</a>
 </li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.nac.html#pyscf.nac.sacasscf.NonAdiabaticCouplings">NonAdiabaticCouplings (class in pyscf.nac.sacasscf)</a>
@@ -13662,14 +13674,14 @@ document.write(`
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.agf2.html#pyscf.agf2.aux_space.AuxiliarySpace.nphys">nphys (pyscf.agf2.aux_space.AuxiliarySpace property)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pyscf_api_docs/pyscf.dft.html#pyscf.dft.numint.nr_fxc">nr_fxc() (in module pyscf.dft.numint)</a>
 
       <ul>
         <li><a href="pyscf_api_docs/pyscf.dft.html#pyscf.dft.numint.NumInt.nr_fxc">(pyscf.dft.numint.NumInt method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.dft.html#pyscf.dft.numint2c.NumInt2C.nr_fxc">(pyscf.dft.numint2c.NumInt2C method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.dft.html#pyscf.pbc.dft.numint.KNumInt.nr_fxc">(pyscf.pbc.dft.numint.KNumInt method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.dft.html#pyscf.pbc.dft.numint.NumInt.nr_fxc">(pyscf.pbc.dft.numint.NumInt method)</a>
 </li>
@@ -13678,6 +13690,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.pbc.dft.html#pyscf.pbc.dft.numint2c.NumInt2C.nr_fxc">(pyscf.pbc.dft.numint2c.NumInt2C method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pyscf_api_docs/pyscf.dft.html#pyscf.dft.numint2c.NumInt2C.nr_gks_fxc">nr_gks_fxc() (pyscf.dft.numint2c.NumInt2C method)</a>
 
       <ul>
@@ -13873,6 +13887,8 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2_native.DFRMP2.nuc_grad_method">(pyscf.mp.dfmp2_native.DFRMP2 method)</a>
 </li>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.nuc_grad_method">(pyscf.mp.dfump2.DFUMP2 method)</a>
+</li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2_native.DFUMP2.nuc_grad_method">(pyscf.mp.dfump2_native.DFUMP2 method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.gmp2.GMP2.nuc_grad_method">(pyscf.mp.gmp2.GMP2 method)</a>
@@ -13992,6 +14008,8 @@ document.write(`
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.fci.html#pyscf.fci.cistring.OIndexList">OIndexList (class in pyscf.fci.cistring)</a>
 </li>
+      <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.numpy_helper.omatcopy">omatcopy() (in module pyscf.lib.numpy_helper)</a>
+</li>
       <li><a href="pyscf_api_docs/pyscf.dft.html#pyscf.dft.numint.LibXCMixin.omega">omega (pyscf.dft.numint.LibXCMixin attribute)</a>
 
       <ul>
@@ -14018,12 +14036,6 @@ document.write(`
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.grad.html#pyscf.grad.rhf.GradientsBase.optimizer">optimizer() (pyscf.grad.rhf.GradientsBase method)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kproxy_supercell.orb2ov">orb2ov() (in module pyscf.pbc.tdscf.kproxy_supercell)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.proxy.orb2ov">(in module pyscf.tdscf.proxy)</a>
-</li>
-      </ul></li>
       <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.gw_slow.AbstractIMDS.orb_dims">orb_dims (pyscf.gw.gw_slow.AbstractIMDS attribute)</a>
 
       <ul>
@@ -14083,8 +14095,6 @@ document.write(`
 </li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.output">output (pyscf.gto.mole.MoleBase attribute)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kproxy_supercell.ov2orb">ov2orb() (in module pyscf.pbc.tdscf.kproxy_supercell)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.ci.html#pyscf.ci.cisd.overlap">overlap() (in module pyscf.ci.cisd)</a>
 
@@ -14284,8 +14294,6 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.solvent.html#pyscf.solvent.PE">PE() (in module pyscf.solvent)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.PeriodicMFMixin">PeriodicMFMixin (class in pyscf.tdscf.common_slow)</a>
-</li>
       <li><a href="pyscf_api_docs/pyscf.cc.html#pyscf.cc.eom_rccsd.perturbed_ccsd_kernel">perturbed_ccsd_kernel() (in module pyscf.cc.eom_rccsd)</a>
 
       <ul>
@@ -14300,42 +14308,6 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.dft.multigrid.html#pyscf.pbc.dft.multigrid.multigrid_pair.Task.pgfpairs">pgfpairs (pyscf.pbc.dft.multigrid.multigrid_pair.Task attribute)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kproxy_supercell.PhysERI">PhysERI (class in pyscf.pbc.tdscf.kproxy_supercell)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow.PhysERI">(class in pyscf.pbc.tdscf.krhf_slow)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_gamma.PhysERI">(class in pyscf.pbc.tdscf.krhf_slow_gamma)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_supercell.PhysERI">(class in pyscf.pbc.tdscf.krhf_slow_supercell)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.proxy.PhysERI">(class in pyscf.pbc.tdscf.proxy)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.proxy.PhysERI">(class in pyscf.tdscf.proxy)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.rhf_slow.PhysERI">(class in pyscf.tdscf.rhf_slow)</a>
-</li>
-      </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow.PhysERI4">PhysERI4 (class in pyscf.pbc.tdscf.krhf_slow)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_gamma.PhysERI4">(class in pyscf.pbc.tdscf.krhf_slow_gamma)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_supercell.PhysERI4">(class in pyscf.pbc.tdscf.krhf_slow_supercell)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.rhf_slow.PhysERI4">(class in pyscf.tdscf.rhf_slow)</a>
-</li>
-      </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow.PhysERI8">PhysERI8 (class in pyscf.pbc.tdscf.krhf_slow)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_gamma.PhysERI8">(class in pyscf.pbc.tdscf.krhf_slow_gamma)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_supercell.PhysERI8">(class in pyscf.pbc.tdscf.krhf_slow_supercell)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.rhf_slow.PhysERI8">(class in pyscf.tdscf.rhf_slow)</a>
-</li>
-      </ul></li>
       <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.linalg_helper.pick_real_eigs">pick_real_eigs() (in module pyscf.lib.linalg_helper)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.x2c.html#pyscf.x2c.sfx2c1e.SpinFreeX2CHelper.picture_change">picture_change() (pyscf.x2c.sfx2c1e.SpinFreeX2CHelper method)</a>
@@ -14420,12 +14392,16 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.lo.html#pyscf.lo.nao.prenao">prenao() (in module pyscf.lo.nao)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow.PhysERI.primary_driver">primary_driver (pyscf.pbc.tdscf.krhf_slow.PhysERI attribute)</a>
-</li>
       <li><a href="pyscf_api_docs/pyscf.pbc.tools.html#pyscf.pbc.tools.print_funcs.print_mo_energy_occ">print_mo_energy_occ() (in module pyscf.pbc.tools.print_funcs)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.tools.html#pyscf.pbc.tools.print_funcs.print_mo_energy_occ_kpts">print_mo_energy_occ_kpts() (in module pyscf.pbc.tools.print_funcs)</a>
 </li>
+      <li><a href="pyscf_api_docs/pyscf.dft.html#pyscf.dft.libxc.print_XC_CODES">print_XC_CODES() (in module pyscf.dft.libxc)</a>
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.dft.html#pyscf.dft.xcfun.print_XC_CODES">(in module pyscf.dft.xcfun)</a>
+</li>
+      </ul></li>
       <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.misc.ProcessRuntimeError">ProcessRuntimeError</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.misc.ProcessWithReturnValue">ProcessWithReturnValue (class in pyscf.lib.misc)</a>
@@ -14464,34 +14440,6 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.gto.pseudo.html#pyscf.pbc.gto.pseudo.pp.projG_li">projG_li() (in module pyscf.pbc.gto.pseudo.pp)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kproxy_supercell.PhysERI.proxy_choices">proxy_choices (pyscf.pbc.tdscf.kproxy_supercell.PhysERI attribute)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.proxy.PhysERI.proxy_choices">(pyscf.pbc.tdscf.proxy.PhysERI attribute)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.proxy.PhysERI.proxy_choices">(pyscf.tdscf.proxy.PhysERI attribute)</a>
-</li>
-      </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kproxy_supercell.TDProxy.proxy_eri">proxy_eri (pyscf.pbc.tdscf.kproxy_supercell.TDProxy attribute)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.proxy.TDProxy.proxy_eri">(pyscf.pbc.tdscf.proxy.TDProxy attribute)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.proxy.TDProxy.proxy_eri">(pyscf.tdscf.proxy.TDProxy attribute)</a>
-</li>
-      </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kproxy_supercell.PhysERI.proxy_is_double">proxy_is_double() (pyscf.pbc.tdscf.kproxy_supercell.PhysERI method)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.proxy.PhysERI.proxy_is_double">(pyscf.tdscf.proxy.PhysERI method)</a>
-</li>
-      </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kproxy_supercell.PhysERI.proxy_response">proxy_response() (pyscf.pbc.tdscf.kproxy_supercell.PhysERI method)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.proxy.PhysERI.proxy_response">(pyscf.tdscf.proxy.PhysERI method)</a>
-</li>
-      </ul></li>
       <li><a href="pyscf_api_docs/pyscf.dft.html#pyscf.dft.gen_grid.Grids.prune">prune() (pyscf.dft.gen_grid.Grids static method)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.dft.html#pyscf.dft.gen_grid.Grids.prune_by_density_">prune_by_density_() (pyscf.dft.gen_grid.Grids method)</a>
@@ -14528,8 +14476,6 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.fci.html#pyscf.fci.direct_spin1_symm.FCISolver.pspace_size">(pyscf.fci.direct_spin1_symm.FCISolver attribute)</a>
 </li>
       </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf.purify_krlyov_heff">purify_krlyov_heff() (in module pyscf.pbc.tdscf.krhf)</a>
-</li>
       <li><a href="pyscf_api_docs/pyscf.pbc.lib.html#pyscf.pbc.lib.arnoldi.Arnoldi.push_Av">push_Av() (pyscf.pbc.lib.arnoldi.Arnoldi method)</a>
 
       <ul>
@@ -15165,6 +15111,13 @@ document.write(`
 
       <ul>
         <li><a href="pyscf_api_docs/pyscf.df.html#module-pyscf.df.addons">module</a>
+</li>
+      </ul></li>
+      <li>
+    pyscf.df.autoaux
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.df.html#module-pyscf.df.autoaux">module</a>
 </li>
       </ul></li>
       <li>
@@ -16119,8 +16072,6 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.hessian.html#module-pyscf.hessian.uks">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     pyscf.lib
 
@@ -16149,6 +16100,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.lib.html#module-pyscf.lib.exceptions">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     pyscf.lib.linalg_helper
 
@@ -16458,10 +16411,31 @@ document.write(`
 </li>
       </ul></li>
       <li>
+    pyscf.mp.dfmp2_slow
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#module-pyscf.mp.dfmp2_slow">module</a>
+</li>
+      </ul></li>
+      <li>
+    pyscf.mp.dfump2
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#module-pyscf.mp.dfump2">module</a>
+</li>
+      </ul></li>
+      <li>
     pyscf.mp.dfump2_native
 
       <ul>
         <li><a href="pyscf_api_docs/pyscf.mp.html#module-pyscf.mp.dfump2_native">module</a>
+</li>
+      </ul></li>
+      <li>
+    pyscf.mp.dfump2_slow
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#module-pyscf.mp.dfump2_slow">module</a>
 </li>
       </ul></li>
       <li>
@@ -17256,13 +17230,6 @@ document.write(`
 </li>
       </ul></li>
       <li>
-    pyscf.pbc.gw.kgw_slow
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.gw.html#module-pyscf.pbc.gw.kgw_slow">module</a>
-</li>
-      </ul></li>
-      <li>
     pyscf.pbc.gw.kgw_slow_supercell
 
       <ul>
@@ -17599,38 +17566,10 @@ document.write(`
 </li>
       </ul></li>
       <li>
-    pyscf.pbc.tdscf.kproxy_supercell
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.kproxy_supercell">module</a>
-</li>
-      </ul></li>
-      <li>
     pyscf.pbc.tdscf.krhf
 
       <ul>
         <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.krhf">module</a>
-</li>
-      </ul></li>
-      <li>
-    pyscf.pbc.tdscf.krhf_slow
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.krhf_slow">module</a>
-</li>
-      </ul></li>
-      <li>
-    pyscf.pbc.tdscf.krhf_slow_gamma
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.krhf_slow_gamma">module</a>
-</li>
-      </ul></li>
-      <li>
-    pyscf.pbc.tdscf.krhf_slow_supercell
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.krhf_slow_supercell">module</a>
 </li>
       </ul></li>
       <li>
@@ -17655,24 +17594,10 @@ document.write(`
 </li>
       </ul></li>
       <li>
-    pyscf.pbc.tdscf.proxy
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.proxy">module</a>
-</li>
-      </ul></li>
-      <li>
     pyscf.pbc.tdscf.rhf
 
       <ul>
         <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.rhf">module</a>
-</li>
-      </ul></li>
-      <li>
-    pyscf.pbc.tdscf.rhf_slow
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.rhf_slow">module</a>
 </li>
       </ul></li>
       <li>
@@ -17970,6 +17895,13 @@ document.write(`
 </li>
       </ul></li>
       <li>
+    pyscf.solvent.cosmors
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.solvent.html#module-pyscf.solvent.cosmors">module</a>
+</li>
+      </ul></li>
+      <li>
     pyscf.solvent.ddcosmo
 
       <ul>
@@ -18152,13 +18084,6 @@ document.write(`
 </li>
       </ul></li>
       <li>
-    pyscf.tdscf.common_slow
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#module-pyscf.tdscf.common_slow">module</a>
-</li>
-      </ul></li>
-      <li>
     pyscf.tdscf.dhf
 
       <ul>
@@ -18187,24 +18112,10 @@ document.write(`
 </li>
       </ul></li>
       <li>
-    pyscf.tdscf.proxy
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#module-pyscf.tdscf.proxy">module</a>
-</li>
-      </ul></li>
-      <li>
     pyscf.tdscf.rhf
 
       <ul>
         <li><a href="pyscf_api_docs/pyscf.tdscf.html#module-pyscf.tdscf.rhf">module</a>
-</li>
-      </ul></li>
-      <li>
-    pyscf.tdscf.rhf_slow
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#module-pyscf.tdscf.rhf_slow">module</a>
 </li>
       </ul></li>
       <li>
@@ -18289,6 +18200,13 @@ document.write(`
 
       <ul>
         <li><a href="pyscf_api_docs/pyscf.tools.html#module-pyscf.tools.molden">module</a>
+</li>
+      </ul></li>
+      <li>
+    pyscf.tools.qcschema
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.tools.html#module-pyscf.tools.qcschema">module</a>
 </li>
       </ul></li>
       <li>
@@ -18404,10 +18322,10 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.qmmm.html#pyscf.qmmm.itrf.qmmm_for_scf">qmmm_for_scf() (in module pyscf.qmmm.itrf)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pyscf_api_docs/pyscf.qmmm.html#pyscf.qmmm.itrf.qmmm_grad_for_scf">qmmm_grad_for_scf() (in module pyscf.qmmm.itrf)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pyscf_api_docs/pyscf.qmmm.html#pyscf.qmmm.itrf.QMMMGrad">QMMMGrad (class in pyscf.qmmm.itrf)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.qmmm.html#pyscf.qmmm.itrf.QMMMPostSCF">QMMMPostSCF (class in pyscf.qmmm.itrf)</a>
@@ -18430,6 +18348,12 @@ document.write(`
 
       <ul>
         <li><a href="pyscf_api_docs/pyscf.agf2.html#pyscf.agf2.uagf2.UAGF2.qmo_occ">(pyscf.agf2.uagf2.UAGF2 property)</a>
+</li>
+      </ul></li>
+      <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.hf.quad_moment">quad_moment() (in module pyscf.scf.hf)</a>
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.hf.SCF.quad_moment">(pyscf.scf.hf.SCF method)</a>
 </li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.gw_slow.AbstractIMDS.quasiparticle_eq">quasiparticle_eq() (pyscf.gw.gw_slow.AbstractIMDS method)</a>
@@ -18521,12 +18445,12 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.df.html#pyscf.pbc.df.fft.FFTDF.range_coulomb">(pyscf.pbc.df.fft.FFTDF method)</a>
 </li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.dft.multigrid.html#pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.range_coulomb">(pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF method)</a>
+</li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.rsjk.RangeSeparatedJKBuilder">RangeSeparatedJKBuilder (class in pyscf.pbc.scf.rsjk)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.rsjk.RangeSeparationJKBuilder">RangeSeparationJKBuilder (in module pyscf.pbc.scf.rsjk)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.VindTracker.ratio">ratio (pyscf.tdscf.common_slow.VindTracker property)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.mcscf.html#pyscf.mcscf.RCASCI">RCASCI() (in module pyscf.mcscf)</a>
 </li>
@@ -18605,6 +18529,10 @@ document.write(`
       <li><a href="pyscf_api_docs/pyscf.pbc.lib.html#pyscf.pbc.lib.linalg_helper.realRepresentation">realRepresentation() (in module pyscf.pbc.lib.linalg_helper)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.gto.html#pyscf.pbc.gto.cell.Cell.reciprocal_vectors">reciprocal_vectors() (pyscf.pbc.gto.cell.Cell method)</a>
+</li>
+      <li><a href="pyscf_api_docs/pyscf.tools.html#pyscf.tools.qcschema.recreate_mol_obj">recreate_mol_obj() (in module pyscf.tools.qcschema)</a>
+</li>
+      <li><a href="pyscf_api_docs/pyscf.tools.html#pyscf.tools.qcschema.recreate_scf_obj">recreate_scf_obj() (in module pyscf.tools.qcschema)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.agf2.html#pyscf.agf2.mpi_helper.reduce">reduce() (in module pyscf.agf2.mpi_helper)</a>
 </li>
@@ -18784,8 +18712,6 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.solvent.html#pyscf.solvent.pcm.PCM.reset">(pyscf.solvent.pcm.PCM method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.solvent.html#pyscf.solvent.smd.SMD.reset">(pyscf.solvent.smd.SMD method)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.VindTracker.reset">(pyscf.tdscf.common_slow.VindTracker method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.rhf.TDBase.reset">(pyscf.tdscf.rhf.TDBase method)</a>
 </li>
@@ -18976,7 +18902,7 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.symm.html#pyscf.symm.addons.route">route() (in module pyscf.symm.addons)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.rpa.RPA">RPA (in module pyscf.gw.rpa)</a>
+      <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.rpa.RPA">RPA (class in pyscf.gw.rpa)</a>
 
       <ul>
         <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf.RPA">(in module pyscf.pbc.tdscf.krhf)</a>
@@ -19076,6 +19002,8 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.same_mol">same_mol() (in module pyscf.gto.mole)</a>
 </li>
+      <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.hf.SCF.sap_basis">sap_basis (pyscf.scf.hf.SCF attribute)</a>
+</li>
       <li><a href="pyscf_api_docs/pyscf.dft.html#pyscf.dft.sap.sap_effective_charge">sap_effective_charge() (in module pyscf.dft.sap)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.chkfile.save">save() (in module pyscf.lib.chkfile)</a>
@@ -19147,6 +19075,8 @@ document.write(`
 </li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.fci.html#pyscf.fci.selected_ci.SCIvector">SCIvector (class in pyscf.fci.selected_ci)</a>
+</li>
+      <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.dhf.DHF.screening">screening (pyscf.scf.dhf.DHF attribute)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2_native.SCSDFMP2">SCSDFMP2 (in module pyscf.mp.dfmp2_native)</a>
 
@@ -19237,6 +19167,8 @@ document.write(`
 </li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.agf2.html#pyscf.agf2.aux_space.SelfEnergy">SelfEnergy (class in pyscf.agf2.aux_space)</a>
+</li>
+      <li><a href="pyscf_api_docs/pyscf.adc.html#pyscf.adc.uadc.UADC.semi_canonicalize_orbitals">semi_canonicalize_orbitals() (pyscf.adc.uadc.UADC method)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.mcscf.html#pyscf.mcscf.PiOS.SemiCanonicalize">SemiCanonicalize() (in module pyscf.mcscf.PiOS)</a>
 </li>
@@ -19363,6 +19295,10 @@ document.write(`
       <ul>
         <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.uhf.TDHF.singlet">(pyscf.pbc.tdscf.uhf.TDHF attribute)</a>
 </li>
+        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.dhf.TDA.singlet">(pyscf.tdscf.dhf.TDA attribute)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.dhf.TDHF.singlet">(pyscf.tdscf.dhf.TDHF attribute)</a>
+</li>
         <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.ghf.TDA.singlet">(pyscf.tdscf.ghf.TDA attribute)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.ghf.TDHF.singlet">(pyscf.tdscf.ghf.TDHF attribute)</a>
@@ -19386,6 +19322,12 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.fci.html#pyscf.fci.direct_ep.slices_for_des">slices_for_des() (in module pyscf.fci.direct_ep)</a>
 </li>
+      <li><a href="pyscf_api_docs/pyscf.dft.html#pyscf.dft.rks.KohnShamDFT.small_rho_cutoff">small_rho_cutoff (pyscf.dft.rks.KohnShamDFT attribute)</a>
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.pbc.dft.html#pyscf.pbc.dft.rks.KohnShamDFT.small_rho_cutoff">(pyscf.pbc.dft.rks.KohnShamDFT attribute)</a>
+</li>
+      </ul></li>
       <li><a href="pyscf_api_docs/pyscf.mcscf.html#pyscf.mcscf.mc1step.CASSCF.small_rot_tol">small_rot_tol (pyscf.mcscf.mc1step.CASSCF attribute)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.solvent.html#pyscf.solvent.smd.SMD">SMD (class in pyscf.solvent.smd)</a>
@@ -19535,6 +19477,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.mcscf.html#pyscf.mcscf.mc1step_symm.SymAdaptedCASSCF.sort_mo_by_irrep">(pyscf.mcscf.mc1step_symm.SymAdaptedCASSCF method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pyscf_api_docs/pyscf.mcscf.html#pyscf.mcscf.casci.CASBase.sorting_mo_energy">sorting_mo_energy (pyscf.mcscf.casci.CASBase attribute)</a>
 
       <ul>
@@ -19542,8 +19486,6 @@ document.write(`
 </li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.pbc.symm.html#pyscf.pbc.symm.space_group.SpaceGroup">SpaceGroup (class in pyscf.pbc.symm.space_group)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kproxy_supercell.sparse_transform">sparse_transform() (in module pyscf.pbc.tdscf.kproxy_supercell)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.cc.html#pyscf.cc.addons.spatial2spin">spatial2spin() (in module pyscf.cc.addons)</a>
 
@@ -19575,8 +19517,6 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.pbc.cc.html#pyscf.pbc.cc.kccsd.GCCSD.spatial2spin">(pyscf.pbc.cc.kccsd.GCCSD method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pyscf_api_docs/pyscf.cc.html#pyscf.cc.eom_rccsd.spatial2spin_ea">spatial2spin_ea() (in module pyscf.cc.eom_rccsd)</a>
 
       <ul>
@@ -19767,13 +19707,27 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.fci.html#pyscf.fci.addons.SpinPenaltyFCISolver">SpinPenaltyFCISolver (class in pyscf.fci.addons)</a>
 </li>
+      <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2.DFMP2.split_mo_coeff">split_mo_coeff() (pyscf.mp.dfmp2.DFMP2 method)</a>
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.split_mo_coeff">(pyscf.mp.dfump2.DFUMP2 method)</a>
+</li>
+      </ul></li>
+      <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2.DFMP2.split_mo_energy">split_mo_energy() (pyscf.mp.dfmp2.DFMP2 method)</a>
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.split_mo_energy">(pyscf.mp.dfump2.DFUMP2 method)</a>
+</li>
+      </ul></li>
+      <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2.DFMP2.split_mo_occ">split_mo_occ() (pyscf.mp.dfmp2.DFMP2 method)</a>
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.split_mo_occ">(pyscf.mp.dfump2.DFUMP2 method)</a>
+</li>
+      </ul></li>
       <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.numpy_helper.split_reshape">split_reshape() (in module pyscf.lib.numpy_helper)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kproxy_supercell.split_transform">split_transform() (in module pyscf.pbc.tdscf.kproxy_supercell)</a>
-</li>
       <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.misc.square_mat_in_trilu_indices">square_mat_in_trilu_indices() (in module pyscf.lib.misc)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.MolecularMFMixin.squeeze">squeeze() (pyscf.tdscf.common_slow.MolecularMFMixin method)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.mrpt.html#pyscf.mrpt.nevpt2.Sr">Sr() (in module pyscf.mrpt.nevpt2)</a>
 </li>
@@ -19919,12 +19873,6 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.pbc.tools.html#pyscf.pbc.tools.pbc.super_cell">super_cell() (in module pyscf.pbc.tools.pbc)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kproxy_supercell.supercell_response">supercell_response() (in module pyscf.pbc.tdscf.kproxy_supercell)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kproxy_supercell.supercell_response_ov">supercell_response_ov() (in module pyscf.pbc.tdscf.kproxy_supercell)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kproxy_supercell.supercell_space_required">supercell_space_required() (in module pyscf.pbc.tdscf.kproxy_supercell)</a>
-</li>
       <li><a href="pyscf_api_docs/pyscf.pbc.lib.html#pyscf.pbc.lib.linalg_helper.svd_cut">svd_cut() (in module pyscf.pbc.lib.linalg_helper)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.solvent.html#pyscf.solvent.pcm.switch_h">switch_h() (in module pyscf.solvent.pcm)</a>
@@ -19969,26 +19917,6 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.symm.html#pyscf.symm.geom.SymmSys.symmetric_for">symmetric_for() (pyscf.symm.geom.SymmSys method)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow.PhysERI4.symmetries">symmetries (pyscf.pbc.tdscf.krhf_slow.PhysERI4 attribute)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow.PhysERI8.symmetries">(pyscf.pbc.tdscf.krhf_slow.PhysERI8 attribute)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_gamma.PhysERI4.symmetries">(pyscf.pbc.tdscf.krhf_slow_gamma.PhysERI4 attribute)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_gamma.PhysERI8.symmetries">(pyscf.pbc.tdscf.krhf_slow_gamma.PhysERI8 attribute)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_supercell.PhysERI4.symmetries">(pyscf.pbc.tdscf.krhf_slow_supercell.PhysERI4 attribute)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_supercell.PhysERI8.symmetries">(pyscf.pbc.tdscf.krhf_slow_supercell.PhysERI8 attribute)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.TDERIMatrixBlocks.symmetries">(pyscf.tdscf.common_slow.TDERIMatrixBlocks attribute)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.rhf_slow.PhysERI4.symmetries">(pyscf.tdscf.rhf_slow.PhysERI4 attribute)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.rhf_slow.PhysERI8.symmetries">(pyscf.tdscf.rhf_slow.PhysERI8 attribute)</a>
-</li>
-      </ul></li>
       <li><a href="interface/geomopt.html#pyscf.geomopt.addons.symmetrize">symmetrize() (in module pyscf.geomopt.addons)</a>, <a href="pyscf_api_docs/pyscf.geomopt.html#pyscf.geomopt.addons.symmetrize">[1]</a>
 
       <ul>
@@ -20146,8 +20074,6 @@ document.write(`
       <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.rhf.TDBase">TDBase (class in pyscf.pbc.tdscf.rhf)</a>
 
       <ul>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.TDBase">(class in pyscf.tdscf.common_slow)</a>
-</li>
         <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.dhf.TDBase">(class in pyscf.tdscf.dhf)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.ghf.TDBase">(class in pyscf.tdscf.ghf)</a>
@@ -20247,8 +20173,6 @@ document.write(`
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.dks.TDDKS">TDDKS (in module pyscf.tdscf.dks)</a>
 </li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.TDERIMatrixBlocks">TDERIMatrixBlocks (class in pyscf.tdscf.common_slow)</a>
-</li>
       <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.ghf.TDGHF">TDGHF (in module pyscf.tdscf.ghf)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.gks.TDGKS">TDGKS (in module pyscf.tdscf.gks)</a>
@@ -20335,61 +20259,9 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.x2c.html#pyscf.x2c.x2c.UHF.TDHF">(pyscf.x2c.x2c.UHF method)</a>
 </li>
       </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.TDMatrixBlocks.tdhf_ab_form">tdhf_ab_form() (pyscf.tdscf.common_slow.TDMatrixBlocks method)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow.PhysERI.tdhf_diag">tdhf_diag() (pyscf.pbc.tdscf.krhf_slow.PhysERI method)</a>
+      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.rhf.TDRHF">TDRHF (in module pyscf.pbc.tdscf.rhf)</a>
 
       <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_gamma.PhysERI.tdhf_diag">(pyscf.pbc.tdscf.krhf_slow_gamma.PhysERI method)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_supercell.PhysERI.tdhf_diag">(pyscf.pbc.tdscf.krhf_slow_supercell.PhysERI method)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.TDERIMatrixBlocks.tdhf_diag">(pyscf.tdscf.common_slow.TDERIMatrixBlocks method)</a>
-</li>
-      </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_supercell.PhysERI.tdhf_diag_k">tdhf_diag_k() (pyscf.pbc.tdscf.krhf_slow_supercell.PhysERI method)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.TDMatrixBlocks.tdhf_full_form">tdhf_full_form() (pyscf.tdscf.common_slow.TDMatrixBlocks method)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.TDMatrixBlocks.tdhf_mk_form">tdhf_mk_form() (pyscf.tdscf.common_slow.TDMatrixBlocks method)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kproxy_supercell.PhysERI.tdhf_primary_form">tdhf_primary_form() (pyscf.pbc.tdscf.kproxy_supercell.PhysERI method)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow.PhysERI.tdhf_primary_form">(pyscf.pbc.tdscf.krhf_slow.PhysERI method)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.TDERIMatrixBlocks.tdhf_primary_form">(pyscf.tdscf.common_slow.TDERIMatrixBlocks method)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.TDMatrixBlocks.tdhf_primary_form">(pyscf.tdscf.common_slow.TDMatrixBlocks method)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.TDProxyMatrixBlocks.tdhf_primary_form">(pyscf.tdscf.common_slow.TDProxyMatrixBlocks method)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.proxy.PhysERI.tdhf_primary_form">(pyscf.tdscf.proxy.PhysERI method)</a>
-</li>
-      </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.TDMatrixBlocks">TDMatrixBlocks (class in pyscf.tdscf.common_slow)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kproxy_supercell.TDProxy">TDProxy (class in pyscf.pbc.tdscf.kproxy_supercell)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.proxy.TDProxy">(class in pyscf.pbc.tdscf.proxy)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.proxy.TDProxy">(class in pyscf.tdscf.proxy)</a>
-</li>
-      </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.TDProxyMatrixBlocks">TDProxyMatrixBlocks (class in pyscf.tdscf.common_slow)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow.TDRHF">TDRHF (class in pyscf.pbc.tdscf.krhf_slow)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_gamma.TDRHF">(class in pyscf.pbc.tdscf.krhf_slow_gamma)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_supercell.TDRHF">(class in pyscf.pbc.tdscf.krhf_slow_supercell)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.rhf_slow.TDRHF">(class in pyscf.tdscf.rhf_slow)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.rhf.TDRHF">(in module pyscf.pbc.tdscf.rhf)</a>
-</li>
         <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.rhf.TDRHF">(in module pyscf.tdscf.rhf)</a>
 </li>
       </ul></li>
@@ -20425,8 +20297,6 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.dft.html#pyscf.dft.xcfun.test_deriv_order">(in module pyscf.dft.xcfun)</a>
 </li>
       </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.VindTracker.text_stats">text_stats() (pyscf.tdscf.common_slow.VindTracker method)</a>
-</li>
       <li><a href="pyscf_api_docs/pyscf.hessian.html#pyscf.hessian.thermo.thermo">thermo() (in module pyscf.hessian.thermo)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.gw.html#pyscf.gw.gw_ac.thiele">thiele() (in module pyscf.gw.gw_ac)</a>
@@ -20643,6 +20513,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.pbc.dft.html#pyscf.pbc.dft.kroks.KROKS.to_gpu">(pyscf.pbc.dft.kroks.KROKS method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.dft.html#pyscf.pbc.dft.kuks.KUKS.to_gpu">(pyscf.pbc.dft.kuks.KUKS method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.dft.multigrid.html#pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.to_gpu">(pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.dft.html#pyscf.pbc.dft.numint.KNumInt.to_gpu">(pyscf.pbc.dft.numint.KNumInt method)</a>
 </li>
@@ -20922,7 +20794,11 @@ document.write(`
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.tofile">tofile() (in module pyscf.gto.mole)</a>
 
       <ul>
+        <li><a href="pyscf_api_docs/pyscf.pbc.gto.html#pyscf.pbc.gto.cell.tofile">(in module pyscf.pbc.gto.cell)</a>
+</li>
         <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.Mole.tofile">(pyscf.gto.mole.Mole method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.gto.html#pyscf.pbc.gto.cell.Cell.tofile">(pyscf.pbc.gto.cell.Cell method)</a>
 </li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.fci.html#pyscf.fci.selected_ci.SelectedCI.tol_decay_rate">tol_decay_rate (pyscf.fci.selected_ci.SelectedCI attribute)</a>
@@ -20930,7 +20806,11 @@ document.write(`
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.tostring">tostring() (in module pyscf.gto.mole)</a>
 
       <ul>
+        <li><a href="pyscf_api_docs/pyscf.pbc.gto.html#pyscf.pbc.gto.cell.tostring">(in module pyscf.pbc.gto.cell)</a>
+</li>
         <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.Mole.tostring">(pyscf.gto.mole.Mole method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.pbc.gto.html#pyscf.pbc.gto.cell.Cell.tostring">(pyscf.pbc.gto.cell.Cell method)</a>
 </li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.tot_electrons">tot_electrons() (in module pyscf.gto.mole)</a>
@@ -21412,7 +21292,11 @@ document.write(`
       <ul>
         <li><a href="pyscf_api_docs/pyscf.pbc.mp.html#pyscf.pbc.mp.mp2.UMP2">(class in pyscf.pbc.mp.mp2)</a>
 </li>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2.UMP2">(in module pyscf.mp.dfump2)</a>
+</li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2_native.UMP2">(in module pyscf.mp.dfump2_native)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2_slow.UMP2">(in module pyscf.mp.dfump2_slow)</a>
 </li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.UMP2">UMP2() (in module pyscf.mp)</a>
@@ -21510,7 +21394,11 @@ document.write(`
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pyscf_api_docs/pyscf.adc.html#pyscf.adc.radc_ao2mo.unpack_eri_1">unpack_eri_1() (in module pyscf.adc.radc_ao2mo)</a>
+
+      <ul>
+        <li><a href="pyscf_api_docs/pyscf.adc.html#pyscf.adc.uadc_ao2mo.unpack_eri_1">(in module pyscf.adc.uadc_ao2mo)</a>
 </li>
+      </ul></li>
       <li><a href="pyscf_api_docs/pyscf.adc.html#pyscf.adc.radc_ao2mo.unpack_eri_2">unpack_eri_2() (in module pyscf.adc.radc_ao2mo)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.numpy_helper.unpack_row">unpack_row() (in module pyscf.lib.numpy_helper)</a>
@@ -21611,6 +21499,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.cc.html#pyscf.cc.uccsd_slow.UCCSD.update_amps">(pyscf.cc.uccsd_slow.UCCSD method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfmp2.DFMP2.update_amps">(pyscf.mp.dfmp2.DFMP2 method)</a>
+</li>
+        <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.update_amps">(pyscf.mp.dfump2.DFUMP2 method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.mp.html#pyscf.mp.gmp2.GMP2.update_amps">(pyscf.mp.gmp2.GMP2 method)</a>
 </li>
@@ -21727,22 +21617,6 @@ document.write(`
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.TDBase.v2a">v2a (pyscf.tdscf.common_slow.TDBase attribute)</a>
-</li>
-      <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.kproxy_supercell.TDProxy.v2a">v2a() (pyscf.pbc.tdscf.kproxy_supercell.TDProxy static method)</a>
-
-      <ul>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow.TDRHF.v2a">(pyscf.pbc.tdscf.krhf_slow.TDRHF static method)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_gamma.TDRHF.v2a">(pyscf.pbc.tdscf.krhf_slow_gamma.TDRHF static method)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_supercell.TDRHF.v2a">(pyscf.pbc.tdscf.krhf_slow_supercell.TDRHF static method)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.proxy.TDProxy.v2a">(pyscf.tdscf.proxy.TDProxy static method)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.rhf_slow.TDRHF.v2a">(pyscf.tdscf.rhf_slow.TDRHF static method)</a>
-</li>
-      </ul></li>
       <li><a href="pyscf_api_docs/pyscf.lo.html#pyscf.lo.orth.vec_lowdin">vec_lowdin() (in module pyscf.lo.orth)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.lo.html#pyscf.lo.orth.vec_schmidt">vec_schmidt() (in module pyscf.lo.orth)</a>
@@ -21836,14 +21710,6 @@ document.write(`
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.cc.html#pyscf.pbc.cc.kccsd_uhf.vector_to_amplitudes">(in module pyscf.pbc.cc.kccsd_uhf)</a>
 </li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow.vector_to_amplitudes">(in module pyscf.pbc.tdscf.krhf_slow)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_gamma.vector_to_amplitudes">(in module pyscf.pbc.tdscf.krhf_slow_gamma)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf_slow_supercell.vector_to_amplitudes">(in module pyscf.pbc.tdscf.krhf_slow_supercell)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.rhf_slow.vector_to_amplitudes">(in module pyscf.tdscf.rhf_slow)</a>
-</li>
         <li><a href="pyscf_api_docs/pyscf.cc.html#pyscf.cc.ccsd.CCSDBase.vector_to_amplitudes">(pyscf.cc.ccsd.CCSDBase method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.cc.html#pyscf.cc.eom_gccsd.EOMEA.vector_to_amplitudes">(pyscf.cc.eom_gccsd.EOMEA method)</a>
@@ -21899,8 +21765,6 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.pbc.cc.html#pyscf.pbc.cc.kccsd_uhf.KUCCSD.vector_to_amplitudes">(pyscf.pbc.cc.kccsd_uhf.KUCCSD method)</a>
 </li>
         <li><a href="pyscf_api_docs/pyscf.pbc.ci.html#pyscf.pbc.ci.kcis_rhf.KCIS.vector_to_amplitudes">(pyscf.pbc.ci.kcis_rhf.KCIS method)</a>
-</li>
-        <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.TDBase.vector_to_amplitudes">(pyscf.tdscf.common_slow.TDBase method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -21977,8 +21841,6 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.misc.StreamObject.view">(pyscf.lib.misc.StreamObject method)</a>
 </li>
       </ul></li>
-      <li><a href="pyscf_api_docs/pyscf.tdscf.html#pyscf.tdscf.common_slow.VindTracker">VindTracker (class in pyscf.tdscf.common_slow)</a>
-</li>
       <li><a href="pyscf_api_docs/pyscf.eph.html#pyscf.eph.rhf.vnuc_generator">vnuc_generator() (in module pyscf.eph.rhf)</a>
 
       <ul>
@@ -22083,6 +21945,8 @@ document.write(`
         <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.uhf_symm.SymAdaptedUHF.wfnsym">(pyscf.scf.uhf_symm.SymAdaptedUHF property)</a>
 </li>
       </ul></li>
+      <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.exceptions.WfnSymmetryError">WfnSymmetryError</a>
+</li>
       <li><a href="pyscf_api_docs/pyscf.scf.html#pyscf.scf.dhf.DHF.with_breit">with_breit (pyscf.scf.dhf.DHF attribute)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.with_common_orig">with_common_orig() (pyscf.gto.mole.MoleBase method)</a>
@@ -22236,6 +22100,8 @@ document.write(`
 </li>
       </ul></li>
       <li><a href="pyscf_api_docs/pyscf.tools.html#pyscf.tools.wfn_format.write_ci">write_ci() (in module pyscf.tools.wfn_format)</a>
+</li>
+      <li><a href="pyscf_api_docs/pyscf.solvent.html#pyscf.solvent.cosmors.write_cosmo_file">write_cosmo_file() (in module pyscf.solvent.cosmors)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.tools.html#pyscf.tools.fcidump.write_eri">write_eri() (in module pyscf.tools.fcidump)</a>
 </li>
@@ -22447,14 +22313,16 @@ document.write(`
 </li>
       <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.numpy_helper.zdotNN">zdotNN() (in module pyscf.lib.numpy_helper)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="pyscf_api_docs/pyscf.pbc.lib.html#pyscf.pbc.lib.ktensor.zeros">zeros() (in module pyscf.pbc.lib.ktensor)</a>
+      <li><a href="pyscf_api_docs/pyscf.lib.html#pyscf.lib.numpy_helper.zeros">zeros() (in module pyscf.lib.numpy_helper)</a>
 
       <ul>
+        <li><a href="pyscf_api_docs/pyscf.pbc.lib.html#pyscf.pbc.lib.ktensor.zeros">(in module pyscf.pbc.lib.ktensor)</a>
+</li>
         <li><a href="pyscf_api_docs/pyscf.pbc.lib.html#pyscf.pbc.lib.ktensor.KsymmArray.zeros">(pyscf.pbc.lib.ktensor.KsymmArray static method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pyscf_api_docs/pyscf.pbc.cc.html#pyscf.pbc.cc.kccsd_t_rhf.zip_kpoints">zip_kpoints() (in module pyscf.pbc.cc.kccsd_t_rhf)</a>
 </li>
       <li><a href="pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.zmat">zmat() (in module pyscf.gto.mole)</a>
@@ -22493,8 +22361,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -22505,7 +22373,7 @@ document.write(`
 
   <p class="copyright">
     
-      © Copyright 2024, The PySCF Developers.
+      © Copyright 2025, The PySCF Developers.
       <br/>
     
   </p>
@@ -22527,7 +22395,8 @@ document.write(`
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

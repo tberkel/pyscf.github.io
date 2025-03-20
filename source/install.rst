@@ -83,7 +83,7 @@ Next, you need to build the C extensions in :file:`pyscf/lib`::
 This will automatically download the analytical GTO integral library
 `libcint <https://github.com/sunqm/libcint.git>`_ and the DFT exchange
 correlation functional libraries `Libxc
-<http://www.tddft.org/programs/Libxc>`_ and `XCFun
+<https://libxc.gitlab.io>`_ and `XCFun
 <https://github.com/dftlibs/xcfun.git>`_.  Finally, to allow Python to
 find the `pyscf` package, add the top-level `pyscf` directory (not the
 `pyscf/pyscf` subdirectory) to `PYTHONPATH`.  For example, if `pyscf`
@@ -217,7 +217,7 @@ Env variable            Comments
 
 `PYSCF_MAX_MEMORY` sets the default maximum memory in MB when creating
 `Mole` (or `Cell`) object. It corresponds to the attribute
-`max_memory``of Mole` (or `Cell`) object.
+`max_memory` of `Mole` (or `Cell`) object.
 
 The environment variable `PYSCF_TMPDIR` controls which directory is
 used to store intermediate files and temporary data when PySCF is run;
@@ -390,20 +390,28 @@ Extension modules
 
 As of PySCF-2.0, some modules have been moved from the main code trunk
 to extension projects hosted at https://github.com/pyscf.
+In addition, community-contributed packages that are officially recognized
+as PySCF extensions are also listed below.
 
 =================== =========================================================
 Project             URL
 =================== =========================================================
 cas_ac0             https://github.com/CQCL/pyscf-ac0
 cornell-shci        https://github.com/pyscf/cornell-shci
+ccpy                https://github.com/piecuch-group/ccpy
+cppe                https://github.com/maxscheurer/cppe
 dftd3               https://github.com/pyscf/dftd3
+dispersion          https://github.com/pyscf/dispersion
 dmrgscf             https://github.com/pyscf/dmrgscf
 doci                https://github.com/pyscf/doci
 fciqmc              https://github.com/pyscf/fciqmc
+forge               https://github.com/pyscf/pyscf-forge
 icmpspt             https://github.com/pyscf/icmpspt
 mbd                 https://github.com/pyscf/mbd
 naive-hci           https://github.com/pyscf/naive-hci
 nao                 https://github.com/pyscf/nao
+properties          https://github.com/pyscf/properties
+pyqmc               https://github.com/WagnerGroup/pyqmc
 qsdopt              https://github.com/pyscf/qsdopt
 rt                  https://github.com/pyscf/rt
 semiempirical       https://github.com/pyscf/semiempirical

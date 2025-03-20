@@ -15,28 +15,31 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=92fd9be5" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/pyscf-pst.css?v=ed6b5f64" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=3db9c557"></script>
+    <script src="../../../_static/documentation_options.js?v=69ff2ef9"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
@@ -48,6 +51,7 @@
     <link rel="search" title="Search" href="../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2.8" />
   </head>
   
   
@@ -63,19 +67,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../../search.html"
       method="get">
@@ -83,7 +76,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -91,8 +83,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -126,7 +118,7 @@
     
     
     <img src="../../../_static/logo-64x64.png" class="logo__image only-light" alt=""/>
-    <script>document.write(`<img src="../../../_static/logo-64x64.png" class="logo__image only-dark" alt=""/>`);</script>
+    <img src="../../../_static/logo-64x64.png" class="logo__image only-dark pst-js-only" alt=""/>
   
   
     <p class="title logo__title">PySCF</p>
@@ -170,6 +162,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -181,29 +180,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -228,15 +219,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -253,7 +240,8 @@ document.write(`
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -295,6 +283,13 @@ document.write(`
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -307,15 +302,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -339,9 +330,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -359,10 +355,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -375,12 +367,12 @@ document.write(`
     <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
     
     
-    <li class="breadcrumb-item"><i class="fa-solid fa-ellipsis"></i></li>
+    <li class="breadcrumb-item"><a href="../../pyscf.html" class="nav-link">pyscf</a></li>
     
     
     <li class="breadcrumb-item"><a href="../fci.html" class="nav-link">pyscf.fci</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">pyscf.fci.di...</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pyscf.fci.direct_spin1</span></li>
   </ul>
 </nav>
 </div>
@@ -450,7 +442,7 @@ document.write(`
 <span class="kn">from</span> <span class="nn">pyscf.fci</span> <span class="kn">import</span> <span class="n">spin_op</span>
 <span class="kn">from</span> <span class="nn">pyscf.fci</span> <span class="kn">import</span> <span class="n">addons</span>
 <span class="kn">from</span> <span class="nn">pyscf.fci.spin_op</span> <span class="kn">import</span> <span class="n">contract_ss</span>
-<span class="kn">from</span> <span class="nn">pyscf.fci.addons</span> <span class="kn">import</span> <span class="n">_unpack_nelec</span>
+<span class="kn">from</span> <span class="nn">pyscf.fci.addons</span> <span class="kn">import</span> <span class="n">_unpack_nelec</span><span class="p">,</span> <span class="n">civec_spinless_repr</span>
 <span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">__config__</span>
 
 <span class="n">libfci</span> <span class="o">=</span> <span class="n">cistring</span><span class="o">.</span><span class="n">libfci</span>
@@ -804,6 +796,52 @@ document.write(`
     <span class="k">return</span> <span class="n">dm1</span><span class="p">,</span> <span class="n">dm2</span></div>
 
 
+<div class="viewcode-block" id="make_rdm123">
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.fci.html#pyscf.fci.direct_spin0_symm.make_rdm123">[docs]</a>
+<span class="k">def</span> <span class="nf">make_rdm123</span><span class="p">(</span><span class="n">fcivec</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">,</span> <span class="n">link_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reorder</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Spin traced 1-, 2-, and 3-particle density matrices.&#39;&#39;&#39;</span>
+    <span class="n">dm1</span><span class="p">,</span> <span class="n">dm2</span><span class="p">,</span> <span class="n">dm3</span> <span class="o">=</span> <span class="n">rdm</span><span class="o">.</span><span class="n">make_dm123</span><span class="p">(</span><span class="s1">&#39;FCI3pdm_kern_sf&#39;</span><span class="p">,</span> <span class="n">fcivec</span><span class="p">,</span> <span class="n">fcivec</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">reorder</span><span class="p">:</span>
+        <span class="n">dm1</span><span class="p">,</span> <span class="n">dm2</span><span class="p">,</span> <span class="n">dm3</span> <span class="o">=</span> <span class="n">rdm</span><span class="o">.</span><span class="n">reorder_dm123</span><span class="p">(</span><span class="n">dm1</span><span class="p">,</span> <span class="n">dm2</span><span class="p">,</span> <span class="n">dm3</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dm1</span><span class="p">,</span> <span class="n">dm2</span><span class="p">,</span> <span class="n">dm3</span></div>
+
+
+<div class="viewcode-block" id="make_rdm123s">
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.fci.html#pyscf.fci.direct_spin0_symm.make_rdm123s">[docs]</a>
+<span class="k">def</span> <span class="nf">make_rdm123s</span><span class="p">(</span><span class="n">fcivec</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">,</span> <span class="n">link_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reorder</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&#39;&#39;&#39;Spin separated 1-, 2-, and 3-particle density matrices.</span>
+
+<span class="sd">    1pdm[p,q] = :math:`\langle q_\alpha^\dagger p_\alpha \rangle +</span>
+<span class="sd">                       \langle q_\beta^\dagger  p_\beta \rangle`;</span>
+<span class="sd">    2pdm[p,q,r,s] = :math:`\langle p_\alpha^\dagger r_\alpha^\dagger s_\alpha q_\alpha\rangle +</span>
+<span class="sd">                           \langle p_\beta^\dagger  r_\alpha^\dagger s_\alpha q_\beta\rangle +</span>
+<span class="sd">                           \langle p_\alpha^\dagger r_\beta^\dagger  s_\beta  q_\alpha\rangle +</span>
+<span class="sd">                           \langle p_\beta^\dagger  r_\beta^\dagger  s_\beta  q_\beta\rangle`.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">reorder</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;reorder=False not currently supported&#39;</span><span class="p">)</span>
+    <span class="n">ci_spinless</span> <span class="o">=</span> <span class="n">civec_spinless_repr</span><span class="p">([</span><span class="n">fcivec</span><span class="p">,],</span> <span class="n">norb</span><span class="p">,</span> <span class="p">[</span><span class="n">nelec</span><span class="p">,])</span>
+    <span class="n">rdm1</span><span class="p">,</span> <span class="n">rdm2</span><span class="p">,</span> <span class="n">rdm3</span> <span class="o">=</span> <span class="n">make_rdm123</span><span class="p">(</span><span class="n">ci_spinless</span><span class="p">,</span> <span class="n">norb</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">nelec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">nelec</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">0</span><span class="p">))</span>
+
+    <span class="n">rdm1a</span> <span class="o">=</span> <span class="n">rdm1</span><span class="p">[:</span><span class="n">norb</span><span class="p">,:</span><span class="n">norb</span><span class="p">]</span>
+    <span class="n">rdm1b</span> <span class="o">=</span> <span class="n">rdm1</span><span class="p">[</span><span class="n">norb</span><span class="p">:,</span><span class="n">norb</span><span class="p">:]</span>
+    <span class="c1"># assert np.allclose(rdm1a+rdm1b, rdm1)</span>
+
+    <span class="n">rdm2aa</span> <span class="o">=</span> <span class="n">rdm2</span><span class="p">[:</span><span class="n">norb</span><span class="p">,:</span><span class="n">norb</span><span class="p">,:</span><span class="n">norb</span><span class="p">,:</span><span class="n">norb</span><span class="p">]</span>
+    <span class="n">rdm2ab</span> <span class="o">=</span> <span class="n">rdm2</span><span class="p">[:</span><span class="n">norb</span><span class="p">,:</span><span class="n">norb</span><span class="p">,</span><span class="n">norb</span><span class="p">:,</span><span class="n">norb</span><span class="p">:]</span>
+    <span class="n">rdm2bb</span> <span class="o">=</span> <span class="n">rdm2</span><span class="p">[</span><span class="n">norb</span><span class="p">:,</span><span class="n">norb</span><span class="p">:,</span><span class="n">norb</span><span class="p">:,</span><span class="n">norb</span><span class="p">:]</span>
+    <span class="c1"># assert np.allclose(rdm2aa+rdm2bb+rdm2ab+rdm2ab.transpose(2,3,0,1), rdm2)</span>
+
+    <span class="n">rdm3aaa</span> <span class="o">=</span> <span class="n">rdm3</span><span class="p">[:</span><span class="n">norb</span><span class="p">,:</span><span class="n">norb</span><span class="p">,:</span><span class="n">norb</span><span class="p">,:</span><span class="n">norb</span><span class="p">,:</span><span class="n">norb</span><span class="p">,:</span><span class="n">norb</span><span class="p">]</span>
+    <span class="n">rdm3aab</span> <span class="o">=</span> <span class="n">rdm3</span><span class="p">[:</span><span class="n">norb</span><span class="p">,:</span><span class="n">norb</span><span class="p">,:</span><span class="n">norb</span><span class="p">,:</span><span class="n">norb</span><span class="p">,</span><span class="n">norb</span><span class="p">:,</span><span class="n">norb</span><span class="p">:]</span>
+    <span class="n">rdm3abb</span> <span class="o">=</span> <span class="n">rdm3</span><span class="p">[:</span><span class="n">norb</span><span class="p">,:</span><span class="n">norb</span><span class="p">,</span><span class="n">norb</span><span class="p">:,</span><span class="n">norb</span><span class="p">:,</span><span class="n">norb</span><span class="p">:,</span><span class="n">norb</span><span class="p">:]</span>
+    <span class="n">rdm3bbb</span> <span class="o">=</span> <span class="n">rdm3</span><span class="p">[</span><span class="n">norb</span><span class="p">:,</span><span class="n">norb</span><span class="p">:,</span><span class="n">norb</span><span class="p">:,</span><span class="n">norb</span><span class="p">:,</span><span class="n">norb</span><span class="p">:,</span><span class="n">norb</span><span class="p">:]</span>
+    <span class="c1"># assert np.allclose(rdm3aaa+rdm3bbb+rdm3aab+rdm3aab.transpose(0,1,4,5,2,3)+\</span>
+    <span class="c1"># rdm3aab.transpose(4,5,0,1,2,3)+rdm3abb+rdm3abb.transpose(2,3,0,1,4,5)+rdm3abb.transpose(2,3,4,5,0,1), rdm3)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">rdm1a</span><span class="p">,</span> <span class="n">rdm1b</span><span class="p">),</span> <span class="p">(</span><span class="n">rdm2aa</span><span class="p">,</span> <span class="n">rdm2ab</span><span class="p">,</span> <span class="n">rdm2bb</span><span class="p">),</span> <span class="p">(</span><span class="n">rdm3aaa</span><span class="p">,</span> <span class="n">rdm3aab</span><span class="p">,</span> <span class="n">rdm3abb</span><span class="p">,</span> <span class="n">rdm3bbb</span><span class="p">)</span></div>
+
+
+
 <div class="viewcode-block" id="trans_rdm1s">
 <a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.fci.html#pyscf.fci.direct_spin0_symm.trans_rdm1s">[docs]</a>
 <span class="k">def</span> <span class="nf">trans_rdm1s</span><span class="p">(</span><span class="n">cibra</span><span class="p">,</span> <span class="n">ciket</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">,</span> <span class="n">link_index</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -885,8 +923,11 @@ document.write(`
     <span class="n">ci0</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">neleca</span><span class="p">,</span> <span class="n">nelecb</span> <span class="o">=</span> <span class="n">_unpack_nelec</span><span class="p">(</span><span class="n">nelec</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">neleca</span> <span class="o">==</span> <span class="n">nelecb</span> <span class="ow">and</span> <span class="n">na</span> <span class="o">==</span> <span class="n">nb</span><span class="p">:</span>
-        <span class="n">hdiag</span> <span class="o">=</span> <span class="n">hdiag</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">na</span><span class="p">,</span> <span class="n">na</span><span class="p">)</span>
-        <span class="n">addrs</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">argpartition</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">pack_tril</span><span class="p">(</span><span class="n">hdiag</span><span class="p">),</span> <span class="n">nroots</span><span class="o">-</span><span class="mi">1</span><span class="p">)[:</span><span class="n">nroots</span><span class="p">]</span>
+        <span class="n">hdiag</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">pack_tril</span><span class="p">(</span><span class="n">hdiag</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">na</span><span class="p">,</span> <span class="n">na</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">hdiag</span><span class="o">.</span><span class="n">size</span> <span class="o">&lt;=</span> <span class="n">nroots</span><span class="p">:</span>
+            <span class="n">addrs</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">hdiag</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">addrs</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">argpartition</span><span class="p">(</span><span class="n">hdiag</span><span class="p">,</span> <span class="n">nroots</span><span class="o">-</span><span class="mi">1</span><span class="p">)[:</span><span class="n">nroots</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">addr</span> <span class="ow">in</span> <span class="n">addrs</span><span class="p">:</span>
             <span class="n">addra</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">)((</span><span class="mi">2</span><span class="o">*</span><span class="n">addr</span><span class="o">+</span><span class="mf">.25</span><span class="p">)</span><span class="o">**</span><span class="mf">.5</span> <span class="o">-</span> <span class="mf">.5</span> <span class="o">+</span> <span class="mf">1e-7</span><span class="p">)</span>
             <span class="n">addrb</span> <span class="o">=</span> <span class="n">addr</span> <span class="o">-</span> <span class="n">addra</span><span class="o">*</span><span class="p">(</span><span class="n">addra</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
@@ -894,7 +935,10 @@ document.write(`
             <span class="n">x</span><span class="p">[</span><span class="n">addra</span><span class="p">,</span><span class="n">addrb</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
             <span class="n">ci0</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">FCIvector</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">addrs</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">argpartition</span><span class="p">(</span><span class="n">hdiag</span><span class="p">,</span> <span class="n">nroots</span><span class="o">-</span><span class="mi">1</span><span class="p">)[:</span><span class="n">nroots</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">hdiag</span><span class="o">.</span><span class="n">size</span> <span class="o">&lt;=</span> <span class="n">nroots</span><span class="p">:</span>
+            <span class="n">addrs</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">hdiag</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">addrs</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">argpartition</span><span class="p">(</span><span class="n">hdiag</span><span class="p">,</span> <span class="n">nroots</span><span class="o">-</span><span class="mi">1</span><span class="p">)[:</span><span class="n">nroots</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">addr</span> <span class="ow">in</span> <span class="n">addrs</span><span class="p">:</span>
             <span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">na</span><span class="o">*</span><span class="n">nb</span><span class="p">))</span>
             <span class="n">x</span><span class="p">[</span><span class="n">addr</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
@@ -955,8 +999,8 @@ document.write(`
 <span class="sd">        nroots: int</span>
 <span class="sd">            Number of states to solve</span>
 <span class="sd">        davidson_only: bool</span>
-<span class="sd">            Whether to call subspace diagonlization (davidson solver) or do a</span>
-<span class="sd">            full diagonlization (lapack eigh) for small systems</span>
+<span class="sd">            Whether to call subspace diagonalization (davidson solver) or do a</span>
+<span class="sd">            full diagonalization (lapack eigh) for small systems</span>
 <span class="sd">        pspace_size: int</span>
 <span class="sd">            Number of determinants as the threshold of &quot;small systems&quot;,</span>
 <span class="sd">        hop: function(c) =&gt; array_like_c</span>
@@ -1122,7 +1166,7 @@ document.write(`
 <span class="sd">            problems being solved by Davidson subspace algorithm.  This flag</span>
 <span class="sd">            should be enabled when initial guess is given or particular spin</span>
 <span class="sd">            symmetry or point-group symmetry is required because the initial</span>
-<span class="sd">            guess or symmetry are completely ignored in the direct diagonlization.</span>
+<span class="sd">            guess or symmetry are completely ignored in the direct diagonalization.</span>
 <span class="sd">        pspace_size : int</span>
 <span class="sd">            The dimension of Hamiltonian matrix over which Davidson iteration</span>
 <span class="sd">            algorithm will be used for the eigenvalue problem.  Default is 400.</span>
@@ -1169,8 +1213,8 @@ document.write(`
     <span class="c1"># dependence basis in davidson diagonalization solver</span>
     <span class="n">level_shift</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">__config__</span><span class="p">,</span> <span class="s1">&#39;fci_direct_spin1_FCI_level_shift&#39;</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">)</span>
 
-    <span class="c1"># force the diagonlization use davidson iteration.  When the CI space</span>
-    <span class="c1"># is small, the solver exactly diagonlizes the Hamiltonian.  But this</span>
+    <span class="c1"># force the diagonalization use davidson iteration.  When the CI space</span>
+    <span class="c1"># is small, the solver exactly diagonalizes the Hamiltonian.  But this</span>
     <span class="c1"># solution will ignore the initial guess.  Setting davidson_only can</span>
     <span class="c1"># enforce the solution on the initial guess state</span>
     <span class="n">davidson_only</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">__config__</span><span class="p">,</span> <span class="s1">&#39;fci_direct_spin1_FCI_davidson_only&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
@@ -1188,7 +1232,6 @@ document.write(`
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">mol</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">NOTE</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">max_memory</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">MAX_MEMORY</span>
         <span class="k">else</span><span class="p">:</span>
@@ -1391,6 +1434,22 @@ document.write(`
         <span class="k">return</span> <span class="n">make_rdm12</span><span class="p">(</span><span class="n">fcivec</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">,</span> <span class="n">link_index</span><span class="p">,</span> <span class="n">reorder</span><span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="FCIBase.make_rdm123s">
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.fci.html#pyscf.fci.direct_spin0_symm.FCIBase.make_rdm123s">[docs]</a>
+    <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">make_rdm123s</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">make_rdm123s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fcivec</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">,</span> <span class="n">link_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reorder</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">nelec</span> <span class="o">=</span> <span class="n">_unpack_nelec</span><span class="p">(</span><span class="n">nelec</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">spin</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">make_rdm123s</span><span class="p">(</span><span class="n">fcivec</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">,</span> <span class="n">link_index</span><span class="p">,</span> <span class="n">reorder</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FCIBase.make_rdm123">
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.fci.html#pyscf.fci.direct_spin0_symm.FCIBase.make_rdm123">[docs]</a>
+    <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">make_rdm123</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">make_rdm123</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fcivec</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">,</span> <span class="n">link_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reorder</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">nelec</span> <span class="o">=</span> <span class="n">_unpack_nelec</span><span class="p">(</span><span class="n">nelec</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">spin</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">make_rdm123</span><span class="p">(</span><span class="n">fcivec</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">,</span> <span class="n">link_index</span><span class="p">,</span> <span class="n">reorder</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="FCIBase.make_rdm2">
 <a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.fci.html#pyscf.fci.direct_spin0_symm.FCIBase.make_rdm2">[docs]</a>
     <span class="k">def</span> <span class="nf">make_rdm2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fcivec</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">,</span> <span class="n">link_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reorder</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
@@ -1540,8 +1599,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1552,7 +1611,7 @@ document.write(`
 
   <p class="copyright">
     
-      © Copyright 2024, The PySCF Developers.
+      © Copyright 2025, The PySCF Developers.
       <br/>
     
   </p>
@@ -1574,7 +1633,8 @@ document.write(`
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

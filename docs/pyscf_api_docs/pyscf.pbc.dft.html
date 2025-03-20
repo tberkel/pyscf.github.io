@@ -16,28 +16,31 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/css/pyscf-pst.css?v=ed6b5f64" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=3db9c557"></script>
+    <script src="../_static/documentation_options.js?v=69ff2ef9"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
@@ -51,6 +54,7 @@
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2.8" />
   </head>
   
   
@@ -66,19 +70,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -86,7 +79,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -94,8 +86,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -129,7 +121,7 @@
     
     
     <img src="../_static/logo-64x64.png" class="logo__image only-light" alt=""/>
-    <script>document.write(`<img src="../_static/logo-64x64.png" class="logo__image only-dark" alt=""/>`);</script>
+    <img src="../_static/logo-64x64.png" class="logo__image only-dark pst-js-only" alt=""/>
   
   
     <p class="title logo__title">PySCF</p>
@@ -173,6 +165,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -184,29 +183,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -231,15 +222,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -258,7 +245,8 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -300,6 +288,13 @@ document.write(`
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -312,15 +307,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -368,7 +359,10 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="pyscf.geomopt.html">pyscf.geomopt package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.grad.html">pyscf.grad package</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="pyscf.gto.html">pyscf.gto package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="pyscf.gto.basis.html">pyscf.gto.basis package</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="pyscf.gto.basis.html">pyscf.gto.basis package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.gto.basis.dyall-basis.html">pyscf.gto.basis.dyall-basis package</a></li>
+</ul>
+</details></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.gw.html">pyscf.gw package</a></li>
@@ -431,9 +425,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -451,8 +450,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -461,7 +458,7 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">pyscf.pbc.df...</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pyscf.pbc.dft package</span></li>
   </ul>
 </nav>
 </div>
@@ -493,7 +490,9 @@ document.write(`
 <li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.dft.multigrid.html#pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.get_nuc"><code class="docutils literal notranslate"><span class="pre">MultiGridFFTDF.get_nuc()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.dft.multigrid.html#pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.get_pp"><code class="docutils literal notranslate"><span class="pre">MultiGridFFTDF.get_pp()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.dft.multigrid.html#pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.get_rho"><code class="docutils literal notranslate"><span class="pre">MultiGridFFTDF.get_rho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.dft.multigrid.html#pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.range_coulomb"><code class="docutils literal notranslate"><span class="pre">MultiGridFFTDF.range_coulomb()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.dft.multigrid.html#pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.reset"><code class="docutils literal notranslate"><span class="pre">MultiGridFFTDF.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.dft.multigrid.html#pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.to_gpu"><code class="docutils literal notranslate"><span class="pre">MultiGridFFTDF.to_gpu()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.pbc.dft.multigrid.html#pyscf.pbc.dft.multigrid.multigrid.cache_xc_kernel"><code class="docutils literal notranslate"><span class="pre">cache_xc_kernel()</span></code></a></li>
@@ -620,8 +619,8 @@ basis – 2D numpy array – the working basis in the basis of AOs from ‘cell�
 <dl class="py function">
 <dt class="sig sig-object py" id="pyscf.pbc.dft.cdft.fast_iao_mullikan_pop">
 <span class="sig-prename descclassname"><span class="pre">pyscf.pbc.dft.cdft.</span></span><span class="sig-name descname"><span class="pre">fast_iao_mullikan_pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/dft/cdft.html#fast_iao_mullikan_pop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.dft.cdft.fast_iao_mullikan_pop" title="Link to this definition">#</a></dt>
-<dd><p>Input: mf – a preconverged mean fild object
-Returns: mullikan populaion analysis in the basisIAO a</p>
+<dd><p>Input: mf – a preconverged mean field object
+Returns: mullikan population analysis in the basisIAO a</p>
 </dd></dl>
 
 </section>
@@ -804,7 +803,7 @@ variables replaced by <cite>cell</cite>.</p>
 <dl>
 <dt>Args:</dt><dd><p>ks : an instance of DFT class</p>
 <dl class="simple">
-<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-partical density matrix</p>
+<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-particle density matrix</p>
 </dd>
 <dt>h1e<span class="classifier">2D ndarray</span></dt><dd><p>Core hamiltonian</p>
 </dd>
@@ -921,7 +920,7 @@ ks.grids might be initialized.</p>
 </dd>
 </dl>
 </dd>
-<dt>Returns:</dt><dd><p>Veff : (nkpts, 2*nao, 2*nao) or (<a href="#id1"><span class="problematic" id="id2">*</span></a>, nkpts, 2*nao, 2*nao) ndarray
+<dt>Returns:</dt><dd><p>Veff : <code class="docutils literal notranslate"><span class="pre">(nkpts,</span> <span class="pre">2*nao,</span> <span class="pre">2*nao)</span></code> or <code class="docutils literal notranslate"><span class="pre">(*,</span> <span class="pre">nkpts,</span> <span class="pre">2*nao,</span> <span class="pre">2*nao)</span></code> ndarray
 Veff = J + Vxc.</p>
 </dd>
 </dl>
@@ -983,7 +982,7 @@ ks.grids might be initialized.</p>
 </dd>
 </dl>
 </dd>
-<dt>Returns:</dt><dd><p>Veff : (nkpts, 2*nao, 2*nao) or (<a href="#id3"><span class="problematic" id="id4">*</span></a>, nkpts, 2*nao, 2*nao) ndarray
+<dt>Returns:</dt><dd><p>Veff : <code class="docutils literal notranslate"><span class="pre">(nkpts,</span> <span class="pre">2*nao,</span> <span class="pre">2*nao)</span></code> or <code class="docutils literal notranslate"><span class="pre">(*,</span> <span class="pre">nkpts,</span> <span class="pre">2*nao,</span> <span class="pre">2*nao)</span></code> ndarray
 Veff = J + Vxc.</p>
 </dd>
 </dl>
@@ -1040,7 +1039,7 @@ ks.grids might be initialized.</p>
 </dd>
 </dl>
 </dd>
-<dt>Returns:</dt><dd><p>Veff : (nkpts, nao, nao) or (<a href="#id5"><span class="problematic" id="id6">*</span></a>, nkpts, nao, nao) ndarray
+<dt>Returns:</dt><dd><p>Veff : <code class="docutils literal notranslate"><span class="pre">(nkpts,</span> <span class="pre">nao,</span> <span class="pre">nao)</span></code> or <code class="docutils literal notranslate"><span class="pre">(*,</span> <span class="pre">nkpts,</span> <span class="pre">nao,</span> <span class="pre">nao)</span></code> ndarray
 Veff = J + Vxc.</p>
 </dd>
 </dl>
@@ -1096,7 +1095,7 @@ ks.grids might be initialized.</p>
 </dd>
 </dl>
 </dd>
-<dt>Returns:</dt><dd><p>Veff : (nkpts, nao, nao) or (<a href="#id7"><span class="problematic" id="id8">*</span></a>, nkpts, nao, nao) ndarray
+<dt>Returns:</dt><dd><p>Veff : <code class="docutils literal notranslate"><span class="pre">(nkpts,</span> <span class="pre">nao,</span> <span class="pre">nao)</span></code> or <code class="docutils literal notranslate"><span class="pre">(*,</span> <span class="pre">nkpts,</span> <span class="pre">nao,</span> <span class="pre">nao)</span></code> ndarray
 Veff = J + Vxc.</p>
 </dd>
 </dl>
@@ -1118,7 +1117,18 @@ Veff = J + Vxc.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.dft.krks_ksymm.KsymAdaptedKRKS.dump_chk">
 <span class="sig-name descname"><span class="pre">dump_chk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">envs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.dft.krks_ksymm.KsymAdaptedKRKS.dump_chk" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Serialize the SCF object and save it to the specified chkfile.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>envs_or_file:</dt><dd><p>If this argument is a file path, the serialized SCF object is
+saved to the file specified by this argument.
+If this attribute is a dict (created by locals()), the necessary
+variables are saved to the file specified by the attribute mf.chkfile.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.dft.krks_ksymm.KsymAdaptedKRKS.dump_flags">
@@ -1226,7 +1236,7 @@ ks.grids might be initialized.</p>
 </dd>
 </dl>
 </dd>
-<dt>Returns:</dt><dd><p>Veff : (nkpts, nao, nao) or (<a href="#id9"><span class="problematic" id="id10">*</span></a>, nkpts, nao, nao) ndarray
+<dt>Returns:</dt><dd><p>Veff : <code class="docutils literal notranslate"><span class="pre">(nkpts,</span> <span class="pre">nao,</span> <span class="pre">nao)</span></code> or <code class="docutils literal notranslate"><span class="pre">(*,</span> <span class="pre">nkpts,</span> <span class="pre">nao,</span> <span class="pre">nao)</span></code> ndarray
 Veff = J + Vxc.</p>
 </dd>
 </dl>
@@ -1298,7 +1308,7 @@ ks.grids might be initialized.</p>
 </dd>
 </dl>
 </dd>
-<dt>Returns:</dt><dd><p>Veff : (nkpts, nao, nao) or (<a href="#id11"><span class="problematic" id="id12">*</span></a>, nkpts, nao, nao) ndarray
+<dt>Returns:</dt><dd><p>Veff : <code class="docutils literal notranslate"><span class="pre">(nkpts,</span> <span class="pre">nao,</span> <span class="pre">nao)</span></code> or <code class="docutils literal notranslate"><span class="pre">(*,</span> <span class="pre">nkpts,</span> <span class="pre">nao,</span> <span class="pre">nao)</span></code> ndarray
 Veff = J + Vxc.</p>
 </dd>
 </dl>
@@ -1339,7 +1349,7 @@ ks.grids might be initialized.</p>
 </dd>
 </dl>
 </dd>
-<dt>Returns:</dt><dd><p>Veff : (nkpts, nao, nao) or (<a href="#id13"><span class="problematic" id="id14">*</span></a>, nkpts, nao, nao) ndarray
+<dt>Returns:</dt><dd><p>Veff : <code class="docutils literal notranslate"><span class="pre">(nkpts,</span> <span class="pre">nao,</span> <span class="pre">nao)</span></code> or <code class="docutils literal notranslate"><span class="pre">(*,</span> <span class="pre">nkpts,</span> <span class="pre">nao,</span> <span class="pre">nao)</span></code> ndarray
 Veff = J + Vxc + V_U.</p>
 </dd>
 </dl>
@@ -1388,7 +1398,7 @@ ks.grids might be initialized.</p>
 </dd>
 </dl>
 </dd>
-<dt>Returns:</dt><dd><p>Veff : (nkpts, nao, nao) or (<a href="#id15"><span class="problematic" id="id16">*</span></a>, nkpts, nao, nao) ndarray
+<dt>Returns:</dt><dd><p>Veff : <code class="docutils literal notranslate"><span class="pre">(nkpts,</span> <span class="pre">nao,</span> <span class="pre">nao)</span></code> or <code class="docutils literal notranslate"><span class="pre">(*,</span> <span class="pre">nkpts,</span> <span class="pre">nao,</span> <span class="pre">nao)</span></code> ndarray
 Veff = J + Vxc + V_U.</p>
 </dd>
 </dl>
@@ -1462,7 +1472,7 @@ ks.grids might be initialized.</p>
 </dd>
 </dl>
 </dd>
-<dt>Returns:</dt><dd><p>Veff : (nkpts, nao, nao) or (<a href="#id17"><span class="problematic" id="id18">*</span></a>, nkpts, nao, nao) ndarray
+<dt>Returns:</dt><dd><p>Veff : <code class="docutils literal notranslate"><span class="pre">(nkpts,</span> <span class="pre">nao,</span> <span class="pre">nao)</span></code> or <code class="docutils literal notranslate"><span class="pre">(*,</span> <span class="pre">nkpts,</span> <span class="pre">nao,</span> <span class="pre">nao)</span></code> ndarray
 Veff = J + Vxc + V_U.</p>
 </dd>
 </dl>
@@ -1534,12 +1544,9 @@ converts all attributes of a method to cupy objects or gpu4pyscf objects.</p>
 </section>
 <section id="module-pyscf.pbc.dft.kuks">
 <span id="pyscf-pbc-dft-kuks-module"></span><h2>pyscf.pbc.dft.kuks module<a class="headerlink" href="#module-pyscf.pbc.dft.kuks" title="Link to this heading">#</a></h2>
-<p>Non-relativistic Restricted Kohn-Sham for periodic systems with k-point sampling</p>
+<p>Unrestricted Kohn-Sham for periodic systems with k-point sampling</p>
 <dl class="simple">
-<dt>See Also:</dt><dd><dl class="simple">
-<dt>pyscf.pbc.dft.rks.py<span class="classifier">Non-relativistic Restricted Kohn-Sham for periodic</span></dt><dd><p>systems at a single k-point</p>
-</dd>
-</dl>
+<dt>See Also:</dt><dd><p>pyscf.pbc.dft.uks.py : PBC-UKS at a single k-point</p>
 </dd>
 </dl>
 <dl class="py class">
@@ -1620,7 +1627,18 @@ converts all attributes of a method to cupy objects or gpu4pyscf objects.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.dft.kuks_ksymm.KsymAdaptedKUKS.dump_chk">
 <span class="sig-name descname"><span class="pre">dump_chk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">envs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.dft.kuks_ksymm.KsymAdaptedKUKS.dump_chk" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Serialize the SCF object and save it to the specified chkfile.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>envs_or_file:</dt><dd><p>If this argument is a file path, the serialized SCF object is
+saved to the file specified by this argument.
+If this attribute is a dict (created by locals()), the necessary
+variables are saved to the file specified by the attribute mf.chkfile.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.dft.kuks_ksymm.KsymAdaptedKUKS.dump_flags">
@@ -1932,6 +1950,41 @@ ao_kpts : (nkpts, ngrids, nao) ndarray</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pyscf.pbc.dft.numint.KNumInt.get_fxc">
+<span class="sig-name descname"><span class="pre">get_fxc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xc_code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dm0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relativity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vxc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fxc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.dft.numint.KNumInt.get_fxc" title="Link to this definition">#</a></dt>
+<dd><p>Contract RKS XC kernel matrix with given density matrices</p>
+<dl>
+<dt>Args:</dt><dd><p>ni : an instance of <a class="reference internal" href="#pyscf.pbc.dft.numint.NumInt" title="pyscf.pbc.dft.numint.NumInt"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumInt</span></code></a> or <a class="reference internal" href="#pyscf.pbc.dft.numint.KNumInt" title="pyscf.pbc.dft.numint.KNumInt"><code class="xref py py-class docutils literal notranslate"><span class="pre">KNumInt</span></code></a></p>
+<p>cell : instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">Mole</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></p>
+<dl>
+<dt>grids<span class="classifier">an instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">Grids</span></code></span></dt><dd><p>grids.coords and grids.weights are needed for coordinates and weights of meshgrids.</p>
+</dd>
+<dt>xc_code<span class="classifier">str</span></dt><dd><p>XC functional description.
+See <code class="xref py py-func docutils literal notranslate"><span class="pre">parse_xc()</span></code> of pyscf/dft/libxc.py for more details.</p>
+</dd>
+<dt>dms<span class="classifier">2D/3D array or a list of 2D/3D arrays</span></dt><dd><p>Density matrices (2D) / density matrices for k-points (3D)</p>
+</dd>
+</dl>
+</dd>
+<dt>Kwargs:</dt><dd><dl class="simple">
+<dt>hermi<span class="classifier">int</span></dt><dd><p>Whether the input density matrix is hermitian</p>
+</dd>
+<dt>max_memory<span class="classifier">int or float</span></dt><dd><p>The maximum size of cache to use (in MB).</p>
+</dd>
+<dt>rho0<span class="classifier">float array</span></dt><dd><p>Zero-order density (and density derivative for GGA).  Giving kwargs rho0,
+vxc and fxc to improve better performance.</p>
+</dd>
+<dt>vxc<span class="classifier">float array</span></dt><dd><p>First order XC derivatives</p>
+</dd>
+<dt>fxc<span class="classifier">float array</span></dt><dd><p>Second order XC derivatives</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>Examples:</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.dft.numint.KNumInt.get_rho">
 <span class="sig-name descname"><span class="pre">get_rho</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[0.,</span> <span class="pre">0.,</span> <span class="pre">0.]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.dft.numint.KNumInt.get_rho" title="Link to this definition">#</a></dt>
 <dd><p>Density in real space</p>
@@ -1952,6 +2005,41 @@ The resultant mask array is an extension to the mask array used in
 molecular code (see also pyscf.dft.numint.make_mask function).
 For given shell ID and block ID, the value of the extended mask array
 means the number of images in Ls that does not vanish.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf.pbc.dft.numint.KNumInt.nr_fxc">
+<span class="sig-name descname"><span class="pre">nr_fxc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xc_code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dm0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relativity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vxc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fxc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/dft/numint.html#KNumInt.nr_fxc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.dft.numint.KNumInt.nr_fxc" title="Link to this definition">#</a></dt>
+<dd><p>Contract RKS XC kernel matrix with given density matrices</p>
+<dl>
+<dt>Args:</dt><dd><p>ni : an instance of <a class="reference internal" href="#pyscf.pbc.dft.numint.NumInt" title="pyscf.pbc.dft.numint.NumInt"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumInt</span></code></a> or <a class="reference internal" href="#pyscf.pbc.dft.numint.KNumInt" title="pyscf.pbc.dft.numint.KNumInt"><code class="xref py py-class docutils literal notranslate"><span class="pre">KNumInt</span></code></a></p>
+<p>cell : instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">Mole</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></p>
+<dl>
+<dt>grids<span class="classifier">an instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">Grids</span></code></span></dt><dd><p>grids.coords and grids.weights are needed for coordinates and weights of meshgrids.</p>
+</dd>
+<dt>xc_code<span class="classifier">str</span></dt><dd><p>XC functional description.
+See <code class="xref py py-func docutils literal notranslate"><span class="pre">parse_xc()</span></code> of pyscf/dft/libxc.py for more details.</p>
+</dd>
+<dt>dms<span class="classifier">2D/3D array or a list of 2D/3D arrays</span></dt><dd><p>Density matrices (2D) / density matrices for k-points (3D)</p>
+</dd>
+</dl>
+</dd>
+<dt>Kwargs:</dt><dd><dl class="simple">
+<dt>hermi<span class="classifier">int</span></dt><dd><p>Whether the input density matrix is hermitian</p>
+</dd>
+<dt>max_memory<span class="classifier">int or float</span></dt><dd><p>The maximum size of cache to use (in MB).</p>
+</dd>
+<dt>rho0<span class="classifier">float array</span></dt><dd><p>Zero-order density (and density derivative for GGA).  Giving kwargs rho0,
+vxc and fxc to improve better performance.</p>
+</dd>
+<dt>vxc<span class="classifier">float array</span></dt><dd><p>First order XC derivatives</p>
+</dd>
+<dt>fxc<span class="classifier">float array</span></dt><dd><p>Second order XC derivatives</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>Examples:</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1986,7 +2074,7 @@ See <code class="xref py py-func docutils literal notranslate"><span class="pre"
 </dd>
 <dt>kpts<span class="classifier">(3,) ndarray or (nkpts,3) ndarray</span></dt><dd><p>Single or multiple k-points sampled for the DM.  Default is gamma point.</p>
 </dd>
-<dt>kpts_band<span class="classifier">(3,) ndarray or (<a href="#id19"><span class="problematic" id="id20">*</span></a>,3) ndarray</span></dt><dd><p>A list of arbitrary “band” k-points at which to evaluate the XC matrix.</p>
+<dt>kpts_band<span class="classifier"><code class="docutils literal notranslate"><span class="pre">(3,)</span></code> ndarray or <code class="docutils literal notranslate"><span class="pre">(*,3)</span></code> ndarray</span></dt><dd><p>A list of arbitrary “band” k-points at which to evaluate the XC matrix.</p>
 </dd>
 </dl>
 </dd>
@@ -2074,7 +2162,7 @@ See <code class="xref py py-func docutils literal notranslate"><span class="pre"
 <dt>verbose<span class="classifier">int or object of <code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></span></dt><dd><p>No effects.</p>
 </dd>
 <dt>kpts<span class="classifier">(3,) ndarray or (nkpts,3) ndarray</span></dt><dd><p>Single or multiple k-points sampled for the DM.  Default is gamma point.
-kpts_band : (3,) ndarray or (<a href="#id21"><span class="problematic" id="id22">*</span></a>,3) ndarray
+kpts_band : <code class="docutils literal notranslate"><span class="pre">(3,)</span></code> ndarray or <code class="docutils literal notranslate"><span class="pre">(*,3)</span></code> ndarray
 A list of arbitrary “band” k-points at which to evaluate the XC matrix.</p>
 </dd>
 </dl>
@@ -2136,10 +2224,8 @@ See <a class="reference internal" href="#pyscf.pbc.dft.numint.nr_rks" title="pys
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.dft.numint.KNumInt.to_gpu">
-<span class="sig-name descname"><span class="pre">to_gpu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.dft.numint.KNumInt.to_gpu" title="Link to this definition">#</a></dt>
-<dd><p>Convert a method to its corresponding GPU variant, and recursively
-converts all attributes of a method to cupy objects or gpu4pyscf objects.</p>
-</dd></dl>
+<span class="sig-name descname"><span class="pre">to_gpu</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/dft/numint.html#KNumInt.to_gpu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.dft.numint.KNumInt.to_gpu" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -2400,7 +2486,7 @@ See <code class="xref py py-func docutils literal notranslate"><span class="pre"
 </dd>
 <dt>kpts<span class="classifier">(3,) ndarray or (nkpts,3) ndarray</span></dt><dd><p>Single or multiple k-points sampled for the DM.  Default is gamma point.</p>
 </dd>
-<dt>kpts_band<span class="classifier">(3,) ndarray or (<a href="#id23"><span class="problematic" id="id24">*</span></a>,3) ndarray</span></dt><dd><p>A list of arbitrary “band” k-points at which to evaluate the XC matrix.</p>
+<dt>kpts_band<span class="classifier"><code class="docutils literal notranslate"><span class="pre">(3,)</span></code> ndarray or <code class="docutils literal notranslate"><span class="pre">(*,3)</span></code> ndarray</span></dt><dd><p>A list of arbitrary “band” k-points at which to evaluate the XC matrix.</p>
 </dd>
 </dl>
 </dd>
@@ -2488,7 +2574,7 @@ See <code class="xref py py-func docutils literal notranslate"><span class="pre"
 <dt>verbose<span class="classifier">int or object of <code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></span></dt><dd><p>No effects.</p>
 </dd>
 <dt>kpts<span class="classifier">(3,) ndarray or (nkpts,3) ndarray</span></dt><dd><p>Single or multiple k-points sampled for the DM.  Default is gamma point.
-kpts_band : (3,) ndarray or (<a href="#id25"><span class="problematic" id="id26">*</span></a>,3) ndarray
+kpts_band : <code class="docutils literal notranslate"><span class="pre">(3,)</span></code> ndarray or <code class="docutils literal notranslate"><span class="pre">(*,3)</span></code> ndarray
 A list of arbitrary “band” k-points at which to evaluate the XC matrix.</p>
 </dd>
 </dl>
@@ -2550,10 +2636,8 @@ See <a class="reference internal" href="#pyscf.pbc.dft.numint.nr_rks" title="pys
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.dft.numint.NumInt.to_gpu">
-<span class="sig-name descname"><span class="pre">to_gpu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.dft.numint.NumInt.to_gpu" title="Link to this definition">#</a></dt>
-<dd><p>Convert a method to its corresponding GPU variant, and recursively
-converts all attributes of a method to cupy objects or gpu4pyscf objects.</p>
-</dd></dl>
+<span class="sig-name descname"><span class="pre">to_gpu</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/dft/numint.html#NumInt.to_gpu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.dft.numint.NumInt.to_gpu" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -2721,7 +2805,7 @@ See <code class="xref py py-func docutils literal notranslate"><span class="pre"
 </dd>
 <dt>kpts<span class="classifier">(3,) ndarray or (nkpts,3) ndarray</span></dt><dd><p>Single or multiple k-points sampled for the DM.  Default is gamma point.</p>
 </dd>
-<dt>kpts_band<span class="classifier">(3,) ndarray or (<a href="#id27"><span class="problematic" id="id28">*</span></a>,3) ndarray</span></dt><dd><p>A list of arbitrary “band” k-points at which to evaluate the XC matrix.</p>
+<dt>kpts_band<span class="classifier"><code class="docutils literal notranslate"><span class="pre">(3,)</span></code> ndarray or <code class="docutils literal notranslate"><span class="pre">(*,3)</span></code> ndarray</span></dt><dd><p>A list of arbitrary “band” k-points at which to evaluate the XC matrix.</p>
 </dd>
 </dl>
 </dd>
@@ -2810,7 +2894,7 @@ See <code class="xref py py-func docutils literal notranslate"><span class="pre"
 </dd>
 <dt>kpts<span class="classifier">(3,) ndarray or (nkpts,3) ndarray</span></dt><dd><p>Single or multiple k-points sampled for the DM.  Default is gamma point.</p>
 </dd>
-<dt>kpts_band<span class="classifier">(3,) ndarray or (<a href="#id29"><span class="problematic" id="id30">*</span></a>,3) ndarray</span></dt><dd><p>A list of arbitrary “band” k-points at which to evaluate the XC matrix.</p>
+<dt>kpts_band<span class="classifier"><code class="docutils literal notranslate"><span class="pre">(3,)</span></code> ndarray or <code class="docutils literal notranslate"><span class="pre">(*,3)</span></code> ndarray</span></dt><dd><p>A list of arbitrary “band” k-points at which to evaluate the XC matrix.</p>
 </dd>
 </dl>
 </dd>
@@ -2853,7 +2937,7 @@ See <code class="xref py py-func docutils literal notranslate"><span class="pre"
 <dt>verbose<span class="classifier">int or object of <code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></span></dt><dd><p>No effects.</p>
 </dd>
 <dt>kpts<span class="classifier">(3,) ndarray or (nkpts,3) ndarray</span></dt><dd><p>Single or multiple k-points sampled for the DM.  Default is gamma point.
-kpts_band : (3,) ndarray or (<a href="#id31"><span class="problematic" id="id32">*</span></a>,3) ndarray
+kpts_band : <code class="docutils literal notranslate"><span class="pre">(3,)</span></code> ndarray or <code class="docutils literal notranslate"><span class="pre">(*,3)</span></code> ndarray
 A list of arbitrary “band” k-points at which to evaluate the XC matrix.</p>
 </dd>
 </dl>
@@ -2937,7 +3021,7 @@ See <code class="xref py py-func docutils literal notranslate"><span class="pre"
 <dt>verbose<span class="classifier">int or object of <code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></span></dt><dd><p>No effects.</p>
 </dd>
 <dt>kpts<span class="classifier">(3,) ndarray or (nkpts,3) ndarray</span></dt><dd><p>Single or multiple k-points sampled for the DM.  Default is gamma point.
-kpts_band : (3,) ndarray or (<a href="#id33"><span class="problematic" id="id34">*</span></a>,3) ndarray
+kpts_band : <code class="docutils literal notranslate"><span class="pre">(3,)</span></code> ndarray or <code class="docutils literal notranslate"><span class="pre">(*,3)</span></code> ndarray
 A list of arbitrary “band” k-points at which to evaluate the XC matrix.</p>
 </dd>
 </dl>
@@ -3049,7 +3133,7 @@ ao_kpts : (nkpts, ngrids, nao) ndarray</p>
 </dl>
 <p>It differs from the eval_xc method in the derivatives of non-local part.
 The eval_xc method returns the XC functional derivatives to sigma
-(<a href="#id35"><span class="problematic" id="id36">|</span></a>nabla rho|^2)</p>
+(<a href="#id1"><span class="problematic" id="id2">|</span></a>nabla rho|^2)</p>
 <dl class="simple">
 <dt>Args:</dt><dd><dl class="simple">
 <dt>rho: 2-dimensional or 3-dimensional array</dt><dd><p>Total density and spin density (and their derivatives if GGA or MGGA
@@ -3364,7 +3448,7 @@ derivatives for GGA functional in the framework of 2-component basis.</p>
 </dl>
 <p>It differs from the eval_xc method in the derivatives of non-local part.
 The eval_xc method returns the XC functional derivatives to sigma
-(<a href="#id37"><span class="problematic" id="id38">|</span></a>nabla rho|^2)</p>
+(<a href="#id3"><span class="problematic" id="id4">|</span></a>nabla rho|^2)</p>
 <dl class="simple">
 <dt>Args:</dt><dd><dl class="simple">
 <dt>rho: 2-dimensional or 3-dimensional array</dt><dd><p>Total density and spin density (and their derivatives if GGA or MGGA
@@ -3602,6 +3686,11 @@ RSDF: range-separation density fitting</p>
 <span class="sig-name descname"><span class="pre">rs_density_fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">auxbasis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_df</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.dft.rks.KohnShamDFT.rs_density_fit" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf.pbc.dft.rks.KohnShamDFT.small_rho_cutoff">
+<span class="sig-name descname"><span class="pre">small_rho_cutoff</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-07</span></em><a class="headerlink" href="#pyscf.pbc.dft.rks.KohnShamDFT.small_rho_cutoff" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.dft.rks.KohnShamDFT.to_gks">
 <span class="sig-name descname"><span class="pre">to_gks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/dft/rks.html#KohnShamDFT.to_gks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.dft.rks.KohnShamDFT.to_gks" title="Link to this definition">#</a></dt>
@@ -3665,7 +3754,7 @@ variables replaced by <cite>cell</cite>.</p>
 <dl>
 <dt>Args:</dt><dd><p>ks : an instance of DFT class</p>
 <dl class="simple">
-<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-partical density matrix</p>
+<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-particle density matrix</p>
 </dd>
 <dt>h1e<span class="classifier">2D ndarray</span></dt><dd><p>Core hamiltonian</p>
 </dd>
@@ -3826,7 +3915,7 @@ HF potential</p>
 <dt>Args:</dt><dd><p>mf : an instance of SCF class</p>
 </dd>
 <dt>Kwargs:</dt><dd><dl class="simple">
-<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-partical density matrix</p>
+<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-particle density matrix</p>
 </dd>
 <dt>h1e<span class="classifier">2D ndarray</span></dt><dd><p>Core hamiltonian</p>
 </dd>
@@ -4113,7 +4202,8 @@ variables replaced by <cite>cell</cite>.</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -4346,9 +4436,11 @@ variables replaced by <cite>cell</cite>.</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.numint.KNumInt.eval_rho"><code class="docutils literal notranslate"><span class="pre">KNumInt.eval_rho()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.numint.KNumInt.eval_rho1"><code class="docutils literal notranslate"><span class="pre">KNumInt.eval_rho1()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.numint.KNumInt.eval_rho2"><code class="docutils literal notranslate"><span class="pre">KNumInt.eval_rho2()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.numint.KNumInt.get_fxc"><code class="docutils literal notranslate"><span class="pre">KNumInt.get_fxc()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.numint.KNumInt.get_rho"><code class="docutils literal notranslate"><span class="pre">KNumInt.get_rho()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.numint.KNumInt.get_vxc"><code class="docutils literal notranslate"><span class="pre">KNumInt.get_vxc()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.numint.KNumInt.make_mask"><code class="docutils literal notranslate"><span class="pre">KNumInt.make_mask()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.numint.KNumInt.nr_fxc"><code class="docutils literal notranslate"><span class="pre">KNumInt.nr_fxc()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.numint.KNumInt.nr_rks"><code class="docutils literal notranslate"><span class="pre">KNumInt.nr_rks()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.numint.KNumInt.nr_rks_fxc"><code class="docutils literal notranslate"><span class="pre">KNumInt.nr_rks_fxc()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.numint.KNumInt.nr_rks_fxc_st"><code class="docutils literal notranslate"><span class="pre">KNumInt.nr_rks_fxc_st()</span></code></a></li>
@@ -4461,6 +4553,7 @@ variables replaced by <cite>cell</cite>.</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.rks.KohnShamDFT.mix_density_fit"><code class="docutils literal notranslate"><span class="pre">KohnShamDFT.mix_density_fit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.rks.KohnShamDFT.reset"><code class="docutils literal notranslate"><span class="pre">KohnShamDFT.reset()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.rks.KohnShamDFT.rs_density_fit"><code class="docutils literal notranslate"><span class="pre">KohnShamDFT.rs_density_fit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.rks.KohnShamDFT.small_rho_cutoff"><code class="docutils literal notranslate"><span class="pre">KohnShamDFT.small_rho_cutoff</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.rks.KohnShamDFT.to_gks"><code class="docutils literal notranslate"><span class="pre">KohnShamDFT.to_gks()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.rks.KohnShamDFT.to_gpu"><code class="docutils literal notranslate"><span class="pre">KohnShamDFT.to_gpu()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.rks.KohnShamDFT.to_hf"><code class="docutils literal notranslate"><span class="pre">KohnShamDFT.to_hf()</span></code></a></li>
@@ -4554,8 +4647,8 @@ variables replaced by <cite>cell</cite>.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -4566,7 +4659,7 @@ variables replaced by <cite>cell</cite>.</p>
 
   <p class="copyright">
     
-      © Copyright 2024, The PySCF Developers.
+      © Copyright 2025, The PySCF Developers.
       <br/>
     
   </p>
@@ -4588,7 +4681,8 @@ variables replaced by <cite>cell</cite>.</p>
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

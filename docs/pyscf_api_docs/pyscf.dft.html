@@ -16,28 +16,31 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/css/pyscf-pst.css?v=ed6b5f64" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=3db9c557"></script>
+    <script src="../_static/documentation_options.js?v=69ff2ef9"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
@@ -49,6 +52,7 @@
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2.8" />
   </head>
   
   
@@ -64,19 +68,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -84,7 +77,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -92,8 +84,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -127,7 +119,7 @@
     
     
     <img src="../_static/logo-64x64.png" class="logo__image only-light" alt=""/>
-    <script>document.write(`<img src="../_static/logo-64x64.png" class="logo__image only-dark" alt=""/>`);</script>
+    <img src="../_static/logo-64x64.png" class="logo__image only-dark pst-js-only" alt=""/>
   
   
     <p class="title logo__title">PySCF</p>
@@ -171,6 +163,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -182,29 +181,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -229,15 +220,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -256,7 +243,8 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -298,6 +286,13 @@ document.write(`
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -310,15 +305,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -366,7 +357,10 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="pyscf.geomopt.html">pyscf.geomopt package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.grad.html">pyscf.grad package</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="pyscf.gto.html">pyscf.gto package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="pyscf.gto.basis.html">pyscf.gto.basis package</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="pyscf.gto.basis.html">pyscf.gto.basis package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.gto.basis.dyall-basis.html">pyscf.gto.basis.dyall-basis package</a></li>
+</ul>
+</details></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.gw.html">pyscf.gw package</a></li>
@@ -429,9 +423,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -449,8 +448,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -459,7 +456,7 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">pyscf.dft package</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pyscf.dft package</span></li>
   </ul>
 </nav>
 </div>
@@ -778,7 +775,7 @@ converts all attributes of a method to cupy objects or gpu4pyscf objects.</p>
 <dl>
 <dt>Args:</dt><dd><p>ks : an instance of DFT class</p>
 <dl class="simple">
-<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-partical density matrix</p>
+<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-particle density matrix</p>
 </dd>
 <dt>h1e<span class="classifier">2D ndarray</span></dt><dd><p>Core hamiltonian</p>
 </dd>
@@ -1012,7 +1009,7 @@ mean-field object.</p>
 <dl>
 <dt>Args:</dt><dd><p>ks : an instance of DFT class</p>
 <dl class="simple">
-<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-partical density matrix</p>
+<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-particle density matrix</p>
 </dd>
 <dt>h1e<span class="classifier">2D ndarray</span></dt><dd><p>Core hamiltonian</p>
 </dd>
@@ -1282,7 +1279,7 @@ grids over angular part for each radial grid.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.dft.gen_grid.Grids.radi_method">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">radi_method</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.dft.gen_grid.Grids.radi_method" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">radi_method</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.dft.gen_grid.Grids.radi_method" title="Link to this definition">#</a></dt>
 <dd><p>Treutler-Ahlrichs [JCP 102, 346 (1995); DOI:10.1063/1.469408] (M4) radial grids</p>
 </dd></dl>
 
@@ -1477,12 +1474,6 @@ grids over angular part for each radial grid.</p>
 </dd></dl>
 
 </section>
-<section id="pyscf-dft-gen-libxc-param-module">
-<h2>pyscf.dft.gen_libxc_param module<a class="headerlink" href="#pyscf-dft-gen-libxc-param-module" title="Link to this heading">#</a></h2>
-</section>
-<section id="pyscf-dft-gen-xcfun-param-module">
-<h2>pyscf.dft.gen_xcfun_param module<a class="headerlink" href="#pyscf-dft-gen-xcfun-param-module" title="Link to this heading">#</a></h2>
-</section>
 <section id="module-pyscf.dft.gks">
 <span id="pyscf-dft-gks-module"></span><h2>pyscf.dft.gks module<a class="headerlink" href="#module-pyscf.dft.gks" title="Link to this heading">#</a></h2>
 <p>Generalized Kohn-Sham</p>
@@ -1561,7 +1552,7 @@ normalized to 1 for UHF/UKS methods. In the TDA calculation, Y = 0.</p>
 <dl>
 <dt>Args:</dt><dd><p>ks : an instance of DFT class</p>
 <dl class="simple">
-<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-partical density matrix</p>
+<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-particle density matrix</p>
 </dd>
 <dt>h1e<span class="classifier">2D ndarray</span></dt><dd><p>Core hamiltonian</p>
 </dd>
@@ -1753,7 +1744,7 @@ normalized to 1 for UHF/UKS methods. In the TDA calculation, Y = 0.</p>
 <dl>
 <dt>Args:</dt><dd><p>ks : an instance of DFT class</p>
 <dl class="simple">
-<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-partical density matrix</p>
+<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-particle density matrix</p>
 </dd>
 <dt>h1e<span class="classifier">2D ndarray</span></dt><dd><p>Core hamiltonian</p>
 </dd>
@@ -1822,6 +1813,11 @@ converts all attributes of a method to cupy objects or gpu4pyscf objects.</p>
 <span id="pyscf-dft-libxc-module"></span><h2>pyscf.dft.libxc module<a class="headerlink" href="#module-pyscf.dft.libxc" title="Link to this heading">#</a></h2>
 <p>XC functional, the interface to libxc
 (<a class="reference external" href="http://www.tddft.org/programs/octopus/wiki/index.php/Libxc">http://www.tddft.org/programs/octopus/wiki/index.php/Libxc</a>)</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyscf.dft.libxc.available_libxc_functionals">
+<span class="sig-prename descclassname"><span class="pre">pyscf.dft.libxc.</span></span><span class="sig-name descname"><span class="pre">available_libxc_functionals</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/dft/libxc.html#available_libxc_functionals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.dft.libxc.available_libxc_functionals" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="pyscf.dft.libxc.define_xc">
 <span class="sig-prename descclassname"><span class="pre">pyscf.dft.libxc.</span></span><span class="sig-name descname"><span class="pre">define_xc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xctype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'LDA'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rsh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/dft/libxc.html#define_xc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.dft.libxc.define_xc" title="Link to this definition">#</a></dt>
@@ -2009,7 +2005,7 @@ rho is ((den_u,grad_xu,grad_yu,grad_zu,laplacian_u,tau_u)</p>
 | vlapl[:,2]  = (u, d)
 | vtau[:,2]   = (u, d)</p></li>
 <li><p>fxc for restricted case:
-(v2rho2, v2rhosigma, v2sigma2, v2lapl2, vtau2, v2rholapl, v2rhotau, v2lapltau, v2sigmalapl, v2sigmatau)</p></li>
+(v2rho2, v2rhosigma, v2sigma2, v2lapl2, v2tau2, v2rholapl, v2rhotau, v2lapltau, v2sigmalapl, v2sigmatau)</p></li>
 <li><p>fxc for unrestricted case:
 | v2rho2[:,3]     = (u_u, u_d, d_d)
 | v2rhosigma[:,6] = (u_uu, u_ud, u_dd, d_uu, d_ud, d_dd)
@@ -2229,6 +2225,12 @@ If “HF” was appeared in the string, it stands for the exact exchange.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="pyscf.dft.libxc.print_XC_CODES">
+<span class="sig-prename descclassname"><span class="pre">pyscf.dft.libxc.</span></span><span class="sig-name descname"><span class="pre">print_XC_CODES</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/dft/libxc.html#print_XC_CODES"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.dft.libxc.print_XC_CODES" title="Link to this definition">#</a></dt>
+<dd><p>Dump the built-in libxc XC_CODES along with their references in a readable format.</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="pyscf.dft.libxc.rsh_coeff">
 <span class="sig-prename descclassname"><span class="pre">pyscf.dft.libxc.</span></span><span class="sig-name descname"><span class="pre">rsh_coeff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xc_code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/dft/libxc.html#rsh_coeff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.dft.libxc.rsh_coeff" title="Link to this definition">#</a></dt>
 <dd><p>Range-separated parameter and HF exchange components: omega, alpha, beta</p>
@@ -2356,7 +2358,7 @@ rho is ((den_u,grad_xu,grad_yu,grad_zu,laplacian_u,tau_u)</p>
 | vlapl[:,2]  = (u, d)
 | vtau[:,2]   = (u, d)</p></li>
 <li><p>fxc for restricted case:
-(v2rho2, v2rhosigma, v2sigma2, v2lapl2, vtau2, v2rholapl, v2rhotau, v2lapltau, v2sigmalapl, v2sigmatau)</p></li>
+(v2rho2, v2rhosigma, v2sigma2, v2lapl2, v2tau2, v2rholapl, v2rhotau, v2lapltau, v2sigmalapl, v2sigmatau)</p></li>
 <li><p>fxc for unrestricted case:
 | v2rho2[:,3]     = (u_u, u_d, d_d)
 | v2rhosigma[:,6] = (u_uu, u_ud, u_dd, d_uu, d_ud, d_dd)
@@ -2414,6 +2416,11 @@ ud_ud_u, ud_ud_d, ud_dd_u, ud_dd_d, dd_dd_u, dd_dd_d)</div>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pyscf.dft.numint.LibXCMixin.eval_xc1">
+<span class="sig-name descname"><span class="pre">eval_xc1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xc_code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deriv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/dft/numint.html#LibXCMixin.eval_xc1"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.dft.numint.LibXCMixin.eval_xc1" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pyscf.dft.numint.LibXCMixin.eval_xc_eff">
 <span class="sig-name descname"><span class="pre">eval_xc_eff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xc_code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deriv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xctype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/dft/numint.html#LibXCMixin.eval_xc_eff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.dft.numint.LibXCMixin.eval_xc_eff" title="Link to this definition">#</a></dt>
 <dd><p>Returns the derivative tensor against the density parameters</p>
@@ -2450,7 +2457,7 @@ derivatives if GGA or MGGA functionals) on grids</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pyscf.dft.numint.LibXCMixin.libxc">
-<span class="sig-name descname"><span class="pre">libxc</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;module</span> <span class="pre">'pyscf.dft.libxc'</span> <span class="pre">from</span> <span class="pre">'/home/runner/.local/lib/python3.10/site-packages/pyscf/dft/libxc.py'&gt;</span></em><a class="headerlink" href="#pyscf.dft.numint.LibXCMixin.libxc" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">libxc</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;module</span> <span class="pre">'pyscf.dft.libxc'</span> <span class="pre">from</span> <span class="pre">'/home/runner/.local/lib/python3.12/site-packages/pyscf/dft/libxc.py'&gt;</span></em><a class="headerlink" href="#pyscf.dft.numint.LibXCMixin.libxc" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -4612,13 +4619,13 @@ DFT hessian module etc.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyscf.dft.radi.treutler">
-<span class="sig-prename descclassname"><span class="pre">pyscf.dft.radi.</span></span><span class="sig-name descname"><span class="pre">treutler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.dft.radi.treutler" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pyscf.dft.radi.</span></span><span class="sig-name descname"><span class="pre">treutler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.dft.radi.treutler" title="Link to this definition">#</a></dt>
 <dd><p>Treutler-Ahlrichs [JCP 102, 346 (1995); DOI:10.1063/1.469408] (M4) radial grids</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyscf.dft.radi.treutler_ahlrichs">
-<span class="sig-prename descclassname"><span class="pre">pyscf.dft.radi.</span></span><span class="sig-name descname"><span class="pre">treutler_ahlrichs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/dft/radi.html#treutler_ahlrichs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.dft.radi.treutler_ahlrichs" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pyscf.dft.radi.</span></span><span class="sig-name descname"><span class="pre">treutler_ahlrichs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/dft/radi.html#treutler_ahlrichs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.dft.radi.treutler_ahlrichs" title="Link to this definition">#</a></dt>
 <dd><p>Treutler-Ahlrichs [JCP 102, 346 (1995); DOI:10.1063/1.469408] (M4) radial grids</p>
 </dd></dl>
 
@@ -4737,6 +4744,11 @@ if self.nlc == ‘’, determined by self.xc, certain xc allows the nlc part</p>
 <span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/dft/rks.html#KohnShamDFT.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.dft.rks.KohnShamDFT.reset" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf.dft.rks.KohnShamDFT.small_rho_cutoff">
+<span class="sig-name descname"><span class="pre">small_rho_cutoff</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-07</span></em><a class="headerlink" href="#pyscf.dft.rks.KohnShamDFT.small_rho_cutoff" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.dft.rks.KohnShamDFT.to_ghf">
 <span class="sig-name descname"><span class="pre">to_ghf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/dft/rks.html#KohnShamDFT.to_ghf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.dft.rks.KohnShamDFT.to_ghf" title="Link to this definition">#</a></dt>
@@ -4831,8 +4843,11 @@ chkfile can be disabled if this attribute is set to None or False.</p>
 be skipped and the kernel function will compute only the total
 energy based on the initial guess. Default value is 50.</p>
 </dd>
-<dt>init_guess<span class="classifier">str</span></dt><dd><p>initial guess method.  It can be one of ‘minao’, ‘atom’, ‘huckel’, ‘hcore’, ‘1e’, ‘chkfile’.
+<dt>init_guess<span class="classifier">str</span></dt><dd><p>initial guess method.  It can be one of ‘minao’, ‘atom’, ‘huckel’, ‘hcore’, ‘1e’, ‘sap’, ‘chkfile’.
 Default is ‘minao’</p>
+</dd>
+<dt>sap_basis<span class="classifier">str or dict</span></dt><dd><p>basis for SAP initial guess, either filename or path as str or
+internal format dictionary.</p>
 </dd>
 <dt>DIIS<span class="classifier">DIIS class</span></dt><dd><p>The class to generate diis object.  It can be one of
 diis.SCF_DIIS, diis.ADIIS, diis.EDIIS.</p>
@@ -4874,7 +4889,7 @@ environment.</p>
 <p>Saved results:</p>
 <blockquote>
 <div><dl class="simple">
-<dt>converged<span class="classifier">bool</span></dt><dd><p>SCF converged or not</p>
+<dt>converged<span class="classifier">bool</span></dt><dd><p>Whether the SCF iteration converged</p>
 </dd>
 <dt>e_tot<span class="classifier">float</span></dt><dd><p>Total HF energy (electronic energy plus nuclear repulsion)</p>
 </dd>
@@ -4883,6 +4898,8 @@ environment.</p>
 <dt>mo_occ</dt><dd><p>Orbital occupancy</p>
 </dd>
 <dt>mo_coeff</dt><dd><p>Orbital coefficients</p>
+</dd>
+<dt>cycles<span class="classifier">int</span></dt><dd><p>The number of iteration cycles performed</p>
 </dd>
 </dl>
 </div></blockquote>
@@ -5044,7 +5061,7 @@ normalized to 1 for UHF/UKS methods. In the TDA calculation, Y = 0.</p>
 <dl>
 <dt>Args:</dt><dd><p>ks : an instance of DFT class</p>
 <dl class="simple">
-<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-partical density matrix</p>
+<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-particle density matrix</p>
 </dd>
 <dt>h1e<span class="classifier">2D ndarray</span></dt><dd><p>Core hamiltonian</p>
 </dd>
@@ -5174,7 +5191,7 @@ converts all attributes of a method to cupy objects or gpu4pyscf objects.</p>
 <dl>
 <dt>Args:</dt><dd><p>ks : an instance of DFT class</p>
 <dl class="simple">
-<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-partical density matrix</p>
+<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-particle density matrix</p>
 </dd>
 <dt>h1e<span class="classifier">2D ndarray</span></dt><dd><p>Core hamiltonian</p>
 </dd>
@@ -5383,7 +5400,7 @@ normalized to 1 for UHF/UKS methods. In the TDA calculation, Y = 0.</p>
 <dl>
 <dt>Args:</dt><dd><p>ks : an instance of DFT class</p>
 <dl class="simple">
-<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-partical density matrix</p>
+<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-particle density matrix</p>
 </dd>
 <dt>h1e<span class="classifier">2D ndarray</span></dt><dd><p>Core hamiltonian</p>
 </dd>
@@ -5560,7 +5577,7 @@ HF potential</p>
 <dt>Args:</dt><dd><p>mf : an instance of SCF class</p>
 </dd>
 <dt>Kwargs:</dt><dd><dl class="simple">
-<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-partical density matrix</p>
+<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-particle density matrix</p>
 </dd>
 <dt>h1e<span class="classifier">2D ndarray</span></dt><dd><p>Core hamiltonian</p>
 </dd>
@@ -5725,7 +5742,7 @@ HF potential</p>
 <dt>Args:</dt><dd><p>mf : an instance of SCF class</p>
 </dd>
 <dt>Kwargs:</dt><dd><dl class="simple">
-<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-partical density matrix</p>
+<dt>dm<span class="classifier">2D ndarray</span></dt><dd><p>one-particle density matrix</p>
 </dd>
 <dt>h1e<span class="classifier">2D ndarray</span></dt><dd><p>Core hamiltonian</p>
 </dd>
@@ -6539,7 +6556,7 @@ can be obtained by alpha + beta</p>
 <dt class="sig sig-object py" id="pyscf.dft.xcfun.eval_xc">
 <span class="sig-prename descclassname"><span class="pre">pyscf.dft.xcfun.</span></span><span class="sig-name descname"><span class="pre">eval_xc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xc_code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relativity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deriv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/dft/xcfun.html#eval_xc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.dft.xcfun.eval_xc" title="Link to this definition">#</a></dt>
 <dd><p>Interface to call xcfun library to evaluate XC functional, potential
-and functional derivatives. Return deriviates following libxc convention.</p>
+and functional derivatives. Return derivatives following libxc convention.</p>
 <p>See also <a class="reference internal" href="#pyscf.dft.libxc.eval_xc" title="pyscf.dft.libxc.eval_xc"><code class="xref py py-func docutils literal notranslate"><span class="pre">pyscf.dft.libxc.eval_xc()</span></code></a></p>
 </dd></dl>
 
@@ -6674,6 +6691,12 @@ contribution has been included.</p></li>
 <dd></dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="pyscf.dft.xcfun.print_XC_CODES">
+<span class="sig-prename descclassname"><span class="pre">pyscf.dft.xcfun.</span></span><span class="sig-name descname"><span class="pre">print_XC_CODES</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/dft/xcfun.html#print_XC_CODES"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.dft.xcfun.print_XC_CODES" title="Link to this definition">#</a></dt>
+<dd><p>Dump the built-in xcfun XC_CODES in a readable format.</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="pyscf.dft.xcfun.rsh_coeff">
 <span class="sig-prename descclassname"><span class="pre">pyscf.dft.xcfun.</span></span><span class="sig-name descname"><span class="pre">rsh_coeff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xc_code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/dft/xcfun.html#rsh_coeff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.dft.xcfun.rsh_coeff" title="Link to this definition">#</a></dt>
 <dd><p>Get Range-separated-hybrid coefficients</p>
@@ -6727,8 +6750,11 @@ chkfile can be disabled if this attribute is set to None or False.</p>
 be skipped and the kernel function will compute only the total
 energy based on the initial guess. Default value is 50.</p>
 </dd>
-<dt>init_guess<span class="classifier">str</span></dt><dd><p>initial guess method.  It can be one of ‘minao’, ‘atom’, ‘huckel’, ‘hcore’, ‘1e’, ‘chkfile’.
+<dt>init_guess<span class="classifier">str</span></dt><dd><p>initial guess method.  It can be one of ‘minao’, ‘atom’, ‘huckel’, ‘hcore’, ‘1e’, ‘sap’, ‘chkfile’.
 Default is ‘minao’</p>
+</dd>
+<dt>sap_basis<span class="classifier">str or dict</span></dt><dd><p>basis for SAP initial guess, either filename or path as str or
+internal format dictionary.</p>
 </dd>
 <dt>DIIS<span class="classifier">DIIS class</span></dt><dd><p>The class to generate diis object.  It can be one of
 diis.SCF_DIIS, diis.ADIIS, diis.EDIIS.</p>
@@ -6770,7 +6796,7 @@ environment.</p>
 <p>Saved results:</p>
 <blockquote>
 <div><dl class="simple">
-<dt>converged<span class="classifier">bool</span></dt><dd><p>SCF converged or not</p>
+<dt>converged<span class="classifier">bool</span></dt><dd><p>Whether the SCF iteration converged</p>
 </dd>
 <dt>e_tot<span class="classifier">float</span></dt><dd><p>Total HF energy (electronic energy plus nuclear repulsion)</p>
 </dd>
@@ -6779,6 +6805,8 @@ environment.</p>
 <dt>mo_occ</dt><dd><p>Orbital occupancy</p>
 </dd>
 <dt>mo_coeff</dt><dd><p>Orbital coefficients</p>
+</dd>
+<dt>cycles<span class="classifier">int</span></dt><dd><p>The number of iteration cycles performed</p>
 </dd>
 </dl>
 </div></blockquote>
@@ -6890,8 +6918,11 @@ chkfile can be disabled if this attribute is set to None or False.</p>
 be skipped and the kernel function will compute only the total
 energy based on the initial guess. Default value is 50.</p>
 </dd>
-<dt>init_guess<span class="classifier">str</span></dt><dd><p>initial guess method.  It can be one of ‘minao’, ‘atom’, ‘huckel’, ‘hcore’, ‘1e’, ‘chkfile’.
+<dt>init_guess<span class="classifier">str</span></dt><dd><p>initial guess method.  It can be one of ‘minao’, ‘atom’, ‘huckel’, ‘hcore’, ‘1e’, ‘sap’, ‘chkfile’.
 Default is ‘minao’</p>
+</dd>
+<dt>sap_basis<span class="classifier">str or dict</span></dt><dd><p>basis for SAP initial guess, either filename or path as str or
+internal format dictionary.</p>
 </dd>
 <dt>DIIS<span class="classifier">DIIS class</span></dt><dd><p>The class to generate diis object.  It can be one of
 diis.SCF_DIIS, diis.ADIIS, diis.EDIIS.</p>
@@ -6933,7 +6964,7 @@ environment.</p>
 <p>Saved results:</p>
 <blockquote>
 <div><dl class="simple">
-<dt>converged<span class="classifier">bool</span></dt><dd><p>SCF converged or not</p>
+<dt>converged<span class="classifier">bool</span></dt><dd><p>Whether the SCF iteration converged</p>
 </dd>
 <dt>e_tot<span class="classifier">float</span></dt><dd><p>Total HF energy (electronic energy plus nuclear repulsion)</p>
 </dd>
@@ -6942,6 +6973,8 @@ environment.</p>
 <dt>mo_occ</dt><dd><p>Orbital occupancy</p>
 </dd>
 <dt>mo_coeff</dt><dd><p>Orbital coefficients</p>
+</dd>
+<dt>cycles<span class="classifier">int</span></dt><dd><p>The number of iteration cycles performed</p>
 </dd>
 </dl>
 </div></blockquote>
@@ -7041,8 +7074,11 @@ chkfile can be disabled if this attribute is set to None or False.</p>
 be skipped and the kernel function will compute only the total
 energy based on the initial guess. Default value is 50.</p>
 </dd>
-<dt>init_guess<span class="classifier">str</span></dt><dd><p>initial guess method.  It can be one of ‘minao’, ‘atom’, ‘huckel’, ‘hcore’, ‘1e’, ‘chkfile’.
+<dt>init_guess<span class="classifier">str</span></dt><dd><p>initial guess method.  It can be one of ‘minao’, ‘atom’, ‘huckel’, ‘hcore’, ‘1e’, ‘sap’, ‘chkfile’.
 Default is ‘minao’</p>
+</dd>
+<dt>sap_basis<span class="classifier">str or dict</span></dt><dd><p>basis for SAP initial guess, either filename or path as str or
+internal format dictionary.</p>
 </dd>
 <dt>DIIS<span class="classifier">DIIS class</span></dt><dd><p>The class to generate diis object.  It can be one of
 diis.SCF_DIIS, diis.ADIIS, diis.EDIIS.</p>
@@ -7084,7 +7120,7 @@ environment.</p>
 <p>Saved results:</p>
 <blockquote>
 <div><dl class="simple">
-<dt>converged<span class="classifier">bool</span></dt><dd><p>SCF converged or not</p>
+<dt>converged<span class="classifier">bool</span></dt><dd><p>Whether the SCF iteration converged</p>
 </dd>
 <dt>e_tot<span class="classifier">float</span></dt><dd><p>Total HF energy (electronic energy plus nuclear repulsion)</p>
 </dd>
@@ -7093,6 +7129,8 @@ environment.</p>
 <dt>mo_occ</dt><dd><p>Orbital occupancy</p>
 </dd>
 <dt>mo_coeff</dt><dd><p>Orbital coefficients</p>
+</dd>
+<dt>cycles<span class="classifier">int</span></dt><dd><p>The number of iteration cycles performed</p>
 </dd>
 </dl>
 </div></blockquote>
@@ -7215,7 +7253,8 @@ See pyscf/dft/rks.py RKS class for document of the attributes</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -7348,8 +7387,6 @@ See pyscf/dft/rks.py RKS class for document of the attributes</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.gen_grid.treutler_prune"><code class="docutils literal notranslate"><span class="pre">treutler_prune()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf-dft-gen-libxc-param-module">pyscf.dft.gen_libxc_param module</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf-dft-gen-xcfun-param-module">pyscf.dft.gen_xcfun_param module</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf.dft.gks">pyscf.dft.gks module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.gks.GKS"><code class="docutils literal notranslate"><span class="pre">GKS</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.gks.GKS.CasidaTDDFT"><code class="docutils literal notranslate"><span class="pre">GKS.CasidaTDDFT()</span></code></a></li>
@@ -7388,6 +7425,7 @@ See pyscf/dft/rks.py RKS class for document of the attributes</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf.dft.libxc">pyscf.dft.libxc module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.libxc.available_libxc_functionals"><code class="docutils literal notranslate"><span class="pre">available_libxc_functionals()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.libxc.define_xc"><code class="docutils literal notranslate"><span class="pre">define_xc()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.libxc.define_xc_"><code class="docutils literal notranslate"><span class="pre">define_xc_()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.libxc.eval_xc"><code class="docutils literal notranslate"><span class="pre">eval_xc()</span></code></a></li>
@@ -7407,6 +7445,7 @@ See pyscf/dft/rks.py RKS class for document of the attributes</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.libxc.nlc_coeff"><code class="docutils literal notranslate"><span class="pre">nlc_coeff()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.libxc.parse_xc"><code class="docutils literal notranslate"><span class="pre">parse_xc()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.libxc.parse_xc_name"><code class="docutils literal notranslate"><span class="pre">parse_xc_name()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.libxc.print_XC_CODES"><code class="docutils literal notranslate"><span class="pre">print_XC_CODES()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.libxc.rsh_coeff"><code class="docutils literal notranslate"><span class="pre">rsh_coeff()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.libxc.test_deriv_order"><code class="docutils literal notranslate"><span class="pre">test_deriv_order()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.libxc.xc_reference"><code class="docutils literal notranslate"><span class="pre">xc_reference()</span></code></a></li>
@@ -7416,6 +7455,7 @@ See pyscf/dft/rks.py RKS class for document of the attributes</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf.dft.numint">pyscf.dft.numint module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.numint.LibXCMixin"><code class="docutils literal notranslate"><span class="pre">LibXCMixin</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.numint.LibXCMixin.eval_xc"><code class="docutils literal notranslate"><span class="pre">LibXCMixin.eval_xc()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.numint.LibXCMixin.eval_xc1"><code class="docutils literal notranslate"><span class="pre">LibXCMixin.eval_xc1()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.numint.LibXCMixin.eval_xc_eff"><code class="docutils literal notranslate"><span class="pre">LibXCMixin.eval_xc_eff()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.numint.LibXCMixin.hybrid_coeff"><code class="docutils literal notranslate"><span class="pre">LibXCMixin.hybrid_coeff()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.numint.LibXCMixin.libxc"><code class="docutils literal notranslate"><span class="pre">LibXCMixin.libxc</span></code></a></li>
@@ -7555,6 +7595,7 @@ See pyscf/dft/rks.py RKS class for document of the attributes</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.rks.KohnShamDFT.initialize_grids"><code class="docutils literal notranslate"><span class="pre">KohnShamDFT.initialize_grids()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.rks.KohnShamDFT.omega"><code class="docutils literal notranslate"><span class="pre">KohnShamDFT.omega</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.rks.KohnShamDFT.reset"><code class="docutils literal notranslate"><span class="pre">KohnShamDFT.reset()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.rks.KohnShamDFT.small_rho_cutoff"><code class="docutils literal notranslate"><span class="pre">KohnShamDFT.small_rho_cutoff</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.rks.KohnShamDFT.to_ghf"><code class="docutils literal notranslate"><span class="pre">KohnShamDFT.to_ghf()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.rks.KohnShamDFT.to_gks"><code class="docutils literal notranslate"><span class="pre">KohnShamDFT.to_gks()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.rks.KohnShamDFT.to_gpu"><code class="docutils literal notranslate"><span class="pre">KohnShamDFT.to_gpu()</span></code></a></li>
@@ -7740,6 +7781,7 @@ See pyscf/dft/rks.py RKS class for document of the attributes</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.xcfun.nlc_coeff"><code class="docutils literal notranslate"><span class="pre">nlc_coeff()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.xcfun.parse_xc"><code class="docutils literal notranslate"><span class="pre">parse_xc()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.xcfun.parse_xc_name"><code class="docutils literal notranslate"><span class="pre">parse_xc_name()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.xcfun.print_XC_CODES"><code class="docutils literal notranslate"><span class="pre">print_XC_CODES()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.xcfun.rsh_coeff"><code class="docutils literal notranslate"><span class="pre">rsh_coeff()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.xcfun.test_deriv_order"><code class="docutils literal notranslate"><span class="pre">test_deriv_order()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.dft.xcfun.xc_type"><code class="docutils literal notranslate"><span class="pre">xc_type()</span></code></a></li>
@@ -7790,8 +7832,8 @@ See pyscf/dft/rks.py RKS class for document of the attributes</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -7802,7 +7844,7 @@ See pyscf/dft/rks.py RKS class for document of the attributes</p>
 
   <p class="copyright">
     
-      © Copyright 2024, The PySCF Developers.
+      © Copyright 2025, The PySCF Developers.
       <br/>
     
   </p>
@@ -7824,7 +7866,8 @@ See pyscf/dft/rks.py RKS class for document of the attributes</p>
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

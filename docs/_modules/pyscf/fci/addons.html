@@ -15,28 +15,31 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=92fd9be5" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/pyscf-pst.css?v=ed6b5f64" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=3db9c557"></script>
+    <script src="../../../_static/documentation_options.js?v=69ff2ef9"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
@@ -48,6 +51,7 @@
     <link rel="search" title="Search" href="../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2.8" />
   </head>
   
   
@@ -63,19 +67,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../../search.html"
       method="get">
@@ -83,7 +76,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -91,8 +83,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -126,7 +118,7 @@
     
     
     <img src="../../../_static/logo-64x64.png" class="logo__image only-light" alt=""/>
-    <script>document.write(`<img src="../../../_static/logo-64x64.png" class="logo__image only-dark" alt=""/>`);</script>
+    <img src="../../../_static/logo-64x64.png" class="logo__image only-dark pst-js-only" alt=""/>
   
   
     <p class="title logo__title">PySCF</p>
@@ -170,6 +162,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -181,29 +180,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -228,15 +219,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -253,7 +240,8 @@ document.write(`
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -295,6 +283,13 @@ document.write(`
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -307,15 +302,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -339,9 +330,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -359,10 +355,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -375,12 +367,12 @@ document.write(`
     <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
     
     
-    <li class="breadcrumb-item"><i class="fa-solid fa-ellipsis"></i></li>
+    <li class="breadcrumb-item"><a href="../../pyscf.html" class="nav-link">pyscf</a></li>
     
     
     <li class="breadcrumb-item"><a href="../fci.html" class="nav-link">pyscf.fci</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">pyscf.fci.addons</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pyscf.fci.addons</span></li>
   </ul>
 </nav>
 </div>
@@ -635,7 +627,7 @@ document.write(`
                     <span class="n">ci_1</span><span class="p">[</span><span class="n">addr_x_a</span><span class="p">,</span><span class="n">addr_y_b</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">.5</span><span class="p">)</span>
                     <span class="n">ci_1</span><span class="p">[</span><span class="n">addr_y_a</span><span class="p">,</span><span class="n">addr_x_b</span><span class="p">]</span> <span class="o">=-</span><span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">.5</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="c1"># TODO: Other direct-product to direct-sum transofromation</span>
+                <span class="c1"># TODO: Other direct-product to direct-sum transformation</span>
                 <span class="c1"># which involves CG coefficients.</span>
                 <span class="n">ci_1</span><span class="p">[</span><span class="n">addra</span><span class="p">,</span><span class="n">addrb</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
             <span class="n">ci0</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ci_1</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
@@ -733,7 +725,7 @@ document.write(`
     <span class="k">else</span><span class="p">:</span>
         <span class="n">wfnsym</span> <span class="o">=</span> <span class="p">[</span><span class="n">_guess_wfnsym</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">strsa</span><span class="p">,</span> <span class="n">strsb</span><span class="p">,</span> <span class="n">orbsym</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">ci</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">wfnsym</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">wfnsym</span><span class="p">):</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Different wfnsym </span><span class="si">%s</span><span class="s1"> found in different CI vecotrs&#39;</span> <span class="o">%</span> <span class="n">wfnsym</span><span class="p">)</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Different wfnsym </span><span class="si">%s</span><span class="s1"> found in different CI vectors&#39;</span> <span class="o">%</span> <span class="n">wfnsym</span><span class="p">)</span>
         <span class="n">wfnsym</span> <span class="o">=</span> <span class="n">wfnsym</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">wfnsym</span></div>
 
@@ -1163,6 +1155,127 @@ document.write(`
     <span class="k">return</span> <span class="n">ci</span></div>
 
 
+<div class="viewcode-block" id="civec_spinless_repr_generator">
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.fci.html#pyscf.fci.addons.civec_spinless_repr_generator">[docs]</a>
+<span class="k">def</span> <span class="nf">civec_spinless_repr_generator</span><span class="p">(</span><span class="n">ci0_r</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec_r</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Put CI vectors in the spinless representation; i.e., map</span>
+<span class="sd">        norb -&gt; 2 * norb</span>
+<span class="sd">        (neleca, nelecb) -&gt; (neleca+nelecb, 0)</span>
+<span class="sd">    This permits linear combinations of CI vectors with different</span>
+<span class="sd">    M == neleca-nelecb at the price of higher memory cost. This function</span>
+<span class="sd">    does NOT change the datatype.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ci0_r: sequence or generator of ndarray of length nprods</span>
+<span class="sd">            CAS-CI vectors in the spin-pure representation</span>
+<span class="sd">        norb: integer</span>
+<span class="sd">            Number of orbitals</span>
+<span class="sd">        nelec_r: sequence of tuple of length (2)</span>
+<span class="sd">            (neleca, nelecb) for each element of ci0_r</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ci1_r_gen: callable that returns a generator of length nprods</span>
+<span class="sd">            generates spinless CAS-CI vectors</span>
+<span class="sd">        ss2spinless: callable</span>
+<span class="sd">            Put a CAS-CI vector in the spinless representation</span>
+<span class="sd">            Args:</span>
+<span class="sd">                ci0: ndarray</span>
+<span class="sd">                    CAS-CI vector</span>
+<span class="sd">                ne: tuple of length 2</span>
+<span class="sd">                    neleca, nelecb of target Hilbert space</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                ci1: ndarray</span>
+<span class="sd">                    spinless CAS-CI vector</span>
+<span class="sd">        spinless2ss: callable</span>
+<span class="sd">            Perform the reverse operation on a spinless CAS-CI vector</span>
+<span class="sd">            Args:</span>
+<span class="sd">                ci2: ndarray</span>
+<span class="sd">                    spinless CAS-CI vector</span>
+<span class="sd">                ne: tuple of length 2</span>
+<span class="sd">                    neleca, nelecb target Hilbert space</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                ci3: ndarray</span>
+<span class="sd">                    CAS-CI vector of ci2 in the (neleca, nelecb) Hilbert space</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">nelec_r_tot</span> <span class="o">=</span> <span class="p">[</span><span class="nb">sum</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nelec_r</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">nelec_r_tot</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Different particle-number subspaces&quot;</span><span class="p">)</span>
+    <span class="n">nelec</span> <span class="o">=</span> <span class="n">nelec_r_tot</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">addrs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">ndet_sp</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">ne</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">nelec_r</span><span class="p">):</span>
+        <span class="n">neleca</span><span class="p">,</span> <span class="n">nelecb</span> <span class="o">=</span> <span class="n">_unpack_nelec</span><span class="p">(</span><span class="n">ne</span><span class="p">)</span>
+        <span class="n">ndeta</span> <span class="o">=</span> <span class="n">cistring</span><span class="o">.</span><span class="n">num_strings</span><span class="p">(</span><span class="n">norb</span><span class="p">,</span> <span class="n">neleca</span><span class="p">)</span>
+        <span class="n">ndetb</span> <span class="o">=</span> <span class="n">cistring</span><span class="o">.</span><span class="n">num_strings</span><span class="p">(</span><span class="n">norb</span><span class="p">,</span> <span class="n">nelecb</span><span class="p">)</span>
+        <span class="n">strsa</span> <span class="o">=</span> <span class="n">cistring</span><span class="o">.</span><span class="n">addrs2str</span><span class="p">(</span><span class="n">norb</span><span class="p">,</span> <span class="n">neleca</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">ndeta</span><span class="p">)))</span>
+        <span class="n">strsb</span> <span class="o">=</span> <span class="n">cistring</span><span class="o">.</span><span class="n">addrs2str</span><span class="p">(</span><span class="n">norb</span><span class="p">,</span> <span class="n">nelecb</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">ndetb</span><span class="p">)))</span>
+        <span class="n">strs</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">add</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">strsa</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">left_shift</span><span class="p">(</span><span class="n">strsb</span><span class="p">,</span> <span class="n">norb</span><span class="p">))</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+        <span class="n">addrs</span><span class="p">[</span><span class="n">ne</span><span class="p">]</span> <span class="o">=</span> <span class="n">cistring</span><span class="o">.</span><span class="n">strs2addr</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">,</span> <span class="n">strs</span><span class="p">)</span>
+        <span class="n">ndet_sp</span><span class="p">[</span><span class="n">ne</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">ndeta</span><span class="p">,</span><span class="n">ndetb</span><span class="p">)</span>
+    <span class="n">strs</span> <span class="o">=</span> <span class="n">strsa</span> <span class="o">=</span> <span class="n">strsb</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">ndet</span> <span class="o">=</span> <span class="n">cistring</span><span class="o">.</span><span class="n">num_strings</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">ss2spinless</span><span class="p">(</span><span class="n">ci0</span><span class="p">,</span> <span class="n">ne</span><span class="p">,</span> <span class="n">buf</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">buf</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ci1</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">ndet</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">ci0</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ci1</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span><span class="o">.</span><span class="n">flat</span><span class="p">[:</span><span class="n">ndet</span><span class="p">]</span>
+        <span class="n">ci1</span><span class="p">[:]</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">ci1</span><span class="p">[</span><span class="n">addrs</span><span class="p">[</span><span class="n">ne</span><span class="p">]]</span> <span class="o">=</span> <span class="n">ci0</span><span class="p">[:,:]</span><span class="o">.</span><span class="n">ravel</span> <span class="p">()</span>
+        <span class="n">neleca</span><span class="p">,</span> <span class="n">nelecb</span> <span class="o">=</span> <span class="n">_unpack_nelec</span> <span class="p">(</span><span class="n">ne</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">neleca</span><span class="o">*</span><span class="n">nelecb</span><span class="p">)</span><span class="o">%</span><span class="mi">2</span><span class="p">:</span> <span class="n">ci1</span><span class="p">[:]</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="c1"># Sign comes from changing representation:</span>
+        <span class="c1"># ... a2&#39; a1&#39; a0&#39; ... b2&#39; b1&#39; b0&#39; |vac&gt;</span>
+        <span class="c1"># -&gt;</span>
+        <span class="c1"># ... b2&#39; b1&#39; b0&#39; .. a2&#39; a1&#39; a0&#39; |vac&gt;</span>
+        <span class="c1"># i.e., strictly decreasing from left to right</span>
+        <span class="c1"># (the ordinality of spin-down is conventionally greater than spin-up)</span>
+        <span class="k">return</span> <span class="n">ci1</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">spinless2ss</span><span class="p">(</span><span class="n">ci2</span><span class="p">,</span> <span class="n">ne</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; Generate the spin-separated CI vector in a particular M</span>
+<span class="sd">        Hilbert space from a spinless CI vector &#39;&#39;&#39;</span>
+        <span class="n">ci3</span> <span class="o">=</span> <span class="n">ci2</span><span class="p">[</span><span class="n">addrs</span><span class="p">[</span><span class="n">ne</span><span class="p">]]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">ndet_sp</span><span class="p">[</span><span class="n">ne</span><span class="p">])</span>
+        <span class="n">neleca</span><span class="p">,</span> <span class="n">nelecb</span> <span class="o">=</span> <span class="n">_unpack_nelec</span> <span class="p">(</span><span class="n">ne</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">neleca</span><span class="o">*</span><span class="n">nelecb</span><span class="p">)</span><span class="o">%</span><span class="mi">2</span><span class="p">:</span> <span class="n">ci3</span><span class="p">[:]</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">return</span> <span class="n">ci3</span>
+    <span class="k">def</span> <span class="nf">ci1_r_gen</span><span class="p">(</span><span class="n">buf</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">ci0_r</span><span class="p">):</span>
+            <span class="n">ci0_r_gen</span> <span class="o">=</span> <span class="n">ci0_r</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ci0_r_gen</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">ci0_r</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">ci0</span><span class="p">,</span> <span class="n">ne</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ci0_r_gen</span><span class="p">,</span> <span class="n">nelec_r</span><span class="p">):</span>
+            <span class="c1"># Doing this in two lines saves memory: ci0 is overwritten</span>
+            <span class="n">ci0</span> <span class="o">=</span> <span class="n">ss2spinless</span><span class="p">(</span><span class="n">ci0</span><span class="p">,</span> <span class="n">ne</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="n">ci0</span>
+    <span class="k">return</span> <span class="n">ci1_r_gen</span><span class="p">,</span> <span class="n">ss2spinless</span><span class="p">,</span> <span class="n">spinless2ss</span></div>
+
+
+<div class="viewcode-block" id="civec_spinless_repr">
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.fci.html#pyscf.fci.addons.civec_spinless_repr">[docs]</a>
+<span class="k">def</span> <span class="nf">civec_spinless_repr</span><span class="p">(</span><span class="n">ci0_r</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec_r</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Put CI vectors in the spinless representation; i.e., map</span>
+<span class="sd">        norb -&gt; 2 * norb</span>
+<span class="sd">        (neleca, nelecb) -&gt; (neleca+nelecb, 0)</span>
+<span class="sd">    This permits linear combinations of CI vectors with different</span>
+<span class="sd">    M == neleca-nelecb at the price of higher memory cost. This function</span>
+<span class="sd">    does NOT change the datatype.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ci0_r: sequence or generator of ndarray of length nprods</span>
+<span class="sd">            CAS-CI vectors in the spin-pure representation</span>
+<span class="sd">        norb: integer</span>
+<span class="sd">            Number of orbitals</span>
+<span class="sd">        nelec_r: sequence of tuple of length (2)</span>
+<span class="sd">            (neleca, nelecb) for each element of ci0_r</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ci1_r: ndarray of shape (nprods, ndet_spinless)</span>
+<span class="sd">            spinless CAS-CI vectors</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">ci1_r_gen</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">civec_spinless_repr_generator</span><span class="p">(</span><span class="n">ci0_r</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec_r</span><span class="p">)</span>
+    <span class="n">ci1_r</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ci1_r_gen</span><span class="p">()],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ci1_r</span></div>
+
+
 
 <span class="k">def</span> <span class="nf">_unpack_nelec</span><span class="p">(</span><span class="n">nelec</span><span class="p">,</span> <span class="n">spin</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">spin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1218,8 +1331,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1230,7 +1343,7 @@ document.write(`
 
   <p class="copyright">
     
-      © Copyright 2024, The PySCF Developers.
+      © Copyright 2025, The PySCF Developers.
       <br/>
     
   </p>
@@ -1252,7 +1365,8 @@ document.write(`
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

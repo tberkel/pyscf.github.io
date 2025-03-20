@@ -16,28 +16,31 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/css/pyscf-pst.css?v=ed6b5f64" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=3db9c557"></script>
+    <script src="../_static/documentation_options.js?v=69ff2ef9"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
@@ -51,6 +54,7 @@
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2.8" />
   </head>
   
   
@@ -66,19 +70,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -86,7 +79,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -94,8 +86,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -129,7 +121,7 @@
     
     
     <img src="../_static/logo-64x64.png" class="logo__image only-light" alt=""/>
-    <script>document.write(`<img src="../_static/logo-64x64.png" class="logo__image only-dark" alt=""/>`);</script>
+    <img src="../_static/logo-64x64.png" class="logo__image only-dark pst-js-only" alt=""/>
   
   
     <p class="title logo__title">PySCF</p>
@@ -173,6 +165,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -184,29 +183,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -231,15 +222,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -258,7 +245,8 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -300,6 +288,13 @@ document.write(`
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -312,15 +307,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -368,7 +359,10 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="pyscf.geomopt.html">pyscf.geomopt package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.grad.html">pyscf.grad package</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="pyscf.gto.html">pyscf.gto package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="pyscf.gto.basis.html">pyscf.gto.basis package</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="pyscf.gto.basis.html">pyscf.gto.basis package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.gto.basis.dyall-basis.html">pyscf.gto.basis.dyall-basis package</a></li>
+</ul>
+</details></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.gw.html">pyscf.gw package</a></li>
@@ -431,9 +425,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -451,8 +450,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -461,7 +458,7 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">pyscf.pbc.df...</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pyscf.pbc.dft.multigrid package</span></li>
   </ul>
 </nav>
 </div>
@@ -497,7 +494,7 @@ document.write(`
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.get_jk">
-<span class="sig-name descname"><span class="pre">get_jk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts_band</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_j</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/dft/multigrid/multigrid.html#MultiGridFFTDF.get_jk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.get_jk" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">get_jk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts_band</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_j</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/dft/multigrid/multigrid.html#MultiGridFFTDF.get_jk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.get_jk" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -508,7 +505,7 @@ document.write(`
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.get_pp">
 <span class="sig-name descname"><span class="pre">get_pp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.get_pp" title="Link to this definition">#</a></dt>
-<dd><p>Get the periodic pseudotential nuc-el AO matrix, with G=0 removed.</p>
+<dd><p>Get the periodic pseudopotential nuc-el AO matrix, with G=0 removed.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -518,9 +515,23 @@ document.write(`
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.range_coulomb">
+<span class="sig-name descname"><span class="pre">range_coulomb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">omega</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.range_coulomb" title="Link to this definition">#</a></dt>
+<dd><p>Creates a temporary density fitting object for RSH-DF integrals.
+In this context, only LR or SR integrals for mol and auxmol are computed.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.reset">
 <span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/dft/multigrid/multigrid.html#MultiGridFFTDF.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.reset" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.to_gpu">
+<span class="sig-name descname"><span class="pre">to_gpu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.to_gpu" title="Link to this definition">#</a></dt>
+<dd><p>Convert a method to its corresponding GPU variant, and recursively
+converts all attributes of a method to cupy objects or gpu4pyscf objects.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -568,7 +579,7 @@ separately.</p>
 <p>kpts : (nkpts, 3) ndarray</p>
 </dd>
 <dt>Kwargs:</dt><dd><dl>
-<dt>kpts_band<span class="classifier">(3,) ndarray or (<a href="#id1"><span class="problematic" id="id2">*</span></a>,3) ndarray</span></dt><dd><p>A list of arbitrary “band” k-points at which to evalute the matrix.</p>
+<dt>kpts_band<span class="classifier"><code class="docutils literal notranslate"><span class="pre">(3,)</span></code> ndarray or <code class="docutils literal notranslate"><span class="pre">(*,3)</span></code> ndarray</span></dt><dd><p>A list of arbitrary “band” k-points at which to evalute the matrix.</p>
 </dd>
 </dl>
 </dd>
@@ -586,7 +597,7 @@ or list of vj if the input dm_kpts is a list of DMs</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="pyscf.pbc.dft.multigrid.multigrid.get_pp">
 <span class="sig-prename descclassname"><span class="pre">pyscf.pbc.dft.multigrid.multigrid.</span></span><span class="sig-name descname"><span class="pre">get_pp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mydf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/dft/multigrid/multigrid.html#get_pp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.dft.multigrid.multigrid.get_pp" title="Link to this definition">#</a></dt>
-<dd><p>Get the periodic pseudotential nuc-el AO matrix, with G=0 removed.</p>
+<dd><p>Get the periodic pseudopotential nuc-el AO matrix, with G=0 removed.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -637,7 +648,7 @@ multigrid version of function pbc.dft.numint.nr_rks.</p>
 <p>kpts : (nkpts, 3) ndarray</p>
 </dd>
 <dt>Kwargs:</dt><dd><dl>
-<dt>kpts_band<span class="classifier">(3,) ndarray or (<a href="#id3"><span class="problematic" id="id4">*</span></a>,3) ndarray</span></dt><dd><p>A list of arbitrary “band” k-points at which to evalute the matrix.</p>
+<dt>kpts_band<span class="classifier"><code class="docutils literal notranslate"><span class="pre">(3,)</span></code> ndarray or <code class="docutils literal notranslate"><span class="pre">(*,3)</span></code> ndarray</span></dt><dd><p>A list of arbitrary “band” k-points at which to evalute the matrix.</p>
 </dd>
 </dl>
 </dd>
@@ -680,7 +691,7 @@ multigrid version of function pbc.dft.numint.nr_uks</p>
 <p>kpts : (nkpts, 3) ndarray</p>
 </dd>
 <dt>Kwargs:</dt><dd><dl>
-<dt>kpts_band<span class="classifier">(3,) ndarray or (<a href="#id5"><span class="problematic" id="id6">*</span></a>,3) ndarray</span></dt><dd><p>A list of arbitrary “band” k-points at which to evalute the matrix.</p>
+<dt>kpts_band<span class="classifier"><code class="docutils literal notranslate"><span class="pre">(3,)</span></code> ndarray or <code class="docutils literal notranslate"><span class="pre">(*,3)</span></code> ndarray</span></dt><dd><p>A list of arbitrary “band” k-points at which to evalute the matrix.</p>
 </dd>
 </dl>
 </dd>
@@ -950,7 +961,7 @@ needs to be added.</p>
 <dt>cell1<span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">pbc.gto.cell.Cell</span></code>, optional</span></dt><dd><p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code> instance for the ket basis functions.
 If not given, both bra and ket basis functions come from cell.</p>
 </dd>
-<dt>Ls<span class="classifier">(<a href="#id7"><span class="problematic" id="id8">*</span></a>,3) array, optional</span></dt><dd><p>The cartesian coordinates of the periodic images.
+<dt>Ls<span class="classifier"><code class="docutils literal notranslate"><span class="pre">(*,3)</span></code> array, optional</span></dt><dd><p>The cartesian coordinates of the periodic images.
 Default is calculated by <code class="xref py py-func docutils literal notranslate"><span class="pre">cell.get_lattice_Ls()</span></code>.</p>
 </dd>
 <dt>hermi<span class="classifier">int, optional</span></dt><dd><p>If <span class="math notranslate nohighlight">\(hermi=1\)</span>, the task list is built only for
@@ -1110,7 +1121,8 @@ Differs from pp_int.fake_cell_vloc(cell, cn=0) in the normalization factors.</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1129,7 +1141,9 @@ Differs from pp_int.fake_cell_vloc(cell, cn=0) in the normalization factors.</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.get_nuc"><code class="docutils literal notranslate"><span class="pre">MultiGridFFTDF.get_nuc()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.get_pp"><code class="docutils literal notranslate"><span class="pre">MultiGridFFTDF.get_pp()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.get_rho"><code class="docutils literal notranslate"><span class="pre">MultiGridFFTDF.get_rho()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.range_coulomb"><code class="docutils literal notranslate"><span class="pre">MultiGridFFTDF.range_coulomb()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.reset"><code class="docutils literal notranslate"><span class="pre">MultiGridFFTDF.reset()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.multigrid.multigrid.MultiGridFFTDF.to_gpu"><code class="docutils literal notranslate"><span class="pre">MultiGridFFTDF.to_gpu()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.dft.multigrid.multigrid.cache_xc_kernel"><code class="docutils literal notranslate"><span class="pre">cache_xc_kernel()</span></code></a></li>
@@ -1261,8 +1275,8 @@ Differs from pp_int.fake_cell_vloc(cell, cn=0) in the normalization factors.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1273,7 +1287,7 @@ Differs from pp_int.fake_cell_vloc(cell, cn=0) in the normalization factors.</p>
 
   <p class="copyright">
     
-      © Copyright 2024, The PySCF Developers.
+      © Copyright 2025, The PySCF Developers.
       <br/>
     
   </p>
@@ -1295,7 +1309,8 @@ Differs from pp_int.fake_cell_vloc(cell, cn=0) in the normalization factors.</p>
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

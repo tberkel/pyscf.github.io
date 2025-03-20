@@ -16,28 +16,31 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/css/pyscf-pst.css?v=ed6b5f64" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=3db9c557"></script>
+    <script src="../_static/documentation_options.js?v=69ff2ef9"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
@@ -51,6 +54,7 @@
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2.8" />
   </head>
   
   
@@ -66,19 +70,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -86,7 +79,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -94,8 +86,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -129,7 +121,7 @@
     
     
     <img src="../_static/logo-64x64.png" class="logo__image only-light" alt=""/>
-    <script>document.write(`<img src="../_static/logo-64x64.png" class="logo__image only-dark" alt=""/>`);</script>
+    <img src="../_static/logo-64x64.png" class="logo__image only-dark pst-js-only" alt=""/>
   
   
     <p class="title logo__title">PySCF</p>
@@ -173,6 +165,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -184,29 +183,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -231,15 +222,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -258,7 +245,8 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -300,6 +288,13 @@ document.write(`
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../news.html">
+    News
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -312,15 +307,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -368,7 +359,10 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="pyscf.geomopt.html">pyscf.geomopt package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.grad.html">pyscf.grad package</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="pyscf.gto.html">pyscf.gto package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="pyscf.gto.basis.html">pyscf.gto.basis package</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="pyscf.gto.basis.html">pyscf.gto.basis package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.gto.basis.dyall-basis.html">pyscf.gto.basis.dyall-basis package</a></li>
+</ul>
+</details></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.gw.html">pyscf.gw package</a></li>
@@ -431,9 +425,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -451,8 +450,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -461,7 +458,7 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">pyscf package</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pyscf package</span></li>
   </ul>
 </nav>
 </div>
@@ -512,11 +509,13 @@ document.write(`
 <li class="toctree-l4"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.radc.RADC.kernel"><code class="docutils literal notranslate"><span class="pre">RADC.kernel()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.radc.RADC.kernel_gs"><code class="docutils literal notranslate"><span class="pre">RADC.kernel_gs()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.radc.RADC.make_rdm1"><code class="docutils literal notranslate"><span class="pre">RADC.make_rdm1()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.radc.RADC.make_ref_rdm1"><code class="docutils literal notranslate"><span class="pre">RADC.make_ref_rdm1()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.radc.RADC.memorymin"><code class="docutils literal notranslate"><span class="pre">RADC.memorymin</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.radc.RADC.transform_integrals"><code class="docutils literal notranslate"><span class="pre">RADC.transform_integrals()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.radc.kernel"><code class="docutils literal notranslate"><span class="pre">kernel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.radc.make_ref_rdm1"><code class="docutils literal notranslate"><span class="pre">make_ref_rdm1()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.adc.html#module-pyscf.adc.radc_amplitudes">pyscf.adc.radc_amplitudes module</a><ul>
@@ -548,6 +547,7 @@ document.write(`
 <li class="toctree-l4"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.radc_ea.RADCEA.get_properties"><code class="docutils literal notranslate"><span class="pre">RADCEA.get_properties()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.radc_ea.RADCEA.get_trans_moments"><code class="docutils literal notranslate"><span class="pre">RADCEA.get_trans_moments()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.radc_ea.RADCEA.kernel"><code class="docutils literal notranslate"><span class="pre">RADCEA.kernel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.radc_ea.RADCEA.make_rdm1"><code class="docutils literal notranslate"><span class="pre">RADCEA.make_rdm1()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.radc_ea.RADCEA.matvec"><code class="docutils literal notranslate"><span class="pre">RADCEA.matvec()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.radc_ea.RADCEA.renormalize_eigenvectors"><code class="docutils literal notranslate"><span class="pre">RADCEA.renormalize_eigenvectors()</span></code></a></li>
 </ul>
@@ -562,6 +562,8 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.radc_ea.get_properties"><code class="docutils literal notranslate"><span class="pre">get_properties()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.radc_ea.get_trans_moments"><code class="docutils literal notranslate"><span class="pre">get_trans_moments()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.radc_ea.get_trans_moments_orbital"><code class="docutils literal notranslate"><span class="pre">get_trans_moments_orbital()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.radc_ea.make_rdm1"><code class="docutils literal notranslate"><span class="pre">make_rdm1()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.radc_ea.make_rdm1_eigenvectors"><code class="docutils literal notranslate"><span class="pre">make_rdm1_eigenvectors()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.radc_ea.matvec"><code class="docutils literal notranslate"><span class="pre">matvec()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.radc_ea.renormalize_eigenvectors"><code class="docutils literal notranslate"><span class="pre">renormalize_eigenvectors()</span></code></a></li>
 </ul>
@@ -643,6 +645,7 @@ document.write(`
 <li class="toctree-l4"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.uadc.UADC.kernel"><code class="docutils literal notranslate"><span class="pre">UADC.kernel()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.uadc.UADC.kernel_gs"><code class="docutils literal notranslate"><span class="pre">UADC.kernel_gs()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.uadc.UADC.make_rdm1"><code class="docutils literal notranslate"><span class="pre">UADC.make_rdm1()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.uadc.UADC.semi_canonicalize_orbitals"><code class="docutils literal notranslate"><span class="pre">UADC.semi_canonicalize_orbitals()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.uadc.UADC.transform_integrals"><code class="docutils literal notranslate"><span class="pre">UADC.transform_integrals()</span></code></a></li>
 </ul>
 </li>
@@ -662,6 +665,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.uadc_ao2mo.transform_integrals_df"><code class="docutils literal notranslate"><span class="pre">transform_integrals_df()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.uadc_ao2mo.transform_integrals_incore"><code class="docutils literal notranslate"><span class="pre">transform_integrals_incore()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.uadc_ao2mo.transform_integrals_outcore"><code class="docutils literal notranslate"><span class="pre">transform_integrals_outcore()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.adc.html#pyscf.adc.uadc_ao2mo.unpack_eri_1"><code class="docutils literal notranslate"><span class="pre">unpack_eri_1()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.adc.html#module-pyscf.adc.uadc_ea">pyscf.adc.uadc_ea module</a><ul>
@@ -960,7 +964,7 @@ document.write(`
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.agf2.html#module-pyscf.agf2">Module contents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.agf2.html#auxiliary-second-order-green-s-function-perturbation-therory">Auxiliary second-order Green’s function perturbation therory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.agf2.html#auxiliary-second-order-green-s-function-perturbation-theory">Auxiliary second-order Green’s function perturbation theory</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.agf2.html#pyscf.agf2.AGF2"><code class="docutils literal notranslate"><span class="pre">AGF2()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.agf2.html#pyscf.agf2.RAGF2"><code class="docutils literal notranslate"><span class="pre">RAGF2()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.agf2.html#pyscf.agf2.UAGF2"><code class="docutils literal notranslate"><span class="pre">UAGF2()</span></code></a></li>
@@ -1920,6 +1924,7 @@ document.write(`
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.cc.html#module-pyscf.cc">Module contents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.cc.html#coupled-cluster">Coupled Cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.cc.html#pyscf.cc.BCCD"><code class="docutils literal notranslate"><span class="pre">BCCD()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.cc.html#pyscf.cc.CCSD"><code class="docutils literal notranslate"><span class="pre">CCSD()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.cc.html#pyscf.cc.FNOCCSD"><code class="docutils literal notranslate"><span class="pre">FNOCCSD()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.cc.html#pyscf.cc.GCCSD"><code class="docutils literal notranslate"><span class="pre">GCCSD()</span></code></a></li>
@@ -2131,6 +2136,11 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.df.html#pyscf.df.addons.make_auxmol"><code class="docutils literal notranslate"><span class="pre">make_auxmol()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="pyscf.df.html#module-pyscf.df.autoaux">pyscf.df.autoaux module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.df.html#pyscf.df.autoaux.autoabs"><code class="docutils literal notranslate"><span class="pre">autoabs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.df.html#pyscf.df.autoaux.autoaux"><code class="docutils literal notranslate"><span class="pre">autoaux()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.df.html#module-pyscf.df.df">pyscf.df.df module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.df.html#pyscf.df.df.DF"><code class="docutils literal notranslate"><span class="pre">DF</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.df.html#pyscf.df.df.DF.ao2mo"><code class="docutils literal notranslate"><span class="pre">DF.ao2mo()</span></code></a></li>
@@ -2330,8 +2340,6 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.gen_grid.treutler_prune"><code class="docutils literal notranslate"><span class="pre">treutler_prune()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="pyscf.dft.html#pyscf-dft-gen-libxc-param-module">pyscf.dft.gen_libxc_param module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyscf.dft.html#pyscf-dft-gen-xcfun-param-module">pyscf.dft.gen_xcfun_param module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.dft.html#module-pyscf.dft.gks">pyscf.dft.gks module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.gks.GKS"><code class="docutils literal notranslate"><span class="pre">GKS</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.gks.GKS.CasidaTDDFT"><code class="docutils literal notranslate"><span class="pre">GKS.CasidaTDDFT()</span></code></a></li>
@@ -2370,6 +2378,7 @@ document.write(`
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.dft.html#module-pyscf.dft.libxc">pyscf.dft.libxc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.libxc.available_libxc_functionals"><code class="docutils literal notranslate"><span class="pre">available_libxc_functionals()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.libxc.define_xc"><code class="docutils literal notranslate"><span class="pre">define_xc()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.libxc.define_xc_"><code class="docutils literal notranslate"><span class="pre">define_xc_()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.libxc.eval_xc"><code class="docutils literal notranslate"><span class="pre">eval_xc()</span></code></a></li>
@@ -2389,6 +2398,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.libxc.nlc_coeff"><code class="docutils literal notranslate"><span class="pre">nlc_coeff()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.libxc.parse_xc"><code class="docutils literal notranslate"><span class="pre">parse_xc()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.libxc.parse_xc_name"><code class="docutils literal notranslate"><span class="pre">parse_xc_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.libxc.print_XC_CODES"><code class="docutils literal notranslate"><span class="pre">print_XC_CODES()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.libxc.rsh_coeff"><code class="docutils literal notranslate"><span class="pre">rsh_coeff()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.libxc.test_deriv_order"><code class="docutils literal notranslate"><span class="pre">test_deriv_order()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.libxc.xc_reference"><code class="docutils literal notranslate"><span class="pre">xc_reference()</span></code></a></li>
@@ -2398,6 +2408,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="pyscf.dft.html#module-pyscf.dft.numint">pyscf.dft.numint module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.numint.LibXCMixin"><code class="docutils literal notranslate"><span class="pre">LibXCMixin</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.numint.LibXCMixin.eval_xc"><code class="docutils literal notranslate"><span class="pre">LibXCMixin.eval_xc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.numint.LibXCMixin.eval_xc1"><code class="docutils literal notranslate"><span class="pre">LibXCMixin.eval_xc1()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.numint.LibXCMixin.eval_xc_eff"><code class="docutils literal notranslate"><span class="pre">LibXCMixin.eval_xc_eff()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.numint.LibXCMixin.hybrid_coeff"><code class="docutils literal notranslate"><span class="pre">LibXCMixin.hybrid_coeff()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.numint.LibXCMixin.libxc"><code class="docutils literal notranslate"><span class="pre">LibXCMixin.libxc</span></code></a></li>
@@ -2537,6 +2548,7 @@ document.write(`
 <li class="toctree-l4"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.rks.KohnShamDFT.initialize_grids"><code class="docutils literal notranslate"><span class="pre">KohnShamDFT.initialize_grids()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.rks.KohnShamDFT.omega"><code class="docutils literal notranslate"><span class="pre">KohnShamDFT.omega</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.rks.KohnShamDFT.reset"><code class="docutils literal notranslate"><span class="pre">KohnShamDFT.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.rks.KohnShamDFT.small_rho_cutoff"><code class="docutils literal notranslate"><span class="pre">KohnShamDFT.small_rho_cutoff</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.rks.KohnShamDFT.to_ghf"><code class="docutils literal notranslate"><span class="pre">KohnShamDFT.to_ghf()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.rks.KohnShamDFT.to_gks"><code class="docutils literal notranslate"><span class="pre">KohnShamDFT.to_gks()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.rks.KohnShamDFT.to_gpu"><code class="docutils literal notranslate"><span class="pre">KohnShamDFT.to_gpu()</span></code></a></li>
@@ -2722,6 +2734,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.xcfun.nlc_coeff"><code class="docutils literal notranslate"><span class="pre">nlc_coeff()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.xcfun.parse_xc"><code class="docutils literal notranslate"><span class="pre">parse_xc()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.xcfun.parse_xc_name"><code class="docutils literal notranslate"><span class="pre">parse_xc_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.xcfun.print_XC_CODES"><code class="docutils literal notranslate"><span class="pre">print_XC_CODES()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.xcfun.rsh_coeff"><code class="docutils literal notranslate"><span class="pre">rsh_coeff()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.xcfun.test_deriv_order"><code class="docutils literal notranslate"><span class="pre">test_deriv_order()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.dft.html#pyscf.dft.xcfun.xc_type"><code class="docutils literal notranslate"><span class="pre">xc_type()</span></code></a></li>
@@ -2818,6 +2831,8 @@ document.write(`
 <li class="toctree-l4"><a class="reference internal" href="pyscf.fci.html#pyscf.fci.addons.SpinPenaltyFCISolver.undo_fix_spin"><code class="docutils literal notranslate"><span class="pre">SpinPenaltyFCISolver.undo_fix_spin()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.fci.html#pyscf.fci.addons.civec_spinless_repr"><code class="docutils literal notranslate"><span class="pre">civec_spinless_repr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.fci.html#pyscf.fci.addons.civec_spinless_repr_generator"><code class="docutils literal notranslate"><span class="pre">civec_spinless_repr_generator()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.fci.html#pyscf.fci.addons.cre_a"><code class="docutils literal notranslate"><span class="pre">cre_a()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.fci.html#pyscf.fci.addons.cre_b"><code class="docutils literal notranslate"><span class="pre">cre_b()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.fci.html#pyscf.fci.addons.cylindrical_init_guess"><code class="docutils literal notranslate"><span class="pre">cylindrical_init_guess()</span></code></a></li>
@@ -2977,6 +2992,8 @@ document.write(`
 <li class="toctree-l4"><a class="reference internal" href="pyscf.fci.html#pyscf.fci.direct_spin1.FCIBase.make_precond"><code class="docutils literal notranslate"><span class="pre">FCIBase.make_precond()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.fci.html#pyscf.fci.direct_spin1.FCIBase.make_rdm1"><code class="docutils literal notranslate"><span class="pre">FCIBase.make_rdm1()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.fci.html#pyscf.fci.direct_spin1.FCIBase.make_rdm12"><code class="docutils literal notranslate"><span class="pre">FCIBase.make_rdm12()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.fci.html#pyscf.fci.direct_spin1.FCIBase.make_rdm123"><code class="docutils literal notranslate"><span class="pre">FCIBase.make_rdm123()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.fci.html#pyscf.fci.direct_spin1.FCIBase.make_rdm123s"><code class="docutils literal notranslate"><span class="pre">FCIBase.make_rdm123s()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.fci.html#pyscf.fci.direct_spin1.FCIBase.make_rdm12s"><code class="docutils literal notranslate"><span class="pre">FCIBase.make_rdm12s()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.fci.html#pyscf.fci.direct_spin1.FCIBase.make_rdm1s"><code class="docutils literal notranslate"><span class="pre">FCIBase.make_rdm1s()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.fci.html#pyscf.fci.direct_spin1.FCIBase.make_rdm2"><code class="docutils literal notranslate"><span class="pre">FCIBase.make_rdm2()</span></code></a></li>
@@ -3011,6 +3028,8 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.fci.html#pyscf.fci.direct_spin1.make_pspace_precond"><code class="docutils literal notranslate"><span class="pre">make_pspace_precond()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.fci.html#pyscf.fci.direct_spin1.make_rdm1"><code class="docutils literal notranslate"><span class="pre">make_rdm1()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.fci.html#pyscf.fci.direct_spin1.make_rdm12"><code class="docutils literal notranslate"><span class="pre">make_rdm12()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.fci.html#pyscf.fci.direct_spin1.make_rdm123"><code class="docutils literal notranslate"><span class="pre">make_rdm123()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.fci.html#pyscf.fci.direct_spin1.make_rdm123s"><code class="docutils literal notranslate"><span class="pre">make_rdm123s()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.fci.html#pyscf.fci.direct_spin1.make_rdm12s"><code class="docutils literal notranslate"><span class="pre">make_rdm12s()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.fci.html#pyscf.fci.direct_spin1.make_rdm1s"><code class="docutils literal notranslate"><span class="pre">make_rdm1s()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.fci.html#pyscf.fci.direct_spin1.pspace"><code class="docutils literal notranslate"><span class="pre">pspace()</span></code></a></li>
@@ -3442,6 +3461,7 @@ document.write(`
 </li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.grad.html#pyscf.grad.mp2.as_scanner"><code class="docutils literal notranslate"><span class="pre">as_scanner()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.grad.html#pyscf.grad.mp2.grad_elec"><code class="docutils literal notranslate"><span class="pre">grad_elec()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.grad.html#pyscf.grad.mp2.has_frozen_orbitals"><code class="docutils literal notranslate"><span class="pre">has_frozen_orbitals()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.grad.html#module-pyscf.grad.rhf">pyscf.grad.rhf module</a><ul>
@@ -3681,6 +3701,7 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="pyscf.gto.html">pyscf.gto package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.gto.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.gto.basis.html">pyscf.gto.basis package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.gto.basis.html#subpackages">Subpackages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.gto.basis.html#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.gto.basis.html#module-pyscf.gto.basis.bse">pyscf.gto.basis.bse module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.gto.basis.html#module-pyscf.gto.basis.dyall_dz">pyscf.gto.basis.dyall_dz module</a></li>
@@ -3905,6 +3926,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.gto.html#pyscf.gto.mole.etbs"><code class="docutils literal notranslate"><span class="pre">etbs()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.gto.html#pyscf.gto.mole.expand_etb"><code class="docutils literal notranslate"><span class="pre">expand_etb()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.gto.html#pyscf.gto.mole.expand_etbs"><code class="docutils literal notranslate"><span class="pre">expand_etbs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.gto.html#pyscf.gto.mole.fakemol_for_cgtf_charge"><code class="docutils literal notranslate"><span class="pre">fakemol_for_cgtf_charge()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.gto.html#pyscf.gto.mole.fakemol_for_charges"><code class="docutils literal notranslate"><span class="pre">fakemol_for_charges()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.gto.html#pyscf.gto.mole.filatov_nuc_mod"><code class="docutils literal notranslate"><span class="pre">filatov_nuc_mod()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.gto.html#pyscf.gto.mole.format_atom"><code class="docutils literal notranslate"><span class="pre">format_atom()</span></code></a></li>
@@ -4087,20 +4109,16 @@ document.write(`
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.gw.html#module-pyscf.gw.rpa">pyscf.gw.rpa module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.DirectRPA"><code class="docutils literal notranslate"><span class="pre">DirectRPA</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.DirectRPA.ao2mo"><code class="docutils literal notranslate"><span class="pre">DirectRPA.ao2mo()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.DirectRPA.dump_flags"><code class="docutils literal notranslate"><span class="pre">DirectRPA.dump_flags()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.DirectRPA.get_frozen_mask"><code class="docutils literal notranslate"><span class="pre">DirectRPA.get_frozen_mask()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.DirectRPA.get_nmo"><code class="docutils literal notranslate"><span class="pre">DirectRPA.get_nmo()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.DirectRPA.get_nocc"><code class="docutils literal notranslate"><span class="pre">DirectRPA.get_nocc()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.DirectRPA.kernel"><code class="docutils literal notranslate"><span class="pre">DirectRPA.kernel()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.DirectRPA.make_dielectric_matrix"><code class="docutils literal notranslate"><span class="pre">DirectRPA.make_dielectric_matrix()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.DirectRPA.make_e_ov"><code class="docutils literal notranslate"><span class="pre">DirectRPA.make_e_ov()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.DirectRPA.nmo"><code class="docutils literal notranslate"><span class="pre">DirectRPA.nmo</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.DirectRPA.nocc"><code class="docutils literal notranslate"><span class="pre">DirectRPA.nocc</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.DirectRPA"><code class="docutils literal notranslate"><span class="pre">DirectRPA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.RPA"><code class="docutils literal notranslate"><span class="pre">RPA</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.RPA.dump_flags"><code class="docutils literal notranslate"><span class="pre">RPA.dump_flags()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.RPA.get_e_hf"><code class="docutils literal notranslate"><span class="pre">RPA.get_e_hf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.RPA.kernel"><code class="docutils literal notranslate"><span class="pre">RPA.kernel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.RPA.make_dielectric_matrix"><code class="docutils literal notranslate"><span class="pre">RPA.make_dielectric_matrix()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.RPA.make_e_ov"><code class="docutils literal notranslate"><span class="pre">RPA.make_e_ov()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.RPA.make_f_ov"><code class="docutils literal notranslate"><span class="pre">RPA.make_f_ov()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.RPA"><code class="docutils literal notranslate"><span class="pre">RPA</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.dRPA"><code class="docutils literal notranslate"><span class="pre">dRPA</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.kernel"><code class="docutils literal notranslate"><span class="pre">kernel()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.rpa.make_dielectric_matrix"><code class="docutils literal notranslate"><span class="pre">make_dielectric_matrix()</span></code></a></li>
@@ -4133,15 +4151,14 @@ document.write(`
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.gw.html#module-pyscf.gw.urpa">pyscf.gw.urpa module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.urpa.URPA"><code class="docutils literal notranslate"><span class="pre">URPA</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.urpa.URPA.ao2mo"><code class="docutils literal notranslate"><span class="pre">URPA.ao2mo()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.urpa.URPA.dump_flags"><code class="docutils literal notranslate"><span class="pre">URPA.dump_flags()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.urpa.URPA.get_frozen_mask"><code class="docutils literal notranslate"><span class="pre">URPA.get_frozen_mask()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.urpa.URPA.get_nmo"><code class="docutils literal notranslate"><span class="pre">URPA.get_nmo()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.urpa.URPA.get_nocc"><code class="docutils literal notranslate"><span class="pre">URPA.get_nocc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.urpa.URPA.get_e_hf"><code class="docutils literal notranslate"><span class="pre">URPA.get_e_hf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.urpa.URPA.kernel"><code class="docutils literal notranslate"><span class="pre">URPA.kernel()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.urpa.URPA.make_dielectric_matrix"><code class="docutils literal notranslate"><span class="pre">URPA.make_dielectric_matrix()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.urpa.URPA.make_e_ov"><code class="docutils literal notranslate"><span class="pre">URPA.make_e_ov()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.urpa.URPA.make_f_ov"><code class="docutils literal notranslate"><span class="pre">URPA.make_f_ov()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.gw.html#pyscf.gw.urpa.make_dielectric_matrix"><code class="docutils literal notranslate"><span class="pre">make_dielectric_matrix()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.gw.html#module-pyscf.gw">Module contents</a><ul>
@@ -4274,7 +4291,9 @@ document.write(`
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.lib.html#module-pyscf.lib.exceptions">pyscf.lib.exceptions module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.exceptions.BasisNotFoundError"><code class="docutils literal notranslate"><span class="pre">BasisNotFoundError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.exceptions.LinearDependencyError"><code class="docutils literal notranslate"><span class="pre">LinearDependencyError</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.exceptions.PointGroupSymmetryError"><code class="docutils literal notranslate"><span class="pre">PointGroupSymmetryError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.exceptions.WfnSymmetryError"><code class="docutils literal notranslate"><span class="pre">WfnSymmetryError</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.lib.html#pyscf-lib-libagf2-module">pyscf.lib.libagf2 module</a></li>
@@ -4285,6 +4304,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="pyscf.lib.html#pyscf-lib-libdft-module">pyscf.lib.libdft module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.lib.html#pyscf-lib-libfci-module">pyscf.lib.libfci module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.lib.html#pyscf-lib-libmcscf-module">pyscf.lib.libmcscf module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscf.lib.html#pyscf-lib-libmp-module">pyscf.lib.libmp module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.lib.html#pyscf-lib-libnp-helper-module">pyscf.lib.libnp_helper module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.lib.html#pyscf-lib-libopenblas-r0-f650aae0-module">pyscf.lib.libopenblas-r0-f650aae0 module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.lib.html#pyscf-lib-libpbc-module">pyscf.lib.libpbc module</a></li>
@@ -4293,7 +4313,6 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="pyscf.lib.html#pyscf-lib-libxc-itrf-module">pyscf.lib.libxc_itrf module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.lib.html#pyscf-lib-libxcfun-itrf-module">pyscf.lib.libxcfun_itrf module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.lib.html#module-pyscf.lib.linalg_helper">pyscf.lib.linalg_helper module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.linalg_helper.LinearDependenceError"><code class="docutils literal notranslate"><span class="pre">LinearDependenceError</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.linalg_helper.cho_solve"><code class="docutils literal notranslate"><span class="pre">cho_solve()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.linalg_helper.davidson"><code class="docutils literal notranslate"><span class="pre">davidson()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.linalg_helper.davidson1"><code class="docutils literal notranslate"><span class="pre">davidson1()</span></code></a></li>
@@ -4425,6 +4444,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.misc.flatten"><code class="docutils literal notranslate"><span class="pre">flatten()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.misc.format_sys_info"><code class="docutils literal notranslate"><span class="pre">format_sys_info()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.misc.fp"><code class="docutils literal notranslate"><span class="pre">fp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.misc.generate_pickle_methods"><code class="docutils literal notranslate"><span class="pre">generate_pickle_methods()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.misc.git_info"><code class="docutils literal notranslate"><span class="pre">git_info()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.misc.h5filewrite_options"><code class="docutils literal notranslate"><span class="pre">h5filewrite_options</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.misc.index_tril_to_pair"><code class="docutils literal notranslate"><span class="pre">index_tril_to_pair()</span></code></a></li>
@@ -4472,14 +4492,18 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.numpy_helper.direct_sum"><code class="docutils literal notranslate"><span class="pre">direct_sum()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.numpy_helper.dot"><code class="docutils literal notranslate"><span class="pre">dot()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.numpy_helper.einsum"><code class="docutils literal notranslate"><span class="pre">einsum()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.numpy_helper.entrywise_mul"><code class="docutils literal notranslate"><span class="pre">entrywise_mul()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.numpy_helper.expm"><code class="docutils literal notranslate"><span class="pre">expm()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.numpy_helper.frompointer"><code class="docutils literal notranslate"><span class="pre">frompointer()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.numpy_helper.hermi_sum"><code class="docutils literal notranslate"><span class="pre">hermi_sum()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.numpy_helper.hermi_triu"><code class="docutils literal notranslate"><span class="pre">hermi_triu()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.numpy_helper.inplace_transpose_scale"><code class="docutils literal notranslate"><span class="pre">inplace_transpose_scale()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.numpy_helper.inv_base_repr_int"><code class="docutils literal notranslate"><span class="pre">inv_base_repr_int()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.numpy_helper.isin_1d"><code class="docutils literal notranslate"><span class="pre">isin_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.numpy_helper.leading_dimension_order"><code class="docutils literal notranslate"><span class="pre">leading_dimension_order()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.numpy_helper.locs_to_indices"><code class="docutils literal notranslate"><span class="pre">locs_to_indices()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.numpy_helper.ndarray_pointer_2d"><code class="docutils literal notranslate"><span class="pre">ndarray_pointer_2d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.numpy_helper.omatcopy"><code class="docutils literal notranslate"><span class="pre">omatcopy()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.numpy_helper.pack_tril"><code class="docutils literal notranslate"><span class="pre">pack_tril()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.numpy_helper.solve_lineq_by_SVD"><code class="docutils literal notranslate"><span class="pre">solve_lineq_by_SVD()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.numpy_helper.split_reshape"><code class="docutils literal notranslate"><span class="pre">split_reshape()</span></code></a></li>
@@ -4494,6 +4518,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.numpy_helper.zdotCN"><code class="docutils literal notranslate"><span class="pre">zdotCN()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.numpy_helper.zdotNC"><code class="docutils literal notranslate"><span class="pre">zdotNC()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.numpy_helper.zdotNN"><code class="docutils literal notranslate"><span class="pre">zdotNN()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.lib.html#pyscf.lib.numpy_helper.zeros"><code class="docutils literal notranslate"><span class="pre">zeros()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.lib.html#module-pyscf.lib.parameters">pyscf.lib.parameters module</a><ul>
@@ -5097,15 +5122,19 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfmp2.DFMP2"><code class="docutils literal notranslate"><span class="pre">DFMP2</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfmp2.DFMP2.ao2mo"><code class="docutils literal notranslate"><span class="pre">DFMP2.ao2mo()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfmp2.DFMP2.init_amps"><code class="docutils literal notranslate"><span class="pre">DFMP2.init_amps()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfmp2.DFMP2.loop_ao2mo"><code class="docutils literal notranslate"><span class="pre">DFMP2.loop_ao2mo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfmp2.DFMP2.kernel"><code class="docutils literal notranslate"><span class="pre">DFMP2.kernel()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfmp2.DFMP2.make_rdm1"><code class="docutils literal notranslate"><span class="pre">DFMP2.make_rdm1()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfmp2.DFMP2.make_rdm2"><code class="docutils literal notranslate"><span class="pre">DFMP2.make_rdm2()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfmp2.DFMP2.nuc_grad_method"><code class="docutils literal notranslate"><span class="pre">DFMP2.nuc_grad_method()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfmp2.DFMP2.reset"><code class="docutils literal notranslate"><span class="pre">DFMP2.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfmp2.DFMP2.split_mo_coeff"><code class="docutils literal notranslate"><span class="pre">DFMP2.split_mo_coeff()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfmp2.DFMP2.split_mo_energy"><code class="docutils literal notranslate"><span class="pre">DFMP2.split_mo_energy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfmp2.DFMP2.split_mo_occ"><code class="docutils literal notranslate"><span class="pre">DFMP2.split_mo_occ()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfmp2.DFMP2.update_amps"><code class="docutils literal notranslate"><span class="pre">DFMP2.update_amps()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfmp2.MP2"><code class="docutils literal notranslate"><span class="pre">MP2</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfmp2.get_mo_energy"><code class="docutils literal notranslate"><span class="pre">get_mo_energy()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfmp2.kernel"><code class="docutils literal notranslate"><span class="pre">kernel()</span></code></a></li>
 </ul>
 </li>
@@ -5147,6 +5176,35 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfmp2_native.solve_cphf_rhf"><code class="docutils literal notranslate"><span class="pre">solve_cphf_rhf()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="pyscf.mp.html#module-pyscf.mp.dfmp2_slow">pyscf.mp.dfmp2_slow module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfmp2_slow.DFMP2"><code class="docutils literal notranslate"><span class="pre">DFMP2</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfmp2_slow.DFMP2.init_amps"><code class="docutils literal notranslate"><span class="pre">DFMP2.init_amps()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfmp2_slow.MP2"><code class="docutils literal notranslate"><span class="pre">MP2</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfmp2_slow.kernel"><code class="docutils literal notranslate"><span class="pre">kernel()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyscf.mp.html#module-pyscf.mp.dfump2">pyscf.mp.dfump2 module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2.DFUMP2"><code class="docutils literal notranslate"><span class="pre">DFUMP2</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.ao2mo"><code class="docutils literal notranslate"><span class="pre">DFUMP2.ao2mo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.get_frozen_mask"><code class="docutils literal notranslate"><span class="pre">DFUMP2.get_frozen_mask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.get_nmo"><code class="docutils literal notranslate"><span class="pre">DFUMP2.get_nmo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.get_nocc"><code class="docutils literal notranslate"><span class="pre">DFUMP2.get_nocc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.init_amps"><code class="docutils literal notranslate"><span class="pre">DFUMP2.init_amps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.make_rdm1"><code class="docutils literal notranslate"><span class="pre">DFUMP2.make_rdm1()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.make_rdm2"><code class="docutils literal notranslate"><span class="pre">DFUMP2.make_rdm2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.nuc_grad_method"><code class="docutils literal notranslate"><span class="pre">DFUMP2.nuc_grad_method()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.split_mo_coeff"><code class="docutils literal notranslate"><span class="pre">DFUMP2.split_mo_coeff()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.split_mo_energy"><code class="docutils literal notranslate"><span class="pre">DFUMP2.split_mo_energy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.split_mo_occ"><code class="docutils literal notranslate"><span class="pre">DFUMP2.split_mo_occ()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2.DFUMP2.update_amps"><code class="docutils literal notranslate"><span class="pre">DFUMP2.update_amps()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2.UMP2"><code class="docutils literal notranslate"><span class="pre">UMP2</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2.kernel"><code class="docutils literal notranslate"><span class="pre">kernel()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.mp.html#module-pyscf.mp.dfump2_native">pyscf.mp.dfump2_native module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2_native.DFMP2"><code class="docutils literal notranslate"><span class="pre">DFMP2</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2_native.DFUMP2"><code class="docutils literal notranslate"><span class="pre">DFUMP2</span></code></a><ul>
@@ -5174,6 +5232,15 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2_native.make_rdm1"><code class="docutils literal notranslate"><span class="pre">make_rdm1()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2_native.solve_cphf_uhf"><code class="docutils literal notranslate"><span class="pre">solve_cphf_uhf()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2_native.ump2_densities_contribs"><code class="docutils literal notranslate"><span class="pre">ump2_densities_contribs()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyscf.mp.html#module-pyscf.mp.dfump2_slow">pyscf.mp.dfump2_slow module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2_slow.DFUMP2"><code class="docutils literal notranslate"><span class="pre">DFUMP2</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2_slow.DFUMP2.init_amps"><code class="docutils literal notranslate"><span class="pre">DFUMP2.init_amps()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2_slow.UMP2"><code class="docutils literal notranslate"><span class="pre">UMP2</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.mp.html#pyscf.mp.dfump2_slow.kernel"><code class="docutils literal notranslate"><span class="pre">kernel()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.mp.html#module-pyscf.mp.gmp2">pyscf.mp.gmp2 module</a><ul>
@@ -5496,7 +5563,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.pbc.gw.html">pyscf.pbc.gw package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.gw.html#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.gw.html#module-pyscf.pbc.gw.gw_slow">pyscf.pbc.gw.gw_slow module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.gw.html#module-pyscf.pbc.gw.kgw_slow">pyscf.pbc.gw.kgw_slow module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.gw.html#pyscf-pbc-gw-kgw-slow-module">pyscf.pbc.gw.kgw_slow module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.gw.html#module-pyscf.pbc.gw.kgw_slow_supercell">pyscf.pbc.gw.kgw_slow_supercell module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.gw.html#module-pyscf.pbc.gw.krgw_ac">pyscf.pbc.gw.krgw_ac module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.gw.html#module-pyscf.pbc.gw.krgw_cd">pyscf.pbc.gw.krgw_cd module</a></li>
@@ -5584,18 +5651,11 @@ document.write(`
 </li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.pbc.tdscf.html">pyscf.pbc.tdscf package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.tdscf.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.tdscf.html#pyscf-pbc-tdscf-kproxy-module">pyscf.pbc.tdscf.kproxy module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.kproxy_supercell">pyscf.pbc.tdscf.kproxy_supercell module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.krhf">pyscf.pbc.tdscf.krhf module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.krhf_slow">pyscf.pbc.tdscf.krhf_slow module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.krhf_slow_gamma">pyscf.pbc.tdscf.krhf_slow_gamma module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.krhf_slow_supercell">pyscf.pbc.tdscf.krhf_slow_supercell module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.krks">pyscf.pbc.tdscf.krks module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.kuhf">pyscf.pbc.tdscf.kuhf module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.kuks">pyscf.pbc.tdscf.kuks module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.proxy">pyscf.pbc.tdscf.proxy module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.rhf">pyscf.pbc.tdscf.rhf module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.rhf_slow">pyscf.pbc.tdscf.rhf_slow module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.rks">pyscf.pbc.tdscf.rks module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.uhf">pyscf.pbc.tdscf.uhf module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.pbc.tdscf.html#module-pyscf.pbc.tdscf.uks">pyscf.pbc.tdscf.uks module</a></li>
@@ -5792,11 +5852,13 @@ document.write(`
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.dhf.DHF.init_guess_by_huckel"><code class="docutils literal notranslate"><span class="pre">DHF.init_guess_by_huckel()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.dhf.DHF.init_guess_by_minao"><code class="docutils literal notranslate"><span class="pre">DHF.init_guess_by_minao()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.dhf.DHF.init_guess_by_mod_huckel"><code class="docutils literal notranslate"><span class="pre">DHF.init_guess_by_mod_huckel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.dhf.DHF.init_guess_by_sap"><code class="docutils literal notranslate"><span class="pre">DHF.init_guess_by_sap()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.dhf.DHF.make_rdm1"><code class="docutils literal notranslate"><span class="pre">DHF.make_rdm1()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.dhf.DHF.mulliken_pop"><code class="docutils literal notranslate"><span class="pre">DHF.mulliken_pop()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.dhf.DHF.nuc_grad_method"><code class="docutils literal notranslate"><span class="pre">DHF.nuc_grad_method()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.dhf.DHF.reset"><code class="docutils literal notranslate"><span class="pre">DHF.reset()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.dhf.DHF.scf"><code class="docutils literal notranslate"><span class="pre">DHF.scf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.dhf.DHF.screening"><code class="docutils literal notranslate"><span class="pre">DHF.screening</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.dhf.DHF.sfx2c1e"><code class="docutils literal notranslate"><span class="pre">DHF.sfx2c1e()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.dhf.DHF.ssss_approx"><code class="docutils literal notranslate"><span class="pre">DHF.ssss_approx</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.dhf.DHF.stability"><code class="docutils literal notranslate"><span class="pre">DHF.stability()</span></code></a></li>
@@ -5847,6 +5909,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.dhf.init_guess_by_huckel"><code class="docutils literal notranslate"><span class="pre">init_guess_by_huckel()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.dhf.init_guess_by_minao"><code class="docutils literal notranslate"><span class="pre">init_guess_by_minao()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.dhf.init_guess_by_mod_huckel"><code class="docutils literal notranslate"><span class="pre">init_guess_by_mod_huckel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.dhf.init_guess_by_sap"><code class="docutils literal notranslate"><span class="pre">init_guess_by_sap()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.dhf.kernel"><code class="docutils literal notranslate"><span class="pre">kernel()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.dhf.mulliken_pop"><code class="docutils literal notranslate"><span class="pre">mulliken_pop()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.dhf.time_reversal_matrix"><code class="docutils literal notranslate"><span class="pre">time_reversal_matrix()</span></code></a></li>
@@ -5906,6 +5969,7 @@ document.write(`
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.ghf.GHF.init_guess_by_huckel"><code class="docutils literal notranslate"><span class="pre">GHF.init_guess_by_huckel()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.ghf.GHF.init_guess_by_minao"><code class="docutils literal notranslate"><span class="pre">GHF.init_guess_by_minao()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.ghf.GHF.init_guess_by_mod_huckel"><code class="docutils literal notranslate"><span class="pre">GHF.init_guess_by_mod_huckel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.ghf.GHF.init_guess_by_sap"><code class="docutils literal notranslate"><span class="pre">GHF.init_guess_by_sap()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.ghf.GHF.mulliken_meta"><code class="docutils literal notranslate"><span class="pre">GHF.mulliken_meta()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.ghf.GHF.mulliken_pop"><code class="docutils literal notranslate"><span class="pre">GHF.mulliken_pop()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.ghf.GHF.nuc_grad_method"><code class="docutils literal notranslate"><span class="pre">GHF.nuc_grad_method()</span></code></a></li>
@@ -6041,6 +6105,7 @@ document.write(`
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.SCF.init_guess_by_huckel"><code class="docutils literal notranslate"><span class="pre">SCF.init_guess_by_huckel()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.SCF.init_guess_by_minao"><code class="docutils literal notranslate"><span class="pre">SCF.init_guess_by_minao()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.SCF.init_guess_by_mod_huckel"><code class="docutils literal notranslate"><span class="pre">SCF.init_guess_by_mod_huckel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.SCF.init_guess_by_sap"><code class="docutils literal notranslate"><span class="pre">SCF.init_guess_by_sap()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.SCF.istype"><code class="docutils literal notranslate"><span class="pre">SCF.istype()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.SCF.kernel"><code class="docutils literal notranslate"><span class="pre">SCF.kernel()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.SCF.level_shift"><code class="docutils literal notranslate"><span class="pre">SCF.level_shift</span></code></a></li>
@@ -6054,8 +6119,10 @@ document.write(`
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.SCF.nuc_grad_method"><code class="docutils literal notranslate"><span class="pre">SCF.nuc_grad_method()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.SCF.opt"><code class="docutils literal notranslate"><span class="pre">SCF.opt</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.SCF.pop"><code class="docutils literal notranslate"><span class="pre">SCF.pop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.SCF.quad_moment"><code class="docutils literal notranslate"><span class="pre">SCF.quad_moment()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.SCF.remove_soscf"><code class="docutils literal notranslate"><span class="pre">SCF.remove_soscf()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.SCF.reset"><code class="docutils literal notranslate"><span class="pre">SCF.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.SCF.sap_basis"><code class="docutils literal notranslate"><span class="pre">SCF.sap_basis</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.SCF.scf"><code class="docutils literal notranslate"><span class="pre">SCF.scf()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.SCF.sfx2c1e"><code class="docutils literal notranslate"><span class="pre">SCF.sfx2c1e()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.SCF.stability"><code class="docutils literal notranslate"><span class="pre">SCF.stability()</span></code></a></li>
@@ -6100,14 +6167,17 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.init_guess_by_huckel"><code class="docutils literal notranslate"><span class="pre">init_guess_by_huckel()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.init_guess_by_minao"><code class="docutils literal notranslate"><span class="pre">init_guess_by_minao()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.init_guess_by_mod_huckel"><code class="docutils literal notranslate"><span class="pre">init_guess_by_mod_huckel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.init_guess_by_sap"><code class="docutils literal notranslate"><span class="pre">init_guess_by_sap()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.kernel"><code class="docutils literal notranslate"><span class="pre">kernel()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.level_shift"><code class="docutils literal notranslate"><span class="pre">level_shift()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.make_rdm1"><code class="docutils literal notranslate"><span class="pre">make_rdm1()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.make_rdm2"><code class="docutils literal notranslate"><span class="pre">make_rdm2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.make_sap"><code class="docutils literal notranslate"><span class="pre">make_sap()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.mulliken_meta"><code class="docutils literal notranslate"><span class="pre">mulliken_meta()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.mulliken_pop"><code class="docutils literal notranslate"><span class="pre">mulliken_pop()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.mulliken_pop_meta_lowdin_ao"><code class="docutils literal notranslate"><span class="pre">mulliken_pop_meta_lowdin_ao()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.pack_uniq_var"><code class="docutils literal notranslate"><span class="pre">pack_uniq_var()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.quad_moment"><code class="docutils literal notranslate"><span class="pre">quad_moment()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.uniq_var_indices"><code class="docutils literal notranslate"><span class="pre">uniq_var_indices()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.unpack_uniq_var"><code class="docutils literal notranslate"><span class="pre">unpack_uniq_var()</span></code></a></li>
 </ul>
@@ -6206,6 +6276,7 @@ document.write(`
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.rohf.ROHF.init_guess_by_huckel"><code class="docutils literal notranslate"><span class="pre">ROHF.init_guess_by_huckel()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.rohf.ROHF.init_guess_by_minao"><code class="docutils literal notranslate"><span class="pre">ROHF.init_guess_by_minao()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.rohf.ROHF.init_guess_by_mod_huckel"><code class="docutils literal notranslate"><span class="pre">ROHF.init_guess_by_mod_huckel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.rohf.ROHF.init_guess_by_sap"><code class="docutils literal notranslate"><span class="pre">ROHF.init_guess_by_sap()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.rohf.ROHF.make_rdm1"><code class="docutils literal notranslate"><span class="pre">ROHF.make_rdm1()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.rohf.ROHF.nelec"><code class="docutils literal notranslate"><span class="pre">ROHF.nelec</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.rohf.ROHF.nelectron_alpha"><code class="docutils literal notranslate"><span class="pre">ROHF.nelectron_alpha</span></code></a></li>
@@ -6226,11 +6297,13 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.rohf.init_guess_by_atom"><code class="docutils literal notranslate"><span class="pre">init_guess_by_atom()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.rohf.init_guess_by_chkfile"><code class="docutils literal notranslate"><span class="pre">init_guess_by_chkfile()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.rohf.init_guess_by_minao"><code class="docutils literal notranslate"><span class="pre">init_guess_by_minao()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.rohf.init_guess_by_sap"><code class="docutils literal notranslate"><span class="pre">init_guess_by_sap()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.rohf.make_rdm1"><code class="docutils literal notranslate"><span class="pre">make_rdm1()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.scf.html#module-pyscf.scf.stability">pyscf.scf.stability module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.stability.dhf_stability"><code class="docutils literal notranslate"><span class="pre">dhf_stability()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.stability.dump_status"><code class="docutils literal notranslate"><span class="pre">dump_status()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.stability.ghf_stability"><code class="docutils literal notranslate"><span class="pre">ghf_stability()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.stability.rhf_external"><code class="docutils literal notranslate"><span class="pre">rhf_external()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.stability.rhf_internal"><code class="docutils literal notranslate"><span class="pre">rhf_internal()</span></code></a></li>
@@ -6295,6 +6368,7 @@ document.write(`
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.uhf.UHF.init_guess_by_huckel"><code class="docutils literal notranslate"><span class="pre">UHF.init_guess_by_huckel()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.uhf.UHF.init_guess_by_minao"><code class="docutils literal notranslate"><span class="pre">UHF.init_guess_by_minao()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.uhf.UHF.init_guess_by_mod_huckel"><code class="docutils literal notranslate"><span class="pre">UHF.init_guess_by_mod_huckel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.uhf.UHF.init_guess_by_sap"><code class="docutils literal notranslate"><span class="pre">UHF.init_guess_by_sap()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.uhf.UHF.make_asym_dm"><code class="docutils literal notranslate"><span class="pre">UHF.make_asym_dm()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.uhf.UHF.make_rdm1"><code class="docutils literal notranslate"><span class="pre">UHF.make_rdm1()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.uhf.UHF.make_rdm2"><code class="docutils literal notranslate"><span class="pre">UHF.make_rdm2()</span></code></a></li>
@@ -6326,6 +6400,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.uhf.init_guess_by_huckel"><code class="docutils literal notranslate"><span class="pre">init_guess_by_huckel()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.uhf.init_guess_by_minao"><code class="docutils literal notranslate"><span class="pre">init_guess_by_minao()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.uhf.init_guess_by_mod_huckel"><code class="docutils literal notranslate"><span class="pre">init_guess_by_mod_huckel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.uhf.init_guess_by_sap"><code class="docutils literal notranslate"><span class="pre">init_guess_by_sap()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.uhf.make_asym_dm"><code class="docutils literal notranslate"><span class="pre">make_asym_dm()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.uhf.make_rdm1"><code class="docutils literal notranslate"><span class="pre">make_rdm1()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.scf.html#pyscf.scf.uhf.make_rdm2"><code class="docutils literal notranslate"><span class="pre">make_rdm2()</span></code></a></li>
@@ -6441,6 +6516,13 @@ document.write(`
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.solvent.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscf.solvent.html#module-pyscf.solvent.cosmors">pyscf.solvent.cosmors module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.solvent.html#pyscf.solvent.cosmors.get_cosmors_parameters"><code class="docutils literal notranslate"><span class="pre">get_cosmors_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.solvent.html#pyscf.solvent.cosmors.get_sas_volume"><code class="docutils literal notranslate"><span class="pre">get_sas_volume()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.solvent.html#pyscf.solvent.cosmors.get_sigma_profile"><code class="docutils literal notranslate"><span class="pre">get_sigma_profile()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.solvent.html#pyscf.solvent.cosmors.write_cosmo_file"><code class="docutils literal notranslate"><span class="pre">write_cosmo_file()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.solvent.html#module-pyscf.solvent.ddcosmo">pyscf.solvent.ddcosmo module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.solvent.html#pyscf.solvent.ddcosmo.DDCOSMO"><code class="docutils literal notranslate"><span class="pre">DDCOSMO</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.solvent.html#pyscf.solvent.ddcosmo.Grids"><code class="docutils literal notranslate"><span class="pre">Grids</span></code></a><ul>
@@ -6710,88 +6792,12 @@ document.write(`
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.tdscf.html">pyscf.tdscf package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.tdscf.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyscf.tdscf.html#module-pyscf.tdscf.common_slow">pyscf.tdscf.common_slow module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.MolecularMFMixin"><code class="docutils literal notranslate"><span class="pre">MolecularMFMixin</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.MolecularMFMixin.mo_coeff"><code class="docutils literal notranslate"><span class="pre">MolecularMFMixin.mo_coeff</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.MolecularMFMixin.mo_coeff_full"><code class="docutils literal notranslate"><span class="pre">MolecularMFMixin.mo_coeff_full</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.MolecularMFMixin.mo_energy"><code class="docutils literal notranslate"><span class="pre">MolecularMFMixin.mo_energy</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.MolecularMFMixin.mo_occ"><code class="docutils literal notranslate"><span class="pre">MolecularMFMixin.mo_occ</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.MolecularMFMixin.nmo"><code class="docutils literal notranslate"><span class="pre">MolecularMFMixin.nmo</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.MolecularMFMixin.nmo_full"><code class="docutils literal notranslate"><span class="pre">MolecularMFMixin.nmo_full</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.MolecularMFMixin.nocc"><code class="docutils literal notranslate"><span class="pre">MolecularMFMixin.nocc</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.MolecularMFMixin.nocc_full"><code class="docutils literal notranslate"><span class="pre">MolecularMFMixin.nocc_full</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.MolecularMFMixin.squeeze"><code class="docutils literal notranslate"><span class="pre">MolecularMFMixin.squeeze()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.PeriodicMFMixin"><code class="docutils literal notranslate"><span class="pre">PeriodicMFMixin</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.PeriodicMFMixin.mo_coeff"><code class="docutils literal notranslate"><span class="pre">PeriodicMFMixin.mo_coeff</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.PeriodicMFMixin.mo_coeff_full"><code class="docutils literal notranslate"><span class="pre">PeriodicMFMixin.mo_coeff_full</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.PeriodicMFMixin.mo_energy"><code class="docutils literal notranslate"><span class="pre">PeriodicMFMixin.mo_energy</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.PeriodicMFMixin.mo_occ"><code class="docutils literal notranslate"><span class="pre">PeriodicMFMixin.mo_occ</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.PeriodicMFMixin.nmo"><code class="docutils literal notranslate"><span class="pre">PeriodicMFMixin.nmo</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.PeriodicMFMixin.nmo_full"><code class="docutils literal notranslate"><span class="pre">PeriodicMFMixin.nmo_full</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.PeriodicMFMixin.nocc"><code class="docutils literal notranslate"><span class="pre">PeriodicMFMixin.nocc</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.PeriodicMFMixin.nocc_full"><code class="docutils literal notranslate"><span class="pre">PeriodicMFMixin.nocc_full</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.TDBase"><code class="docutils literal notranslate"><span class="pre">TDBase</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.TDBase.ao2mo"><code class="docutils literal notranslate"><span class="pre">TDBase.ao2mo()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.TDBase.kernel"><code class="docutils literal notranslate"><span class="pre">TDBase.kernel()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.TDBase.v2a"><code class="docutils literal notranslate"><span class="pre">TDBase.v2a</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.TDBase.vector_to_amplitudes"><code class="docutils literal notranslate"><span class="pre">TDBase.vector_to_amplitudes()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.TDERIMatrixBlocks"><code class="docutils literal notranslate"><span class="pre">TDERIMatrixBlocks</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.TDERIMatrixBlocks.eri_mknj"><code class="docutils literal notranslate"><span class="pre">TDERIMatrixBlocks.eri_mknj()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.TDERIMatrixBlocks.eri_ov"><code class="docutils literal notranslate"><span class="pre">TDERIMatrixBlocks.eri_ov()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.TDERIMatrixBlocks.symmetries"><code class="docutils literal notranslate"><span class="pre">TDERIMatrixBlocks.symmetries</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.TDERIMatrixBlocks.tdhf_diag"><code class="docutils literal notranslate"><span class="pre">TDERIMatrixBlocks.tdhf_diag()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.TDERIMatrixBlocks.tdhf_primary_form"><code class="docutils literal notranslate"><span class="pre">TDERIMatrixBlocks.tdhf_primary_form()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.TDMatrixBlocks"><code class="docutils literal notranslate"><span class="pre">TDMatrixBlocks</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.TDMatrixBlocks.tdhf_ab_form"><code class="docutils literal notranslate"><span class="pre">TDMatrixBlocks.tdhf_ab_form()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.TDMatrixBlocks.tdhf_full_form"><code class="docutils literal notranslate"><span class="pre">TDMatrixBlocks.tdhf_full_form()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.TDMatrixBlocks.tdhf_mk_form"><code class="docutils literal notranslate"><span class="pre">TDMatrixBlocks.tdhf_mk_form()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.TDMatrixBlocks.tdhf_primary_form"><code class="docutils literal notranslate"><span class="pre">TDMatrixBlocks.tdhf_primary_form()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.TDProxyMatrixBlocks"><code class="docutils literal notranslate"><span class="pre">TDProxyMatrixBlocks</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.TDProxyMatrixBlocks.tdhf_primary_form"><code class="docutils literal notranslate"><span class="pre">TDProxyMatrixBlocks.tdhf_primary_form()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.VindTracker"><code class="docutils literal notranslate"><span class="pre">VindTracker</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.VindTracker.elements_calc"><code class="docutils literal notranslate"><span class="pre">VindTracker.elements_calc</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.VindTracker.elements_total"><code class="docutils literal notranslate"><span class="pre">VindTracker.elements_total</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.VindTracker.msize"><code class="docutils literal notranslate"><span class="pre">VindTracker.msize</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.VindTracker.ncalls"><code class="docutils literal notranslate"><span class="pre">VindTracker.ncalls</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.VindTracker.ratio"><code class="docutils literal notranslate"><span class="pre">VindTracker.ratio</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.VindTracker.reset"><code class="docutils literal notranslate"><span class="pre">VindTracker.reset()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.VindTracker.text_stats"><code class="docutils literal notranslate"><span class="pre">VindTracker.text_stats()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.ab2full"><code class="docutils literal notranslate"><span class="pre">ab2full()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.ab2mkk"><code class="docutils literal notranslate"><span class="pre">ab2mkk()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.eig"><code class="docutils literal notranslate"><span class="pre">eig()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.format_frozen_k"><code class="docutils literal notranslate"><span class="pre">format_frozen_k()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.format_frozen_mol"><code class="docutils literal notranslate"><span class="pre">format_frozen_mol()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.format_mask"><code class="docutils literal notranslate"><span class="pre">format_mask()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.full2ab"><code class="docutils literal notranslate"><span class="pre">full2ab()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.full2mkk"><code class="docutils literal notranslate"><span class="pre">full2mkk()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.k_nmo"><code class="docutils literal notranslate"><span class="pre">k_nmo()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.k_nocc"><code class="docutils literal notranslate"><span class="pre">k_nocc()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.kernel"><code class="docutils literal notranslate"><span class="pre">kernel()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.mkk2ab"><code class="docutils literal notranslate"><span class="pre">mkk2ab()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.mkk2full"><code class="docutils literal notranslate"><span class="pre">mkk2full()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.mknj2i"><code class="docutils literal notranslate"><span class="pre">mknj2i()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.common_slow.msize"><code class="docutils literal notranslate"><span class="pre">msize()</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.tdscf.html#module-pyscf.tdscf.dhf">pyscf.tdscf.dhf module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.dhf.TDA"><code class="docutils literal notranslate"><span class="pre">TDA</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.dhf.TDA.gen_vind"><code class="docutils literal notranslate"><span class="pre">TDA.gen_vind()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.dhf.TDA.init_guess"><code class="docutils literal notranslate"><span class="pre">TDA.init_guess()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.dhf.TDA.kernel"><code class="docutils literal notranslate"><span class="pre">TDA.kernel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.dhf.TDA.singlet"><code class="docutils literal notranslate"><span class="pre">TDA.singlet</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.dhf.TDBase"><code class="docutils literal notranslate"><span class="pre">TDBase</span></code></a><ul>
@@ -6803,8 +6809,10 @@ document.write(`
 </li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.dhf.TDHF"><code class="docutils literal notranslate"><span class="pre">TDHF</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.dhf.TDHF.gen_vind"><code class="docutils literal notranslate"><span class="pre">TDHF.gen_vind()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.dhf.TDHF.get_precond"><code class="docutils literal notranslate"><span class="pre">TDHF.get_precond()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.dhf.TDHF.init_guess"><code class="docutils literal notranslate"><span class="pre">TDHF.init_guess()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.dhf.TDHF.kernel"><code class="docutils literal notranslate"><span class="pre">TDHF.kernel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.dhf.TDHF.singlet"><code class="docutils literal notranslate"><span class="pre">TDHF.singlet</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.dhf.analyze"><code class="docutils literal notranslate"><span class="pre">analyze()</span></code></a></li>
@@ -6871,26 +6879,6 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.gks.tddft"><code class="docutils literal notranslate"><span class="pre">tddft()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="pyscf.tdscf.html#module-pyscf.tdscf.proxy">pyscf.tdscf.proxy module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.proxy.PhysERI"><code class="docutils literal notranslate"><span class="pre">PhysERI</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.proxy.PhysERI.proxy_choices"><code class="docutils literal notranslate"><span class="pre">PhysERI.proxy_choices</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.proxy.PhysERI.proxy_is_double"><code class="docutils literal notranslate"><span class="pre">PhysERI.proxy_is_double()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.proxy.PhysERI.proxy_response"><code class="docutils literal notranslate"><span class="pre">PhysERI.proxy_response()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.proxy.PhysERI.tdhf_primary_form"><code class="docutils literal notranslate"><span class="pre">PhysERI.tdhf_primary_form()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.proxy.TDProxy"><code class="docutils literal notranslate"><span class="pre">TDProxy</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.proxy.TDProxy.ao2mo"><code class="docutils literal notranslate"><span class="pre">TDProxy.ao2mo()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.proxy.TDProxy.proxy_eri"><code class="docutils literal notranslate"><span class="pre">TDProxy.proxy_eri</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.proxy.TDProxy.v2a"><code class="docutils literal notranslate"><span class="pre">TDProxy.v2a()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.proxy.mk_make_canonic"><code class="docutils literal notranslate"><span class="pre">mk_make_canonic()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.proxy.molecular_response"><code class="docutils literal notranslate"><span class="pre">molecular_response()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.proxy.molecular_response_ov"><code class="docutils literal notranslate"><span class="pre">molecular_response_ov()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.proxy.orb2ov"><code class="docutils literal notranslate"><span class="pre">orb2ov()</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.tdscf.html#module-pyscf.tdscf.rhf">pyscf.tdscf.rhf module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf.CIS"><code class="docutils literal notranslate"><span class="pre">CIS</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf.RPA"><code class="docutils literal notranslate"><span class="pre">RPA</span></code></a></li>
@@ -6922,7 +6910,6 @@ document.write(`
 <li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf.TDBase.level_shift"><code class="docutils literal notranslate"><span class="pre">TDBase.level_shift</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf.TDBase.lindep"><code class="docutils literal notranslate"><span class="pre">TDBase.lindep</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf.TDBase.max_cycle"><code class="docutils literal notranslate"><span class="pre">TDBase.max_cycle</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf.TDBase.max_space"><code class="docutils literal notranslate"><span class="pre">TDBase.max_space</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf.TDBase.nroots"><code class="docutils literal notranslate"><span class="pre">TDBase.nroots</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf.TDBase.nstates"><code class="docutils literal notranslate"><span class="pre">TDBase.nstates</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf.TDBase.nuc_grad_method"><code class="docutils literal notranslate"><span class="pre">TDBase.nuc_grad_method()</span></code></a></li>
@@ -6953,7 +6940,6 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf.TDRHF"><code class="docutils literal notranslate"><span class="pre">TDRHF</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf.TD_Scanner"><code class="docutils literal notranslate"><span class="pre">TD_Scanner</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf.analyze"><code class="docutils literal notranslate"><span class="pre">analyze()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf.analyze_wfnsym"><code class="docutils literal notranslate"><span class="pre">analyze_wfnsym()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf.as_scanner"><code class="docutils literal notranslate"><span class="pre">as_scanner()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf.gen_tda_hop"><code class="docutils literal notranslate"><span class="pre">gen_tda_hop()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf.gen_tda_operation"><code class="docutils literal notranslate"><span class="pre">gen_tda_operation()</span></code></a></li>
@@ -6971,33 +6957,10 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf.transition_velocity_quadrupole"><code class="docutils literal notranslate"><span class="pre">transition_velocity_quadrupole()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="pyscf.tdscf.html#module-pyscf.tdscf.rhf_slow">pyscf.tdscf.rhf_slow module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf_slow.PhysERI"><code class="docutils literal notranslate"><span class="pre">PhysERI</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf_slow.PhysERI.ao2mo"><code class="docutils literal notranslate"><span class="pre">PhysERI.ao2mo()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf_slow.PhysERI4"><code class="docutils literal notranslate"><span class="pre">PhysERI4</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf_slow.PhysERI4.symmetries"><code class="docutils literal notranslate"><span class="pre">PhysERI4.symmetries</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf_slow.PhysERI8"><code class="docutils literal notranslate"><span class="pre">PhysERI8</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf_slow.PhysERI8.symmetries"><code class="docutils literal notranslate"><span class="pre">PhysERI8.symmetries</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf_slow.TDRHF"><code class="docutils literal notranslate"><span class="pre">TDRHF</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf_slow.TDRHF.ao2mo"><code class="docutils literal notranslate"><span class="pre">TDRHF.ao2mo()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf_slow.TDRHF.eri1"><code class="docutils literal notranslate"><span class="pre">TDRHF.eri1</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf_slow.TDRHF.eri4"><code class="docutils literal notranslate"><span class="pre">TDRHF.eri4</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf_slow.TDRHF.eri8"><code class="docutils literal notranslate"><span class="pre">TDRHF.eri8</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf_slow.TDRHF.v2a"><code class="docutils literal notranslate"><span class="pre">TDRHF.v2a()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rhf_slow.vector_to_amplitudes"><code class="docutils literal notranslate"><span class="pre">vector_to_amplitudes()</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.tdscf.html#module-pyscf.tdscf.rks">pyscf.tdscf.rks module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rks.CasidaTDDFT"><code class="docutils literal notranslate"><span class="pre">CasidaTDDFT</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rks.CasidaTDDFT.gen_vind"><code class="docutils literal notranslate"><span class="pre">CasidaTDDFT.gen_vind()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rks.CasidaTDDFT.get_precond"><code class="docutils literal notranslate"><span class="pre">CasidaTDDFT.get_precond()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rks.CasidaTDDFT.init_guess"><code class="docutils literal notranslate"><span class="pre">CasidaTDDFT.init_guess()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rks.CasidaTDDFT.kernel"><code class="docutils literal notranslate"><span class="pre">CasidaTDDFT.kernel()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.rks.CasidaTDDFT.nuc_grad_method"><code class="docutils literal notranslate"><span class="pre">CasidaTDDFT.nuc_grad_method()</span></code></a></li>
@@ -7062,6 +7025,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="pyscf.tdscf.html#module-pyscf.tdscf.uks">pyscf.tdscf.uks module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.uks.CasidaTDDFT"><code class="docutils literal notranslate"><span class="pre">CasidaTDDFT</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.uks.CasidaTDDFT.gen_vind"><code class="docutils literal notranslate"><span class="pre">CasidaTDDFT.gen_vind()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.uks.CasidaTDDFT.get_precond"><code class="docutils literal notranslate"><span class="pre">CasidaTDDFT.get_precond()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.uks.CasidaTDDFT.init_guess"><code class="docutils literal notranslate"><span class="pre">CasidaTDDFT.init_guess()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.uks.CasidaTDDFT.kernel"><code class="docutils literal notranslate"><span class="pre">CasidaTDDFT.kernel()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyscf.tdscf.html#pyscf.tdscf.uks.CasidaTDDFT.nuc_grad_method"><code class="docutils literal notranslate"><span class="pre">CasidaTDDFT.nuc_grad_method()</span></code></a></li>
@@ -7179,6 +7143,16 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="pyscf.tools.html#pyscf.tools.molden.parse"><code class="docutils literal notranslate"><span class="pre">parse()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.tools.html#pyscf.tools.molden.read"><code class="docutils literal notranslate"><span class="pre">read()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyscf.tools.html#pyscf.tools.molden.remove_high_l"><code class="docutils literal notranslate"><span class="pre">remove_high_l()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyscf.tools.html#module-pyscf.tools.qcschema">pyscf.tools.qcschema module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.tools.html#pyscf.tools.qcschema.load_qcschema_go_final_json"><code class="docutils literal notranslate"><span class="pre">load_qcschema_go_final_json()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.tools.html#pyscf.tools.qcschema.load_qcschema_hessian"><code class="docutils literal notranslate"><span class="pre">load_qcschema_hessian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.tools.html#pyscf.tools.qcschema.load_qcschema_json"><code class="docutils literal notranslate"><span class="pre">load_qcschema_json()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.tools.html#pyscf.tools.qcschema.load_qcschema_molecule"><code class="docutils literal notranslate"><span class="pre">load_qcschema_molecule()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.tools.html#pyscf.tools.qcschema.load_qcschema_scf_info"><code class="docutils literal notranslate"><span class="pre">load_qcschema_scf_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.tools.html#pyscf.tools.qcschema.recreate_mol_obj"><code class="docutils literal notranslate"><span class="pre">recreate_mol_obj()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf.tools.html#pyscf.tools.qcschema.recreate_scf_obj"><code class="docutils literal notranslate"><span class="pre">recreate_scf_obj()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pyscf.tools.html#module-pyscf.tools.ring">pyscf.tools.ring module</a><ul>
@@ -7429,7 +7403,8 @@ to try out the package:</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -7483,8 +7458,8 @@ to try out the package:</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -7495,7 +7470,7 @@ to try out the package:</p>
 
   <p class="copyright">
     
-      © Copyright 2024, The PySCF Developers.
+      © Copyright 2025, The PySCF Developers.
       <br/>
     
   </p>
@@ -7517,7 +7492,8 @@ to try out the package:</p>
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>
