@@ -644,7 +644,7 @@ different DIIS schemes can be found in
 PySCF implements a general second-order solver called the
 co-iterative augmented hessian (CIAH) method
 <span id="id14">[<a class="reference internal" href="reference.html#id72" title="Qiming Sun. Co-iterative augmented Hessian method for orbital optimization. arXiv preprint arXiv:1610.08423, 2016.">11</a>, <a class="reference internal" href="reference.html#id73" title="Qiming Sun, Jun Yang, and Garnet Kin-Lic Chan. A general second order complete active space self-consistent-field solver for large-scale systems. Chem. Phys. Lett., 683:291, 2017. doi:10.1016/j.cplett.2017.03.004.">12</a>]</span>. This method can be invoked by
-decorating the SCF objects with the <a class="reference internal" href="../pyscf_api_docs/pyscf.scf.html#pyscf.scf.newton" title="pyscf.scf.newton"><code class="xref py py-func docutils literal notranslate"><span class="pre">newton()</span></code></a> method:</p>
+decorating the SCF objects with the <a class="reference internal" href="../pyscf_api_docs/pyscf.pbc.scf.html#pyscf.pbc.scf.newton_ah.newton" title="pyscf.pbc.scf.newton_ah.newton"><code class="xref py py-func docutils literal notranslate"><span class="pre">newton()</span></code></a> method:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">RHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">.</span><span class="n">newton</span><span class="p">()</span>
 </pre></div>
 </div>
