@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../../_static/documentation_options.js?v=182a64a0"></script>
+    <script src="../../../../_static/documentation_options.js?v=84389e84"></script>
     <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
@@ -51,7 +51,7 @@
     <link rel="search" title="Search" href="../../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2.9" />
+  <meta name="docsearch:version" content="2.12" />
   </head>
   
   
@@ -417,7 +417,7 @@
 <span class="kn">from</span> <span class="nn">pyscf.pbc.df</span> <span class="kn">import</span> <span class="n">ft_ao</span>
 <span class="kn">from</span> <span class="nn">pyscf.pbc.df.df_jk</span> <span class="kn">import</span> <span class="p">(</span><span class="n">zdotNN</span><span class="p">,</span> <span class="n">zdotCN</span><span class="p">,</span> <span class="n">zdotNC</span><span class="p">,</span> <span class="n">_ewald_exxdiv_for_G0</span><span class="p">,</span>
                                 <span class="n">_format_dms</span><span class="p">,</span> <span class="n">_format_kpts_band</span><span class="p">,</span> <span class="n">_format_jks</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">pyscf.pbc.df.incore</span> <span class="kn">import</span> <span class="n">libpbc</span><span class="p">,</span> <span class="n">_get_cache_size</span><span class="p">,</span> <span class="n">LOG_ADJUST</span>
+<span class="kn">from</span> <span class="nn">pyscf.pbc.df.incore</span> <span class="kn">import</span> <span class="n">libpbc</span><span class="p">,</span> <span class="n">_get_cache_size</span><span class="p">,</span> <span class="n">LOG_ADJUST</span><span class="p">,</span> <span class="n">verify_cint_backend</span>
 <span class="kn">from</span> <span class="nn">pyscf.pbc.lib.kpts_helper</span> <span class="kn">import</span> <span class="p">(</span><span class="n">is_zero</span><span class="p">,</span> <span class="n">kk_adapted_iter</span><span class="p">,</span>
                                        <span class="n">group_by_conj_pairs</span><span class="p">,</span> <span class="n">intersection</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">__config__</span>
@@ -598,6 +598,7 @@
                 <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;supmol_d nbas = </span><span class="si">%d</span><span class="s1"> cGTO = </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">supmol_d</span><span class="o">.</span><span class="n">nbas</span><span class="p">,</span> <span class="n">supmol_d</span><span class="o">.</span><span class="n">nao</span><span class="p">)</span>
         <span class="n">log</span><span class="o">.</span><span class="n">timer_debug1</span><span class="p">(</span><span class="s1">&#39;initializing supmol&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">cpu0</span><span class="p">)</span>
 
+        <span class="n">verify_cint_backend</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_cintopt</span> <span class="o">=</span> <span class="n">_vhf</span><span class="o">.</span><span class="n">make_cintopt</span><span class="p">(</span><span class="n">supmol_sr</span><span class="o">.</span><span class="n">_atm</span><span class="p">,</span> <span class="n">supmol_sr</span><span class="o">.</span><span class="n">_bas</span><span class="p">,</span>
                                           <span class="n">supmol_sr</span><span class="o">.</span><span class="n">_env</span><span class="p">,</span> <span class="s1">&#39;int2e&#39;</span><span class="p">)</span>
         <span class="n">nbas</span> <span class="o">=</span> <span class="n">supmol_sr</span><span class="o">.</span><span class="n">nbas</span>
@@ -1798,7 +1799,7 @@
 
   <p class="copyright">
     
-      © Copyright 2025, The PySCF Developers.
+      © Copyright 2026, The PySCF Developers.
       <br/>
     
   </p>

@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=182a64a0"></script>
+    <script src="../../_static/documentation_options.js?v=84389e84"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
@@ -51,7 +51,7 @@
     <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2.9" />
+  <meta name="docsearch:version" content="2.12" />
   </head>
   
   
@@ -373,7 +373,7 @@
                 <article class="bd-article">
                   
   <h1>Source code for pyscf.cc</h1><div class="highlight"><pre>
-<span></span><span class="c1"># Copyright 2014-2020 The PySCF Developers. All Rights Reserved.</span>
+<span></span><span class="c1"># Copyright 2014-2025 The PySCF Developers. All Rights Reserved.</span>
 <span class="c1">#</span>
 <span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
 <span class="c1"># you may not use this file except in compliance with the License.</span>
@@ -450,6 +450,9 @@
 <span class="kn">from</span> <span class="nn">pyscf.cc</span> <span class="kn">import</span> <span class="n">eom_uccsd</span>
 <span class="kn">from</span> <span class="nn">pyscf.cc</span> <span class="kn">import</span> <span class="n">eom_gccsd</span>
 <span class="kn">from</span> <span class="nn">pyscf.cc</span> <span class="kn">import</span> <span class="n">qcisd</span>
+<span class="kn">from</span> <span class="nn">pyscf.cc</span> <span class="kn">import</span> <span class="n">rccsdt</span><span class="p">,</span> <span class="n">rccsdt_highm</span>
+<span class="kn">from</span> <span class="nn">pyscf.cc</span> <span class="kn">import</span> <span class="n">uccsdt</span><span class="p">,</span> <span class="n">uccsdt_highm</span>
+<span class="kn">from</span> <span class="nn">pyscf.cc</span> <span class="kn">import</span> <span class="n">rccsdtq</span><span class="p">,</span> <span class="n">rccsdtq_highm</span>
 <span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">scf</span>
 
 <div class="viewcode-block" id="CCSD">
@@ -632,6 +635,137 @@
 
     <span class="k">return</span> <span class="n">mycc</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">BCCD</span><span class="p">)</span></div>
 
+
+
+<div class="viewcode-block" id="CCSDT">
+<a class="viewcode-back" href="../../pyscf_api_docs/pyscf.cc.html#pyscf.cc.CCSDT">[docs]</a>
+<span class="k">def</span> <span class="nf">CCSDT</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_occ</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">compact_tamps</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">mf</span><span class="o">.</span><span class="n">istype</span><span class="p">(</span><span class="s1">&#39;UHF&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">UCCSDT</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">,</span> <span class="n">compact_tamps</span><span class="o">=</span><span class="n">compact_tamps</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">mf</span><span class="o">.</span><span class="n">istype</span><span class="p">(</span><span class="s1">&#39;GHF&#39;</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;GCCSDT not implemented&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">RCCSDT</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">,</span> <span class="n">compact_tamps</span><span class="o">=</span><span class="n">compact_tamps</span><span class="p">)</span></div>
+
+
+<span class="n">scf</span><span class="o">.</span><span class="n">hf</span><span class="o">.</span><span class="n">SCF</span><span class="o">.</span><span class="n">CCSDT</span> <span class="o">=</span> <span class="n">CCSDT</span>
+
+
+<div class="viewcode-block" id="RCCSDT">
+<a class="viewcode-back" href="../../pyscf_api_docs/pyscf.cc.html#pyscf.cc.RCCSDT">[docs]</a>
+<span class="k">def</span> <span class="nf">RCCSDT</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_occ</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">compact_tamps</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">numpy</span>
+    <span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">lib</span>
+    <span class="kn">from</span> <span class="nn">pyscf.df.df_jk</span> <span class="kn">import</span> <span class="n">_DFHF</span>
+
+    <span class="k">if</span> <span class="n">mf</span><span class="o">.</span><span class="n">istype</span><span class="p">(</span><span class="s1">&#39;UHF&#39;</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;RCCSDT cannot be used with UHF method.&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">mf</span><span class="o">.</span><span class="n">istype</span><span class="p">(</span><span class="s1">&#39;ROHF&#39;</span><span class="p">):</span>
+        <span class="n">lib</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="s1">&#39;RCCSDT method does not support ROHF method. ROHF object &#39;</span>
+                        <span class="s1">&#39;is converted to UHF object and UCCSDT method is called.&#39;</span><span class="p">)</span>
+        <span class="n">mf</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">to_uhf</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">UCCSDT</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">)</span>
+
+    <span class="n">mf</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">remove_soscf</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">mf</span><span class="o">.</span><span class="n">istype</span><span class="p">(</span><span class="s1">&#39;RHF&#39;</span><span class="p">):</span>
+        <span class="n">mf</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">to_rhf</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">_DFHF</span><span class="p">)</span> <span class="ow">and</span> <span class="n">mf</span><span class="o">.</span><span class="n">with_df</span><span class="p">:</span>
+        <span class="n">lib</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="s1">&#39;RCCSDT does not support density fitting. The ERIs have been rebuilt in-core, &#39;</span>
+                            <span class="s1">&#39;and the RCCSDT calculation will proceed without density fitting.&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">compact_tamps</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">rccsdt</span><span class="o">.</span><span class="n">RCCSDT</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">rccsdt_highm</span><span class="o">.</span><span class="n">RCCSDT</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">numpy</span><span class="o">.</span><span class="n">iscomplexobj</span><span class="p">(</span><span class="n">mo_coeff</span><span class="p">)</span> <span class="ow">or</span> <span class="n">numpy</span><span class="o">.</span><span class="n">iscomplexobj</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">mo_coeff</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;RCCSDT does not support complex numbers&#39;</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">compact_tamps</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">rccsdt</span><span class="o">.</span><span class="n">RCCSDT</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">rccsdt_highm</span><span class="o">.</span><span class="n">RCCSDT</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">)</span></div>
+
+<span class="n">RCCSDT</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">rccsdt</span><span class="o">.</span><span class="n">RCCSDT</span><span class="o">.</span><span class="vm">__doc__</span>
+
+
+<div class="viewcode-block" id="UCCSDT">
+<a class="viewcode-back" href="../../pyscf_api_docs/pyscf.cc.html#pyscf.cc.UCCSDT">[docs]</a>
+<span class="k">def</span> <span class="nf">UCCSDT</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_occ</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">compact_tamps</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">lib</span>
+    <span class="kn">from</span> <span class="nn">pyscf.df.df_jk</span> <span class="kn">import</span> <span class="n">_DFHF</span>
+
+    <span class="n">mf</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">remove_soscf</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">mf</span><span class="o">.</span><span class="n">istype</span><span class="p">(</span><span class="s1">&#39;UHF&#39;</span><span class="p">):</span>
+        <span class="n">mf</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">to_uhf</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">_DFHF</span><span class="p">)</span> <span class="ow">and</span> <span class="n">mf</span><span class="o">.</span><span class="n">with_df</span><span class="p">:</span>
+        <span class="n">lib</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="s1">&#39;UCCSDT does not support density fitting. The ERIs have been rebuilt in-core, &#39;</span>
+                            <span class="s1">&#39;and the UCCSDT calculation will proceed without density fitting.&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">compact_tamps</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">uccsdt</span><span class="o">.</span><span class="n">UCCSDT</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">uccsdt_highm</span><span class="o">.</span><span class="n">UCCSDT</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">compact_tamps</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">uccsdt</span><span class="o">.</span><span class="n">UCCSDT</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">uccsdt_highm</span><span class="o">.</span><span class="n">UCCSDT</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">)</span></div>
+
+<span class="n">UCCSDT</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">uccsdt</span><span class="o">.</span><span class="n">UCCSDT</span><span class="o">.</span><span class="vm">__doc__</span>
+
+
+<div class="viewcode-block" id="CCSDTQ">
+<a class="viewcode-back" href="../../pyscf_api_docs/pyscf.cc.html#pyscf.cc.CCSDTQ">[docs]</a>
+<span class="k">def</span> <span class="nf">CCSDTQ</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_occ</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">compact_tamps</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">mf</span><span class="o">.</span><span class="n">istype</span><span class="p">(</span><span class="s1">&#39;UHF&#39;</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;UCCSDTQ not implemented&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">mf</span><span class="o">.</span><span class="n">istype</span><span class="p">(</span><span class="s1">&#39;GHF&#39;</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;GCCSDTQ not implemented&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">RCCSDTQ</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">,</span> <span class="n">compact_tamps</span><span class="o">=</span><span class="n">compact_tamps</span><span class="p">)</span></div>
+
+
+<span class="n">scf</span><span class="o">.</span><span class="n">hf</span><span class="o">.</span><span class="n">SCF</span><span class="o">.</span><span class="n">CCSDTQ</span> <span class="o">=</span> <span class="n">CCSDTQ</span>
+
+
+<div class="viewcode-block" id="RCCSDTQ">
+<a class="viewcode-back" href="../../pyscf_api_docs/pyscf.cc.html#pyscf.cc.RCCSDTQ">[docs]</a>
+<span class="k">def</span> <span class="nf">RCCSDTQ</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_occ</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">compact_tamps</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">numpy</span>
+    <span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">lib</span>
+    <span class="kn">from</span> <span class="nn">pyscf.df.df_jk</span> <span class="kn">import</span> <span class="n">_DFHF</span>
+
+    <span class="k">if</span> <span class="n">mf</span><span class="o">.</span><span class="n">istype</span><span class="p">(</span><span class="s1">&#39;UHF&#39;</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;RCCSDTQ cannot be used with UHF method.&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">mf</span><span class="o">.</span><span class="n">istype</span><span class="p">(</span><span class="s1">&#39;ROHF&#39;</span><span class="p">):</span>
+        <span class="n">lib</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="s1">&#39;RCCSDTQ method does not support ROHF method. ROHF object &#39;</span>
+                        <span class="s1">&#39;is converted to UHF object and regular UCCSDTQ method is called.&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;UCCSDTQ method is not implemented&#39;</span><span class="p">)</span>
+
+    <span class="n">mf</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">remove_soscf</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">mf</span><span class="o">.</span><span class="n">istype</span><span class="p">(</span><span class="s1">&#39;RHF&#39;</span><span class="p">):</span>
+        <span class="n">mf</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">to_rhf</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">_DFHF</span><span class="p">)</span> <span class="ow">and</span> <span class="n">mf</span><span class="o">.</span><span class="n">with_df</span><span class="p">:</span>
+        <span class="n">lib</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="s1">&#39;RCCSDTQ does not support density fitting. The ERIs have been rebuilt in-core, &#39;</span>
+                            <span class="s1">&#39;and the RCCSDTQ calculation will proceed without density fitting.&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">compact_tamps</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">rccsdtq</span><span class="o">.</span><span class="n">RCCSDTQ</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">rccsdtq_highm</span><span class="o">.</span><span class="n">RCCSDTQ</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">numpy</span><span class="o">.</span><span class="n">iscomplexobj</span><span class="p">(</span><span class="n">mo_coeff</span><span class="p">)</span> <span class="ow">or</span> <span class="n">numpy</span><span class="o">.</span><span class="n">iscomplexobj</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">mo_coeff</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;RCCSDTQ does not support complex numbers&#39;</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">compact_tamps</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">rccsdtq</span><span class="o">.</span><span class="n">RCCSDTQ</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">rccsdtq_highm</span><span class="o">.</span><span class="n">RCCSDTQ</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">)</span></div>
+
+<span class="n">RCCSDTQ</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">rccsdtq</span><span class="o">.</span><span class="n">RCCSDTQ</span><span class="o">.</span><span class="vm">__doc__</span>
 </pre></div>
 
                 </article>
@@ -667,7 +801,7 @@
 
   <p class="copyright">
     
-      © Copyright 2025, The PySCF Developers.
+      © Copyright 2026, The PySCF Developers.
       <br/>
     
   </p>

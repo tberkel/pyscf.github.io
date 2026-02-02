@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=182a64a0"></script>
+    <script src="../../_static/documentation_options.js?v=84389e84"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
@@ -51,7 +51,7 @@
     <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2.9" />
+  <meta name="docsearch:version" content="2.12" />
   </head>
   
   
@@ -406,16 +406,16 @@
 <span class="kn">from</span> <span class="nn">pyscf.adc</span> <span class="kn">import</span> <span class="n">radc_ip</span>
 <span class="kn">from</span> <span class="nn">pyscf.adc</span> <span class="kn">import</span> <span class="n">radc_ip_cvs</span>
 <span class="kn">from</span> <span class="nn">pyscf.adc</span> <span class="kn">import</span> <span class="n">radc_ea</span>
+<span class="kn">from</span> <span class="nn">pyscf.adc</span> <span class="kn">import</span> <span class="n">radc_ee</span>
 <span class="kn">from</span> <span class="nn">pyscf.adc</span> <span class="kn">import</span> <span class="n">uadc_ip</span>
 <span class="kn">from</span> <span class="nn">pyscf.adc</span> <span class="kn">import</span> <span class="n">uadc_ip_cvs</span>
 <span class="kn">from</span> <span class="nn">pyscf.adc</span> <span class="kn">import</span> <span class="n">uadc_ea</span>
+<span class="kn">from</span> <span class="nn">pyscf.adc</span> <span class="kn">import</span> <span class="n">uadc_ee</span>
 
 
 <div class="viewcode-block" id="ADC">
 <a class="viewcode-back" href="../../pyscf_api_docs/pyscf.adc.html#pyscf.adc.ADC">[docs]</a>
 <span class="k">def</span> <span class="nf">ADC</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_occ</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">frozen</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">frozen</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
     <span class="k">if</span> <span class="n">mf</span><span class="o">.</span><span class="n">istype</span><span class="p">(</span><span class="s1">&#39;UHF&#39;</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">UADC</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">)</span>
@@ -434,8 +434,6 @@
 <div class="viewcode-block" id="UADC">
 <a class="viewcode-back" href="../../pyscf_api_docs/pyscf.adc.html#pyscf.adc.UADC">[docs]</a>
 <span class="k">def</span> <span class="nf">UADC</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_occ</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">frozen</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">frozen</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">istype</span><span class="p">(</span><span class="s1">&#39;UHF&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">mf</span><span class="o">.</span><span class="n">istype</span><span class="p">(</span><span class="s1">&#39;ROHF&#39;</span><span class="p">)):</span>
         <span class="n">mf</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">to_uhf</span><span class="p">()</span>
@@ -448,8 +446,6 @@
 <div class="viewcode-block" id="RADC">
 <a class="viewcode-back" href="../../pyscf_api_docs/pyscf.adc.html#pyscf.adc.RADC">[docs]</a>
 <span class="k">def</span> <span class="nf">RADC</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_occ</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">frozen</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">frozen</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
     <span class="n">mf</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">remove_soscf</span><span class="p">()</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">mf</span><span class="o">.</span><span class="n">istype</span><span class="p">(</span><span class="s1">&#39;RHF&#39;</span><span class="p">):</span>
@@ -494,7 +490,7 @@
 
   <p class="copyright">
     
-      © Copyright 2025, The PySCF Developers.
+      © Copyright 2026, The PySCF Developers.
       <br/>
     
   </p>

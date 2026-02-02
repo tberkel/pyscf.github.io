@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=182a64a0"></script>
+    <script src="../../_static/documentation_options.js?v=84389e84"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
@@ -53,10 +53,10 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Density fitting for crystalline calculations" href="df.html" />
-    <link rel="prev" title="Crystal structure" href="gto.html" />
+    <link rel="prev" title="Periodic boundary conditions" href="../pbc.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2.9" />
+  <meta name="docsearch:version" content="2.12" />
   </head>
   
   
@@ -347,6 +347,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../adc.html">Algebraic diagrammatic construction (ADC)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../agf2.html">Auxiliary second-order Green’s function perturbation theory (AGF2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mcscf.html">Multi-configuration self-consistent field (MCSCF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mcpdft.html">Multi-configuration pair-density functional theory (MC-PDFT)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mrpt.html">Multi-reference perturbation theory (MRPT)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tddft.html">Time-dependent Hartree-Fock and density functional theory</a></li>
 </ul>
@@ -357,7 +358,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../md.html">Molecular Dynamics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../df.html">Density fitting (DF)</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../pbc.html">Periodic boundary conditions</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="gto.html">Crystal structure</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">SCF and DFT methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="df.html">Density fitting for crystalline calculations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mix_mol.html">Mixing PBC and molecular modules</a></li>
@@ -368,6 +368,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../sgx.html">Seminumerical exchange (SGX)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../geomopt.html">Geometry optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gpu.html">GPU Acceleration (GPU4PySCF)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">PySCF-forge</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pyscf-forge.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pprpa.html">particle-particle Random Phase Approximation (ppRPA)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Extensions</span></p>
 <ul class="nav bd-sidenav">
@@ -462,7 +467,7 @@ which can be easily achieved using the <code class="docutils literal notranslate
 <span class="c1"># converged SCF energy = -10.9308552994574</span>
 </pre></div>
 </div>
-<p>See <a class="reference internal" href="gto.html#user-pbc-gto"><span class="std std-ref">Crystal structure</span></a> and <a class="reference internal" href="../pbc.html#user-pbc"><span class="std std-ref">Periodic boundary conditions</span></a> for more details about
+<p>See <span class="xref std std-ref">user_pbc_gto</span> and <a class="reference internal" href="../pbc.html#user-pbc"><span class="std std-ref">Periodic boundary conditions</span></a> for more details about
 the <code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code> object and Brillouin zone sampling.</p>
 <p>Various integral schemes have been developed for periodic calculations in PySCF.
 A regular periodic calculation can be started with some type of density fitting.
@@ -506,14 +511,14 @@ divergence of the nuclear repulsion energy, the electron-nuclear attraction
 energy, and the electronic Hartree energy cancel one another.</p>
 <p>The nonlocal exact exchange energy exhibits an integrable divergence at
 <span class="math notranslate nohighlight">\(G=0\)</span> that is responsible for the leading-order finite-size error of HF
-and hybrid DFT calculations <span id="id1">[<a class="reference internal" href="../reference.html#id57" title="Joachim Paier, Robin Hirschl, Martijn Marsman, and Georg Kresse. The perdew–burke–ernzerhof exchange-correlation functional applied to the g2-1 test set using a plane-wave basis set. J. Chem. Phys., 122(23):234102, 2005. doi:10.1063/1.1926272.">60</a>, <a class="reference internal" href="../reference.html#id59" title="Peter Broqvist, Audrius Alkauskas, and Alfredo Pasquarello. Hybrid-functional calculations with plane-wave basis sets: effect of singularity correction on total energies, energy eigenvalues, and defect energy levels. Phys. Rev. B, 80:085114, Aug 2009. doi:10.1103/PhysRevB.80.085114.">61</a>, <a class="reference internal" href="../reference.html#id60" title="Ravishankar Sundararaman and T. A. Arias. Regularization of the coulomb singularity in exact exchange by wigner-seitz truncated interactions: towards chemical accuracy in nontrivial systems. Phys. Rev. B, 87:165122, Apr 2013. doi:10.1103/PhysRevB.87.165122.">62</a>]</span>.  In
+and hybrid DFT calculations <span id="id1">[<a class="reference internal" href="../reference.html#id59" title="Joachim Paier, Robin Hirschl, Martijn Marsman, and Georg Kresse. The perdew–burke–ernzerhof exchange-correlation functional applied to the g2-1 test set using a plane-wave basis set. J. Chem. Phys., 122(23):234102, 2005. doi:10.1063/1.1926272.">68</a>, <a class="reference internal" href="../reference.html#id61" title="Peter Broqvist, Audrius Alkauskas, and Alfredo Pasquarello. Hybrid-functional calculations with plane-wave basis sets: effect of singularity correction on total energies, energy eigenvalues, and defect energy levels. Phys. Rev. B, 80:085114, Aug 2009. doi:10.1103/PhysRevB.80.085114.">69</a>, <a class="reference internal" href="../reference.html#id62" title="Ravishankar Sundararaman and T. A. Arias. Regularization of the coulomb singularity in exact exchange by wigner-seitz truncated interactions: towards chemical accuracy in nontrivial systems. Phys. Rev. B, 87:165122, Apr 2013. doi:10.1103/PhysRevB.87.165122.">70</a>]</span>.  In
 PySCF, this exchange divergence can be addressed in a number of ways using the
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">exxdiv</span></code> keyword argument to the mean-field class, with the following
 possible values.</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">'ewald'</span></code> (default)</p>
 <p>The <span class="math notranslate nohighlight">\(G=0\)</span> value of the Coulomb potential is the supercell Madelung
-constant <span id="id2">[<a class="reference internal" href="../reference.html#id57" title="Joachim Paier, Robin Hirschl, Martijn Marsman, and Georg Kresse. The perdew–burke–ernzerhof exchange-correlation functional applied to the g2-1 test set using a plane-wave basis set. J. Chem. Phys., 122(23):234102, 2005. doi:10.1063/1.1926272.">60</a>, <a class="reference internal" href="../reference.html#id59" title="Peter Broqvist, Audrius Alkauskas, and Alfredo Pasquarello. Hybrid-functional calculations with plane-wave basis sets: effect of singularity correction on total energies, energy eigenvalues, and defect energy levels. Phys. Rev. B, 80:085114, Aug 2009. doi:10.1103/PhysRevB.80.085114.">61</a>, <a class="reference internal" href="../reference.html#id60" title="Ravishankar Sundararaman and T. A. Arias. Regularization of the coulomb singularity in exact exchange by wigner-seitz truncated interactions: towards chemical accuracy in nontrivial systems. Phys. Rev. B, 87:165122, Apr 2013. doi:10.1103/PhysRevB.87.165122.">62</a>]</span>, which is evaluated by
+constant <span id="id2">[<a class="reference internal" href="../reference.html#id59" title="Joachim Paier, Robin Hirschl, Martijn Marsman, and Georg Kresse. The perdew–burke–ernzerhof exchange-correlation functional applied to the g2-1 test set using a plane-wave basis set. J. Chem. Phys., 122(23):234102, 2005. doi:10.1063/1.1926272.">68</a>, <a class="reference internal" href="../reference.html#id61" title="Peter Broqvist, Audrius Alkauskas, and Alfredo Pasquarello. Hybrid-functional calculations with plane-wave basis sets: effect of singularity correction on total energies, energy eigenvalues, and defect energy levels. Phys. Rev. B, 80:085114, Aug 2009. doi:10.1103/PhysRevB.80.085114.">69</a>, <a class="reference internal" href="../reference.html#id62" title="Ravishankar Sundararaman and T. A. Arias. Regularization of the coulomb singularity in exact exchange by wigner-seitz truncated interactions: towards chemical accuracy in nontrivial systems. Phys. Rev. B, 87:165122, Apr 2013. doi:10.1103/PhysRevB.87.165122.">70</a>]</span>, which is evaluated by
 Ewald summation.  The finite-size error of the exchange energy decays as
 <span class="math notranslate nohighlight">\(N_k^{-1}\)</span>, where <span class="math notranslate nohighlight">\(N_k\)</span> is the number of k-points sampled in the
 Brillouin zone.</p>
@@ -524,13 +529,13 @@ finite-size error of the exchange energy decays slowly as <span class="math notr
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">'vcut_sph'</span></code></p>
 <p>The Coulomb potential is spherically truncated in real space at a radius equal
-to half of the supercell side length <span id="id3">[<a class="reference internal" href="../reference.html#id58" title="James Spencer and Ali Alavi. Efficient calculation of the exact exchange energy in periodic systems using a truncated coulomb potential. Phys. Rev. B, 77:193110, May 2008. doi:10.1103/PhysRevB.77.193110.">63</a>]</span>.  The finite-size
+to half of the supercell side length <span id="id3">[<a class="reference internal" href="../reference.html#id60" title="James Spencer and Ali Alavi. Efficient calculation of the exact exchange energy in periodic systems using a truncated coulomb potential. Phys. Rev. B, 77:193110, May 2008. doi:10.1103/PhysRevB.77.193110.">71</a>]</span>.  The finite-size
 error of the exchange energy decays as <span class="math notranslate nohighlight">\(\exp(-aN_k^{1/3})\)</span>.  Only
 supported with plane-wave density fitting (FFTDF).</p>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">'vcut_ws'</span></code></p>
 <p>The Coulomb potential is truncated outside of the Wigner-Seitz supercell
-<span id="id4">[<a class="reference internal" href="../reference.html#id60" title="Ravishankar Sundararaman and T. A. Arias. Regularization of the coulomb singularity in exact exchange by wigner-seitz truncated interactions: towards chemical accuracy in nontrivial systems. Phys. Rev. B, 87:165122, Apr 2013. doi:10.1103/PhysRevB.87.165122.">62</a>]</span>, which is more appropriate than spherical truncation
+<span id="id4">[<a class="reference internal" href="../reference.html#id62" title="Ravishankar Sundararaman and T. A. Arias. Regularization of the coulomb singularity in exact exchange by wigner-seitz truncated interactions: towards chemical accuracy in nontrivial systems. Phys. Rev. B, 87:165122, Apr 2013. doi:10.1103/PhysRevB.87.165122.">70</a>]</span>, which is more appropriate than spherical truncation
 for anisotropic cells.  The finite-size error of the exchange energy decays as
 <span class="math notranslate nohighlight">\(\exp(-aN_k^{1/3})\)</span>.  Only supported with plane-wave density fitting
 (FFTDF).</p>
@@ -936,7 +941,7 @@ calculations.</p>
 
   <p class="copyright">
     
-      © Copyright 2025, The PySCF Developers.
+      © Copyright 2026, The PySCF Developers.
       <br/>
     
   </p>

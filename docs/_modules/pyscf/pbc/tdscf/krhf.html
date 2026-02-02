@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../../_static/documentation_options.js?v=182a64a0"></script>
+    <script src="../../../../_static/documentation_options.js?v=84389e84"></script>
     <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
@@ -51,7 +51,7 @@
     <link rel="search" title="Search" href="../../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2.9" />
+  <meta name="docsearch:version" content="2.12" />
   </head>
   
   
@@ -600,7 +600,8 @@
             <span class="k">if</span> <span class="n">mf</span><span class="o">.</span><span class="n">rsjk</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">with_df</span><span class="p">,</span> <span class="n">pbcdf</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">DF</span><span class="p">):</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;Solutions with non-zero kshift for </span><span class="si">%s</span><span class="s1"> are &#39;</span>
                              <span class="s1">&#39;only supported by GDF/RSDF&#39;</span><span class="p">)</span>
-                <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+                <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">scf</span><span class="o">.</span><span class="n">khf</span><span class="o">.</span><span class="n">KSCF</span><span class="p">)</span></div>
 
 
     <span class="k">def</span> <span class="nf">_finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -638,8 +639,7 @@
 <span class="sd">                The index of the k-point that represents the transition between</span>
 <span class="sd">                k-points in the excitation coefficients.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="k">if</span> <span class="n">mf</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">mf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scf</span>
+        <span class="k">assert</span> <span class="n">mf</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scf</span>
         <span class="n">singlet</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">singlet</span>
         <span class="n">kconserv</span> <span class="o">=</span> <span class="n">get_kconserv_ria</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">cell</span><span class="p">,</span> <span class="n">mf</span><span class="o">.</span><span class="n">kpts</span><span class="p">)[</span><span class="n">kshift</span><span class="p">]</span>
 
@@ -657,7 +657,7 @@
 
         <span class="n">mem_now</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">current_memory</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">max_memory</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_memory</span><span class="o">*</span><span class="mf">.8</span><span class="o">-</span><span class="n">mem_now</span><span class="p">)</span>
-        <span class="n">vresp</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">gen_response</span><span class="p">(</span><span class="n">singlet</span><span class="o">=</span><span class="n">singlet</span><span class="p">,</span> <span class="n">hermi</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_memory</span><span class="o">=</span><span class="n">max_memory</span><span class="p">)</span>
+        <span class="n">vresp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gen_response</span><span class="p">(</span><span class="n">singlet</span><span class="o">=</span><span class="n">singlet</span><span class="p">,</span> <span class="n">hermi</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_memory</span><span class="o">=</span><span class="n">max_memory</span><span class="p">)</span>
 
         <span class="k">def</span> <span class="nf">vind</span><span class="p">(</span><span class="n">zs</span><span class="p">):</span>
             <span class="n">nz</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">zs</span><span class="p">)</span>
@@ -684,9 +684,9 @@
         <span class="k">return</span> <span class="n">vind</span><span class="p">,</span> <span class="n">hdiag</span></div>
 
 
-<div class="viewcode-block" id="TDA.init_guess">
-<a class="viewcode-back" href="../../../../pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf.TDA.init_guess">[docs]</a>
-    <span class="k">def</span> <span class="nf">init_guess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mf</span><span class="p">,</span> <span class="n">kshift</span><span class="p">,</span> <span class="n">nstates</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="TDA.get_init_guess">
+<a class="viewcode-back" href="../../../../pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf.TDA.get_init_guess">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_init_guess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mf</span><span class="p">,</span> <span class="n">kshift</span><span class="p">,</span> <span class="n">nstates</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">nstates</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">nstates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nstates</span>
 
         <span class="n">mo_energy</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">mo_energy</span>
@@ -742,7 +742,7 @@
             <span class="n">precond</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_precond</span><span class="p">(</span><span class="n">hdiag</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">x0</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">x0k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_guess</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_scf</span><span class="p">,</span> <span class="n">kshift</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nstates</span><span class="p">)</span>
+                <span class="n">x0k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_init_guess</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_scf</span><span class="p">,</span> <span class="n">kshift</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nstates</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">x0k</span> <span class="o">=</span> <span class="n">x0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
@@ -776,6 +776,7 @@
 <span class="sd">        [ A   B ][X]</span>
 <span class="sd">        [-B* -A*][Y]</span>
 <span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">assert</span> <span class="n">mf</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scf</span>
         <span class="k">assert</span> <span class="n">kshift</span> <span class="o">==</span> <span class="mi">0</span>
 
         <span class="n">singlet</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">singlet</span>
@@ -798,7 +799,7 @@
 
         <span class="n">mem_now</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">current_memory</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">max_memory</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_memory</span><span class="o">*</span><span class="mf">.8</span><span class="o">-</span><span class="n">mem_now</span><span class="p">)</span>
-        <span class="n">vresp</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">gen_response</span><span class="p">(</span><span class="n">singlet</span><span class="o">=</span><span class="n">singlet</span><span class="p">,</span> <span class="n">hermi</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_memory</span><span class="o">=</span><span class="n">max_memory</span><span class="p">)</span>
+        <span class="n">vresp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gen_response</span><span class="p">(</span><span class="n">singlet</span><span class="o">=</span><span class="n">singlet</span><span class="p">,</span> <span class="n">hermi</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_memory</span><span class="o">=</span><span class="n">max_memory</span><span class="p">)</span>
 
         <span class="k">def</span> <span class="nf">vind</span><span class="p">(</span><span class="n">xys</span><span class="p">):</span>
             <span class="n">nz</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xys</span><span class="p">)</span>
@@ -839,10 +840,10 @@
         <span class="k">return</span> <span class="n">vind</span><span class="p">,</span> <span class="n">hdiag</span></div>
 
 
-<div class="viewcode-block" id="TDHF.init_guess">
-<a class="viewcode-back" href="../../../../pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf.TDHF.init_guess">[docs]</a>
-    <span class="k">def</span> <span class="nf">init_guess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mf</span><span class="p">,</span> <span class="n">kshift</span><span class="p">,</span> <span class="n">nstates</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="n">x0</span> <span class="o">=</span> <span class="n">TDA</span><span class="o">.</span><span class="n">init_guess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mf</span><span class="p">,</span> <span class="n">kshift</span><span class="p">,</span> <span class="n">nstates</span><span class="p">)</span>
+<div class="viewcode-block" id="TDHF.get_init_guess">
+<a class="viewcode-back" href="../../../../pyscf_api_docs/pyscf.pbc.tdscf.html#pyscf.pbc.tdscf.krhf.TDHF.get_init_guess">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_init_guess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mf</span><span class="p">,</span> <span class="n">kshift</span><span class="p">,</span> <span class="n">nstates</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">x0</span> <span class="o">=</span> <span class="n">TDA</span><span class="o">.</span><span class="n">get_init_guess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mf</span><span class="p">,</span> <span class="n">kshift</span><span class="p">,</span> <span class="n">nstates</span><span class="p">)</span>
         <span class="n">y0</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">])</span></div>
 
@@ -906,7 +907,7 @@
             <span class="n">precond</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_precond</span><span class="p">(</span><span class="n">hdiag</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">x0</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">x0k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_guess</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_scf</span><span class="p">,</span> <span class="n">kshift</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nstates</span><span class="p">)</span>
+                <span class="n">x0k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_init_guess</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_scf</span><span class="p">,</span> <span class="n">kshift</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nstates</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">x0k</span> <span class="o">=</span> <span class="n">x0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
@@ -986,7 +987,7 @@
 
   <p class="copyright">
     
-      © Copyright 2025, The PySCF Developers.
+      © Copyright 2026, The PySCF Developers.
       <br/>
     
   </p>

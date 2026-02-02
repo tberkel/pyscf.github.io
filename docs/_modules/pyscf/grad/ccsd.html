@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=182a64a0"></script>
+    <script src="../../../_static/documentation_options.js?v=84389e84"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
@@ -51,7 +51,7 @@
     <link rel="search" title="Search" href="../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2.9" />
+  <meta name="docsearch:version" content="2.12" />
   </head>
   
   
@@ -416,7 +416,7 @@
 <span class="c1"># Non-canonical formula refers to JCP 95, 2639 (1991); DOI:10.1063/1.460916</span>
 <span class="c1">#</span>
 <div class="viewcode-block" id="grad_elec">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.grad.html#pyscf.cc.ccsd.grad_elec">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.grad.html#pyscf.grad.ccsd.grad_elec">[docs]</a>
 <span class="k">def</span> <span class="nf">grad_elec</span><span class="p">(</span><span class="n">cc_grad</span><span class="p">,</span> <span class="n">t1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">l1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">l2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eris</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">atmlst</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
               <span class="n">d1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">d2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">logger</span><span class="o">.</span><span class="n">INFO</span><span class="p">):</span>
     <span class="n">mycc</span> <span class="o">=</span> <span class="n">cc_grad</span><span class="o">.</span><span class="n">base</span>
@@ -572,7 +572,7 @@
 
 
 <div class="viewcode-block" id="as_scanner">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.grad.html#pyscf.cc.ccsd.as_scanner">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.grad.html#pyscf.grad.ccsd.as_scanner">[docs]</a>
 <span class="k">def</span> <span class="nf">as_scanner</span><span class="p">(</span><span class="n">grad_cc</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Generating a nuclear gradients scanner/solver (for geometry optimizer).</span>
 
@@ -606,7 +606,7 @@
 
 
 <div class="viewcode-block" id="CCSD_GradScanner">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.grad.html#pyscf.cc.ccsd.CCSD_GradScanner">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.grad.html#pyscf.grad.ccsd.CCSD_GradScanner">[docs]</a>
 <span class="k">class</span> <span class="nc">CCSD_GradScanner</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">GradScanner</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
         <span class="n">lib</span><span class="o">.</span><span class="n">GradScanner</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
@@ -734,8 +734,8 @@
     <span class="n">blksize</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nao_pair</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">ccsd</span><span class="o">.</span><span class="n">BLKMIN</span><span class="p">,</span> <span class="n">blksize</span><span class="p">))</span>
     <span class="n">fswap</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">nmo</span><span class="p">,</span><span class="n">nocc</span><span class="p">,</span><span class="n">nao_pair</span><span class="p">),</span> <span class="s1">&#39;f8&#39;</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="p">(</span><span class="n">nocc</span><span class="p">,</span><span class="n">nocc</span><span class="p">,</span><span class="n">blksize</span><span class="p">))</span>
     <span class="n">buf1</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nocc</span><span class="p">,</span><span class="n">nocc</span><span class="p">,</span><span class="n">nmo</span><span class="p">,</span><span class="n">nmo</span><span class="p">))</span>
-    <span class="n">buf1</span><span class="p">[:,:,:</span><span class="n">nocc</span><span class="p">,:</span><span class="n">nocc</span><span class="p">]</span> <span class="o">=</span> <span class="n">doooo</span>
-    <span class="n">buf1</span><span class="p">[:,:,</span><span class="n">nocc</span><span class="p">:,</span><span class="n">nocc</span><span class="p">:]</span> <span class="o">=</span> <span class="n">_cp</span><span class="p">(</span><span class="n">doovv</span><span class="p">)</span>
+    <span class="n">buf1</span><span class="p">[:,:,:</span><span class="n">nocc</span><span class="p">,:</span><span class="n">nocc</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">doooo</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
+    <span class="n">buf1</span><span class="p">[:,:,</span><span class="n">nocc</span><span class="p">:,</span><span class="n">nocc</span><span class="p">:]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">doovv</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
     <span class="n">buf1</span> <span class="o">=</span> <span class="n">_trans</span><span class="p">(</span><span class="n">buf1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">nocc</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">nmo</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">nmo</span><span class="p">))</span>
     <span class="n">fswap</span><span class="p">[</span><span class="s1">&#39;o&#39;</span><span class="p">][:</span><span class="n">nocc</span><span class="p">]</span> <span class="o">=</span> <span class="n">buf1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">nocc</span><span class="p">,</span><span class="n">nocc</span><span class="p">,</span><span class="n">nao_pair</span><span class="p">)</span>
     <span class="n">dovoo</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">dooov</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
@@ -799,18 +799,21 @@
     <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Gradients">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.grad.html#pyscf.cc.ccsd.Gradients">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.grad.html#pyscf.grad.ccsd.Gradients">[docs]</a>
 <span class="k">class</span> <span class="nc">Gradients</span><span class="p">(</span><span class="n">rhf_grad</span><span class="o">.</span><span class="n">GradientsBase</span><span class="p">):</span>
 
     <span class="n">grad_elec</span> <span class="o">=</span> <span class="n">grad_elec</span>
 
 <div class="viewcode-block" id="Gradients.kernel">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.grad.html#pyscf.cc.ccsd.Gradients.kernel">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.grad.html#pyscf.grad.ccsd.Gradients.kernel">[docs]</a>
     <span class="k">def</span> <span class="nf">kernel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">l1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">l2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eris</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                <span class="n">atmlst</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">log</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">new_logger</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
         <span class="n">mycc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base</span>
-        <span class="k">if</span> <span class="n">t1</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">t1</span> <span class="o">=</span> <span class="n">mycc</span><span class="o">.</span><span class="n">t1</span>
+        <span class="k">if</span> <span class="n">t1</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">mycc</span><span class="o">.</span><span class="n">t1</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">mycc</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+            <span class="n">t1</span> <span class="o">=</span> <span class="n">mycc</span><span class="o">.</span><span class="n">t1</span>
         <span class="k">if</span> <span class="n">t2</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">t2</span> <span class="o">=</span> <span class="n">mycc</span><span class="o">.</span><span class="n">t2</span>
         <span class="k">if</span> <span class="n">l1</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">l1</span> <span class="o">=</span> <span class="n">mycc</span><span class="o">.</span><span class="n">l1</span>
         <span class="k">if</span> <span class="n">l2</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">l2</span> <span class="o">=</span> <span class="n">mycc</span><span class="o">.</span><span class="n">l2</span>
@@ -836,7 +839,7 @@
     <span class="c1"># Calling the underlying SCF nuclear gradients because it may be modified</span>
     <span class="c1"># by external modules (e.g. QM/MM, solvent)</span>
 <div class="viewcode-block" id="Gradients.grad_nuc">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.grad.html#pyscf.cc.ccsd.Gradients.grad_nuc">[docs]</a>
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.grad.html#pyscf.grad.ccsd.Gradients.grad_nuc">[docs]</a>
     <span class="k">def</span> <span class="nf">grad_nuc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">atmlst</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">mf_grad</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">_scf</span><span class="o">.</span><span class="n">nuc_grad_method</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">mf_grad</span><span class="o">.</span><span class="n">grad_nuc</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">atmlst</span><span class="p">)</span></div>
@@ -885,7 +888,7 @@
 
   <p class="copyright">
     
-      © Copyright 2025, The PySCF Developers.
+      © Copyright 2026, The PySCF Developers.
       <br/>
     
   </p>

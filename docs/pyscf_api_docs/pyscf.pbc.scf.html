@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=182a64a0"></script>
+    <script src="../_static/documentation_options.js?v=84389e84"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
@@ -54,7 +54,7 @@
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2.9" />
+  <meta name="docsearch:version" content="2.12" />
   </head>
   
   
@@ -355,6 +355,7 @@
 <li class="toctree-l1"><a class="reference internal" href="pyscf.hessian.html">pyscf.hessian package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.lib.html">pyscf.lib package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.lo.html">pyscf.lo package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyscf.mcpdft.html">pyscf.mcpdft package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.mcscf.html">pyscf.mcscf package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.mp.html">pyscf.mp package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.mrpt.html">pyscf.mrpt package</a></li>
@@ -390,7 +391,10 @@
 <li class="toctree-l2"><a class="reference internal" href="pyscf.pbc.x2c.html">pyscf.pbc.x2c package</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="pyscf.qmmm.html">pyscf.qmmm package</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="pyscf.qmmm.html">pyscf.qmmm package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyscf.qmmm.pbc.html">pyscf.qmmm.pbc package</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.scf.html">pyscf.scf package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.sgx.html">pyscf.sgx package</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="pyscf.solvent.html">pyscf.solvent package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -635,9 +639,9 @@ energy matrix</p>
 <p>Generalized Hartree-Fock for periodic systems at a single k-point</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.ghf.GHF">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.ghf.</span></span><span class="sig-name descname"><span class="pre">GHF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([0.,</span> <span class="pre">0.,</span> <span class="pre">0.])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/ghf.html#GHF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.ghf.GHF" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.ghf.</span></span><span class="sig-name descname"><span class="pre">GHF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/ghf.html#GHF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.ghf.GHF" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyscf.pbc.scf.hf.SCF" title="pyscf.pbc.scf.hf.SCF"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCF</span></code></a></p>
-<p>GHF class for PBCs.</p>
+<p>GHF class for PBCs at a single point (default: gamma point).</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.ghf.GHF.CCSD">
 <span class="sig-name descname"><span class="pre">CCSD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.ghf.GHF.CCSD" title="Link to this definition">#</a></dt>
@@ -727,12 +731,10 @@ print orbital coefficients; Mulliken population analysis; Diople moment.</p>
 <dd><p>Convert given mean-field object to GHF</p>
 </dd></dl>
 
-<dl class="py method">
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.ghf.GHF.gen_response">
-<span class="sig-name descname"><span class="pre">gen_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_occ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_j</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.ghf.GHF.gen_response" title="Link to this definition">#</a></dt>
-<dd><p>Generate a function to compute the product of KGHF response function and
-KGHF density matrices.</p>
-</dd></dl>
+<span class="sig-name descname"><span class="pre">gen_response</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">NotImplemented</span></em><a class="headerlink" href="#pyscf.pbc.scf.ghf.GHF.gen_response" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.ghf.GHF.get_bands">
@@ -1097,8 +1099,9 @@ converts all attributes of a method to cupy objects or gpu4pyscf objects.</p>
 </dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.hf.RHF">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.hf.</span></span><span class="sig-name descname"><span class="pre">RHF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([0.,</span> <span class="pre">0.,</span> <span class="pre">0.])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/hf.html#RHF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.hf.RHF" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.hf.</span></span><span class="sig-name descname"><span class="pre">RHF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/hf.html#RHF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.hf.RHF" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyscf.pbc.scf.hf.SCF" title="pyscf.pbc.scf.hf.SCF"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCF</span></code></a></p>
+<p>PBC RHF at a single point (default: gamma point).</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.hf.RHF.CCSD">
 <span class="sig-name descname"><span class="pre">CCSD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.hf.RHF.CCSD" title="Link to this definition">#</a></dt>
@@ -1171,6 +1174,12 @@ environment.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pyscf.pbc.scf.hf.RHF.Gradients">
+<span class="sig-name descname"><span class="pre">Gradients</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/hf.html#RHF.Gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.hf.RHF.Gradients" title="Link to this definition">#</a></dt>
+<dd><p>Hook to create object for analytical nuclear gradients.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.hf.RHF.MP2">
 <span class="sig-name descname"><span class="pre">MP2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.hf.RHF.MP2" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -1190,14 +1199,8 @@ print orbital coefficients; Mulliken population analysis; Diople moment.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.hf.RHF.gen_response">
-<span class="sig-name descname"><span class="pre">gen_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_occ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">singlet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.hf.RHF.gen_response" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">gen_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_occ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">singlet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_nlc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.hf.RHF.gen_response" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyscf.pbc.scf.hf.RHF.nuc_grad_method">
-<span class="sig-name descname"><span class="pre">nuc_grad_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/hf.html#RHF.nuc_grad_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.hf.RHF.nuc_grad_method" title="Link to this definition">#</a></dt>
-<dd><p>Hook to create object for analytical nuclear gradients.</p>
-</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.hf.RHF.spin_square">
@@ -1250,7 +1253,7 @@ converts all attributes of a method to cupy objects or gpu4pyscf objects.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.hf.SCF">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.hf.</span></span><span class="sig-name descname"><span class="pre">SCF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([0.,</span> <span class="pre">0.,</span> <span class="pre">0.])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/hf.html#SCF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.hf.SCF" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.hf.</span></span><span class="sig-name descname"><span class="pre">SCF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/hf.html#SCF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.hf.SCF" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pyscf.scf.html#pyscf.scf.hf.SCF" title="pyscf.scf.hf.SCF"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCF</span></code></a></p>
 <p>SCF base class adapted for PBCs.</p>
 <dl>
@@ -1269,6 +1272,12 @@ MDF model is favored for better accuracy.  See also <a class="reference internal
 </dl>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf.pbc.scf.hf.SCF.Gradients">
+<span class="sig-name descname"><span class="pre">Gradients</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/hf.html#SCF.Gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.hf.SCF.Gradients" title="Link to this definition">#</a></dt>
+<dd><p>Hook to create object for analytical nuclear gradients.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.hf.SCF.analyze">
 <span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_meta_lowdin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/hf.html#SCF.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.hf.SCF.analyze" title="Link to this definition">#</a></dt>
@@ -1359,6 +1368,11 @@ the same molecule with different ordering of atoms.</p>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf.pbc.scf.hf.SCF.gen_response">
+<span class="sig-name descname"><span class="pre">gen_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_occ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/hf.html#SCF.gen_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.hf.SCF.gen_response" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.hf.SCF.get_bands">
@@ -1538,6 +1552,18 @@ RSDF: range-separation density fitting</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pyscf.pbc.scf.hf.SCF.multigrid_numint">
+<span class="sig-name descname"><span class="pre">multigrid_numint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/hf.html#SCF.multigrid_numint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.hf.SCF.multigrid_numint" title="Link to this definition">#</a></dt>
+<dd><p>Apply the MultiGrid algorithm for XC numerical integartion</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf.pbc.scf.hf.SCF.nuc_grad_method">
+<span class="sig-name descname"><span class="pre">nuc_grad_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/hf.html#SCF.nuc_grad_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.hf.SCF.nuc_grad_method" title="Link to this definition">#</a></dt>
+<dd><p>Hook to create object for analytical nuclear gradients.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.hf.SCF.reset">
 <span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/hf.html#SCF.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.hf.SCF.reset" title="Link to this definition">#</a></dt>
 <dd><p>Reset cell and relevant attributes associated to the old cell object</p>
@@ -1607,6 +1633,11 @@ RSDF: range-separation density fitting</p>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyscf.pbc.scf.hf.gen_response">
+<span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.hf.</span></span><span class="sig-name descname"><span class="pre">gen_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_occ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">singlet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_nlc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/hf.html#gen_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.hf.gen_response" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.hf.get_bands">
@@ -1747,9 +1778,9 @@ basis defined by <code class="docutils literal notranslate"><span class="pre">ce
 <p>Generalized Hartree-Fock for periodic systems with k-point sampling</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.kghf.KGHF">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.kghf.</span></span><span class="sig-name descname"><span class="pre">KGHF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[0.,</span> <span class="pre">0.,</span> <span class="pre">0.]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/kghf.html#KGHF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.kghf.KGHF" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.kghf.</span></span><span class="sig-name descname"><span class="pre">KGHF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/kghf.html#KGHF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.kghf.KGHF" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyscf.pbc.scf.khf.KSCF" title="pyscf.pbc.scf.khf.KSCF"><code class="xref py py-class docutils literal notranslate"><span class="pre">KSCF</span></code></a></p>
-<p>GHF class for PBCs.</p>
+<p>PBC GHF with k-point sampling (default: gamma point).</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.kghf.KGHF.CCSD">
 <span class="sig-name descname"><span class="pre">CCSD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.kghf.KGHF.CCSD" title="Link to this definition">#</a></dt>
@@ -1839,12 +1870,10 @@ print orbital coefficients; Mulliken population analysis; Dipole moment</p>
 <dd><p>Convert given mean-field object to GHF</p>
 </dd></dl>
 
-<dl class="py method">
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.kghf.KGHF.gen_response">
-<span class="sig-name descname"><span class="pre">gen_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_occ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_j</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.kghf.KGHF.gen_response" title="Link to this definition">#</a></dt>
-<dd><p>Generate a function to compute the product of KGHF response function and
-KGHF density matrices.</p>
-</dd></dl>
+<span class="sig-name descname"><span class="pre">gen_response</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">NotImplemented</span></em><a class="headerlink" href="#pyscf.pbc.scf.kghf.KGHF.gen_response" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.kghf.KGHF.get_bands">
@@ -2132,7 +2161,7 @@ The results are equivalent to the corresponding supercell calculation.</p>
 </dl>
 </dd>
 <dt>Kwargs:</dt><dd><dl class="simple">
-<dt>kpts_band<span class="classifier">(3,) ndarray</span></dt><dd><p>A list of arbitrary “band” k-point at which to evalute the matrix.</p>
+<dt>kpts_band<span class="classifier">(3,) ndarray</span></dt><dd><p>A list of arbitrary “band” k-point at which to evaluate the matrix.</p>
 </dd>
 </dl>
 </dd>
@@ -2259,8 +2288,9 @@ the density matrix to the basis set defined by <code class="docutils literal not
 </dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.khf.KRHF">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.khf.</span></span><span class="sig-name descname"><span class="pre">KRHF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[0.,</span> <span class="pre">0.,</span> <span class="pre">0.]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/khf.html#KRHF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.khf.KRHF" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.khf.</span></span><span class="sig-name descname"><span class="pre">KRHF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/khf.html#KRHF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.khf.KRHF" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyscf.pbc.scf.khf.KSCF" title="pyscf.pbc.scf.khf.KSCF"><code class="xref py py-class docutils literal notranslate"><span class="pre">KSCF</span></code></a></p>
+<p>RHF class with k-point sampling (default: gamma point).</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.khf.KRHF.CCSD">
 <span class="sig-name descname"><span class="pre">CCSD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.khf.KRHF.CCSD" title="Link to this definition">#</a></dt>
@@ -2333,6 +2363,12 @@ environment.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pyscf.pbc.scf.khf.KRHF.Gradients">
+<span class="sig-name descname"><span class="pre">Gradients</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/khf.html#KRHF.Gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.khf.KRHF.Gradients" title="Link to this definition">#</a></dt>
+<dd><p>Hook to create object for analytical nuclear gradients.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.khf.KRHF.MP2">
 <span class="sig-name descname"><span class="pre">MP2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.khf.KRHF.MP2" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -2362,7 +2398,7 @@ of functions/methods to be executed in pipe.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.khf.KRHF.gen_response">
-<span class="sig-name descname"><span class="pre">gen_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_occ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">singlet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.khf.KRHF.gen_response" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">gen_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_occ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">singlet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_nlc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.khf.KRHF.gen_response" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -2375,12 +2411,6 @@ of functions/methods to be executed in pipe.</p>
 <span class="sig-name descname"><span class="pre">mulliken_meta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_orth_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ANO'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/khf.html#KRHF.mulliken_meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.khf.KRHF.mulliken_meta" title="Link to this definition">#</a></dt>
 <dd><p>A modified Mulliken population analysis, based on meta-Lowdin AOs.
 The results are equivalent to the corresponding supercell calculation.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyscf.pbc.scf.khf.KRHF.nuc_grad_method">
-<span class="sig-name descname"><span class="pre">nuc_grad_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/khf.html#KRHF.nuc_grad_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.khf.KRHF.nuc_grad_method" title="Link to this definition">#</a></dt>
-<dd><p>Hook to create object for analytical nuclear gradients.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -2411,7 +2441,7 @@ converts all attributes of a method to cupy objects or gpu4pyscf objects.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.khf.KSCF">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.khf.</span></span><span class="sig-name descname"><span class="pre">KSCF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[0.,</span> <span class="pre">0.,</span> <span class="pre">0.]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/khf.html#KSCF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.khf.KSCF" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.khf.</span></span><span class="sig-name descname"><span class="pre">KSCF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/khf.html#KSCF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.khf.KSCF" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyscf.pbc.scf.hf.SCF" title="pyscf.pbc.scf.hf.SCF"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCF</span></code></a></p>
 <p>SCF base class with k-point sampling.</p>
 <p>Compared to molecular SCF, some members such as mo_coeff, mo_occ
@@ -2913,7 +2943,7 @@ three methods</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.khf.KSCF.reset">
-<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.khf.KSCF.reset" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/khf.html#KSCF.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.khf.KSCF.reset" title="Link to this definition">#</a></dt>
 <dd><p>Reset cell and relevant attributes associated to the old cell object</p>
 </dd></dl>
 
@@ -3001,6 +3031,11 @@ print orbital coefficients; Mulliken population analysis; Dipole moment</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="pyscf.pbc.scf.khf.gen_response">
+<span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.khf.</span></span><span class="sig-name descname"><span class="pre">gen_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_occ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">singlet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_nlc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/khf.html#gen_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.khf.gen_response" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.khf.get_fermi">
 <span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.khf.</span></span><span class="sig-name descname"><span class="pre">get_fermi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_energy_kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_occ_kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/khf.html#get_fermi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.khf.get_fermi" title="Link to this definition">#</a></dt>
 <dd><p>Fermi level</p>
@@ -3044,7 +3079,7 @@ separately.  It needs to be Hermitian.</p>
 </dl>
 </dd>
 <dt>Kwargs:</dt><dd><dl class="simple">
-<dt>kpts_band<span class="classifier">(k,3) ndarray</span></dt><dd><p>A list of arbitrary “band” k-points at which to evalute the matrix.</p>
+<dt>kpts_band<span class="classifier">(k,3) ndarray</span></dt><dd><p>A list of arbitrary “band” k-points at which to evaluate the matrix.</p>
 </dd>
 </dl>
 </dd>
@@ -3065,7 +3100,7 @@ or list of vj if the input dm_kpts is a list of DMs</p>
 </dl>
 </dd>
 <dt>Kwargs:</dt><dd><dl class="simple">
-<dt>kpts_band<span class="classifier">(3,) ndarray</span></dt><dd><p>A list of arbitrary “band” k-point at which to evalute the matrix.</p>
+<dt>kpts_band<span class="classifier">(3,) ndarray</span></dt><dd><p>A list of arbitrary “band” k-point at which to evaluate the matrix.</p>
 </dd>
 </dl>
 </dd>
@@ -3243,7 +3278,7 @@ variables are saved to the file specified by the attribute mf.chkfile.</p>
 </dl>
 </dd>
 <dt>Kwargs:</dt><dd><dl class="simple">
-<dt>kpts_band<span class="classifier">(3,) ndarray</span></dt><dd><p>A list of arbitrary “band” k-point at which to evalute the matrix.</p>
+<dt>kpts_band<span class="classifier">(3,) ndarray</span></dt><dd><p>A list of arbitrary “band” k-point at which to evaluate the matrix.</p>
 </dd>
 </dl>
 </dd>
@@ -3326,6 +3361,12 @@ the same molecule with different ordering of atoms.</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pyscf.pbc.scf.khf_ksymm.KsymAdaptedKSCF.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/khf_ksymm.html#KsymAdaptedKSCF.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.khf_ksymm.KsymAdaptedKSCF.reset" title="Link to this definition">#</a></dt>
+<dd><p>Reset cell and relevant attributes associated to the old cell object</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.khf_ksymm.KsymAdaptedKSCF.sfx2c1e">
 <span class="sig-name descname"><span class="pre">sfx2c1e</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/khf_ksymm.html#KsymAdaptedKSCF.sfx2c1e"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.khf_ksymm.KsymAdaptedKSCF.sfx2c1e" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -3383,9 +3424,9 @@ the same molecule with different ordering of atoms.</p>
 <p>Restricted open-shell Hartree-Fock for periodic systems with k-point sampling</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.krohf.KROHF">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.krohf.</span></span><span class="sig-name descname"><span class="pre">KROHF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[0.,</span> <span class="pre">0.,</span> <span class="pre">0.]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/krohf.html#KROHF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.krohf.KROHF" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.krohf.</span></span><span class="sig-name descname"><span class="pre">KROHF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/krohf.html#KROHF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.krohf.KROHF" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyscf.pbc.scf.khf.KRHF" title="pyscf.pbc.scf.khf.KRHF"><code class="xref py py-class docutils literal notranslate"><span class="pre">KRHF</span></code></a></p>
-<p>UHF class with k-point sampling.</p>
+<p>PBC ROHF class with k-point sampling (default: gamma point).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.krohf.KROHF.CCSD">
 <span class="sig-name descname"><span class="pre">CCSD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyscf.pbc.scf.krohf.KROHF.CCSD" title="Link to this definition">#</a></dt>
@@ -3436,7 +3477,7 @@ virtual subspaces separatedly (without change occupancy).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.krohf.KROHF.gen_response">
-<span class="sig-name descname"><span class="pre">gen_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_occ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_j</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.krohf.KROHF.gen_response" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">gen_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_occ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_j</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_nlc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.krohf.KROHF.gen_response" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -3720,9 +3761,9 @@ The results are equivalent to the corresponding supercell calculation.</p>
 </dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.kuhf.KUHF">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.kuhf.</span></span><span class="sig-name descname"><span class="pre">KUHF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[0.,</span> <span class="pre">0.,</span> <span class="pre">0.]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/kuhf.html#KUHF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.kuhf.KUHF" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.kuhf.</span></span><span class="sig-name descname"><span class="pre">KUHF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/kuhf.html#KUHF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.kuhf.KUHF" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyscf.pbc.scf.khf.KSCF" title="pyscf.pbc.scf.khf.KSCF"><code class="xref py py-class docutils literal notranslate"><span class="pre">KSCF</span></code></a></p>
-<p>UHF class with k-point sampling.</p>
+<p>UHF class with k-point sampling (default: gamma point).</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.kuhf.KUHF.CCSD">
 <span class="sig-name descname"><span class="pre">CCSD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.kuhf.KUHF.CCSD" title="Link to this definition">#</a></dt>
@@ -3795,6 +3836,12 @@ environment.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pyscf.pbc.scf.kuhf.KUHF.Gradients">
+<span class="sig-name descname"><span class="pre">Gradients</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/kuhf.html#KUHF.Gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.kuhf.KUHF.Gradients" title="Link to this definition">#</a></dt>
+<dd><p>Hook to create object for analytical nuclear gradients.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.kuhf.KUHF.MP2">
 <span class="sig-name descname"><span class="pre">MP2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.kuhf.KUHF.MP2" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -3858,7 +3905,7 @@ virtual subspaces separatedly (without change occupancy).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.kuhf.KUHF.gen_response">
-<span class="sig-name descname"><span class="pre">gen_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_occ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_j</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.kuhf.KUHF.gen_response" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">gen_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_occ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_j</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_nlc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.kuhf.KUHF.gen_response" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -4083,12 +4130,6 @@ The results are equivalent to the corresponding supercell calculation.</p>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="pyscf.pbc.scf.kuhf.KUHF.nuc_grad_method">
-<span class="sig-name descname"><span class="pre">nuc_grad_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/kuhf.html#KUHF.nuc_grad_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.kuhf.KUHF.nuc_grad_method" title="Link to this definition">#</a></dt>
-<dd><p>Hook to create object for analytical nuclear gradients.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.kuhf.KUHF.spin_square">
 <span class="sig-name descname"><span class="pre">spin_square</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/kuhf.html#KUHF.spin_square"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.kuhf.KUHF.spin_square" title="Link to this definition">#</a></dt>
 <dd><p>Spin square and multiplicity of UHF determinant</p>
@@ -4233,6 +4274,11 @@ virtual subspaces separatedly (without change occupancy).</p>
 <span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.kuhf.</span></span><span class="sig-name descname"><span class="pre">energy_elec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dm_kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h1e_kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vhf_kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/kuhf.html#energy_elec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.kuhf.energy_elec" title="Link to this definition">#</a></dt>
 <dd><p>Following pyscf.scf.hf.energy_elec()</p>
 </dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyscf.pbc.scf.kuhf.gen_response">
+<span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.kuhf.</span></span><span class="sig-name descname"><span class="pre">gen_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_occ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_j</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_nlc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/kuhf.html#gen_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.kuhf.gen_response" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.kuhf.get_fermi">
@@ -4413,9 +4459,9 @@ The results are equivalent to the corresponding supercell calculation.</p>
 </dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.rohf.ROHF">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.rohf.</span></span><span class="sig-name descname"><span class="pre">ROHF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([0.,</span> <span class="pre">0.,</span> <span class="pre">0.])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/rohf.html#ROHF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.rohf.ROHF" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.rohf.</span></span><span class="sig-name descname"><span class="pre">ROHF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/rohf.html#ROHF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.rohf.ROHF" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyscf.pbc.scf.hf.RHF" title="pyscf.pbc.scf.hf.RHF"><code class="xref py py-class docutils literal notranslate"><span class="pre">RHF</span></code></a></p>
-<p>ROHF class for PBCs.</p>
+<p>ROHF class for PBCs at a single point (default: gamma point).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.rohf.ROHF.CCSD">
 <span class="sig-name descname"><span class="pre">CCSD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyscf.pbc.scf.rohf.ROHF.CCSD" title="Link to this definition">#</a></dt>
@@ -4471,11 +4517,9 @@ virtual subspaces separatedly (without change occupancy).</p>
 <span class="sig-name descname"><span class="pre">energy_elec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h1e</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vhf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.rohf.ROHF.energy_elec" title="Link to this definition">#</a></dt>
 <dd><p>Electronic part of Hartree-Fock energy, for given core hamiltonian and
 HF potential</p>
-<p>… math:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">E</span> <span class="o">=</span> \<span class="n">sum_</span><span class="p">{</span><span class="n">ij</span><span class="p">}</span><span class="n">h_</span><span class="p">{</span><span class="n">ij</span><span class="p">}</span> \<span class="n">gamma_</span><span class="p">{</span><span class="n">ji</span><span class="p">}</span>
-  <span class="o">+</span> \<span class="n">frac</span><span class="p">{</span><span class="mi">1</span><span class="p">}{</span><span class="mi">2</span><span class="p">}</span>\<span class="n">sum_</span><span class="p">{</span><span class="n">ijkl</span><span class="p">}</span> \<span class="n">gamma_</span><span class="p">{</span><span class="n">ji</span><span class="p">}</span>\<span class="n">gamma_</span><span class="p">{</span><span class="n">lk</span><span class="p">}</span> \<span class="n">langle</span> <span class="n">ik</span><span class="o">||</span><span class="n">jl</span>\<span class="n">rangle</span>
-</pre></div>
-</div>
+<div class="math notranslate nohighlight">
+\[E = \sum_{ij}h_{ij} \gamma_{ji}
+  + \frac{1}{2}\sum_{ijkl} \gamma_{ji}\gamma_{lk} \langle ik||jl\rangle\]</div>
 <p>Note this function has side effects which cause mf.scf_summary updated.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>mf : an instance of SCF class</p>
@@ -4508,7 +4552,7 @@ HF potential</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.rohf.ROHF.gen_response">
-<span class="sig-name descname"><span class="pre">gen_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_occ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_j</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.rohf.ROHF.gen_response" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">gen_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_occ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_j</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_nlc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.rohf.ROHF.gen_response" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -4550,15 +4594,13 @@ See also <code class="xref py py-func docutils literal notranslate"><span class=
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.rohf.ROHF.get_occ">
 <span class="sig-name descname"><span class="pre">get_occ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_energy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.rohf.ROHF.get_occ" title="Link to this definition">#</a></dt>
-<dd><p>Label the occupancies for each orbital.
-NOTE the occupancies are not assigned based on the orbital energy ordering.
-The first N orbitals are assigned to be occupied orbitals.</p>
+<dd><p>Label the occupancies for each orbital.</p>
 <p>Examples:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span><span class="n">atom</span><span class="o">=</span><span class="s1">&#39;H 0 0 0; O 0 0 1.1&#39;</span><span class="p">,</span> <span class="n">spin</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">hf</span><span class="o">.</span><span class="n">SCF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">energy</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">10.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mf</span><span class="o">.</span><span class="n">get_occ</span><span class="p">(</span><span class="n">energy</span><span class="p">)</span>
-<span class="go">array([2, 2, 2, 2, 1, 0])</span>
+<span class="go">array([2, 2, 0, 2, 1, 2])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -4766,7 +4808,8 @@ Q. Sun, arXiv:2302.11307</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.rsjk.RangeSeparatedJKBuilder.reset">
 <span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/rsjk.html#RangeSeparatedJKBuilder.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.rsjk.RangeSeparatedJKBuilder.reset" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Clean up intermediates</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.rsjk.RangeSeparatedJKBuilder.to_gpu">
@@ -4906,9 +4949,9 @@ JCP 104, 9047 (1996); DOI:10.1063/1.471637</p>
 </dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.uhf.UHF">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.uhf.</span></span><span class="sig-name descname"><span class="pre">UHF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([0.,</span> <span class="pre">0.,</span> <span class="pre">0.])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/uhf.html#UHF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.uhf.UHF" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.uhf.</span></span><span class="sig-name descname"><span class="pre">UHF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/uhf.html#UHF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.uhf.UHF" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyscf.pbc.scf.hf.SCF" title="pyscf.pbc.scf.hf.SCF"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCF</span></code></a></p>
-<p>UHF class for PBCs.</p>
+<p>UHF class for PBCs at a single point (default: gamma point).</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.uhf.UHF.CCSD">
 <span class="sig-name descname"><span class="pre">CCSD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.uhf.UHF.CCSD" title="Link to this definition">#</a></dt>
@@ -4981,6 +5024,12 @@ environment.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pyscf.pbc.scf.uhf.UHF.Gradients">
+<span class="sig-name descname"><span class="pre">Gradients</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/uhf.html#UHF.Gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.uhf.UHF.Gradients" title="Link to this definition">#</a></dt>
+<dd><p>Hook to create object for analytical nuclear gradients.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.uhf.UHF.MP2">
 <span class="sig-name descname"><span class="pre">MP2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.uhf.UHF.MP2" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -5044,7 +5093,7 @@ virtual subspaces separatedly (without change occupancy).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.uhf.UHF.gen_response">
-<span class="sig-name descname"><span class="pre">gen_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_occ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_j</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.uhf.UHF.gen_response" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">gen_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_occ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_j</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_nlc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscf.pbc.scf.uhf.UHF.gen_response" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -5495,6 +5544,11 @@ converts all attributes of a method to cupy objects or gpu4pyscf objects.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="pyscf.pbc.scf.uhf.gen_response">
+<span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.uhf.</span></span><span class="sig-name descname"><span class="pre">gen_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_occ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_j</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_nlc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/uhf.html#gen_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.uhf.gen_response" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.uhf.init_guess_by_chkfile">
 <span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.uhf.</span></span><span class="sig-name descname"><span class="pre">init_guess_by_chkfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chkfile_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf/uhf.html#init_guess_by_chkfile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.uhf.init_guess_by_chkfile" title="Link to this definition">#</a></dt>
 <dd><p>Read the HF results from checkpoint file and make the density matrix
@@ -5509,6 +5563,12 @@ for UHF initial guess.</p>
 <section id="module-pyscf.pbc.scf">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyscf.pbc.scf" title="Link to this heading">#</a></h2>
 <p>Hartree-Fock for periodic systems</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyscf.pbc.scf.GHF">
+<span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.</span></span><span class="sig-name descname"><span class="pre">GHF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf.html#GHF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.GHF" title="Link to this definition">#</a></dt>
+<dd><p>GHF class for PBCs at a single point (default: gamma point).</p>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.HF">
 <span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.</span></span><span class="sig-name descname"><span class="pre">HF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf.html#HF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.HF" title="Link to this definition">#</a></dt>
@@ -5562,7 +5622,8 @@ for UHF initial guess.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.RHF">
 <span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.</span></span><span class="sig-name descname"><span class="pre">RHF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf.html#RHF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.RHF" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>PBC RHF at a single point (default: gamma point).</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.RKS">
@@ -5570,9 +5631,21 @@ for UHF initial guess.</p>
 <dd></dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="pyscf.pbc.scf.ROHF">
+<span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.</span></span><span class="sig-name descname"><span class="pre">ROHF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf.html#ROHF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.ROHF" title="Link to this definition">#</a></dt>
+<dd><p>ROHF class for PBCs at a single point (default: gamma point).</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.ROKS">
 <span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.</span></span><span class="sig-name descname"><span class="pre">ROKS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf.html#ROKS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.ROKS" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyscf.pbc.scf.UHF">
+<span class="sig-prename descclassname"><span class="pre">pyscf.pbc.scf.</span></span><span class="sig-name descname"><span class="pre">UHF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/pbc/scf.html#UHF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.pbc.scf.UHF" title="Link to this definition">#</a></dt>
+<dd><p>UHF class for PBCs at a single point (default: gamma point).</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyscf.pbc.scf.UKS">
@@ -5638,7 +5711,7 @@ for UHF initial guess.</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.ghf.GHF.MP2"><code class="docutils literal notranslate"><span class="pre">GHF.MP2()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.ghf.GHF.analyze"><code class="docutils literal notranslate"><span class="pre">GHF.analyze()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.ghf.GHF.convert_from_"><code class="docutils literal notranslate"><span class="pre">GHF.convert_from_()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.ghf.GHF.gen_response"><code class="docutils literal notranslate"><span class="pre">GHF.gen_response()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.ghf.GHF.gen_response"><code class="docutils literal notranslate"><span class="pre">GHF.gen_response</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.ghf.GHF.get_bands"><code class="docutils literal notranslate"><span class="pre">GHF.get_bands()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.ghf.GHF.get_grad"><code class="docutils literal notranslate"><span class="pre">GHF.get_grad()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.ghf.GHF.get_hcore"><code class="docutils literal notranslate"><span class="pre">GHF.get_hcore()</span></code></a></li>
@@ -5667,11 +5740,11 @@ for UHF initial guess.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf.pbc.scf.hf">pyscf.pbc.scf.hf module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.RHF"><code class="docutils literal notranslate"><span class="pre">RHF</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.RHF.CCSD"><code class="docutils literal notranslate"><span class="pre">RHF.CCSD()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.RHF.Gradients"><code class="docutils literal notranslate"><span class="pre">RHF.Gradients()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.RHF.MP2"><code class="docutils literal notranslate"><span class="pre">RHF.MP2()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.RHF.analyze"><code class="docutils literal notranslate"><span class="pre">RHF.analyze()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.RHF.convert_from_"><code class="docutils literal notranslate"><span class="pre">RHF.convert_from_()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.RHF.gen_response"><code class="docutils literal notranslate"><span class="pre">RHF.gen_response()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.RHF.nuc_grad_method"><code class="docutils literal notranslate"><span class="pre">RHF.nuc_grad_method()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.RHF.spin_square"><code class="docutils literal notranslate"><span class="pre">RHF.spin_square()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.RHF.stability"><code class="docutils literal notranslate"><span class="pre">RHF.stability()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.RHF.to_gpu"><code class="docutils literal notranslate"><span class="pre">RHF.to_gpu()</span></code></a></li>
@@ -5679,6 +5752,7 @@ for UHF initial guess.</p>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.SCF"><code class="docutils literal notranslate"><span class="pre">SCF</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.SCF.Gradients"><code class="docutils literal notranslate"><span class="pre">SCF.Gradients()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.SCF.analyze"><code class="docutils literal notranslate"><span class="pre">SCF.analyze()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.SCF.build"><code class="docutils literal notranslate"><span class="pre">SCF.build()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.SCF.check_sanity"><code class="docutils literal notranslate"><span class="pre">SCF.check_sanity()</span></code></a></li>
@@ -5688,6 +5762,7 @@ for UHF initial guess.</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.SCF.dump_flags"><code class="docutils literal notranslate"><span class="pre">SCF.dump_flags()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.SCF.energy_nuc"><code class="docutils literal notranslate"><span class="pre">SCF.energy_nuc()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.SCF.from_chk"><code class="docutils literal notranslate"><span class="pre">SCF.from_chk()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.SCF.gen_response"><code class="docutils literal notranslate"><span class="pre">SCF.gen_response()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.SCF.get_bands"><code class="docutils literal notranslate"><span class="pre">SCF.get_bands()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.SCF.get_hcore"><code class="docutils literal notranslate"><span class="pre">SCF.get_hcore()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.SCF.get_init_guess"><code class="docutils literal notranslate"><span class="pre">SCF.get_init_guess()</span></code></a></li>
@@ -5707,6 +5782,8 @@ for UHF initial guess.</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.SCF.mix_density_fit"><code class="docutils literal notranslate"><span class="pre">SCF.mix_density_fit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.SCF.mol"><code class="docutils literal notranslate"><span class="pre">SCF.mol</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.SCF.mulliken_pop"><code class="docutils literal notranslate"><span class="pre">SCF.mulliken_pop()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.SCF.multigrid_numint"><code class="docutils literal notranslate"><span class="pre">SCF.multigrid_numint()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.SCF.nuc_grad_method"><code class="docutils literal notranslate"><span class="pre">SCF.nuc_grad_method()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.SCF.reset"><code class="docutils literal notranslate"><span class="pre">SCF.reset()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.SCF.rs_density_fit"><code class="docutils literal notranslate"><span class="pre">SCF.rs_density_fit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.SCF.sfx2c1e"><code class="docutils literal notranslate"><span class="pre">SCF.sfx2c1e()</span></code></a></li>
@@ -5720,6 +5797,7 @@ for UHF initial guess.</p>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.dip_moment"><code class="docutils literal notranslate"><span class="pre">dip_moment()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.gen_response"><code class="docutils literal notranslate"><span class="pre">gen_response()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.get_bands"><code class="docutils literal notranslate"><span class="pre">get_bands()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.get_hcore"><code class="docutils literal notranslate"><span class="pre">get_hcore()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.hf.get_j"><code class="docutils literal notranslate"><span class="pre">get_j()</span></code></a></li>
@@ -5739,7 +5817,7 @@ for UHF initial guess.</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kghf.KGHF.MP2"><code class="docutils literal notranslate"><span class="pre">KGHF.MP2</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kghf.KGHF.analyze"><code class="docutils literal notranslate"><span class="pre">KGHF.analyze()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kghf.KGHF.convert_from_"><code class="docutils literal notranslate"><span class="pre">KGHF.convert_from_()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kghf.KGHF.gen_response"><code class="docutils literal notranslate"><span class="pre">KGHF.gen_response()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kghf.KGHF.gen_response"><code class="docutils literal notranslate"><span class="pre">KGHF.gen_response</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kghf.KGHF.get_bands"><code class="docutils literal notranslate"><span class="pre">KGHF.get_bands()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kghf.KGHF.get_grad"><code class="docutils literal notranslate"><span class="pre">KGHF.get_grad()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kghf.KGHF.get_hcore"><code class="docutils literal notranslate"><span class="pre">KGHF.get_hcore()</span></code></a></li>
@@ -5793,6 +5871,7 @@ for UHF initial guess.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf.pbc.scf.khf">pyscf.pbc.scf.khf module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf.KRHF"><code class="docutils literal notranslate"><span class="pre">KRHF</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf.KRHF.CCSD"><code class="docutils literal notranslate"><span class="pre">KRHF.CCSD()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf.KRHF.Gradients"><code class="docutils literal notranslate"><span class="pre">KRHF.Gradients()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf.KRHF.MP2"><code class="docutils literal notranslate"><span class="pre">KRHF.MP2()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf.KRHF.analyze"><code class="docutils literal notranslate"><span class="pre">KRHF.analyze()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf.KRHF.check_sanity"><code class="docutils literal notranslate"><span class="pre">KRHF.check_sanity()</span></code></a></li>
@@ -5800,7 +5879,6 @@ for UHF initial guess.</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf.KRHF.gen_response"><code class="docutils literal notranslate"><span class="pre">KRHF.gen_response()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf.KRHF.get_init_guess"><code class="docutils literal notranslate"><span class="pre">KRHF.get_init_guess()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf.KRHF.mulliken_meta"><code class="docutils literal notranslate"><span class="pre">KRHF.mulliken_meta()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf.KRHF.nuc_grad_method"><code class="docutils literal notranslate"><span class="pre">KRHF.nuc_grad_method()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf.KRHF.spin_square"><code class="docutils literal notranslate"><span class="pre">KRHF.spin_square()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf.KRHF.stability"><code class="docutils literal notranslate"><span class="pre">KRHF.stability()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf.KRHF.to_gpu"><code class="docutils literal notranslate"><span class="pre">KRHF.to_gpu()</span></code></a></li>
@@ -5869,6 +5947,7 @@ for UHF initial guess.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf.canonicalize"><code class="docutils literal notranslate"><span class="pre">canonicalize()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf.dip_moment"><code class="docutils literal notranslate"><span class="pre">dip_moment()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf.energy_elec"><code class="docutils literal notranslate"><span class="pre">energy_elec()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf.gen_response"><code class="docutils literal notranslate"><span class="pre">gen_response()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf.get_fermi"><code class="docutils literal notranslate"><span class="pre">get_fermi()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf.get_fock"><code class="docutils literal notranslate"><span class="pre">get_fock()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf.get_grad"><code class="docutils literal notranslate"><span class="pre">get_grad()</span></code></a></li>
@@ -5909,6 +5988,7 @@ for UHF initial guess.</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf_ksymm.KsymAdaptedKSCF.kmesh"><code class="docutils literal notranslate"><span class="pre">KsymAdaptedKSCF.kmesh</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf_ksymm.KsymAdaptedKSCF.kpts"><code class="docutils literal notranslate"><span class="pre">KsymAdaptedKSCF.kpts</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf_ksymm.KsymAdaptedKSCF.orbsym"><code class="docutils literal notranslate"><span class="pre">KsymAdaptedKSCF.orbsym</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf_ksymm.KsymAdaptedKSCF.reset"><code class="docutils literal notranslate"><span class="pre">KsymAdaptedKSCF.reset()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf_ksymm.KsymAdaptedKSCF.sfx2c1e"><code class="docutils literal notranslate"><span class="pre">KsymAdaptedKSCF.sfx2c1e()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf_ksymm.KsymAdaptedKSCF.to_khf"><code class="docutils literal notranslate"><span class="pre">KsymAdaptedKSCF.to_khf()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.khf_ksymm.KsymAdaptedKSCF.x2c"><code class="docutils literal notranslate"><span class="pre">KsymAdaptedKSCF.x2c()</span></code></a></li>
@@ -5964,6 +6044,7 @@ for UHF initial guess.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf.pbc.scf.kuhf">pyscf.pbc.scf.kuhf module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kuhf.KUHF"><code class="docutils literal notranslate"><span class="pre">KUHF</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kuhf.KUHF.CCSD"><code class="docutils literal notranslate"><span class="pre">KUHF.CCSD()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kuhf.KUHF.Gradients"><code class="docutils literal notranslate"><span class="pre">KUHF.Gradients()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kuhf.KUHF.MP2"><code class="docutils literal notranslate"><span class="pre">KUHF.MP2()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kuhf.KUHF.analyze"><code class="docutils literal notranslate"><span class="pre">KUHF.analyze()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kuhf.KUHF.canonicalize"><code class="docutils literal notranslate"><span class="pre">KUHF.canonicalize()</span></code></a></li>
@@ -5994,7 +6075,6 @@ for UHF initial guess.</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kuhf.KUHF.mulliken_meta_spin"><code class="docutils literal notranslate"><span class="pre">KUHF.mulliken_meta_spin()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kuhf.KUHF.mulliken_pop"><code class="docutils literal notranslate"><span class="pre">KUHF.mulliken_pop()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kuhf.KUHF.nelec"><code class="docutils literal notranslate"><span class="pre">KUHF.nelec</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kuhf.KUHF.nuc_grad_method"><code class="docutils literal notranslate"><span class="pre">KUHF.nuc_grad_method()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kuhf.KUHF.spin_square"><code class="docutils literal notranslate"><span class="pre">KUHF.spin_square()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kuhf.KUHF.stability"><code class="docutils literal notranslate"><span class="pre">KUHF.stability()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kuhf.KUHF.to_gpu"><code class="docutils literal notranslate"><span class="pre">KUHF.to_gpu()</span></code></a></li>
@@ -6004,6 +6084,7 @@ for UHF initial guess.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kuhf.canonicalize"><code class="docutils literal notranslate"><span class="pre">canonicalize()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kuhf.dip_moment"><code class="docutils literal notranslate"><span class="pre">dip_moment()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kuhf.energy_elec"><code class="docutils literal notranslate"><span class="pre">energy_elec()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kuhf.gen_response"><code class="docutils literal notranslate"><span class="pre">gen_response()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kuhf.get_fermi"><code class="docutils literal notranslate"><span class="pre">get_fermi()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kuhf.get_fock"><code class="docutils literal notranslate"><span class="pre">get_fock()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.kuhf.get_occ"><code class="docutils literal notranslate"><span class="pre">get_occ()</span></code></a></li>
@@ -6114,6 +6195,7 @@ for UHF initial guess.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf.pbc.scf.uhf">pyscf.pbc.scf.uhf module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.uhf.UHF"><code class="docutils literal notranslate"><span class="pre">UHF</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.uhf.UHF.CCSD"><code class="docutils literal notranslate"><span class="pre">UHF.CCSD()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.uhf.UHF.Gradients"><code class="docutils literal notranslate"><span class="pre">UHF.Gradients()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.uhf.UHF.MP2"><code class="docutils literal notranslate"><span class="pre">UHF.MP2()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.uhf.UHF.analyze"><code class="docutils literal notranslate"><span class="pre">UHF.analyze()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.uhf.UHF.canonicalize"><code class="docutils literal notranslate"><span class="pre">UHF.canonicalize()</span></code></a></li>
@@ -6150,10 +6232,12 @@ for UHF initial guess.</p>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.uhf.dip_moment"><code class="docutils literal notranslate"><span class="pre">dip_moment()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.uhf.gen_response"><code class="docutils literal notranslate"><span class="pre">gen_response()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.uhf.init_guess_by_chkfile"><code class="docutils literal notranslate"><span class="pre">init_guess_by_chkfile()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf.pbc.scf">Module contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.GHF"><code class="docutils literal notranslate"><span class="pre">GHF()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.HF"><code class="docutils literal notranslate"><span class="pre">HF()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.KGHF"><code class="docutils literal notranslate"><span class="pre">KGHF()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.KHF"><code class="docutils literal notranslate"><span class="pre">KHF()</span></code></a></li>
@@ -6166,7 +6250,9 @@ for UHF initial guess.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.KUKS"><code class="docutils literal notranslate"><span class="pre">KUKS()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.RHF"><code class="docutils literal notranslate"><span class="pre">RHF()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.RKS"><code class="docutils literal notranslate"><span class="pre">RKS()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.ROHF"><code class="docutils literal notranslate"><span class="pre">ROHF()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.ROKS"><code class="docutils literal notranslate"><span class="pre">ROKS()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.UHF"><code class="docutils literal notranslate"><span class="pre">UHF()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.pbc.scf.UKS"><code class="docutils literal notranslate"><span class="pre">UKS()</span></code></a></li>
 </ul>
 </li>
@@ -6214,7 +6300,7 @@ for UHF initial guess.</p>
 
   <p class="copyright">
     
-      © Copyright 2025, The PySCF Developers.
+      © Copyright 2026, The PySCF Developers.
       <br/>
     
   </p>

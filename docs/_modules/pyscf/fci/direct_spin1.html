@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=182a64a0"></script>
+    <script src="../../../_static/documentation_options.js?v=84389e84"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
@@ -51,7 +51,7 @@
     <link rel="search" title="Search" href="../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2.9" />
+  <meta name="docsearch:version" content="2.12" />
   </head>
   
   
@@ -512,18 +512,33 @@
     <span class="n">na</span><span class="p">,</span> <span class="n">nlinka</span> <span class="o">=</span> <span class="n">link_indexa</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
     <span class="n">nb</span><span class="p">,</span> <span class="n">nlinkb</span> <span class="o">=</span> <span class="n">link_indexb</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
     <span class="k">assert</span> <span class="n">fcivec</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">na</span><span class="o">*</span><span class="n">nb</span>
-    <span class="k">assert</span> <span class="n">fcivec</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">eri</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">numpy</span><span class="o">.</span><span class="n">float64</span>
-    <span class="n">ci1</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">fcivec</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">eri</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">numpy</span><span class="o">.</span><span class="n">float64</span>
+    <span class="k">if</span> <span class="n">fcivec</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">eri</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">:</span>
+        <span class="n">fcivec</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">fcivec</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
+        <span class="n">eri</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">eri</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
+        <span class="n">ci1</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">fcivec</span><span class="p">)</span>
+        <span class="n">libfci</span><span class="o">.</span><span class="n">FCIcontract_2e_spin1</span><span class="p">(</span>
+            <span class="n">eri</span><span class="o">.</span><span class="n">ctypes</span><span class="o">.</span><span class="n">data_as</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">),</span>
+            <span class="n">fcivec</span><span class="o">.</span><span class="n">ctypes</span><span class="o">.</span><span class="n">data_as</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">),</span>
+            <span class="n">ci1</span><span class="o">.</span><span class="n">ctypes</span><span class="o">.</span><span class="n">data_as</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">),</span>
+            <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">norb</span><span class="p">),</span>
+            <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">na</span><span class="p">),</span>
+            <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">nb</span><span class="p">),</span>
+            <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">nlinka</span><span class="p">),</span>
+            <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">nlinkb</span><span class="p">),</span>
+            <span class="n">link_indexa</span><span class="o">.</span><span class="n">ctypes</span><span class="o">.</span><span class="n">data_as</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">),</span>
+            <span class="n">link_indexb</span><span class="o">.</span><span class="n">ctypes</span><span class="o">.</span><span class="n">data_as</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">ci1</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">FCIvector</span><span class="p">)</span>
 
-    <span class="n">libfci</span><span class="o">.</span><span class="n">FCIcontract_2e_spin1</span><span class="p">(</span><span class="n">eri</span><span class="o">.</span><span class="n">ctypes</span><span class="o">.</span><span class="n">data_as</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">),</span>
-                                <span class="n">fcivec</span><span class="o">.</span><span class="n">ctypes</span><span class="o">.</span><span class="n">data_as</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">),</span>
-                                <span class="n">ci1</span><span class="o">.</span><span class="n">ctypes</span><span class="o">.</span><span class="n">data_as</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">),</span>
-                                <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">norb</span><span class="p">),</span>
-                                <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">na</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">nb</span><span class="p">),</span>
-                                <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">nlinka</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">nlinkb</span><span class="p">),</span>
-                                <span class="n">link_indexa</span><span class="o">.</span><span class="n">ctypes</span><span class="o">.</span><span class="n">data_as</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">),</span>
-                                <span class="n">link_indexb</span><span class="o">.</span><span class="n">ctypes</span><span class="o">.</span><span class="n">data_as</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">ci1</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">FCIvector</span><span class="p">)</span></div>
+    <span class="n">ciR</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">fcivec</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
+    <span class="n">ciI</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">fcivec</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
+    <span class="n">link_index</span> <span class="o">=</span> <span class="p">(</span><span class="n">link_indexa</span><span class="p">,</span> <span class="n">link_indexb</span><span class="p">)</span>
+    <span class="n">outR</span> <span class="o">=</span> <span class="n">contract_2e</span><span class="p">(</span><span class="n">eri</span><span class="p">,</span> <span class="n">ciR</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">,</span> <span class="n">link_index</span><span class="o">=</span><span class="n">link_index</span><span class="p">)</span>
+    <span class="n">outI</span> <span class="o">=</span> <span class="n">contract_2e</span><span class="p">(</span><span class="n">eri</span><span class="p">,</span> <span class="n">ciI</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">,</span> <span class="n">link_index</span><span class="o">=</span><span class="n">link_index</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">outR</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">imag</span> <span class="o">=</span> <span class="n">outI</span>
+    <span class="k">return</span> <span class="n">out</span></div>
 
 
 <div class="viewcode-block" id="make_hdiag">
@@ -826,6 +841,83 @@
     <span class="c1"># rdm3aab.transpose(4,5,0,1,2,3)+rdm3abb+rdm3abb.transpose(2,3,0,1,4,5)+rdm3abb.transpose(2,3,4,5,0,1), rdm3)</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">rdm1a</span><span class="p">,</span> <span class="n">rdm1b</span><span class="p">),</span> <span class="p">(</span><span class="n">rdm2aa</span><span class="p">,</span> <span class="n">rdm2ab</span><span class="p">,</span> <span class="n">rdm2bb</span><span class="p">),</span> <span class="p">(</span><span class="n">rdm3aaa</span><span class="p">,</span> <span class="n">rdm3aab</span><span class="p">,</span> <span class="n">rdm3abb</span><span class="p">,</span> <span class="n">rdm3bbb</span><span class="p">)</span></div>
 
+
+<div class="viewcode-block" id="make_rdm1234">
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.fci.html#pyscf.fci.direct_spin0_symm.make_rdm1234">[docs]</a>
+<span class="k">def</span> <span class="nf">make_rdm1234</span><span class="p">(</span><span class="n">fcivec</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">,</span> <span class="n">link_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reorder</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Spin traced 1-, 2-, 3, 4-particle density matrices.&#39;&#39;&#39;</span>
+    <span class="n">dm1</span><span class="p">,</span> <span class="n">dm2</span><span class="p">,</span> <span class="n">dm3</span><span class="p">,</span> <span class="n">dm4</span> <span class="o">=</span> <span class="n">rdm</span><span class="o">.</span><span class="n">make_dm1234</span><span class="p">(</span><span class="s1">&#39;FCI4pdm_kern_sf&#39;</span><span class="p">,</span> <span class="n">fcivec</span><span class="p">,</span> <span class="n">fcivec</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">reorder</span><span class="p">:</span>
+        <span class="n">dm1</span><span class="p">,</span> <span class="n">dm2</span><span class="p">,</span> <span class="n">dm3</span><span class="p">,</span> <span class="n">dm4</span> <span class="o">=</span> <span class="n">rdm</span><span class="o">.</span><span class="n">reorder_dm1234</span><span class="p">(</span><span class="n">dm1</span><span class="p">,</span> <span class="n">dm2</span><span class="p">,</span> <span class="n">dm3</span><span class="p">,</span> <span class="n">dm4</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dm1</span><span class="p">,</span> <span class="n">dm2</span><span class="p">,</span> <span class="n">dm3</span><span class="p">,</span> <span class="n">dm4</span></div>
+
+
+<div class="viewcode-block" id="make_rdm1234s">
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.fci.html#pyscf.fci.direct_spin0_symm.make_rdm1234s">[docs]</a>
+<span class="k">def</span> <span class="nf">make_rdm1234s</span><span class="p">(</span><span class="n">fcivec</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">,</span> <span class="n">link_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reorder</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&#39;&#39;&#39;Spin separated 1-, 2-, 3, 4-particle density matrices.</span>
+
+<span class="sd">    1pdm[p,q] = :math:`\langle q_\alpha^\dagger p_\alpha \rangle +</span>
+<span class="sd">                       \langle q_\beta^\dagger  p_\beta \rangle`;</span>
+<span class="sd">    2pdm[p,q,r,s] = :math:`\langle p_\alpha^\dagger r_\alpha^\dagger s_\alpha q_\alpha\rangle +</span>
+<span class="sd">                           \langle p_\beta^\dagger  r_\alpha^\dagger s_\alpha q_\beta\rangle +</span>
+<span class="sd">                           \langle p_\alpha^\dagger r_\beta^\dagger  s_\beta  q_\alpha\rangle +</span>
+<span class="sd">                           \langle p_\beta^\dagger  r_\beta^\dagger  s_\beta  q_\beta\rangle`.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">reorder</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;reorder=False not currently supported&#39;</span><span class="p">)</span>
+    <span class="n">ci_spinless</span> <span class="o">=</span> <span class="n">civec_spinless_repr</span><span class="p">([</span><span class="n">fcivec</span><span class="p">,],</span> <span class="n">norb</span><span class="p">,</span> <span class="p">[</span><span class="n">nelec</span><span class="p">,])</span>
+    <span class="n">rdm1</span><span class="p">,</span> <span class="n">rdm2</span><span class="p">,</span> <span class="n">rdm3</span><span class="p">,</span> <span class="n">rdm4</span> <span class="o">=</span> <span class="n">make_rdm1234</span><span class="p">(</span><span class="n">ci_spinless</span><span class="p">,</span> <span class="n">norb</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">nelec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">nelec</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">0</span><span class="p">))</span>
+
+    <span class="c1"># define slices</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">norb</span><span class="p">)</span>
+    <span class="n">beta</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">norb</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="n">rdm1a</span> <span class="o">=</span> <span class="n">rdm1</span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">]</span>
+    <span class="n">rdm1b</span> <span class="o">=</span> <span class="n">rdm1</span><span class="p">[</span><span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">]</span>
+    <span class="c1"># assert np.allclose(rdm1a+rdm1b, rdm1)</span>
+
+    <span class="n">rdm2aa</span> <span class="o">=</span> <span class="n">rdm2</span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">]</span>
+    <span class="n">rdm2ab</span> <span class="o">=</span> <span class="n">rdm2</span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">]</span>
+    <span class="n">rdm2bb</span> <span class="o">=</span> <span class="n">rdm2</span><span class="p">[</span><span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">]</span>
+    <span class="c1"># assert np.allclose(rdm2aa+rdm2bb+rdm2ab+rdm2ab.transpose(2,3,0,1), rdm2)</span>
+
+    <span class="n">rdm3aaa</span> <span class="o">=</span> <span class="n">rdm3</span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">]</span>
+    <span class="n">rdm3aab</span> <span class="o">=</span> <span class="n">rdm3</span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">]</span>
+    <span class="n">rdm3abb</span> <span class="o">=</span> <span class="n">rdm3</span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">]</span>
+    <span class="n">rdm3bbb</span> <span class="o">=</span> <span class="n">rdm3</span><span class="p">[</span><span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">]</span>
+    <span class="c1"># assert np.allclose(rdm3aaa+rdm3bbb+rdm3aab+rdm3aab.transpose(0,1,4,5,2,3)+\</span>
+    <span class="c1"># rdm3aab.transpose(4,5,0,1,2,3)+rdm3abb+rdm3abb.transpose(2,3,0,1,4,5)+rdm3abb.transpose(2,3,4,5,0,1), rdm3)</span>
+
+    <span class="n">rdm4aaaa</span> <span class="o">=</span> <span class="n">rdm4</span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">]</span>
+    <span class="n">rdm4aaab</span> <span class="o">=</span> <span class="n">rdm4</span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">]</span>
+    <span class="n">rdm4aabb</span> <span class="o">=</span> <span class="n">rdm4</span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">]</span>
+    <span class="n">rdm4abbb</span> <span class="o">=</span> <span class="n">rdm4</span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">]</span>
+    <span class="n">rdm4bbbb</span> <span class="o">=</span> <span class="n">rdm4</span><span class="p">[</span><span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">]</span>
+    <span class="c1"># assert numpy.allclose(</span>
+    <span class="c1">#     rdm4aaaa</span>
+    <span class="c1">#     + rdm4bbbb</span>
+    <span class="c1">#     + rdm4aaab</span>
+    <span class="c1">#     + rdm4aaab.transpose(0, 1, 2, 3, 6, 7, 4, 5)</span>
+    <span class="c1">#     + rdm4aaab.transpose(0, 1, 6, 7, 2, 3, 4, 5)</span>
+    <span class="c1">#     + rdm4aaab.transpose(6, 7, 0, 1, 2, 3, 4, 5)</span>
+    <span class="c1">#     + rdm4aabb</span>
+    <span class="c1">#     + rdm4aabb.transpose(0, 1, 4, 5, 2, 3, 6, 7)</span>
+    <span class="c1">#     + rdm4aabb.transpose(0, 1, 4, 5, 6, 7, 2, 3)</span>
+    <span class="c1">#     + rdm4aabb.transpose(4, 5, 2, 3, 0, 1, 6, 7)</span>
+    <span class="c1">#     + rdm4aabb.transpose(4, 5, 2, 3, 6, 7, 0, 1)</span>
+    <span class="c1">#     + rdm4abbb</span>
+    <span class="c1">#     + rdm4abbb.transpose(2, 3, 0, 1, 4, 5, 6, 7)</span>
+    <span class="c1">#     + rdm4abbb.transpose(2, 3, 4, 5, 0, 1, 6, 7)</span>
+    <span class="c1">#     + rdm4abbb.transpose(2, 3, 4, 5, 6, 7, 0, 1),</span>
+    <span class="c1">#     rdm4,</span>
+    <span class="c1"># )</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">(</span><span class="n">rdm1a</span><span class="p">,</span> <span class="n">rdm1b</span><span class="p">),</span>
+        <span class="p">(</span><span class="n">rdm2aa</span><span class="p">,</span> <span class="n">rdm2ab</span><span class="p">,</span> <span class="n">rdm2bb</span><span class="p">),</span>
+        <span class="p">(</span><span class="n">rdm3aaa</span><span class="p">,</span> <span class="n">rdm3aab</span><span class="p">,</span> <span class="n">rdm3abb</span><span class="p">,</span> <span class="n">rdm3bbb</span><span class="p">),</span>
+        <span class="p">(</span><span class="n">rdm4aaaa</span><span class="p">,</span> <span class="n">rdm4aaab</span><span class="p">,</span> <span class="n">rdm4aabb</span><span class="p">,</span> <span class="n">rdm4abbb</span><span class="p">,</span> <span class="n">rdm4bbbb</span><span class="p">),</span>
+    <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="trans_rdm1s">
@@ -1436,6 +1528,22 @@
         <span class="k">return</span> <span class="n">make_rdm123</span><span class="p">(</span><span class="n">fcivec</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">,</span> <span class="n">link_index</span><span class="p">,</span> <span class="n">reorder</span><span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="FCIBase.make_rdm1234s">
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.fci.html#pyscf.fci.direct_spin0_symm.FCIBase.make_rdm1234s">[docs]</a>
+    <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">make_rdm1234s</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">make_rdm1234s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fcivec</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">,</span> <span class="n">link_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reorder</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">nelec</span> <span class="o">=</span> <span class="n">_unpack_nelec</span><span class="p">(</span><span class="n">nelec</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">spin</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">make_rdm1234s</span><span class="p">(</span><span class="n">fcivec</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">,</span> <span class="n">link_index</span><span class="p">,</span> <span class="n">reorder</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FCIBase.make_rdm1234">
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.fci.html#pyscf.fci.direct_spin0_symm.FCIBase.make_rdm1234">[docs]</a>
+    <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">make_rdm1234</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">make_rdm1234</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fcivec</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">,</span> <span class="n">link_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reorder</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">nelec</span> <span class="o">=</span> <span class="n">_unpack_nelec</span><span class="p">(</span><span class="n">nelec</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">spin</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">make_rdm1234</span><span class="p">(</span><span class="n">fcivec</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">,</span> <span class="n">link_index</span><span class="p">,</span> <span class="n">reorder</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="FCIBase.make_rdm2">
 <a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.fci.html#pyscf.fci.direct_spin0_symm.FCIBase.make_rdm2">[docs]</a>
     <span class="k">def</span> <span class="nf">make_rdm2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fcivec</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">nelec</span><span class="p">,</span> <span class="n">link_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reorder</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
@@ -1538,7 +1646,7 @@
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;An 2D np array for FCI coefficients&#39;&#39;&#39;</span>
 
     <span class="c1"># Special cases for ndarray when the array was modified (through ufunc)</span>
-    <span class="k">def</span> <span class="nf">__array_wrap__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__array_wrap__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_scalar</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">out</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">out</span>
         <span class="k">elif</span> <span class="n">out</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">():</span>  <span class="c1"># if ufunc returns a scalar</span>
@@ -1591,7 +1699,7 @@
 
   <p class="copyright">
     
-      © Copyright 2025, The PySCF Developers.
+      © Copyright 2026, The PySCF Developers.
       <br/>
     
   </p>

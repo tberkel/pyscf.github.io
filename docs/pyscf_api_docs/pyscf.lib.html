@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=182a64a0"></script>
+    <script src="../_static/documentation_options.js?v=84389e84"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
@@ -54,7 +54,7 @@
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2.9" />
+  <meta name="docsearch:version" content="2.12" />
   </head>
   
   
@@ -355,6 +355,7 @@
 <li class="toctree-l1"><a class="reference internal" href="pyscf.hessian.html">pyscf.hessian package</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">pyscf.lib package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.lo.html">pyscf.lo package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyscf.mcpdft.html">pyscf.mcpdft package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.mcscf.html">pyscf.mcscf package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.mp.html">pyscf.mp package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.mrpt.html">pyscf.mrpt package</a></li>
@@ -390,7 +391,10 @@
 <li class="toctree-l2"><a class="reference internal" href="pyscf.pbc.x2c.html">pyscf.pbc.x2c package</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="pyscf.qmmm.html">pyscf.qmmm package</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="pyscf.qmmm.html">pyscf.qmmm package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyscf.qmmm.pbc.html">pyscf.qmmm.pbc package</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.scf.html">pyscf.scf package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.sgx.html">pyscf.sgx package</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="pyscf.solvent.html">pyscf.solvent package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -846,6 +850,12 @@ vector to extrapolate the vector.</p>
 </dd></dl>
 
 <dl class="py exception">
+<dt class="sig sig-object py" id="pyscf.lib.exceptions.DeprecationWarning">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.lib.exceptions.</span></span><span class="sig-name descname"><span class="pre">DeprecationWarning</span></span><a class="reference internal" href="../_modules/pyscf/lib/exceptions.html#DeprecationWarning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.lib.exceptions.DeprecationWarning" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">UserWarning</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
 <dt class="sig sig-object py" id="pyscf.lib.exceptions.LinearDependencyError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.lib.exceptions.</span></span><span class="sig-name descname"><span class="pre">LinearDependencyError</span></span><a class="reference internal" href="../_modules/pyscf/lib/exceptions.html#LinearDependencyError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.lib.exceptions.LinearDependencyError" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">RuntimeError</span></code></p>
@@ -873,6 +883,9 @@ vector to extrapolate the vector.</p>
 <section id="pyscf-lib-libcc-module">
 <h2>pyscf.lib.libcc module<a class="headerlink" href="#pyscf-lib-libcc-module" title="Link to this heading">#</a></h2>
 </section>
+<section id="pyscf-lib-libccsdt-module">
+<h2>pyscf.lib.libccsdt module<a class="headerlink" href="#pyscf-lib-libccsdt-module" title="Link to this heading">#</a></h2>
+</section>
 <section id="pyscf-lib-libcgto-module">
 <h2>pyscf.lib.libcgto module<a class="headerlink" href="#pyscf-lib-libcgto-module" title="Link to this heading">#</a></h2>
 </section>
@@ -899,6 +912,9 @@ vector to extrapolate the vector.</p>
 </section>
 <section id="pyscf-lib-libpbc-module">
 <h2>pyscf.lib.libpbc module<a class="headerlink" href="#pyscf-lib-libpbc-module" title="Link to this heading">#</a></h2>
+</section>
+<section id="pyscf-lib-libpdft-module">
+<h2>pyscf.lib.libpdft module<a class="headerlink" href="#pyscf-lib-libpdft-module" title="Link to this heading">#</a></h2>
 </section>
 <section id="pyscf-lib-libri-module">
 <h2>pyscf.lib.libri module<a class="headerlink" href="#pyscf-lib-libri-module" title="Link to this heading">#</a></h2>
@@ -1452,7 +1468,7 @@ irreps of each basis.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">lib</span><span class="p">,</span> <span class="n">symm</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span><span class="n">atom</span><span class="o">=</span><span class="s1">&#39;H 0 0 0; H 0 0 1&#39;</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s1">&#39;ccpvdz&#39;</span><span class="p">,</span> <span class="n">symmetry</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">symm_orb</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">vnuc_so</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">,</span> <span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">mol</span><span class="o">.</span><span class="n">intor</span><span class="p">(</span><span class="s1">&#39;int1e_nuc_sph&#39;</span><span class="p">),</span> <span class="n">c</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vnuc_so</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">intor</span><span class="p">(</span><span class="s1">&#39;int1e_nuc_sph&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">orbsym</span> <span class="o">=</span> <span class="n">symm</span><span class="o">.</span><span class="n">label_orb_symm</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">mol</span><span class="o">.</span><span class="n">irrep_name</span><span class="p">,</span> <span class="n">mol</span><span class="o">.</span><span class="n">symm_orb</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">lib</span><span class="o">.</span><span class="n">eigh_by_blocks</span><span class="p">(</span><span class="n">vnuc_so</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">orbsym</span><span class="p">)</span>
 <span class="go">(array([-4.50766885, -1.80666351, -1.7808565 , -1.7808565 , -1.74189134,</span>
@@ -1977,6 +1993,12 @@ Return value of post_kernel function is not required.</p>
 <dd><p>A hook to be run before the main body of kernel function is executed.
 Internal variables are exposed to pre_kernel through the “envs”
 dictionary.  Return value of pre_kernel function is not required.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf.lib.misc.StreamObject.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/lib/misc.html#StreamObject.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.lib.misc.StreamObject.reset" title="Link to this definition">#</a></dt>
+<dd><p>Clean up intermediates</p>
 </dd></dl>
 
 <dl class="py method">
@@ -2687,7 +2709,7 @@ context, the number OpenMP threads will be restored.</p>
 <p>Extension to numpy and scipy</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyscf.lib.numpy_helper.NPArrayWithTag">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.lib.numpy_helper.</span></span><span class="sig-name descname"><span class="pre">NPArrayWithTag</span></span><a class="reference internal" href="../_modules/pyscf/lib/numpy_helper.html#NPArrayWithTag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.lib.numpy_helper.NPArrayWithTag" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.lib.numpy_helper.</span></span><span class="sig-name descname"><span class="pre">NPArrayWithTag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strides</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/lib/numpy_helper.html#NPArrayWithTag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.lib.numpy_helper.NPArrayWithTag" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></p>
 </dd></dl>
 
@@ -2722,6 +2744,29 @@ of digits reaches <cite>ndigits</cite>. Default is None, meaning no padding.</p>
 <span class="go">[0, 3, 5]</span>
 </pre></div>
 </div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyscf.lib.numpy_helper.broadcast_mul">
+<span class="sig-prename descclassname"><span class="pre">pyscf.lib.numpy_helper.</span></span><span class="sig-name descname"><span class="pre">broadcast_mul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/lib/numpy_helper.html#broadcast_mul"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.lib.numpy_helper.broadcast_mul" title="Link to this definition">#</a></dt>
+<dd><p>Broadcasted entrywise multiplication.
+out[:, :, :] += a[:, :, :] * b[None, :, :]</p>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h3>
+<p>a : ndarray, C order, 3D.
+b : ndarray, C order, 2D.
+out : ndarray, optional</p>
+<blockquote>
+<div><p>Output matrix. A new one is allocated and zeroed if not provided.</p>
+</div></blockquote>
+</section>
+<section id="returns">
+<h3>Returns<a class="headerlink" href="#returns" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>ndarray</dt><dd><p>a * b</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py function">
@@ -2806,6 +2851,24 @@ the flattened array is used.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="pyscf.lib.numpy_helper.contract">
+<span class="sig-prename descclassname"><span class="pre">pyscf.lib.numpy_helper.</span></span><span class="sig-name descname"><span class="pre">contract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subscripts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/lib/numpy_helper.html#contract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.lib.numpy_helper.contract" title="Link to this definition">#</a></dt>
+<dd><p>Perform tensor contraction using einsum notation
+C = alpha * einsum(subscripts, A, B) + beta * out</p>
+<dl class="simple">
+<dt>Kwargs:</dt><dd><dl class="simple">
+<dt>alpha<span class="classifier">scalar, optional</span></dt><dd><p>Default value is 1.</p>
+</dd>
+<dt>beta<span class="classifier">scalar, optional</span></dt><dd><p>Default value is 0.</p>
+</dd>
+<dt>out<span class="classifier">ndarray, optional</span></dt><dd><p>Output tensor to store the result.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="pyscf.lib.numpy_helper.ddot">
 <span class="sig-prename descclassname"><span class="pre">pyscf.lib.numpy_helper.</span></span><span class="sig-name descname"><span class="pre">ddot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/lib/numpy_helper.html#ddot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.lib.numpy_helper.ddot" title="Link to this definition">#</a></dt>
 <dd><p>Matrix-matrix multiplication for double precision arrays</p>
@@ -2845,7 +2908,7 @@ the flattened array is used.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyscf.lib.numpy_helper.einsum">
-<span class="sig-prename descclassname"><span class="pre">pyscf.lib.numpy_helper.</span></span><span class="sig-name descname"><span class="pre">einsum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subscripts</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/lib/numpy_helper.html#einsum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.lib.numpy_helper.einsum" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pyscf.lib.numpy_helper.</span></span><span class="sig-name descname"><span class="pre">einsum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scripts</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/lib/numpy_helper.html#einsum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.lib.numpy_helper.einsum" title="Link to this definition">#</a></dt>
 <dd><p>Perform a more efficient einsum via reshaping to a matrix multiply.</p>
 <p>Current differences compared to numpy.einsum:
 This assumes that each repeated index is actually summed (i.e. no ‘i,i-&gt;i’)
@@ -2857,8 +2920,8 @@ be explicitly specified (i.e. ‘ij,j-&gt;i’ and not ‘ij,j’).</p>
 <dt class="sig sig-object py" id="pyscf.lib.numpy_helper.entrywise_mul">
 <span class="sig-prename descclassname"><span class="pre">pyscf.lib.numpy_helper.</span></span><span class="sig-name descname"><span class="pre">entrywise_mul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/lib/numpy_helper.html#entrywise_mul"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.lib.numpy_helper.entrywise_mul" title="Link to this definition">#</a></dt>
 <dd><p>Entrywise multiplication of two matrices.</p>
-<section id="parameters">
-<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h3>
+<section id="id1">
+<h3>Parameters<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>a : ndarray
 b : ndarray
 out : ndarray, optional</p>
@@ -2866,8 +2929,8 @@ out : ndarray, optional</p>
 <div><p>Output matrix. A new one is allocated if not provided.</p>
 </div></blockquote>
 </section>
-<section id="returns">
-<h3>Returns<a class="headerlink" href="#returns" title="Link to this heading">#</a></h3>
+<section id="id2">
+<h3>Returns<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <dl class="simple">
 <dt>ndarray</dt><dd><p>a * b</p>
 </dd>
@@ -2948,8 +3011,8 @@ out : ndarray, optional</p>
 <dt class="sig sig-object py" id="pyscf.lib.numpy_helper.inplace_transpose_scale">
 <span class="sig-prename descclassname"><span class="pre">pyscf.lib.numpy_helper.</span></span><span class="sig-name descname"><span class="pre">inplace_transpose_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/lib/numpy_helper.html#inplace_transpose_scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.lib.numpy_helper.inplace_transpose_scale" title="Link to this definition">#</a></dt>
 <dd><p>In-place parallel scaling and transposition of a square matrix</p>
-<section id="id1">
-<h3>Parameters<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<section id="id3">
+<h3>Parameters<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <dl class="simple">
 <dt>a<span class="classifier">ndarray</span></dt><dd><p>Square matrix of size (n,n) to be scaled and transposed.
 Does not need to be contiguous; lda can exceed n.</p>
@@ -3014,15 +3077,15 @@ should be the same as the size of <cite>v</cite>.</p>
 <dt class="sig sig-object py" id="pyscf.lib.numpy_helper.leading_dimension_order">
 <span class="sig-prename descclassname"><span class="pre">pyscf.lib.numpy_helper.</span></span><span class="sig-name descname"><span class="pre">leading_dimension_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/lib/numpy_helper.html#leading_dimension_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.lib.numpy_helper.leading_dimension_order" title="Link to this definition">#</a></dt>
 <dd><p>Return the leading dimension and the order of a matrix.</p>
-<section id="id2">
-<h3>Parameters<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<section id="id4">
+<h3>Parameters<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <dl class="simple">
 <dt>a<span class="classifier">ndarray</span></dt><dd><p>2D array.</p>
 </dd>
 </dl>
 </section>
-<section id="id3">
-<h3>Returns<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<section id="id5">
+<h3>Returns<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <dl class="simple">
 <dt>lda<span class="classifier">int</span></dt><dd><p>Leading dimension of the array – the stride between rows or columns.</p>
 </dd>
@@ -3070,8 +3133,8 @@ row of the input 2d array.</p>
 <dt class="sig sig-object py" id="pyscf.lib.numpy_helper.omatcopy">
 <span class="sig-prename descclassname"><span class="pre">pyscf.lib.numpy_helper.</span></span><span class="sig-name descname"><span class="pre">omatcopy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/lib/numpy_helper.html#omatcopy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.lib.numpy_helper.omatcopy" title="Link to this definition">#</a></dt>
 <dd><p>Copies a matrix.</p>
-<section id="id4">
-<h3>Parameters<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<section id="id6">
+<h3>Parameters<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <dl class="simple">
 <dt>a<span class="classifier">ndarray</span></dt><dd><p>Matrix to be copied. The order of the matrix is preserved.
 a can be either row or column major.</p>
@@ -3080,8 +3143,8 @@ a can be either row or column major.</p>
 </dd>
 </dl>
 </section>
-<section id="id5">
-<h3>Returns<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<section id="id7">
+<h3>Returns<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
 <dl class="simple">
 <dt>out<span class="classifier">ndarray</span></dt><dd><p>Copy of a with the same order.</p>
 </dd>
@@ -3393,6 +3456,7 @@ lower : return the lower or upper diagonal factorization</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf.lib.exceptions">pyscf.lib.exceptions module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.exceptions.BasisNotFoundError"><code class="docutils literal notranslate"><span class="pre">BasisNotFoundError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.exceptions.DeprecationWarning"><code class="docutils literal notranslate"><span class="pre">DeprecationWarning</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.exceptions.LinearDependencyError"><code class="docutils literal notranslate"><span class="pre">LinearDependencyError</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.exceptions.PointGroupSymmetryError"><code class="docutils literal notranslate"><span class="pre">PointGroupSymmetryError</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.exceptions.WfnSymmetryError"><code class="docutils literal notranslate"><span class="pre">WfnSymmetryError</span></code></a></li>
@@ -3401,6 +3465,7 @@ lower : return the lower or upper diagonal factorization</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf-lib-libagf2-module">pyscf.lib.libagf2 module</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf-lib-libao2mo-module">pyscf.lib.libao2mo module</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf-lib-libcc-module">pyscf.lib.libcc module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf-lib-libccsdt-module">pyscf.lib.libccsdt module</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf-lib-libcgto-module">pyscf.lib.libcgto module</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf-lib-libcvhf-module">pyscf.lib.libcvhf module</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf-lib-libdft-module">pyscf.lib.libdft module</a></li>
@@ -3410,6 +3475,7 @@ lower : return the lower or upper diagonal factorization</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf-lib-libnp-helper-module">pyscf.lib.libnp_helper module</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf-lib-libopenblas-r0-f650aae0-module">pyscf.lib.libopenblas-r0-f650aae0 module</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf-lib-libpbc-module">pyscf.lib.libpbc module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf-lib-libpdft-module">pyscf.lib.libpdft module</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf-lib-libri-module">pyscf.lib.libri module</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf-lib-libsolvent-module">pyscf.lib.libsolvent module</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf-lib-libxc-itrf-module">pyscf.lib.libxc_itrf module</a></li>
@@ -3498,6 +3564,7 @@ lower : return the lower or upper diagonal factorization</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.misc.StreamObject.kernel"><code class="docutils literal notranslate"><span class="pre">StreamObject.kernel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.misc.StreamObject.post_kernel"><code class="docutils literal notranslate"><span class="pre">StreamObject.post_kernel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.misc.StreamObject.pre_kernel"><code class="docutils literal notranslate"><span class="pre">StreamObject.pre_kernel()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.misc.StreamObject.reset"><code class="docutils literal notranslate"><span class="pre">StreamObject.reset()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.misc.StreamObject.run"><code class="docutils literal notranslate"><span class="pre">StreamObject.run()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.misc.StreamObject.set"><code class="docutils literal notranslate"><span class="pre">StreamObject.set()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.misc.StreamObject.stdout"><code class="docutils literal notranslate"><span class="pre">StreamObject.stdout</span></code></a></li>
@@ -3586,10 +3653,12 @@ lower : return the lower or upper diagonal factorization</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf.lib.numpy_helper">pyscf.lib.numpy_helper module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.numpy_helper.NPArrayWithTag"><code class="docutils literal notranslate"><span class="pre">NPArrayWithTag</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.numpy_helper.base_repr_int"><code class="docutils literal notranslate"><span class="pre">base_repr_int()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.numpy_helper.broadcast_mul"><code class="docutils literal notranslate"><span class="pre">broadcast_mul()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.numpy_helper.cartesian_prod"><code class="docutils literal notranslate"><span class="pre">cartesian_prod()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.numpy_helper.cleanse"><code class="docutils literal notranslate"><span class="pre">cleanse()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.numpy_helper.cond"><code class="docutils literal notranslate"><span class="pre">cond()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.numpy_helper.condense"><code class="docutils literal notranslate"><span class="pre">condense()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.numpy_helper.contract"><code class="docutils literal notranslate"><span class="pre">contract()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.numpy_helper.ddot"><code class="docutils literal notranslate"><span class="pre">ddot()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.numpy_helper.direct_sum"><code class="docutils literal notranslate"><span class="pre">direct_sum()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.lib.numpy_helper.dot"><code class="docutils literal notranslate"><span class="pre">dot()</span></code></a></li>
@@ -3678,7 +3747,7 @@ lower : return the lower or upper diagonal factorization</p>
 
   <p class="copyright">
     
-      © Copyright 2025, The PySCF Developers.
+      © Copyright 2026, The PySCF Developers.
       <br/>
     
   </p>

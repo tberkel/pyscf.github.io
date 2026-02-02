@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../../_static/documentation_options.js?v=182a64a0"></script>
+    <script src="../../../../_static/documentation_options.js?v=84389e84"></script>
     <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
@@ -51,7 +51,7 @@
     <link rel="search" title="Search" href="../../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2.9" />
+  <meta name="docsearch:version" content="2.12" />
   </head>
   
   
@@ -413,6 +413,20 @@
 
 <span class="n">libpbc</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">load_library</span><span class="p">(</span><span class="s1">&#39;libpbc&#39;</span><span class="p">)</span>
 
+<div class="viewcode-block" id="verify_cint_backend">
+<a class="viewcode-back" href="../../../../pyscf_api_docs/pyscf.pbc.df.html#pyscf.pbc.df.incore.verify_cint_backend">[docs]</a>
+<span class="k">def</span> <span class="nf">verify_cint_backend</span><span class="p">():</span>
+    <span class="n">compiled_with_qcint</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="o">.</span><span class="n">in_dll</span><span class="p">(</span><span class="n">libpbc</span><span class="p">,</span> <span class="s1">&#39;compiled_with_qcint&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+    <span class="k">if</span> <span class="n">compiled_with_qcint</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">libpbc</span><span class="p">,</span> <span class="s1">&#39;CINTgout2e_simd1&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s1">&#39;PySCF was compiled with qcint, but the loaded integral library is cint&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">libpbc</span><span class="p">,</span> <span class="s1">&#39;CINTgout2e_simd1&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s1">&#39;PySCF was compiled with cint, but the loaded integral library is qcint&#39;</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="make_auxcell">
 <a class="viewcode-back" href="../../../../pyscf_api_docs/pyscf.pbc.df.html#pyscf.pbc.df.incore.make_auxcell">[docs]</a>
 <span class="k">def</span> <span class="nf">make_auxcell</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">auxbasis</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -456,7 +470,7 @@
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">auxcell_or_auxbasis</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
         <span class="n">auxcell</span> <span class="o">=</span> <span class="n">make_auxcell</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">auxcell_or_auxbasis</span><span class="p">)</span>
 
-<span class="c1"># For some unkown reasons, the pre-decontracted basis &#39;is slower than</span>
+<span class="c1"># For some unknown reasons, the pre-decontracted basis &#39;is slower than</span>
 <span class="c1">## Slighly decontract basis. The decontracted basis has better locality.</span>
 <span class="c1">## The locality can be used in the lattice sum to reduce cost.</span>
 <span class="c1">#    if shls_slice is None and cell.nao_nr() &lt; 200:</span>
@@ -661,7 +675,7 @@
             <span class="c1"># Add penalty 1e-2 to reduce the screening error</span>
             <span class="n">log_cutoff</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">cutoff</span><span class="o">*</span><span class="mf">1e-2</span><span class="p">)</span> <span class="o">*</span> <span class="n">LOG_ADJUST</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">cintopt</span> <span class="o">=</span> <span class="n">_vhf</span><span class="o">.</span><span class="n">make_cintopt</span><span class="p">(</span><span class="n">supmol</span><span class="o">.</span><span class="n">_atm</span><span class="p">,</span> <span class="n">supmol</span><span class="o">.</span><span class="n">_bas</span><span class="p">,</span> <span class="n">supmol</span><span class="o">.</span><span class="n">_env</span><span class="p">,</span> <span class="n">intor</span><span class="p">)</span>
+            <span class="n">cintopt</span> <span class="o">=</span> <span class="n">_vhf</span><span class="o">.</span><span class="n">make_cintopt</span><span class="p">(</span><span class="n">atm</span><span class="p">,</span> <span class="n">bas</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">intor</span><span class="p">)</span>
 
         <span class="n">sindex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_q_cond</span><span class="p">(</span><span class="n">supmol</span><span class="p">)</span>
         <span class="n">ovlp_mask</span> <span class="o">=</span> <span class="n">sindex</span> <span class="o">&gt;</span> <span class="n">log_cutoff</span>
@@ -700,9 +714,11 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">assert</span> <span class="n">nkpts</span> <span class="o">&lt;</span> <span class="mi">45000</span>
             <span class="n">fill</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;PBCfill_nr3c_kk</span><span class="si">{</span><span class="n">aosym</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="n">LATSUM_BLKSIZE</span> <span class="o">=</span> <span class="mi">8</span>
             <span class="n">nkpts_ij</span> <span class="o">=</span> <span class="n">nkpts</span> <span class="o">*</span> <span class="n">nkpts</span>
-            <span class="n">cache_size</span> <span class="o">=</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">dijk</span> <span class="o">*</span> <span class="n">bvk_ncells</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">cache_size</span><span class="p">,</span> <span class="n">dijk</span> <span class="o">*</span> <span class="n">nkpts</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span>
+            <span class="n">cache_size</span> <span class="o">=</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">dijk</span> <span class="o">*</span> <span class="n">bvk_ncells</span><span class="o">*</span><span class="n">LATSUM_BLKSIZE</span> <span class="o">+</span> <span class="n">cache_size</span><span class="p">,</span> <span class="n">dijk</span> <span class="o">*</span> <span class="n">nkpts</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span>
                           <span class="n">dijk</span> <span class="o">*</span> <span class="n">bvk_ncells</span> <span class="o">*</span> <span class="n">nkpts</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="n">cache_size</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="o">**</span><span class="mi">31</span>
             <span class="k">if</span> <span class="n">aosym</span> <span class="o">==</span> <span class="s1">&#39;s2&#39;</span> <span class="ow">and</span> <span class="n">reindex_k</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">kk_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nkpts</span><span class="o">*</span><span class="n">nkpts</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
                 <span class="n">kk_mask</span><span class="p">[</span><span class="n">reindex_k</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
@@ -721,6 +737,7 @@
             <span class="n">reindex_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">reindex_k</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
             <span class="n">nkpts_ij</span> <span class="o">=</span> <span class="n">reindex_k</span><span class="o">.</span><span class="n">size</span>
 
+        <span class="n">verify_cint_backend</span><span class="p">()</span>
         <span class="n">drv</span> <span class="o">=</span> <span class="n">libpbc</span><span class="o">.</span><span class="n">PBCfill_nr3c_drv</span>
 
         <span class="c1"># is_pbcintor controls whether to use memory efficient functions</span>
@@ -1170,7 +1187,7 @@
 
   <p class="copyright">
     
-      © Copyright 2025, The PySCF Developers.
+      © Copyright 2026, The PySCF Developers.
       <br/>
     
   </p>

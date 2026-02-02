@@ -1,0 +1,696 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Overview &#8212; PySCF</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/pyscf-pst.css?v=ed6b5f64" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=84389e84"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user/pyscf-forge';</script>
+    <link rel="icon" href="../_static/favicon-32x32.png"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="particle-particle Random Phase Approximation (ppRPA)" href="pprpa.html" />
+    <link rel="prev" title="GPU Acceleration (GPU4PySCF)" href="gpu.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2.12" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo-64x64.png" class="logo__image only-light" alt=""/>
+    <img src="../_static/logo-64x64.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">PySCF</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about.html">
+    About
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyscf/pyscf" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about.html">
+    About
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyscf/pyscf" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="install.html">How to install PySCF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">How to use PySCF</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Building molecules and crystals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="gto.html">Molecular structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pbcgto.html">Crystal structure</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Electronic structure methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="scf.html">Self-consistent field (SCF) methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dft.html">Density functional theory (DFT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mp.html">Second-order Møller–Plesset perturbation theory (MP2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gw.html">GW approximation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci.html">Configuration interaction (CISD and FCI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cc.html">Coupled-cluster theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adc.html">Algebraic diagrammatic construction (ADC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agf2.html">Auxiliary second-order Green’s function perturbation theory (AGF2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcscf.html">Multi-configuration self-consistent field (MCSCF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcpdft.html">Multi-configuration pair-density functional theory (MC-PDFT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mrpt.html">Multi-reference perturbation theory (MRPT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tddft.html">Time-dependent Hartree-Fock and density functional theory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Other functionalities</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="solvent.html">Solvation models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qmmm.html">QM/MM methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="md.html">Molecular Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="df.html">Density fitting (DF)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="pbc.html">Periodic boundary conditions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="pbc/scf.html">SCF and DFT methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pbc/df.html">Density fitting for crystalline calculations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pbc/mix_mol.html">Mixing PBC and molecular modules</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="eph.html">Electron-phonon coupling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lo.html">Localized orbitals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sgx.html">Seminumerical exchange (SGX)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geomopt.html">Geometry optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">GPU Acceleration (GPU4PySCF)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">PySCF-forge</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pprpa.html">particle-particle Random Phase Approximation (ppRPA)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extensions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="extensions.html">Extensions</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">User Guide</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Overview</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h1>
+<p>PySCF-forge is a staging ground for new methods or features that are expected
+to be made available in the main PySCF distribution. Not all new features are
+appropriate for PySCF-forge; experimental or niche features are more
+appropriately distributed as <a class="reference internal" href="extensions.html"><span class="doc std std-doc">Extensions</span></a>.</p>
+<section id="how-to-install-pyscf-forge">
+<h2>How to install PySCF-forge<a class="headerlink" href="#how-to-install-pyscf-forge" title="Link to this heading">#</a></h2>
+<p>PySCF-forge is distributed as a
+<a class="reference external" href="https://github.com/pyscf/pyscf-forge">separate GitHub repository</a>.
+Like PySCF, it can be installed via pip,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyscf</span><span class="o">-</span><span class="n">forge</span>
+<span class="c1"># or</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pyscf</span><span class="o">/</span><span class="n">pyscf</span><span class="o">-</span><span class="n">forge</span>
+</pre></div>
+</div>
+<p>or cloned and built from source.  As long as PySCF-forge can be found in your
+<code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code>, its modules can be imported as if they were native to PySCF.
+Alternatively, you can define the <code class="docutils literal notranslate"><span class="pre">PYSCF_EXT_PATH</span></code> environment variable to
+point to your local <code class="docutils literal notranslate"><span class="pre">pyscf-forge</span></code> directory,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">PYSCF_EXT_PATH</span><span class="o">=/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">pyscf</span><span class="o">-</span><span class="n">forge</span>
+</pre></div>
+</div>
+<p>PySCF will read the <code class="docutils literal notranslate"><span class="pre">PYSCF_EXT_PATH</span></code> environment variable and load modules from
+this path at runtime. For more details of the <code class="docutils literal notranslate"><span class="pre">PYSCF_EXT_PATH</span></code> environment
+variable, see the
+<a class="reference internal" href="extensions.html#environment-variable-pyscf-ext-path"><span class="std std-ref">Extensions</span></a> section.  For
+example,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">mcpdft</span>  <span class="c1"># mcpdft is in pyscf-forge</span>
+<span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
+    <span class="n">atom</span> <span class="o">=</span> <span class="s1">&#39;O 0 0 0; O 0 0 1.2&#39;</span><span class="p">,</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;ccpvdz&#39;</span><span class="p">,</span>
+    <span class="n">spin</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">RHF</span><span class="p">()</span><span class="o">.</span><span class="n">run</span> <span class="p">()</span>
+<span class="c1"># Calling the MC-PDFT method provided by the pyscf-forge modules</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">mcpdft</span><span class="o">.</span><span class="n">CASCI</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="s1">&#39;tPBE&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="how-to-develop-in-pyscf-forge">
+<h2>How to develop in PySCF-forge<a class="headerlink" href="#how-to-develop-in-pyscf-forge" title="Link to this heading">#</a></h2>
+<p>If you are developing new features or modifying the code in PySCF-forge, an
+editable installation is recommended.  By configuring the package in editable
+mode, you can modify existing modules and add new features to PySCF-forge.
+After cloning the library to your local repository, there are two ways to
+enable the editable installation.</p>
+<section id="method-1-using-pip-for-editable-installation">
+<h3>Method 1. Using pip for editable installation<a class="headerlink" href="#method-1-using-pip-for-editable-installation" title="Link to this heading">#</a></h3>
+<p>Install the package with the following pip command,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">deps</span> <span class="o">-</span><span class="n">e</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">pyscf</span><span class="o">-</span><span class="n">forge</span>
+</pre></div>
+</div>
+<p>This command creates a <code class="docutils literal notranslate"><span class="pre">.pth</span></code> file in <code class="docutils literal notranslate"><span class="pre">~/.local/lib/python3.*/site-packages/</span></code>
+or other Python runtime paths. It is recommended to use this method with Python
+virtual environments.</p>
+</section>
+<section id="method-2-setting-an-environment-variable">
+<h3>Method 2. Setting an environment variable<a class="headerlink" href="#method-2-setting-an-environment-variable" title="Link to this heading">#</a></h3>
+<p>As described above, you can also define the <code class="docutils literal notranslate"><span class="pre">PYSCF_EXT_PATH</span></code> environment
+variable to point to your local PySCF-forge directory,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">PYSCF_EXT_PATH</span><span class="o">=/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">pyscf</span><span class="o">-</span><span class="n">forge</span>
+</pre></div>
+</div>
+</section>
+<section id="adding-new-features-an-example">
+<h3>Adding new features: An example<a class="headerlink" href="#adding-new-features-an-example" title="Link to this heading">#</a></h3>
+<p>Suppose you want to create a new module in PySCF-forge that provides a new
+feature called <code class="docutils literal notranslate"><span class="pre">abc</span></code>.  You can follow these steps to add the module,</p>
+<ol class="arabic simple">
+<li><p>Install PySCF-forge in editable installation mode.</p></li>
+<li><p>Create a folder named <code class="docutils literal notranslate"><span class="pre">pyscf-forge/pyscf/abc</span></code>.  Due to the editable
+installation mode, this folder can be readily imported as a regular <code class="docutils literal notranslate"><span class="pre">pyscf</span></code>
+module.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">abc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">abc</span><span class="p">)</span>
+<span class="go">&lt;module &#39;pyscf.abc&#39; (namespace)&gt;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">__path__</span><span class="p">)</span>
+<span class="go">_NamespacePath([&#39;path/to/pyscf-forge/pyscf/abc&#39;])</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Add Python code files to the <code class="docutils literal notranslate"><span class="pre">pyscf-forge/pyscf/abc</span></code> directory.  This
+process is similar to developing new methods for PySCF.  For example, you
+can add the following Python files into the <code class="docutils literal notranslate"><span class="pre">pyscf-forge/pyscf/abc</span></code> folder,</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pyscf-forge
+├── ...
+└── pyscf
+    ├── ...
+    └── abc
+        ├── __init__.py
+        ├── rabc.py 
+        └── uabc.py
+</pre></div>
+</div>
+</section>
+<section id="path-conflicts">
+<h3>Path Conflicts<a class="headerlink" href="#path-conflicts" title="Link to this heading">#</a></h3>
+<p>What if you want to add a feature to a module that already exists in PySCF?
+For example, if you want to add a new method, like <code class="docutils literal notranslate"><span class="pre">pp_rpa.py</span></code>, to the
+<code class="docutils literal notranslate"><span class="pre">pyscf/tdscf</span></code> folder, this could conflict with the existing <code class="docutils literal notranslate"><span class="pre">pyscf.tdscf</span></code>
+module in the PySCF core repository.  Adding features to existing modules
+requires more a slightly more complex configuration.</p>
+<p>To import the <code class="docutils literal notranslate"><span class="pre">pp_rpa</span></code> module from the PySCF-forge repository, you will need to
+modify the <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file of the PySCF core module.  Add the following line
+of code to modify the <code class="docutils literal notranslate"><span class="pre">__path__</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">pyscf.tdscf</span></code> module,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">__path__</span> <span class="o">=</span> <span class="nb">__import__</span><span class="p">(</span><span class="s1">&#39;pkgutil&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extend_path</span><span class="p">(</span><span class="n">__path__</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This command extends the search path of the <code class="docutils literal notranslate"><span class="pre">tdscf</span></code> module, resulting in the
+<code class="docutils literal notranslate"><span class="pre">__path__</span></code> attribute being set to</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;/path/to/pyscf/pyscf/tdscf&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;/path/to/pyscf-forge/pyscf/tdscf&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This configuration allows Python to locate and load the new <code class="docutils literal notranslate"><span class="pre">pp_rpa.py</span></code> module
+from the extended directory in PySCF-forge.</p>
+<p>Note that the PySCF core <code class="docutils literal notranslate"><span class="pre">tdscf</span></code> folder already contains an <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file.
+To avoid overwriting the existing <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file in PySCF during the
+installation of PySCF-forge, you should not add an <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file in the
+<code class="docutils literal notranslate"><span class="pre">pyscf-forge/pyscf/tdscf</span></code> directory.</p>
+<p>The structure of PySCF and PySCF-forge can be organized as follows,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pyscf
+├── ...
+└── pyscf
+    ├── ...
+    └── tdscf
+        ├── __init__.py  // modify the __path__ attribute in pyscf core module
+        ├── rhf.py
+        ├── rks.py
+        └── ...
+
+pyscf-forge
+├── ...
+└── pyscf
+    ├── ...
+    └── tdscf  // no __init__.py file in pyscf-forge
+        └── pp_rpa.py
+</pre></div>
+</div>
+<p>When installing the PySCF-forge wheels using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> in the normal
+installation mode, the <code class="docutils literal notranslate"><span class="pre">pp_rpa.py</span></code> file will be added to the <code class="docutils literal notranslate"><span class="pre">pyscf/tdscf</span></code>
+folder, integrating seamlessly as part of the regular PySCF module.  After this
+standard installation, there is no need to adjust the <code class="docutils literal notranslate"><span class="pre">__path__</span></code> attribute, as
+all features and modules are located within the same directory.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-install-pyscf-forge">How to install PySCF-forge</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-develop-in-pyscf-forge">How to develop in PySCF-forge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-using-pip-for-editable-installation">Method 1. Using pip for editable installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-setting-an-environment-variable">Method 2. Setting an environment variable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-new-features-an-example">Adding new features: An example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#path-conflicts">Path Conflicts</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/pyscf/pyscf.github.io/edit/master/source/user/pyscf-forge.md">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, The PySCF Developers.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

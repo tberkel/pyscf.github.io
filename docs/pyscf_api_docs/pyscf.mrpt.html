@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=182a64a0"></script>
+    <script src="../_static/documentation_options.js?v=84389e84"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
@@ -52,7 +52,7 @@
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2.9" />
+  <meta name="docsearch:version" content="2.12" />
   </head>
   
   
@@ -353,6 +353,7 @@
 <li class="toctree-l1"><a class="reference internal" href="pyscf.hessian.html">pyscf.hessian package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.lib.html">pyscf.lib package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.lo.html">pyscf.lo package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyscf.mcpdft.html">pyscf.mcpdft package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.mcscf.html">pyscf.mcscf package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.mp.html">pyscf.mp package</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">pyscf.mrpt package</a></li>
@@ -388,7 +389,10 @@
 <li class="toctree-l2"><a class="reference internal" href="pyscf.pbc.x2c.html">pyscf.pbc.x2c package</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="pyscf.qmmm.html">pyscf.qmmm package</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="pyscf.qmmm.html">pyscf.qmmm package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyscf.qmmm.pbc.html">pyscf.qmmm.pbc package</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.scf.html">pyscf.scf package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyscf.sgx.html">pyscf.sgx package</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="pyscf.solvent.html">pyscf.solvent package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -464,11 +468,19 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
 </section>
+<section id="module-pyscf.mrpt.dfnevpt2">
+<span id="pyscf-mrpt-dfnevpt2-module"></span><h2>pyscf.mrpt.dfnevpt2 module<a class="headerlink" href="#module-pyscf.mrpt.dfnevpt2" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyscf.mrpt.dfnevpt2.prange">
+<span class="sig-prename descclassname"><span class="pre">pyscf.mrpt.dfnevpt2.</span></span><span class="sig-name descname"><span class="pre">prange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/mrpt/dfnevpt2.html#prange"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.mrpt.dfnevpt2.prange" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
 <section id="module-pyscf.mrpt.nevpt2">
 <span id="pyscf-mrpt-nevpt2-module"></span><h2>pyscf.mrpt.nevpt2 module<a class="headerlink" href="#module-pyscf.mrpt.nevpt2" title="Link to this heading">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyscf.mrpt.nevpt2.NEVPT">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.mrpt.nevpt2.</span></span><span class="sig-name descname"><span class="pre">NEVPT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/mrpt/nevpt2.html#NEVPT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.mrpt.nevpt2.NEVPT" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscf.mrpt.nevpt2.</span></span><span class="sig-name descname"><span class="pre">NEVPT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density_fit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/mrpt/nevpt2.html#NEVPT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.mrpt.nevpt2.NEVPT" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pyscf.lib.html#pyscf.lib.misc.StreamObject" title="pyscf.lib.misc.StreamObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamObject</span></code></a></p>
 <p>Strongly contracted NEVPT2</p>
 <dl class="simple">
@@ -565,7 +577,8 @@ the DFT mesh grids etc.).</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyscf.mrpt.nevpt2.NEVPT.reset">
 <span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf/mrpt/nevpt2.html#NEVPT.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf.mrpt.nevpt2.NEVPT.reset" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Clean up intermediates</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -734,6 +747,10 @@ the DFT mesh grids etc.).</p>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf.mrpt.dfnevpt2">pyscf.mrpt.dfnevpt2 module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.mrpt.dfnevpt2.prange"><code class="docutils literal notranslate"><span class="pre">prange()</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf.mrpt.nevpt2">pyscf.mrpt.nevpt2 module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.mrpt.nevpt2.NEVPT"><code class="docutils literal notranslate"><span class="pre">NEVPT</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf.mrpt.nevpt2.NEVPT.canonicalize"><code class="docutils literal notranslate"><span class="pre">NEVPT.canonicalize()</span></code></a></li>
@@ -822,7 +839,7 @@ the DFT mesh grids etc.).</p>
 
   <p class="copyright">
     
-      © Copyright 2025, The PySCF Developers.
+      © Copyright 2026, The PySCF Developers.
       <br/>
     
   </p>

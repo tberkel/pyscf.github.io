@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=182a64a0"></script>
+    <script src="../../../_static/documentation_options.js?v=84389e84"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
@@ -51,7 +51,7 @@
     <link rel="search" title="Search" href="../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2.9" />
+  <meta name="docsearch:version" content="2.12" />
   </head>
   
   
@@ -408,8 +408,6 @@
 <span class="kn">from</span> <span class="nn">pyscf.solvent</span> <span class="kn">import</span> <span class="n">ddcosmo</span>
 <span class="kn">from</span> <span class="nn">pyscf.solvent</span> <span class="kn">import</span> <span class="n">_attach_solvent</span>
 
-<span class="n">libdft</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">load_library</span><span class="p">(</span><span class="s1">&#39;libdft&#39;</span><span class="p">)</span>
-
 <div class="viewcode-block" id="pcm_for_scf">
 <a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.solvent.html#pyscf.solvent.pcm.pcm_for_scf">[docs]</a>
 <span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">_attach_solvent</span><span class="o">.</span><span class="n">_for_scf</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
@@ -455,17 +453,7 @@
     <span class="k">return</span> <span class="n">_attach_solvent</span><span class="o">.</span><span class="n">_for_post_scf</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">solvent_obj</span><span class="p">,</span> <span class="n">dm</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="pcm_for_tdscf">
-<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.solvent.html#pyscf.solvent.pcm.pcm_for_tdscf">[docs]</a>
-<span class="nd">@lib</span><span class="o">.</span><span class="n">with_doc</span><span class="p">(</span><span class="n">_attach_solvent</span><span class="o">.</span><span class="n">_for_tdscf</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">pcm_for_tdscf</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">solvent_obj</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dm</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="n">scf_solvent</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">method</span><span class="o">.</span><span class="n">_scf</span><span class="p">,</span> <span class="s1">&#39;with_solvent&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">scf_solvent</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">scf_solvent</span><span class="p">,</span> <span class="n">PCM</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">solvent_obj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">solvent_obj</span> <span class="o">=</span> <span class="n">PCM</span><span class="p">(</span><span class="n">method</span><span class="o">.</span><span class="n">mol</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">_attach_solvent</span><span class="o">.</span><span class="n">_for_tdscf</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">solvent_obj</span><span class="p">,</span> <span class="n">dm</span><span class="p">)</span></div>
-
+<span class="n">pcm_for_tdscf</span> <span class="o">=</span> <span class="n">_attach_solvent</span><span class="o">.</span><span class="n">_for_tdscf</span>
 
 
 <span class="c1"># Inject PCM to other methods</span>
@@ -656,9 +644,81 @@
 <div class="viewcode-block" id="PCM">
 <a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.solvent.html#pyscf.solvent.pcm.PCM">[docs]</a>
 <span class="k">class</span> <span class="nc">PCM</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">StreamObject</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    PCM Solvent Model</span>
+
+<span class="sd">    This class implements the Polarizable Continuum Model (PCM) for solvent effects.</span>
+
+<span class="sd">    Input Attributes:</span>
+<span class="sd">    -----------------</span>
+<span class="sd">    method : str</span>
+<span class="sd">        The PCM model. Options include &#39;C-PCM&#39;, &#39;IEF-PCM&#39;, &#39;COSMO&#39;, and &#39;SS(V)PE&#39;.</span>
+<span class="sd">        Default is &#39;C-PCM&#39;.</span>
+
+<span class="sd">    vdw_scale : float</span>
+<span class="sd">        A scaling factor for van der Waals radii. Default is 1.2, consistent with Q-Chem settings.</span>
+
+<span class="sd">    r_probe : float</span>
+<span class="sd">        An additional radius (in Angstrom) added to the van der Waals radii.</span>
+<span class="sd">        Default is 0.0.</span>
+
+<span class="sd">    radii_table : dict</span>
+<span class="sd">        Custom van der Waals radii for each element. By default, scaled van der Waals radii</span>
+<span class="sd">        from `vdw_scale` and `r_probe` are used.</span>
+
+<span class="sd">    lebedev_order : int</span>
+<span class="sd">        The order of the Lebedev mesh used for the cavity sphere. Default is 29 (302 grids).</span>
+
+<span class="sd">    eps : float</span>
+<span class="sd">        The dielectric constant of the solvent. Default is 78.3553, the dielectric constant</span>
+<span class="sd">        for water.</span>
+
+<span class="sd">    frozen : bool</span>
+<span class="sd">        Whether to freeze the potential produced by the solvent during SCF iterations or</span>
+<span class="sd">        other convergence processes. When frozen=True is set, the solvent is</span>
+<span class="sd">        assumed to respond slowly, while the electron density relaxes quickly.</span>
+<span class="sd">        Default is False.</span>
+
+<span class="sd">    max_cycle : int</span>
+<span class="sd">        The maximum number of iterations to relax the solvent.</span>
+
+<span class="sd">    conv_tol : float</span>
+<span class="sd">        The convergence tolerance for total energy during solvent relaxation.</span>
+
+<span class="sd">    equilibrium_solvation : bool</span>
+<span class="sd">        Affects TDDFT and other excited state computations. Controls whether the solvent</span>
+<span class="sd">        relaxes rapidly with respect to the electron density of the excited state.</span>
+<span class="sd">        For vertical excitations, it is recommended to set this to False, as the solvent</span>
+<span class="sd">        typically does not fully relax. In some software packages (e.g., Q-Chem),</span>
+<span class="sd">        non-equilibrium solvation is applied with an optical dielectric constant of</span>
+<span class="sd">        eps=1.78. Default is False.</span>
+
+<span class="sd">    state_id : int</span>
+<span class="sd">        Specifies the target state in excited state calculations.</span>
+<span class="sd">        `state_id=0` corresponds to the ground state, while `state_id=1` corresponds</span>
+<span class="sd">        to the first excited state. Default is 0.</span>
+
+<span class="sd">    Saved Results:</span>
+<span class="sd">    --------------</span>
+<span class="sd">    e_tot : float</span>
+<span class="sd">        The energy contribution from the solvent.</span>
+
+<span class="sd">    v : ndarray</span>
+<span class="sd">        The potential matrix generated by the solvent.</span>
+
+<span class="sd">    Intermediate Attributes:</span>
+<span class="sd">    ------------------------</span>
+<span class="sd">    These attributes are generated during calculations and should not be modified.</span>
+<span class="sd">    Additionally, they may not be compatible between GPU and CPU implementations.</span>
+
+<span class="sd">    - surface</span>
+<span class="sd">    - _intermediates</span>
+<span class="sd">    - v_grids_n</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
     <span class="n">_keys</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;method&#39;</span><span class="p">,</span> <span class="s1">&#39;vdw_scale&#39;</span><span class="p">,</span> <span class="s1">&#39;surface&#39;</span><span class="p">,</span> <span class="s1">&#39;r_probe&#39;</span><span class="p">,</span> <span class="s1">&#39;intopt&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;mol&#39;</span><span class="p">,</span> <span class="s1">&#39;radii_table&#39;</span><span class="p">,</span> <span class="s1">&#39;atom_radii&#39;</span><span class="p">,</span> <span class="s1">&#39;lebedev_order&#39;</span><span class="p">,</span> <span class="s1">&#39;lmax&#39;</span><span class="p">,</span> <span class="s1">&#39;eta&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;method&#39;</span><span class="p">,</span> <span class="s1">&#39;vdw_scale&#39;</span><span class="p">,</span> <span class="s1">&#39;surface&#39;</span><span class="p">,</span> <span class="s1">&#39;r_probe&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;mol&#39;</span><span class="p">,</span> <span class="s1">&#39;radii_table&#39;</span><span class="p">,</span> <span class="s1">&#39;lebedev_order&#39;</span><span class="p">,</span>
         <span class="s1">&#39;eps&#39;</span><span class="p">,</span> <span class="s1">&#39;max_cycle&#39;</span><span class="p">,</span> <span class="s1">&#39;conv_tol&#39;</span><span class="p">,</span> <span class="s1">&#39;state_id&#39;</span><span class="p">,</span> <span class="s1">&#39;frozen&#39;</span><span class="p">,</span>
         <span class="s1">&#39;equilibrium_solvation&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;v&#39;</span><span class="p">,</span> <span class="s1">&#39;v_grids_n&#39;</span><span class="p">,</span>
     <span class="p">}</span>
@@ -673,12 +733,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;C-PCM&#39;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">vdw_scale</span> <span class="o">=</span> <span class="mf">1.2</span> <span class="c1"># default value in qchem</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">surface</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">r_probe</span> <span class="o">=</span> <span class="mf">0.0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">radii_table</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">atom_radii</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lebedev_order</span> <span class="o">=</span> <span class="mi">29</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_intermediates</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="o">=</span> <span class="mf">78.3553</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">max_cycle</span> <span class="o">=</span> <span class="mi">20</span>
@@ -687,6 +744,10 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">frozen</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">equilibrium_solvation</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">surface</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_intermediates</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">v_grids_n</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># nuclear potential on grids</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">v</span> <span class="o">=</span> <span class="kc">None</span>
@@ -703,10 +764,7 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">lebedev_order</span><span class="p">,</span> <span class="n">gen_grid</span><span class="o">.</span><span class="n">LEBEDEV_ORDER</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">lebedev_order</span><span class="p">])</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;eps = </span><span class="si">%s</span><span class="s1">&#39;</span>          <span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;frozen = </span><span class="si">%s</span><span class="s1">&#39;</span>       <span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">frozen</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;equilibrium_solvation = </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">equilibrium_solvation</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;radii_table </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">radii_table</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">atom_radii</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;User specified atomic radii </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">atom_radii</span><span class="p">))</span>
+        <span class="c1">#logger.info(self, &#39;equilibrium_solvation = %s&#39;, self.equilibrium_solvation)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
 
@@ -725,7 +783,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">mol</span> <span class="o">=</span> <span class="n">mol</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_intermediates</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">surface</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">intopt</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">v_grids_n</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
 
@@ -734,12 +792,15 @@
     <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ng</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">radii_table</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">vdw_scale</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vdw_scale</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">radii_table</span> <span class="o">=</span> <span class="n">vdw_scale</span> <span class="o">*</span> <span class="n">modified_Bondi</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">r_probe</span>
+            <span class="n">radii_table</span> <span class="o">=</span> <span class="n">vdw_scale</span> <span class="o">*</span> <span class="n">modified_Bondi</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">r_probe</span><span class="o">/</span><span class="n">radii</span><span class="o">.</span><span class="n">BOHR</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">radii_table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">radii_table</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;radii_table </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">radii_table</span><span class="p">)</span>
         <span class="n">mol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol</span>
         <span class="k">if</span> <span class="n">ng</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">ng</span> <span class="o">=</span> <span class="n">gen_grid</span><span class="o">.</span><span class="n">LEBEDEV_ORDER</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">lebedev_order</span><span class="p">]</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">surface</span> <span class="o">=</span> <span class="n">gen_surface</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">rad</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">radii_table</span><span class="p">,</span> <span class="n">ng</span><span class="o">=</span><span class="n">ng</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">surface</span> <span class="o">=</span> <span class="n">gen_surface</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">rad</span><span class="o">=</span><span class="n">radii_table</span><span class="p">,</span> <span class="n">ng</span><span class="o">=</span><span class="n">ng</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_intermediates</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">F</span><span class="p">,</span> <span class="n">A</span> <span class="o">=</span> <span class="n">get_F_A</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surface</span><span class="p">)</span>
         <span class="n">D</span><span class="p">,</span> <span class="n">S</span> <span class="o">=</span> <span class="n">get_D_S</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surface</span><span class="p">,</span> <span class="n">with_S</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">with_D</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -867,28 +928,45 @@
 <div class="viewcode-block" id="PCM.nuc_grad_method">
 <a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.solvent.html#pyscf.solvent.pcm.PCM.nuc_grad_method">[docs]</a>
     <span class="k">def</span> <span class="nf">nuc_grad_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grad_method</span><span class="p">):</span>
-        <span class="kn">from</span> <span class="nn">pyscf.solvent.grad</span> <span class="kn">import</span> <span class="n">pcm</span> <span class="k">as</span> <span class="n">pcm_grad</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">frozen</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Frozen solvent model is not supported&#39;</span><span class="p">)</span>
-        <span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">scf</span>
-        <span class="kn">from</span> <span class="nn">pyscf.solvent</span> <span class="kn">import</span> <span class="n">_ddcosmo_tdscf_grad</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">grad_method</span><span class="o">.</span><span class="n">base</span><span class="p">,</span> <span class="n">tdscf</span><span class="o">.</span><span class="n">rhf</span><span class="o">.</span><span class="n">TDBase</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">_ddcosmo_tdscf_grad</span><span class="o">.</span><span class="n">make_grad_object</span><span class="p">(</span><span class="n">grad_method</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">pcm_grad</span><span class="o">.</span><span class="n">make_grad_object</span><span class="p">(</span><span class="n">grad_method</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">DeprecationWarning</span><span class="p">(</span><span class="s1">&#39;Use the make_grad_object function from &#39;</span>
+                                 <span class="s1">&#39;pyscf.solvent.grad.pcm or &#39;</span>
+                                 <span class="s1">&#39;pyscf.solvent._ddcosmo_tdscf_grad instead.&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PCM.grad">
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.solvent.html#pyscf.solvent.pcm.PCM.grad">[docs]</a>
+    <span class="k">def</span> <span class="nf">grad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dm</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Computes the Jacobian for the energy associated with the solvent,</span>
+<span class="sd">        including the derivatives of the solvent itsself and the interactions</span>
+<span class="sd">        between the solvent and the charge density of the solute.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="kn">from</span> <span class="nn">pyscf.solvent.grad.pcm</span> <span class="kn">import</span> <span class="n">grad_qv</span><span class="p">,</span> <span class="n">grad_nuc</span><span class="p">,</span> <span class="n">grad_solver</span>
+        <span class="n">de_solvent</span> <span class="o">=</span> <span class="n">grad_qv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dm</span><span class="p">)</span>
+        <span class="n">de_solvent</span><span class="o">+=</span> <span class="n">grad_nuc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dm</span><span class="p">)</span>
+        <span class="n">de_solvent</span><span class="o">+=</span> <span class="n">grad_solver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dm</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">de_solvent</span></div>
 
 
 <div class="viewcode-block" id="PCM.Hessian">
 <a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.solvent.html#pyscf.solvent.pcm.PCM.Hessian">[docs]</a>
     <span class="k">def</span> <span class="nf">Hessian</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hess_method</span><span class="p">):</span>
-        <span class="kn">from</span> <span class="nn">pyscf.solvent.hessian</span> <span class="kn">import</span> <span class="n">pcm</span> <span class="k">as</span> <span class="n">pcm_hess</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">frozen</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Frozen solvent model is not supported&#39;</span><span class="p">)</span>
-        <span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">scf</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hess_method</span><span class="o">.</span><span class="n">base</span><span class="p">,</span> <span class="p">(</span><span class="n">scf</span><span class="o">.</span><span class="n">hf</span><span class="o">.</span><span class="n">RHF</span><span class="p">,</span> <span class="n">scf</span><span class="o">.</span><span class="n">uhf</span><span class="o">.</span><span class="n">UHF</span><span class="p">)):</span>
-            <span class="k">return</span> <span class="n">pcm_hess</span><span class="o">.</span><span class="n">make_hess_object</span><span class="p">(</span><span class="n">hess_method</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Only SCF gradient is supported&#39;</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">DeprecationWarning</span><span class="p">(</span><span class="s1">&#39;Use the make_hessian_object function from &#39;</span>
+                                 <span class="s1">&#39;pyscf.solvent.hessian.pcm instead.&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PCM.hess">
+<a class="viewcode-back" href="../../../pyscf_api_docs/pyscf.solvent.html#pyscf.solvent.pcm.PCM.hess">[docs]</a>
+    <span class="k">def</span> <span class="nf">hess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dm</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Computes the Hessian for the energy associated with the solvent,</span>
+<span class="sd">        including the derivatives of the solvent itsself and the interactions</span>
+<span class="sd">        between the solvent and the charge density of the solute.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="kn">from</span> <span class="nn">pyscf.solvent.hessian.pcm</span> <span class="kn">import</span> <span class="p">(</span>
+            <span class="n">analytical_hess_nuc</span><span class="p">,</span> <span class="n">analytical_hess_qv</span><span class="p">,</span> <span class="n">analytical_hess_solver</span><span class="p">)</span>
+        <span class="n">de_solvent</span>  <span class="o">=</span>    <span class="n">analytical_hess_nuc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">)</span>
+        <span class="n">de_solvent</span> <span class="o">+=</span>     <span class="n">analytical_hess_qv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">)</span>
+        <span class="n">de_solvent</span> <span class="o">+=</span> <span class="n">analytical_hess_solver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">de_solvent</span></div>
 
 
     <span class="k">def</span> <span class="nf">_B_dot_x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dms</span><span class="p">):</span>
@@ -947,7 +1025,7 @@
 
   <p class="copyright">
     
-      © Copyright 2025, The PySCF Developers.
+      © Copyright 2026, The PySCF Developers.
       <br/>
     
   </p>
